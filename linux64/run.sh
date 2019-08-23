@@ -1,2 +1,2 @@
 #!/bin/bash
-vm/squeak CuisUniversity-3839.image
+vm/squeak clase2.image
