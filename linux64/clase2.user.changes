@@ -6733,3 +6733,66 @@ III class removeSelector: #initializeCollaboratorsFromFile!
 IIII class removeSelector: #initializeCollaboratorsFromFile!
 
 ----SNAPSHOT----(31 August 2019 18:06:28) clase2.image priorSource: 12930530!
+
+Smalltalk removeClassNamed: #PeanoTest!
+
+diezMetros := 10 * metro!
+
+diezMetros := 10 * meter!
+
+metros := BaseUnit nameForOne:  'metro' nameForMany:  'metros'.!
+
+pulgadas :=
+        ProportionalDerivedUnit
+                baseUnit:  metros
+                conversionFactor: 0.0254
+                nameForOne:  'pulgada'
+                nameForMany:  'pulgadas'
+                sign: 'in'.!
+
+pulgadas :=
+        ProportionalDerivedUnit
+                baseUnit:  meter
+                conversionFactor: 0.0254
+                nameForOne:  'pulgada'
+                nameForMany:  'pulgadas'
+                sign: 'in'. pulgada 
+!
+
+pulgadas :=
+        ProportionalDerivedUnit
+                baseUnit:  meter
+                conversionFactor: 0.0254
+                nameForOne:  'pulgada'
+                nameForMany:  'pulgadas'
+                sign: 'in'.!
+
+centimetros :=
+        ProportionalDerivedUnit
+                baseUnit:  metros
+                conversionFactor: 1/ 100
+                nameForOne:  'centimetro'
+                nameForMany:  'centimetros'
+                sign: 'cm'.!
+
+diezMetros convertTo: centimetros.!
+
+centimetros :=
+        ProportionalDerivedUnit
+                baseUnit:  meter
+                conversionFactor: 1/ 100
+                nameForOne:  'centimetro'
+                nameForMany:  'centimetros'
+                sign: 'cm'.!
+
+diezMetros convertTo: centimetros.!
+
+sesentaPulgadas := 60 * pulgada.!
+
+sesentaPulgadas := 60 * pulgadas.!
+
+sesentaPulgadas convertTo: meter.!
+
+----SNAPSHOT----(31 August 2019 18:43:32) clase2.image priorSource: 12948347!
+
+----QUIT----(31 August 2019 18:43:43) clase2.image priorSource: 12949938!
