@@ -1,4 +1,4 @@
-#include "brazoExcavador.cpp"
+#include "Sensor.h"
 
 Medicion Sensor::sensarSuelo() {
 	//return medicion con dispositivo

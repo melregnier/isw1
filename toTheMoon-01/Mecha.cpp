@@ -1,4 +1,4 @@
-#include "Mecha.cpp"
+#include "Mecha.h"
 
 void Mecha::girar(int sentido, int velocidad, int tiempo) {
 	//Comunicacion con Mecha

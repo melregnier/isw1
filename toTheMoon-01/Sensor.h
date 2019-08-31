@@ -8,7 +8,7 @@ using namespace std;
 
 class Sensor{
 public:
-	Sensor() {
+	Sensor(): _ultimaMedicion(-1,-1) {
 	}
 
 	Medicion sensarSuelo();

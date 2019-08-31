@@ -9,8 +9,8 @@ class Medicion{
 public:
 	Medicion(int dureza, int porosidad) : _dureza(dureza), _porosidad(porosidad) {}
 
-	int dureza() { return _dureza }
-	int porosidad() { return _porosidad }
+	int dureza() { return _dureza; }
+	int porosidad() { return _porosidad; }
 
 
 

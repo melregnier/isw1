@@ -12,12 +12,19 @@
 #define ANTIHORARIO 1
 #define PIEDRA 0
 #define POLVO 1
+#define INTERMEDIO 2
 #define	VELOCIDAD_PIEDRA 150
 #define VELOCIDAD_POLVO 100
+#define VELOCIDAD_INTERMEDIO 150
+#define VELOCIDAD_CONTRARIA_INTERMEDIO 100
 #define	TIEMPO_PIEDRA 10
 #define	TIEMPO_POLVO 5
-#define LIMITE_DUREZA 0    //completar con valores cientificos conocidos
-#define LIMITE_POROSIDAD 0   //completar con valores cientificos conocidos
+#define	TIEMPO_INTERMEDIO 5
+#define	TIEMPO_CONTRARIO_INTERMEDIO 10
+#define LIMITE_DURO 100    //completar con valores cientificos conocidos
+#define LIMITE_BLANDO 0
+#define LIMITE_POROSO 100   //completar con valores cientificos conocidos
+#define LIMITE_COMPACTO 0
 
 using namespace std;
 
@@ -33,11 +40,16 @@ private:
 	Pinza _pinza;
 	Mecha _mecha;
 	Sensor _sensor;
-	int tiempo(int tipoDeSuelo);
-	int velocidad(int tipoDeSuelo);
-	int sentidoContrario(int tipoDeSuelo);
-	int determinarTipoDeSuelo(Medicion medicion);
+
 	int sentido(int tipoDeSuelo);
+	int velocidad(int tipoDeSuelo);
+	int tiempo(int tipoDeSuelo);
+
+	int sentidoContrario(int tipoDeSuelo);
+	int velocidadContraria(int tipoDeSuelo);
+	int tiempoContrario(int tipoDeSuelo);
+
+	int determinarTipoDeSuelo(Medicion medicion);
 
 };
 
