@@ -1,27 +1,20 @@
-#ifndef BRAZO_EXCAVADOR_H
-#define BRAZO_EXCAVADOR_H
+#ifndef MECHA_H
+#define MECHA_H
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-class BrazoExcavador{
+class Mecha{
 public:
-	BrazoExcavador() : _mecha(), _pinza(), _sensor() {
+	Mecha() {
 	}
-
-	tomarMuestra();
-
-private:
-
-	Mecha _mecha;
-	Pinza _pinza;
-	Sensor _sensor;
-
+	
+	void girar(int sentido, int velocidad, int tiempo);
 };
 
 
-#endif  // BRAZO_EXCAVADOR_H
+#endif  // MECHA_H
 
 
 

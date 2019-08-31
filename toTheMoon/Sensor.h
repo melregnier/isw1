@@ -2,7 +2,7 @@
 #define SENSOR_H
 
 #include <bits/stdc++.h>
-#include Medicion
+#include "Medicion.h"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ public:
 	}
 
 	Medicion sensarSuelo();
+	
 
 private:
 

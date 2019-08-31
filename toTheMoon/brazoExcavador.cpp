@@ -1,25 +1,18 @@
-#include "brazoExcavador.cpp"
+#include "brazoExcavador.h"
 
-#define HORARIO 0
-#define ANTIHORARIO 1
-#define PIEDRA 0
-#define POLVO 1
-#define	VELOCIDAD_PIEDRA 150
-#define VELOCIDAD_POLVO 100
-#define	TIEMPO_PIEDRA 10
-#define	TIEMPO_POLVO 5
 
 
 void BrazoExcavador::tomarMuestra() {
 	Medicion medicion = _sensor.sensarSuelo();
 	int tipoDeSuelo = determinarTipoDeSuelo(medicion);
+	_pinza.abrir();
 	_mecha.girar(sentido(tipoDeSuelo), velocidad(tipoDeSuelo), tiempo(tipoDeSuelo)); // SENTIDO, V, T
 	_pinza.cerrar();
 	_mecha.girar(sentidoContrario(tipoDeSuelo), velocidad(tipoDeSuelo), tiempo(tipoDeSuelo));
 
 }
 
-int sentido(int tipoDeSuelo) {
+int BrazoExcavador::sentido(int tipoDeSuelo) {
 	if(tipoDeSuelo == PIEDRA) {
 		return HORARIO;
 	}
@@ -28,7 +21,7 @@ int sentido(int tipoDeSuelo) {
 	}
 }
 
-int velocidad(int tipoDeSuelo) {
+int BrazoExcavador::velocidad(int tipoDeSuelo) {
 	if(tipoDeSuelo == PIEDRA) {
 		return VELOCIDAD_PIEDRA;
 	}
@@ -37,7 +30,7 @@ int velocidad(int tipoDeSuelo) {
 	}
 }
 
-int tiempo(int tipoDeSuelo) {
+int BrazoExcavador::tiempo(int tipoDeSuelo) {
 	if(tipoDeSuelo == PIEDRA) {
 		return TIEMPO_PIEDRA;
 	}
@@ -46,7 +39,7 @@ int tiempo(int tipoDeSuelo) {
 	}
 }
 
-int sentidoContrario(int tipoDeSuelo) {
+int BrazoExcavador::sentidoContrario(int tipoDeSuelo) {
 	if(tipoDeSuelo == PIEDRA) {
 		return ANTIHORARIO;
 	}
@@ -56,6 +49,12 @@ int sentidoContrario(int tipoDeSuelo) {
 }
 
 
-int determinarTipoDeSuelo(Medicion medicion) {
-	
+int BrazoExcavador::determinarTipoDeSuelo(Medicion medicion) {
+	if(medicion.dureza() >= LIMITE_DUREZA and medicion.porosidad() < LIMITE_POROSIDAD) {
+		return PIEDRA;
+	}
+	if(medicion.dureza() < LIMITE_DUREZA and medicion.porosidad() >= LIMITE_POROSIDAD) {
+		return POLVO;
+	}
+	return -1;//error
 }

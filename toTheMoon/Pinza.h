@@ -1,27 +1,30 @@
-#ifndef BRAZO_EXCAVADOR_H
-#define BRAZO_EXCAVADOR_H
+#ifndef PINZA_H
+#define PINZA_H
+
+#define CERRADO true
+#define ABIERTO false
+
 
 #include <bits/stdc++.h>
 
 using namespace std;
 
-class BrazoExcavador{
+class Pinza{
 public:
-	BrazoExcavador() : _mecha(), _pinza(), _sensor() {
+	Pinza() {
+		_estado = ABIERTO;
 	}
 
-	tomarMuestra();
+	void cerrar();
+	void abrir();
 
 private:
-
-	Mecha _mecha;
-	Pinza _pinza;
-	Sensor _sensor;
+	bool _estado;
 
 };
 
 
-#endif  // BRAZO_EXCAVADOR_H
+#endif  // PINZA_H
 
 
 
