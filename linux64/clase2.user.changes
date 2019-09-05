@@ -7422,3 +7422,125 @@ removeFrom: aCollection if: conditionToRemove
 ----SNAPSHOT----(3 September 2019 16:19:36) clase2.image priorSource: 12982733!
 
 ----QUIT----(3 September 2019 16:20:03) clase2.image priorSource: 12983972!
+
+----STARTUP---- (3 September 2019 17:58:46) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+!CustomerBook methodsFor: 'customer management' stamp: 'mr 9/3/2019 17:59:56' prior: 50736570!
+numberOfCustomers
+	
+	^self numberOfActiveCustomers + self numberOfSuspendedCustomers.! !
+
+----QUIT----(3 September 2019 18:02:31) clase2.image priorSource: 12984053!
+
+----STARTUP---- (5 September 2019 16:35:20) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+!CustomerBookTest methodsFor: 'time measuring' stamp: 'mr 9/5/2019 16:39:14' prior: 50736856!
+closure: aClosure shouldNotTakeMoreMillisecondsThan: milliseconds 
+	
+	self assert: (Time millisecondsToRun: aClosure ) < (milliseconds * millisecond)! !
+!CustomerBookTest methodsFor: 'time measuring' stamp: 'mr 9/5/2019 16:39:35' prior: 50737421!
+closure: aClosure shouldNotTakeMoreMillisecondsThan: milliseconds 
+	
+	self assert: (Time millisecondsToRun: aClosure ) < (milliseconds * millisecond)! !
+!CustomerBookTest methodsFor: 'time measuring' stamp: 'mr 9/5/2019 16:41:53' prior: 50737429!
+closure: closureToMeasure shouldNotTakeMoreMillisecondsThan: milliseconds 
+	
+	self assert: (Time millisecondsToRun: closureToMeasure ) < (milliseconds * millisecond)! !
+!CustomerBookTest methodsFor: 'time measuring' stamp: 'mr 9/5/2019 16:42:25'!
+doing: closureToMeasure shouldNotTakeMoreMillisecondsThan: milliseconds 
+	
+	self assert: (Time millisecondsToRun: closureToMeasure ) < (milliseconds * millisecond)! !
+!CustomerBookTest methodsFor: 'fail' stamp: 'mr 9/5/2019 16:42:37'!
+doing: closureToFail shouldFailWith: error andDo: closureAfterFail
+ 	[ closureToFail value.
+	  self fail ]
+		on: error
+		do: closureAfterFail! !
+
+CustomerBookTest removeSelector: #closure:shouldFailWith:andDo:!
+
+CustomerBookTest removeSelector: #closure:shouldNotTakeMoreMillisecondsThan:!
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:43:08' prior: 50736874!
+test01AddingCustomerShouldNotTakeMoreThan50Milliseconds
+
+	| customerBook |
+	
+	customerBook := CustomerBook new.
+	
+	self doing: [ customerBook addCustomerNamed: 'john Lennon' ] shouldNotTakeMoreMillisecondsThan: 50
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:43:20' prior: 50737193!
+test02RemovingCustomerShouldNotTakeMoreThan100Milliseconds
+
+	| customerBook paulMcCartney |
+	
+	customerBook := CustomerBook new.
+	paulMcCartney := 'Paul McCartney'.
+	
+	customerBook addCustomerNamed: paulMcCartney.
+
+	self doing: [ customerBook removeCustomerNamed: paulMcCartney. ] shouldNotTakeMoreMillisecondsThan: 100.
+! !
+!CustomerBookTest methodsFor: 'fail' stamp: 'mr 9/5/2019 16:43:39'!
+closure: closureToFail shouldFailWith: error andDo: closureAfterFail
+ 	[ closureToFail value.
+	  self fail ]
+		on: error
+		do: closureAfterFail! !
+
+CustomerBookTest removeSelector: #closure:shouldFailWith:andDo:!
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:43:58' prior: 50737063!
+test03CanNotAddACustomerWithEmptyName 
+
+	| customerBook |
+			
+	customerBook := CustomerBook new.
+
+	self doing: [ customerBook addCustomerNamed: ''. ] shouldFailWith: Error andDo: 
+	[ :anError |
+		self assert: anError messageText = CustomerBook customerCanNotBeEmptyErrorMessage.
+		self assert: customerBook isEmpty ]! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:44:08' prior: 50737076!
+test04CanNotRemoveAnInvalidCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	
+	self doing: [ customerBook removeCustomerNamed: 'Paul McCartney'. ] shouldFailWith: NotFound andDo: 
+	[ :anError |
+		self assert: customerBook numberOfCustomers = 1. 
+		self assert: (customerBook includesCustomerNamed: johnLennon) ]
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:44:15' prior: 50737160!
+test07CanNotSuspendAnInvalidCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	
+	self doing: [ customerBook suspendCustomerNamed: 'Paul McCartney'. ] shouldFailWith: CantSuspend andDo: [ 		:anError | 
+			self assertCustomerBook: customerBook includes: johnLennon andHasNumberOfCustomers: 1]
+! !
+!CustomerBookTest methodsFor: 'testing' stamp: 'mr 9/5/2019 16:44:22' prior: 50737176!
+test08CanNotSuspendAnAlreadySuspendedCustomer
+	
+	| customerBook johnLennon |
+			
+	customerBook := CustomerBook new.
+	johnLennon := 'John Lennon'.
+	customerBook addCustomerNamed: johnLennon.
+	customerBook suspendCustomerNamed: johnLennon.
+
+	self doing: [ customerBook suspendCustomerNamed: johnLennon. ] shouldFailWith: CantSuspend andDo: [ 		:anError | 
+			self assertCustomerBook: customerBook includes: johnLennon andHasNumberOfCustomers: 1]! !
+
+----SNAPSHOT----(5 September 2019 16:45:51) clase2.image priorSource: 12984440!
+
+----SNAPSHOT----(5 September 2019 16:47:57) clase2.image priorSource: 12989086!
+
+----QUIT----(5 September 2019 16:48:01) clase2.image priorSource: 12989167!
