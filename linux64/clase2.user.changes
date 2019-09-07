@@ -7544,3 +7544,8 @@ test08CanNotSuspendAnAlreadySuspendedCustomer
 ----SNAPSHOT----(5 September 2019 16:47:57) clase2.image priorSource: 12989086!
 
 ----QUIT----(5 September 2019 16:48:01) clase2.image priorSource: 12989167!
+
+----STARTUP---- (7 September 2019 19:50:25) as /home/dago/Documents/Facultad/isw1/isw1/linux64/clase2.image!
+
+
+----QUIT----(7 September 2019 20:01:47) clase2.image priorSource: 12989248!
