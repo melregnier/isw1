@@ -8235,3 +8235,454 @@ Entero removeSelector: #subtractFromInteger:!
 ----SNAPSHOT----(12 September 2019 21:27:43) clase2.image priorSource: 13040859!
 
 ----SNAPSHOT----(12 September 2019 21:39:49) clase2.image priorSource: 13041558!
+
+----STARTUP---- (14 September 2019 16:18:28) as /home/dago/Documents/Facultad/isw1/isw1/linux64/clase2.image!
+
+
+Entero subclass: #PositivosMayoresAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #PositivosMayoresAUno category: #'Numero-Exercise'!
+Entero subclass: #PositivosMayoresAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Entero subclass: #Uno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #Uno category: #'Numero-Exercise'!
+Entero subclass: #Uno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Entero subclass: #Cero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #Cero category: #'Numero-Exercise'!
+Entero subclass: #Cero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Entero subclass: #Negativos
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #Negativos category: #'Numero-Exercise'!
+Entero subclass: #Negativos
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Entero subclass: #Negativo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #Negativo category: #'Numero-Exercise'!
+Entero subclass: #Negativo
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Smalltalk removeClassNamed: #Negativos!
+
+Entero subclass: #PositivoMayoresAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #PositivoMayoresAUno category: #'Numero-Exercise'!
+Entero subclass: #PositivoMayoresAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Entero subclass: #PositivoMayorAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!classDefinition: #PositivoMayorAUno category: #'Numero-Exercise'!
+Entero subclass: #PositivoMayorAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+Smalltalk removeClassNamed: #PositivoMayoresAUno!
+
+Smalltalk removeClassNamed: #PositivosMayoresAUno!
+!Uno methodsFor: 'no messages' stamp: 'mr 9/14/2019 16:40:35'!
+fibonacci
+
+	^self! !
+!Cero methodsFor: 'nil' stamp: 'mr 9/14/2019 16:40:58'!
+fibonacci
+	^Uno! !
+!Entero methodsFor: 'arithmetic operations' stamp: 'mr 9/14/2019 16:44:28' prior: 50738313!
+fibonacci
+
+	^self subclassResponsibility 
+"
+	| one two |
+	
+	one := Entero with: 1.
+	two := Entero with: 2.
+	
+	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
+	(self isZero or: [self isOne]) ifTrue: [^one].
+	
+	^ (self - one) fibonacci + (self - two) fibonacci
+	"	! !
+!Cero methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 16:44:44' prior: 50739288!
+fibonacci
+	^Entero with: 1! !
+!PositivoMayorAUno methodsFor: 'no messages' stamp: 'mr 9/14/2019 16:45:12'!
+fibonacci
+! !
+!PositivoMayorAUno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 16:45:49' prior: 50739309!
+fibonacci
+
+
+ | one two |
+^ (self - one) fibonacci + (self - two) fibonacci! !
+!PositivoMayorAUno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 16:46:31' prior: 50739313!
+fibonacci
+
+	| one two |
+
+	one := Entero with: 1.
+	two := Entero with: 2.
+	^ (self - one) fibonacci + (self - two) fibonacci! !
+!Negativo methodsFor: 'no messages' stamp: 'mr 9/14/2019 16:48:59'!
+fibonacci
+
+	self error: Entero negativeFibonacciErrorDescription.! !
+!Negativo class methodsFor: 'no messages' stamp: 'mr 9/14/2019 16:49:24'!
+negativeFibonacciErrorDescription
+	^ ' Fibonacci no está definido aquí para Enteros Negativos'! !
+
+Entero class removeSelector: #negativeFibonacciErrorDescription!
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 16:51:13'!
+negativeFibonacciErrorDescription
+	^ ' Fibonacci no está definido aquí para Enteros Negativos'! !
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 16:54:01' prior: 50738378!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	
+	aValue = 0 ifTrue:[ ^Cero new initializeWith: aValue ].
+	aValue = 1 ifTrue:[ ^Uno new initializeWith: aValue ].
+	aValue < 0 ifTrue:[ ^Negativo new initializeWith: aValue ].
+	^self new initalizeWith: aValue
+	! !
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 16:54:40' prior: 50739345!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	
+	aValue = 0 ifTrue:[ ^Cero new initializeWith: aValue ].
+	aValue = 1 ifTrue:[ ^Uno new initializeWith: aValue ].
+	aValue < 0 ifTrue:[ ^Negativo new initializeWith: aValue ].
+	^PositivoMayorAUno new initalizeWith: aValue
+	! !
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 16:57:13' prior: 50739362!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	
+	aValue = 0 ifTrue:[ ^Cero new initialize ].
+	aValue = 1 ifTrue:[ ^Uno new initialize ].
+	aValue < 0 ifTrue:[ ^Negativo new initializeWith: aValue ].
+	^PositivoMayorAUno new initalizeWith: aValue
+	! !
+!Cero methodsFor: 'nil' stamp: 'mr 9/14/2019 16:57:40'!
+initialize
+	value:= 0! !
+!Uno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 16:57:55'!
+initialize
+	value:= 1! !
+!Negativo methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 16:59:21'!
+initializeWith: aNegativeValue
+
+	value:= aNegativeValue ! !
+!PositivoMayorAUno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:00:28'!
+initializeWith: aValueGreaterThanOne
+
+	value := aValueGreaterThanOne ! !
+
+9 gcd: 0.!
+
+9 gcd: 0.!
+
+9 gcd: 1.!
+
+-9 gcd: -1.!
+
+-9 gcd: 1.!
+
+9 gcd: -3.!
+
+9 gcd: -3.!
+
+9 gcd: -3.!
+
+-9 gcd: -3.!
+
+-3/3.!
+!Fraccion class methodsFor: 'intance creation' stamp: 'mr 9/14/2019 17:17:24' prior: 50738489!
+with: aDividend over: aDivisor
+
+	| greatestCommonDivisor numerator denominator |
+	
+"	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
+	aDividend isZero ifTrue: [ ^aDividend ].
+	
+	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
+"	
+	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
+	numerator := aDividend // greatestCommonDivisor.
+	denominator := aDivisor // greatestCommonDivisor.
+
+	^ aDivisor makeFractionAsDivisorWith: aDividend.
+	
+"	denominator isOne ifTrue: [ ^numerator ].
+
+	^self new initializeWith: numerator over: denominator
+"	! !
+!Fraccion class methodsFor: 'intance creation' stamp: 'mr 9/14/2019 17:19:31' prior: 50739416!
+with: aDividend over: aDivisor
+
+	| greatestCommonDivisor numerator denominator |
+	
+"	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
+	aDividend isZero ifTrue: [ ^aDividend ].
+	
+	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
+"	
+	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
+	numerator := aDividend // greatestCommonDivisor.
+	denominator := aDivisor // greatestCommonDivisor.
+
+	^ denominator makeFractionAsDenominatorWith: numerator.
+	
+"	denominator isOne ifTrue: [ ^numerator ].
+
+	^self new initializeWith: numerator over: denominator
+"	! !
+!Entero methodsFor: 'nil' stamp: 'mr 9/14/2019 17:20:38'!
+makeFractionAsDenominatorWith: aNumerator
+	
+	^ self subclassResponsibility ! !
+!Cero methodsFor: 'nil' stamp: 'mr 9/14/2019 17:21:30'!
+makeFractionAsDenominatorWith: aNumerator
+	! !
+!Cero methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:22:22' prior: 50739466!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ Fraccion error: Fraccion canNotDivideByZeroErrorDescription
+	! !
+!Uno methodsFor: 'nil' stamp: 'mr 9/14/2019 17:23:04'!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator ! !
+!Negativo class methodsFor: 'nil' stamp: 'mr 9/14/2019 17:24:27'!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator negated / self negated! !
+!Negativo methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:24:58'!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator negated / self negated! !
+
+Negativo class removeSelector: #makeFractionAsDenominatorWith:!
+!PositivoMayorAUno class methodsFor: 'nil' stamp: 'mr 9/14/2019 17:28:42'!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator makeFractionAsNumeratorWith: self
+! !
+!PositivoMayorAUno class methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:28:56' prior: 50739493!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator makeFractionAsNumeratorWithPositive: self
+! !
+!PositivoMayorAUno methodsFor: 'nil' stamp: 'mr 9/14/2019 17:29:38'!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ aNumerator makeFractionAsNumeratorWithPositive: self
+! !
+
+PositivoMayorAUno class removeSelector: #makeFractionAsDenominatorWith:!
+!Cero methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:30:53'!
+makeFractionAsNumeratorWithPositive: aNumerator
+
+	^ self! !
+!Uno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:31:59'!
+makeFractionAsNumeratorWithPositive: aNumerator
+
+	^ Fraccion with: self over: aNumerator! !
+!PositivoMayorAUno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:32:37'!
+makeFractionAsNumeratorWithPositive: aDenominator
+
+	^ Fraccion with: self over: aDenominator! !
+!Uno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:33:08' prior: 50739519!
+makeFractionAsNumeratorWithPositive: aDenominator
+
+	^ Fraccion with: self over: aDenominator! !
+!PositivoMayorAUno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:35:56' prior: 50739525!
+makeFractionAsNumeratorWithPositive: aDenominator
+
+	^ Fraccion new initializeWith: self over: aDenominator! !
+!Uno methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:37:21' prior: 50739531!
+makeFractionAsNumeratorWithPositive: aDenominator
+
+	^ Fraccion new initializeWith: self over: aDenominator! !
+!Negativo methodsFor: 'nil' stamp: 'mr 9/14/2019 17:42:10'!
+makeFractionAsNumeratorWithPositive: aPositiveDenominator
+
+	^ Fraccion new initializeWith: self over: aPositiveDenominator! !
+
+----SNAPSHOT----(14 September 2019 17:43:21) clase2.image priorSource: 13041640!
+
+Smalltalk removeClassNamed: #Fraccion!
+
+Smalltalk removeClassNamed: #Uno!
+
+Smalltalk removeClassNamed: #PositivoMayorAUno!
+
+Smalltalk removeClassNamed: #Negativo!
+
+Smalltalk removeClassNamed: #Cero!
+
+Smalltalk removeClassNamed: #Entero!
+
+Smalltalk removeClassNamed: #Numero!
+
+Smalltalk removeClassNamed: #NumeroTest!
+
+----End fileIn of /home/dago/Documents/Facultad/isw1/isw1/19- Numeros/Numero-Exercise.st----!
+
+Smalltalk removeClassNamed: #Fraccion!
+
+Smalltalk removeClassNamed: #Entero!
+
+Smalltalk removeClassNamed: #Numero!
+
+Smalltalk removeClassNamed: #NumeroTest!
+
+----End fileIn of /home/dago/Documents/Facultad/isw1/isw1/19- Numeros/Numero-ExerciseNoIfs.st----!
+!Cero methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:45:42' prior: 50740861!
+makeFractionAsDenominatorWith: aNumerator
+
+	^ self class error: self class canNotDivideByZeroErrorDescription
+	! !
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 17:46:05' prior: 50740828!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	
+	aValue = 0 ifTrue:[ ^Cero new initialize ].
+	aValue = 1 ifTrue:[ ^Uno new initialize ].
+	aValue < 0 ifTrue:[ ^Negativo new initializeWith: aValue ].
+	
+	^PositivoMayorAUno new initalizeWith: aValue
+	! !
+!Entero methodsFor: 'initialization' stamp: 'mr 9/14/2019 17:46:43' prior: 50740785!
+initalizeWith: aValue 
+	
+	self subclassResponsibility ! !
+!Entero methodsFor: 'nil' stamp: 'mr 9/14/2019 17:47:51' prior: 50740810!
+makeFractionAsDenominatorWith: aNumerator
+
+	self subclassResponsibility ! !
+!Entero methodsFor: 'as yet unclassified' stamp: 'mr 9/14/2019 17:48:17'!
+makeFractionAsNumeratorWithPositive: aPositiveDenominator
+
+	self subclassResponsibility ! !
+
+Entero removeSelector: #initalizeWith:!
+
+Smalltalk removeClassNamed: #Fraccion!
+
+Smalltalk removeClassNamed: #Uno!
+
+Smalltalk removeClassNamed: #PositivoMayorAUno!
+
+Smalltalk removeClassNamed: #Negativo!
+
+Smalltalk removeClassNamed: #Cero!
+
+Smalltalk removeClassNamed: #Entero!
+
+Smalltalk removeClassNamed: #Numero!
+
+Smalltalk removeClassNamed: #NumeroTest!
+
+----End fileIn of /home/dago/Documents/Facultad/isw1/isw1/19- Numeros/Numero-ExerciseNoIfs.st----!
+
+Smalltalk removeClassNamed: #Fraccion!
+
+Smalltalk removeClassNamed: #Uno!
+
+Smalltalk removeClassNamed: #PositivoMayorAUno!
+
+Smalltalk removeClassNamed: #Negativo!
+
+Smalltalk removeClassNamed: #Cero!
+
+Smalltalk removeClassNamed: #Entero!
+
+Smalltalk removeClassNamed: #Numero!
+
+Smalltalk removeClassNamed: #NumeroTest!
+
+----End fileIn of /home/dago/Documents/Facultad/isw1/isw1/linux64/Numero-ExerciseEstaRoto.st----!
+!Entero class methodsFor: 'instance creation' stamp: 'mr 9/14/2019 17:55:35' prior: 50742633!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	
+	aValue = 0 ifTrue:[ ^Cero new initialize ].
+	aValue = 1 ifTrue:[ ^Uno new initialize ].
+	aValue < 0 ifTrue:[ ^Negativo new initializeWith: aValue ].
+	
+	^PositivoMayorAUno new initializeWith: aValue
+	! !
+!Entero methodsFor: 'nil' stamp: 'mr 9/14/2019 17:57:17'!
+initializeWith: aNumber
+
+	self subclassResponsibility ! !
+
+Negativo class removeSelector: #negativeFibonacciErrorDescription!
+
+----SNAPSHOT----(14 September 2019 17:59:35) clase2.image priorSource: 13053021!
+
+----QUIT----(14 September 2019 18:04:52) clase2.image priorSource: 13163101!
