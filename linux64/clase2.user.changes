@@ -8686,3 +8686,742 @@ Negativo class removeSelector: #negativeFibonacciErrorDescription!
 ----SNAPSHOT----(14 September 2019 17:59:35) clase2.image priorSource: 13053021!
 
 ----QUIT----(14 September 2019 18:04:52) clase2.image priorSource: 13163101!
+
+----STARTUP---- (16 September 2019 17:32:42) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+----End fileIn of /home/mregnier/isw1/20-Stack/Ejercicio/Stack-Exercise.st----!
+!OOStack methodsFor: 'no messages' stamp: 'dr 9/16/2019 19:07:02'!
+isEmpty
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:07:37'!
+push: anElementToPush
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:07:44'!
+pop
+
+
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:08:47'!
+top
+
+
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:09:00'!
+size
+
+
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:10:01'!
+initialize
+	! !
+
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:10:42' prior: 50743176!
+initialize
+	
+	elements := Array new. ! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:13:54' prior: 50743190!
+initialize
+	
+	elements := OrderedCollection new. ! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:16:34' prior: 50743160!
+isEmpty
+
+	^ elements isEmpty! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:16:59' prior: 50743200!
+isEmpty
+
+	^ elements isEmpty.! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:18:23' prior: 50743167!
+pop
+
+	^self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+
+
+! !
+
+#(1 2 3 4) removeLast!
+
+OrderedCollection new add: 3; removeLast!
+
+OrderedCollection new add: 3;add: 4; removeLast!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:21:44' prior: 50743208!
+pop
+
+	self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+		
+	"else "
+	
+	^ elements removeLast
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:22:46' prior: 50743163!
+push: anElementToPush
+
+	elements addLast: anElementToPush ! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:23:41' prior: 50743173!
+size
+
+	^ elements size.
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:24:00' prior: 50743170!
+top
+
+	^ elements last.
+
+! !
+
+OrderedCollection new add: 3;add: 4; last !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:25:01' prior: 50743234!
+top
+	self isEmpty ifTrue: []
+	^ elements last.
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:25:40' prior: 50743240!
+top
+	self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+
+	^ elements last.
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:25:44' prior: 50743245!
+top
+
+	self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+
+	^ elements last.
+
+! !
+
+OOStack subclass: #OOEmptyStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStack subclass: #OOEmptyStack
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOEmptyStack category: #'Stack-Exercise'!
+OOStack subclass: #OOEmptyStack
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStack subclass: #OOStackWithElements
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackWithElements category: #'Stack-Exercise'!
+OOStack subclass: #OOStackWithElements
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOEmptyStack class methodsFor: 'no messages' stamp: 'dr 9/16/2019 19:30:13'!
+initialize
+! !
+
+Object subclass: #OOStack
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Smalltalk removeClassNamed: #OOEmptyStack!
+
+Smalltalk removeClassNamed: #OOStackWithElements!
+
+OOStack subclass: #OOStackWithElements
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackWithElements category: #'Stack-Exercise'!
+OOStack subclass: #OOStackWithElements
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStack subclass: #OOEmptyStack
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOEmptyStack category: #'Stack-Exercise'!
+OOStack subclass: #OOEmptyStack
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOEmptyStack class
+	instanceVariableNames: 'uniqueInstance'!
+
+!classDefinition: 'OOEmptyStack class' category: #'Stack-Exercise'!
+OOEmptyStack class
+	instanceVariableNames: 'uniqueInstance'!
+!OOEmptyStack class methodsFor: 'no messages' stamp: 'dr 9/16/2019 19:53:04'!
+new
+	
+	^ uniqueInstance.! !
+!OOEmptyStack class methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:53:27'!
+initialize
+
+	^ uniqueInstance := self basicNew.! !
+!OOEmptyStack class methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:53:34' prior: 50743336!
+initialize
+
+	uniqueInstance := self basicNew.! !
+!OOEmptyStack methodsFor: 'nil' stamp: 'dr 9/16/2019 19:53:55'!
+isEmpty
+
+	^ true.! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:54:14' prior: 50743218!
+pop
+
+		
+	"else "
+	
+	^ elements removeLast
+
+! !
+!OOEmptyStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:54:39'!
+pop
+
+	self error: self class stackEmptyErrorDescription.! !
+
+Smalltalk removeClassNamed: #OOEmptyStack!
+
+Smalltalk removeClassNamed: #OOStackWithElements!
+
+Object subclass: #OOStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStackState category: #'Stack-Exercise'!
+Object subclass: #OOStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStackState subclass: #OOEmptyState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOEmptyState category: #'Stack-Exercise'!
+OOStackState subclass: #OOEmptyState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStackState subclass: #OONotEmptyState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyState category: #'Stack-Exercise'!
+OOStackState subclass: #OONotEmptyState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStackState subclass: #OONotEmptyStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackState category: #'Stack-Exercise'!
+OOStackState subclass: #OONotEmptyStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+OOStackState subclass: #OOEmptyStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOEmptyStackState category: #'Stack-Exercise'!
+OOStackState subclass: #OOEmptyStackState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Smalltalk removeClassNamed: #OOEmptyState!
+
+Smalltalk removeClassNamed: #OONotEmptyState!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:59:14' prior: 50743195!
+initialize
+	
+	elements := OOEmptyStackState new. ! !
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'elements state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'elements state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 19:59:53' prior: 50743418!
+initialize
+	
+	state := OOEmptyStackState new. ! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:00:03' prior: 50743204!
+isEmpty
+
+	^ state isEmpty.! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:00:55' prior: 50743349!
+pop
+
+	^ state := state pop 
+"	^ elements removeLast"
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:01:25' prior: 50743225!
+push: anElementToPush
+	
+	state := state push: anElementToPush.
+	"elements addLast: anElementToPush "! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:04:28' prior: 50743457!
+pop
+	| topElement |
+	topElement  := state top.
+	state := state pop. 
+"	^ elements removeLast"
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:04:40' prior: 50743469!
+pop
+	| topElement |
+	topElement  := state top.
+	state := state pop.
+	^topElement 
+"	^ elements removeLast"
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:04:49' prior: 50743475!
+pop
+
+	| topElement |
+	topElement  := state top.
+	state := state pop.
+	^ topElement 
+"	^ elements removeLast"
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:05:03' prior: 50743230!
+size
+
+	^ state size.
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:05:36' prior: 50743252!
+top
+
+	^ state top.
+	
+	"self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+
+	^ elements last."
+
+! !
+!OONotEmptyStackState methodsFor: 'no messages' stamp: 'dr 9/16/2019 20:06:27'!
+initializeWith: anElement
+
+	! !
+
+OOStackState subclass: #OONotEmptyStackState
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackState category: #'Stack-Exercise'!
+OOStackState subclass: #OONotEmptyStackState
+	instanceVariableNames: 'elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:34:57' prior: 50743448!
+initialize
+	
+	state := OOEmptyStackSlot new. ! !
+
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackSlot category: #'Stack-Exercise'!
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:36:57'!
+initializeWith: anElement withNext: aNextSlot
+
+	
+
+	! !
+
+OONotEmptyStackSlot removeSelector: #initializeWith:!
+!OOStackSlot methodsFor: 'no messages' stamp: 'dr 9/16/2019 20:39:24'!
+pop
+
+	self subclassResponsibility.! !
+!OOStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:39:31'!
+push
+
+	self subclassResponsibility.! !
+!OOStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:39:45'!
+push: anElement
+
+	self subclassResponsibility.! !
+!OOStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:39:53'!
+isEmpty
+
+	self subclassResponsibility.! !
+!OOStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:40:00'!
+top
+
+	self subclassResponsibility.! !
+
+OOStackSlot removeSelector: #push!
+
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackSlot category: #'Stack-Exercise'!
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:41:31' prior: 50743532!
+initializeWith: anElement withNext: aNextSlot
+
+	value := anElement. 
+	nextSlot := aNextSlot .
+	
+
+	! !
+!OONotEmptyStackSlot class methodsFor: 'nil' stamp: 'dr 9/16/2019 20:46:15'!
+with: aValue withNext: aNextSlot
+
+	! !
+!OONotEmptyStackSlot class methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:47:03' prior: 50743579!
+with: aValue withNext: aNextSlot
+
+	^ self new initializeWith: aValue withNext: aNextSlot.! !
+!OOEmptyStackSlot methodsFor: 'no messages' stamp: 'dr 9/16/2019 20:47:42'!
+isEmpty
+
+	^ true! !
+!OONotEmptyStackSlot methodsFor: 'nil' stamp: 'dr 9/16/2019 20:47:57'!
+isEmpty
+
+	^ false! !
+!OOEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:48:50'!
+pop
+
+	^ self error: OOStack! !
+!OOEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:49:15' prior: 50743597!
+pop
+
+	^ self error: OOStack stackEmptyErrorDescription ! !
+!OOEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:50:29'!
+push: anElement
+
+	^ OONotEmptyStackSlot with: anElement withNext: self! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:51:13'!
+push: anElement
+
+	^ OONotEmptyStackSlot  with: anElement  withNext: self! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:51:57'!
+pop
+
+	^ nextSlot ! !
+!OOEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:52:50'!
+top
+
+	self error: OOStack stackEmptyErrorDescription ! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:53:06'!
+top
+
+	^ value! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:53:07' prior: 50743628!
+top
+
+	^ value.! !
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state stack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state topOfStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state topOfStack elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+----SNAPSHOT----(16 September 2019 20:55:37) clase2.image priorSource: 13163183!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state topOfStack elements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'state'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+Object subclass: #OOStack
+	instanceVariableNames: 'state topOfStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'state topOfStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:57:34' prior: 50743516!
+initialize
+	
+	topOfStack := OOEmptyStackSlot new. 
+	! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:57:49' prior: 50743453!
+isEmpty
+
+	^ topOfStack isEmpty.! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:58:12' prior: 50743482!
+pop
+
+	| topElement |
+	topElement  := topOfStack top.
+	topOfStack := topOfStack pop.
+	^ topElement 
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:58:25' prior: 50743462!
+push: anElementToPush
+	
+	topOfStack := topOfStack push: anElementToPush.
+	"elements addLast: anElementToPush "! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:58:31' prior: 50743694!
+push: anElementToPush
+	
+	topOfStack := topOfStack push: anElementToPush.! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 20:58:40' prior: 50743489!
+size
+
+	^ topOfStack size.
+
+! !
+
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value amountOfNextElements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackSlot category: #'Stack-Exercise'!
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value amountOfNextElements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:01:01' prior: 50743613!
+push: anElement
+	
+	^ OONotEmptyStackSlot  with: anElement  withNext: self! !
+
+Object subclass: #OOStack
+	instanceVariableNames: 'topOfStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OOStack category: #'Stack-Exercise'!
+Object subclass: #OOStack
+	instanceVariableNames: 'topOfStack'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:02:16' prior: 50743493!
+top
+
+	^ topOfStack top.
+	
+	"self isEmpty ifTrue: [ self error: self class stackEmptyErrorDescription. ].
+
+	^ elements last."
+
+! !
+!OOStack methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:02:23' prior: 50743741!
+top
+
+	^ topOfStack top.
+	
+! !
+
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value amountOfNextElements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!classDefinition: #OONotEmptyStackSlot category: #'Stack-Exercise'!
+OOStackSlot subclass: #OONotEmptyStackSlot
+	instanceVariableNames: 'nextSlot value amountOfNextElements'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:04:54' prior: 50743573!
+initializeWith: anElement withNext: aNextSlot
+	
+	value := anElement. 
+	nextSlot := aNextSlot .
+	amountOfNextElements := aNextSlot size - 1
+	
+
+	! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:06:18'!
+size 
+	
+	^ amountOfNextElements.
+
+	! !
+!OOEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:06:36'!
+size
+
+	^ 0.! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:06:52' prior: 50743766!
+initializeWith: anElement withNext: aNextSlot
+	
+	value := anElement. 
+	nextSlot := aNextSlot .
+	amountOfNextElements := aNextSlot size + 1
+	
+
+	! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:06:55' prior: 50743782!
+initializeWith: anElement withNext: aNextSlot
+	
+	value := anElement. 
+	nextSlot := aNextSlot .
+	amountOfNextElements := aNextSlot size + 1.
+	
+
+	! !
+!OONotEmptyStackSlot methodsFor: 'as yet unclassified' stamp: 'dr 9/16/2019 21:07:23' prior: 50743619!
+pop
+
+	^ nextSlot ! !
+
+----SNAPSHOT----(16 September 2019 21:19:30) clase2.image priorSource: 13183944!
+
+----QUIT----(16 September 2019 21:19:57) clase2.image priorSource: 13188820!
