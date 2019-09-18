@@ -139,120 +139,108 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: #'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'emptySentenceFinder sentenceFinderSameSentenceInMinusAndMayus sentenceFinderWithTwoSentencesStartingWithEst'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:12:42'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:02:46'!
 test01EmptySentencesShouldReturnAnEmptyCollection
-	
-	| emptySentenceFinder |
-
-	emptySentenceFinder := SentenceFinderByPrefix new.
 
 	self assert: (emptySentenceFinder find: 'anything') = OrderedCollection new.! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:18:56'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:04:41'!
 test02APrefixNotFoundShouldReturnEmptyCollection
-
-	| sentences |
 	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'una oración en minúsculas'; pushSentence: 'otra oración en minúsculas'.
-	self assert: (sentences find: 'cualquiera') = OrderedCollection new.
+	self assert: (sentenceFinderSameSentenceInMinusAndMayus find: 'cualquiera') = OrderedCollection new.
 
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:29:59'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:05:17'!
 test03ACaseSensitivePrefixFindsOnlyMatchingCaseSentences
 
-	| sentences collectionWithCorrectSentence |
+	| collectionWithCorrectSentence |
 	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'una oración en minúsculas'; pushSentence: 'Una oración en mayúsculas'.
 	collectionWithCorrectSentence := OrderedCollection new.
-	collectionWithCorrectSentence add: 'Una oración en mayúsculas'.
+	collectionWithCorrectSentence add: 'Una oración'.
 	
-	self assert: (sentences find: 'Un') = collectionWithCorrectSentence.
+	self assert: (sentenceFinderSameSentenceInMinusAndMayus find: 'Un') = collectionWithCorrectSentence.
 
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:32:01'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:05:42'!
 test04FindSearchsPrefixAndNotSubstring
 
-	| sentences |
-	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'una oración en minúsculas'; pushSentence: 'Una oración en mayúsculas'.
-	
-	self assert: (sentences find: 'oración') = OrderedCollection new.
+	self assert: (sentenceFinderSameSentenceInMinusAndMayus find: 'oración') = OrderedCollection new.
 
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:39:16'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:06:34'!
 test05FindDoesNotChangeTheAmountOfSentences
-
-	| sentences |
 	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'una oración en minúsculas'; pushSentence: 'Una oración en mayúsculas'.
-	sentences find: 'oración'; find: 'una'; find: 'ESTO'.
+	sentenceFinderSameSentenceInMinusAndMayus find: 'oración'; find: 'una'; find: 'ESTO'.
 
-	self assert: sentences amountOfSentences = 2.
+	self assert: sentenceFinderSameSentenceInMinusAndMayus amountOfSentences = 2.
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:42:46'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:12:59'!
 test06FindDoesNotChangeTheOrderOfSentences
 
-	| sentences |
-	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'una oración en minúsculas'; pushSentence: 'Una oración en mayúsculas'.
-	sentences find: 'oración'; find: 'una'; find: 'ESTO'.
+	| collectionWithSentences |
+	sentenceFinderSameSentenceInMinusAndMayus find: 'oración'; find: 'una'; find: 'ESTO'.
 
-	self assert: sentences popSentence = 'Una oración en mayúsculas'.
-	self assert: sentences popSentence = 'una oración en minúsculas'.! !
+	collectionWithSentences := OrderedCollection new.
+	collectionWithSentences add: 'una oración'; add: 'Una oración'.
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:49:07'!
+	self assert: sentenceFinderSameSentenceInMinusAndMayus sentencesAsCollection = collectionWithSentences.! !
+
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:16:10'!
 test07CanNotFindAnEmptyPrefix
 
-	| sentences |
-	
-	sentences := SentenceFinderByPrefix new.
-
 	self
-	should: [ sentences find: '' ]
+	should: [ emptySentenceFinder find: '' ]
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [ :anError |
 		self assert: anError messageText = SentenceFinderByPrefix emptyPrefixErrorDescription ]
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 16:50:28'!
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:16:41'!
 test08CanNotFindAPrefixWithEmptySpaces
 
-	| sentences |
-	
-	sentences := SentenceFinderByPrefix new.
-
 	self
-	should: [ sentences find: 'la la la lala' ]
+	should: [ emptySentenceFinder find: 'la la la lala' ]
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [ :anError |
 		self assert: anError messageText = SentenceFinderByPrefix emptySpacesInPrefixErrorDescription ]
 ! !
 
-!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/17/2019 17:01:14'!
-test09FindingAPrefixWithManyMatchesReturnAllThoseMatches
+!SentenceFinderByPrefixTest methodsFor: 'test' stamp: 'dr 9/18/2019 15:21:21'!
+test09FindingAPrefixWithMultipleMatchesReturnAllThoseMatches
 
-	| sentences collectionWithTwoMatches |
+	| collectionWithTwoMatches |
 	
-	sentences := SentenceFinderByPrefix new.
-	sentences pushSentence: 'Esto es una oración'; pushSentence: 'Es muy larga'; pushSentence: 'Esta es una manera de escribir'.
 	collectionWithTwoMatches := OrderedCollection new.
-	collectionWithTwoMatches add: 'Esto es una oración'; add: 'Esta es una manera de escribir'.
+	collectionWithTwoMatches add: 'Esta es una oración'; add: 'Esto podría decirlo'.
 	
-	self assert: (sentences find: 'Est') = collectionWithTwoMatches.! !
+	self assert: (sentenceFinderWithTwoSentencesStartingWithEst find: 'Est') = collectionWithTwoMatches.! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'dr 9/18/2019 15:20:15'!
+setUp
+
+	| stackSameSentenceInMayusAndMinus stackWithTwoSentencesWithSamePrefix |
+	
+	emptySentenceFinder := SentenceFinderByPrefix with: OOStack new.
+	
+	stackSameSentenceInMayusAndMinus := OOStack new.
+	stackSameSentenceInMayusAndMinus push: 'una oración'; push: 'Una oración'.
+
+	sentenceFinderSameSentenceInMinusAndMayus := SentenceFinderByPrefix with: stackSameSentenceInMayusAndMinus .
+	
+	stackWithTwoSentencesWithSamePrefix := OOStack new.
+	stackWithTwoSentencesWithSamePrefix push: 'Esta es una oración'; push: 'Esto podría decirlo'.
+	
+	sentenceFinderWithTwoSentencesStartingWithEst := SentenceFinderByPrefix with: stackWithTwoSentencesWithSamePrefix.! !
 
 
 !classDefinition: #OOStack category: #'Stack-Exercise'!
@@ -473,39 +461,23 @@ topSentence
 	^ sentences top.! !
 
 
-!SentenceFinderByPrefix methodsFor: 'converting' stamp: 'dr 9/17/2019 16:05:33'!
+!SentenceFinderByPrefix methodsFor: 'converting' stamp: 'dr 9/18/2019 15:14:03'!
 sentencesAsCollection
-
+	"returns the stack of sentences starting with the oldest sentence and finishing with the top sentence"
 	| sentencesContainer |
 	
 	sentencesContainer := OrderedCollection new.
 	
-	[ self isEmpty not ] whileTrue: [
-		sentencesContainer addFirst: self popSentence.
+	[ sentences isEmpty not ] whileTrue: [
+		sentencesContainer addFirst: sentences pop.
 	].
 
 	sentencesContainer do: [ :sentence |
-		self pushSentence: sentence.
+		sentences push: sentence.
 	].
 
 	^ sentencesContainer.! !
 
-
-!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'dr 9/17/2019 15:20:34'!
-popSentence
-
-	^ sentences pop.! !
-
-!SentenceFinderByPrefix methodsFor: 'operations' stamp: 'dr 9/17/2019 15:20:57'!
-pushSentence: aSentence
-
-	^ sentences push: aSentence! !
-
-
-!SentenceFinderByPrefix methodsFor: 'testing' stamp: 'dr 9/17/2019 15:19:10'!
-initialize
-
-	sentences := OOStack new.! !
 
 !SentenceFinderByPrefix methodsFor: 'testing' stamp: 'dr 9/17/2019 15:20:16'!
 isEmpty
@@ -513,18 +485,36 @@ isEmpty
 	^ sentences isEmpty! !
 
 
+!SentenceFinderByPrefix methodsFor: 'initialization' stamp: 'dr 9/18/2019 14:35:46'!
+initializeWith: aStackOfSentences
+
+	sentences := aStackOfSentences .! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'SentenceFinderByPrefix class' category: #'Stack-Exercise'!
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'dr 9/17/2019 15:49:50'!
+!SentenceFinderByPrefix class methodsFor: 'instance creation' stamp: 'dr 9/18/2019 14:43:23'!
+with: aStackOfSentences
+
+	(aStackOfSentences  isKindOf: OOStack) ifFalse: [ self error: self collaboratorIsNotAStackErrorDescription ].
+	
+	^ self new initializeWith: aStackOfSentences .! !
+
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'dr 9/18/2019 14:42:57'!
+collaboratorIsNotAStackErrorDescription
+
+	^ 'The collaborator should be a stack'.! !
+
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'dr 9/17/2019 15:49:50'!
 emptyPrefixErrorDescription
 
 	^ 'The prefix cannot be empty'! !
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'dr 9/17/2019 15:50:30'!
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'dr 9/17/2019 15:50:30'!
 emptySpacesInPrefixErrorDescription
 
 	^ 'The prefix cannot have empty spaces'! !
