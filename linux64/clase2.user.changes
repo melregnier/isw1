@@ -10536,3 +10536,288 @@ SentenceFinderByPrefixTest removeSelector: #test09FindingAPrefixWithManyMatchesR
 ----SNAPSHOT----(18 September 2019 15:24:24) clase2.image priorSource: 13229685!
 
 ----QUIT----(18 September 2019 15:28:02) clase2.image priorSource: 13229767!
+
+----STARTUP---- (26 September 2019 19:24:59) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+TestCase subclass: #TestXYZ
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'XX'!
+
+!classDefinition: #TestXYZ category: #XX!
+TestCase subclass: #TestXYZ
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'XX'!
+
+!classDefinition: #HolidayCalendar category: #XX!
+Object subclass: #HolidayCalendar
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'XX'!
+!TestXYZ methodsFor: 'no messages' stamp: 'dr 9/26/2019 19:32:25'!
+test01
+
+	| aSunday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSunday := September/29/2019.
+	
+	self assert: (holidayCalendar isHoliday: aSunday)! !
+!HolidayCalendar methodsFor: 'no messages' stamp: 'dr 9/26/2019 19:33:37'!
+isHoliday
+
+	^ true.! !
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:34:22'!
+isHoliday: aFixedGregorianDate
+
+	^ true.! !
+
+HolidayCalendar removeSelector: #isHoliday!
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:37:21' prior: 50745115!
+isHoliday: aDate
+
+	^ true.! !
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:43:17' prior: 50745121!
+isHoliday: aDate
+
+	^ aDate = Sunday.! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:45:25'!
+test02
+
+	| aMonday holidayCalendar |
+	
+	holidayCalendar:= HolidayCalendar new.
+	aMonday := September/30/2019.
+	
+	self deny: (holidayCalendar isHoliday: aMonday).! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:47:51'!
+test03
+
+	| aSunday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSunday := September/29/2019.
+	
+	self assert: (holidayCalendar isHoliday: aSunday)! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:48:16' prior: 50745138!
+test03
+
+	| aSaturday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSaturday := September/29/2019.
+	
+	self assert: (holidayCalendar isHoliday: aSaturday)! !
+
+!classDefinition: #HolidayCalendar category: #XX!
+Object subclass: #HolidayCalendar
+	instanceVariableNames: 'dayOfWeekHoliday'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'XX'!
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:51:11' prior: 50745126!
+isHoliday: aDate
+
+	^ aDate = dayOfWeekHoliday.! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:54:55' prior: 50745146!
+test03
+
+	| aSaturday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSaturday := September/29/2019.
+	holidayCalendar markDayOfWeekAsHoliday.
+	
+	self assert: (holidayCalendar isHoliday: aSaturday)! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:55:08' prior: 50745166!
+test03
+
+	| aSaturday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSaturday := September/29/2019.
+	holidayCalendar markDayOfWeekAsHoliday: Sunday.
+	
+	self assert: (holidayCalendar isHoliday: aSaturday)! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:55:16' prior: 50745176!
+test03
+
+	| aSaturday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSaturday := September/29/2019.
+	holidayCalendar markDayOfWeekAsHoliday: Saturday.
+	
+	self assert: (holidayCalendar isHoliday: aSaturday)! !
+!TestXYZ methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:55:36' prior: 50745103!
+test01
+
+	| aSunday holidayCalendar |
+	holidayCalendar := HolidayCalendar new.
+	aSunday := September/29/2019.
+	holidayCalendar markDayOfWeekAsHoliday: Sunday.
+	
+	self assert: (holidayCalendar isHoliday: aSunday)! !
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:56:57'!
+markDayOfTheWeekAsHoliday: aDayOfWeek
+
+	! !
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:57:15' prior: 50745206!
+markDayOfTheWeekAsHoliday: aDayOfWeek
+	
+	dayOfWeekHoliday  := aDayOfWeek .! !
+!HolidayCalendar methodsFor: 'as yet unclassified' stamp: 'dr 9/26/2019 19:57:41'!
+markDayOfWeekAsHoliday: aDayOfWeek
+	
+	dayOfWeekHoliday  := aDayOfWeek .! !
+
+HolidayCalendar removeSelector: #markDayOfTheWeekAsHoliday:!
+
+----STARTUP---- (3 October 2019 20:10:13) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+Object subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverTest category: #MarsRover!
+Object subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverTest category: #MarsRover!
+TestCase subclass: #MarsRoverTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+1@1!
+
+!classDefinition: #MarsRover category: #MarsRover!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTest methodsFor: 'no messages' stamp: 'dr 10/3/2019 20:17:40'!
+test01NewMarsRoverBeginsAtPosition
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) position = 1@1).! !
+!MarsRover class methodsFor: 'instance initialization' stamp: 'dr 10/3/2019 20:18:28'!
+at: aPoint orientedAt: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover class methodsFor: 'instance initialization' stamp: 'dr 10/3/2019 20:19:30' prior: 50745122!
+at: aPoint orientedAt: anOrientation 
+	
+	^ self new initializeAt: aPoint orientedAt: anOrientation.! !
+!MarsRover methodsFor: 'initialization' stamp: 'dr 10/3/2019 20:20:03'!
+initializeAt: aPoint orientedAt: aSymbol 
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'initialization' stamp: 'dr 10/3/2019 20:21:04' prior: 50745134!
+initializeAt: aPoint orientedAt: anOrientation
+	
+	position := aPoint.
+	orientation := anOrientation.! !
+!MarsRover methodsFor: 'nil' stamp: 'dr 10/3/2019 20:21:58'!
+position
+
+	^ 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:22:49' prior: 50745115!
+test01NewMarsRoverBeginsAtPosition
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) position = (1@1)).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:23:38'!
+test02NewMarsRoverBeginsAtOrientation
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) orientation = #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:25:05'!
+test03MarsRoverMovesForwardInDirection
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) orientation = #North).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:25:59'!
+test01NewMarsRoverBeginsAtAPosition
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) position = (1@1)).! !
+
+MarsRoverTest removeSelector: #test01NewMarsRoverBeginsAtPosition!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:26:25'!
+test02NewMarsRoverBeginsAtAnOrientation
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) orientation = #North).! !
+
+MarsRoverTest removeSelector: #test02NewMarsRoverBeginsAtOrientation!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:30:21' prior: 50745163!
+test03MarsRoverMovesForwardInDirection
+	
+	| marsRover |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	marsRover move: 'f'.
+
+	self assert: ( marsRover position = (1@2)).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:37:08'!
+test03MarsRoverMovesForwardHasOn
+	
+	| marsRover |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	marsRover move: 'f'.
+
+	self assert: marsRover position equals: 1@2.! !
+
+MarsRoverTest removeSelector: #test03MarsRoverMovesForwardHasOn!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:37:35' prior: 50745189!
+test03MarsRoverMovesForwardInDirection
+	
+	| marsRover |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	marsRover move: 'f'.
+
+	self assert: marsRover position equals: 1@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:38:26' prior: 50745179!
+test02NewMarsRoverBeginsAtAnOrientation
+
+	self assert: (MarsRover at: 1@1 orientedAt: #North) orientation equals: #North.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:43:30'!
+test01EmptyInstructionDoesNotMove
+
+	self assert: ((MarsRover at: 1@1 orientedAt: #North) position = (1@1)).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:44:43' prior: 50745225!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+	marsRover instructionMove: ''.
+	
+	self assert: marsRover position equals: 1@1.! !
+
+MarsRoverTest removeSelector: #test01NewMarsRoverBeginsAtAPosition!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'dr 10/3/2019 20:48:11' prior: 50745232!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+	marsRover instructionMove: ''.
+	
+	self assert: marsRover position equals: 1@1.
+	self assert: marsRover orientation equals: #North.! !
+
+----SNAPSHOT----(3 October 2019 20:59:17) clase2.image priorSource: 13229849!
+
+----QUIT----(3 October 2019 20:59:21) clase2.image priorSource: 13235310!
