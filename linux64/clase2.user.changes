@@ -10821,3 +10821,1196 @@ test01EmptyInstructionDoesNotMove
 ----SNAPSHOT----(3 October 2019 20:59:17) clase2.image priorSource: 13229849!
 
 ----QUIT----(3 October 2019 20:59:21) clase2.image priorSource: 13235310!
+
+----STARTUP---- (6 October 2019 10:43:05) as /home/melissa/Mel/college shit/Ingeniería de Software I/isw1/linux64/clase2.image!
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:44:23' prior: 50745244!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+	marsRover instructionMove: ''.
+	
+	self assert: marsRover position equals: 1@1.! !
+
+MarsRoverTest removeSelector: #test02NewMarsRoverBeginsAtAnOrientation!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:47:59'!
+test02MarsRoverMovesForward
+	
+	| marsRover |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	marsRover move: 'f'.
+
+	self assert: marsRover position equals: 1@2.! !
+
+MarsRoverTest removeSelector: #test03MarsRoverMovesForwardInDirection!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:48:44' prior: 50745264!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+	marsRover move: ''.
+	
+	self assert: marsRover position equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:49:03' prior: 50745286!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	marsRover move: ''.
+	
+	self assert: marsRover position equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:50:54' prior: 50745295!
+test01EmptyInstructionDoesNotMove
+
+	| marsRover newPosition |
+	
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: ''.
+	
+	self assert: newPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:51:26' prior: 50745275!
+test02MarsRoverMovesForward
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'f'.
+
+	self assert: newPosition equals: 1@2.! !
+!MarsRover methodsFor: 'nil' stamp: 'mr 10/6/2019 10:51:59'!
+move: anInstructionString
+
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:52:15' prior: 50745322!
+move: anInstructionString
+
+	^ 1@2! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:52:19' prior: 50745326!
+move: anInstructionString
+
+	^ 1@1! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:53:27' prior: 50745331!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ]
+	^ 1@1! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:55:11' prior: 50745336!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+	^ 1@1! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:57:45' prior: 50745342!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+	^ position + 0@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:57:54' prior: 50745348!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	^ position + 0@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:58:24' prior: 50745355!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	^ position + (0@1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 10:59:29'!
+test03MarsRoverMovesBackward
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'b'.
+
+	self assert: newPosition equals: 1@0.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:02:15' prior: 50745362!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+	
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:04:16'!
+test04MarsRoverMovesForwardTwice
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'ff'.
+
+	self assert: newPosition equals: 1@3.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:05:08' prior: 50745377!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@2)].
+		
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:05:12' prior: 50745395!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+		
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:06:13'!
+test05MarsRoverMovesBackwardTwice
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'bb'.
+
+	self assert: newPosition equals: 1@-1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:06:58' prior: 50745405!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+		
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:07:45'!
+test06MarsRoverMovesForwardThreeTimes
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'fff'.
+
+	self assert: newPosition equals: 1@4.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:08:09' prior: 50745425!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+		
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:08:13' prior: 50745447!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+		
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:08:51'!
+test07MarsRoverMovesBackwardThreeTimes
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'bbb'.
+
+	self assert: newPosition equals: 1@-2.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:09:29' prior: 50745461!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-2)].
+		
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:09:33' prior: 50745485!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+		
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:11:02'!
+test06MarsRoverMovesForwardFourTimes
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'ffff'.
+
+	self assert: newPosition equals: 1@5.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:11:22'!
+test08MarsRoverMovesForwardFourTimes
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'ffff'.
+
+	self assert: newPosition equals: 1@5.! !
+
+MarsRoverTest removeSelector: #test06MarsRoverMovesForwardFourTimes!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:11:56' prior: 50745501!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@4)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+		
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:12:00' prior: 50745538!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'ffff' ifTrue: [^ position + (0@4)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+		
+	^ position + (0@-1).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:12:54'!
+test09MarsRoverMovesBackwardFourTimes
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'bbbb'.
+
+	self assert: newPosition equals: 1@-3.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:13:24' prior: 50745556!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ position + (0@1)].
+
+	anInstructionString = 'ff' ifTrue: [^ position + (0@2)].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'ffff' ifTrue: [^ position + (0@4)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ position + (0@-4)].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:16:23'!
+increaseYtimes: aNumberOfTimes
+
+	^ position + (0@(aNumberOfTimes)).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:17:35' prior: 50745584!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'fff' ifTrue: [^ position + (0@3)].
+
+	anInstructionString = 'ffff' ifTrue: [^ position + (0@4)].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ position + (0@-4)].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:17:46'!
+increaseYTimes: aNumberOfTimes
+
+	^ position + (0@(aNumberOfTimes)).! !
+
+MarsRover removeSelector: #increaseYtimes:!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:18:23' prior: 50745609!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 2].
+
+	anInstructionString = 'fff' ifTrue: [^ self increaseYTimes: 3].
+
+	anInstructionString = 'ffff' ifTrue: [^ self increaseYTimes: 4].
+
+	anInstructionString = 'bb' ifTrue: [^ position + (0@-2)].
+
+	anInstructionString = 'bbb' ifTrue: [^ position + (0@-3)].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ position + (0@-4)].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:19:25'!
+decreaseYTimes: aNumberOfTimes
+
+	^ position + (0@(-1 * aNumberOfTimes)).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:20:30' prior: 50745636!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 2].
+
+	anInstructionString = 'fff' ifTrue: [^ self increaseYTimes: 3].
+
+	anInstructionString = 'ffff' ifTrue: [^ self increaseYTimes: 4].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:22:18' prior: 50745662!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 2].
+
+	anInstructionString = 'fff' ifTrue: [^ self increaseYTimes: 3].
+
+	anInstructionString = 'ffff' ifTrue: [^ self increaseYTimes: 4].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:30:48' prior: 50745683!
+move: anInstructionString
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ]].
+	
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 2].
+
+	anInstructionString = 'fff' ifTrue: [^ self increaseYTimes: 3].
+
+	anInstructionString = 'ffff' ifTrue: [^ self increaseYTimes: 4].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:31:08' prior: 50745704!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards = anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ]].
+	
+	anInstructionString = 'f' ifTrue: [^ self increaseYTimes: 1].
+
+	anInstructionString = 'ff' ifTrue: [^ self increaseYTimes: 2].
+
+	anInstructionString = 'fff' ifTrue: [^ self increaseYTimes: 3].
+
+	anInstructionString = 'ffff' ifTrue: [^ self increaseYTimes: 4].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:34:25' prior: 50745728!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards = anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:34:41' prior: 50745753!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:34:49' prior: 50745772!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:42:10' prior: 50745791!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + elem ] ifFalse: [sum]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:46:42' prior: 50745811!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + elem ] ifFalse: [sum]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:46:55' prior: 50745831!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + elem ] ifFalse: [sum]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:49:33' prior: 50745851!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [sum]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:49:54' prior: 50745871!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:50:29' prior: 50745891!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:50:48' prior: 50745910!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = 'f' ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:50:59' prior: 50745930!
+move: anInstructionString
+
+	| amountOfForwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:51:53' prior: 50745950!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfBackwards = 0 ifFalse: [ ^ self decreaseYTimes: amountOfBackwards ].
+
+
+	anInstructionString = 'bb' ifTrue: [^ self decreaseYTimes: 2].
+
+	anInstructionString = 'bbb' ifTrue: [^ self decreaseYTimes: 3].
+	
+	anInstructionString = 'bbbb' ifTrue: [^ self decreaseYTimes: 4].
+	
+	^ position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:52:12' prior: 50745970!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfBackwards = 0 ifFalse: [ ^ self decreaseYTimes: amountOfBackwards ].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:52:18' prior: 50745997!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfForwards = 0 ifFalse: [ ^ self increaseYTimes: amountOfForwards ].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	amountOfBackwards = 0 ifFalse: [ ^ self decreaseYTimes: amountOfBackwards ].! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:53:44'!
+test10MarsRoverMovesForwardAndBackward
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'fb'.
+
+	self assert: newPosition equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:54:09'!
+test10MarsRoverMovesForwardOnceAndBackwardOnce
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'fb'.
+
+	self assert: newPosition equals: 1@1.! !
+
+MarsRoverTest removeSelector: #test10MarsRoverMovesForwardAndBackward!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:55:56' prior: 50746017!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self increaseYTimes:  amountOfForwards)  + (self decreaseYTimes: amountOfBackwards).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:57:00' prior: 50746058!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self increaseYTimes:  amountOfForwards)  + (self decreaseYTimes: amountOfBackwards) - position.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:59:34' prior: 50746076!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 11:59:45'!
+moveYTimes: aNumberOfTimes
+
+	^ position + (0@(aNumberOfTimes)).! !
+
+MarsRover removeSelector: #increaseYTimes:!
+
+MarsRover removeSelector: #decreaseYTimes:!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:02:13'!
+test11MarsRoverMovesForwardOnceAndThenForwardAgainIsInCorrectPosition
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'f'.
+	
+	newPosition := marsRover move: 'f'.
+
+	self assert: newPosition equals: 1@3.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:05:37' prior: 50746110!
+moveYTimes: aNumberOfTimes
+
+	^ position := position + (0@(aNumberOfTimes)).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:11:00'!
+test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 2@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:13:33' prior: 50746094!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ self moveXTimes: 1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:14:07'!
+moveXTimes: aNumberOfTimes
+
+	^ position := position + (aNumberOfTimes@0).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:14:18' prior: 50746130!
+moveYTimes: aNumberOfTimes
+
+	^ position := position + (0@aNumberOfTimes).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:14:48' prior: 50746145!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: 1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:18:34'!
+test12MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'rf'.
+
+	self assert: newPosition equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:18:40'!
+test13MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'rf'.
+
+	self assert: newPosition equals: 2@1.! !
+
+MarsRoverTest removeSelector: #test12MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:18:54' prior: 50746135!
+test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: #North.
+
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 0@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:19:06' prior: 50746175!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:19:31' prior: 50746227!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].	
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:30:32'!
+obtainPositionOfMarsRoverStartedAt: aPoint inOrientation: anOrientation andMoved: aSequenceOfMovements 
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: aPoint orientedAt: anOrientation .
+
+  	^ newPosition := marsRover move: aSequenceOfMovements .! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:30:53' prior: 50746267!
+obtainPositionOfMarsRoverStartedAt: aPoint inOrientation: anOrientation andMoved: aSequenceOfMovements 
+	
+	| marsRover |
+
+	marsRover := MarsRover at: aPoint orientedAt: anOrientation .
+
+  	^ marsRover move: aSequenceOfMovements .! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:32:01' prior: 50745304!
+test01EmptyInstructionDoesNotMove
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: '') equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:32:46' prior: 50745314!
+test02MarsRoverMovesForward
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'f') equals: 1@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:33:07' prior: 50745368!
+test03MarsRoverMovesBackward
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'b') equals: 1@0.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:33:21' prior: 50745385!
+test04MarsRoverMovesForwardTwice
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'ff') equals: 1@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:33:36' prior: 50745415!
+test05MarsRoverMovesBackwardTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'bb') equals: 1@-1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:33:51' prior: 50745437!
+test06MarsRoverMovesForwardThreeTimes
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'fff')equals: 1@4.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:34:03' prior: 50745475!
+test07MarsRoverMovesBackwardThreeTimes
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'bbb') equals: 1@-2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:34:24' prior: 50745526!
+test08MarsRoverMovesForwardFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'ffff') equals: 1@5.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:34:46' prior: 50745574!
+test09MarsRoverMovesBackwardFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'bbbb') equals: 1@-3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:35:04' prior: 50746046!
+test10MarsRoverMovesForwardOnceAndBackwardOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'fb') equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:35:33' prior: 50746217!
+test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: '') equals: 0@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:35:43' prior: 50746371!
+test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lf') equals: 0@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:35:57' prior: 50746204!
+test13MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rf') equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:37:41'!
+test12MarsRoverRotateLeftAndMoveBackwardMovesToTheLeftOnce
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lb') equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:37:50'!
+test14MarsRoverRotateLeftAndMoveBackwardMovesToTheLeftOnce
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lb') equals: 2@1.! !
+
+MarsRoverTest removeSelector: #test12MarsRoverRotateLeftAndMoveBackwardMovesToTheLeftOnce!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:38:31'!
+test13MarsRoverRotateRightAndMoveBackwardMovesToTheRightOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rb') equals: 0@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:39:53'!
+test15MarsRoverRotateRightAndMoveBackwardMovesToTheRightOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rb') equals: 0@1.! !
+
+MarsRoverTest removeSelector: #test13MarsRoverRotateRightAndMoveBackwardMovesToTheRightOnce!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:41:04' prior: 50746246!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:44:02'!
+test16MarsRoverRotateLeftAndMoveForwardTwoTimesMovesToTheLeftTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lflf') equals: 0@0.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:44:54' prior: 50746438!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:46:53'!
+test16MarsRoverRotateRightAndMoveForwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rfrf') equals: 2@0.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:47:00'!
+test17MarsRoverRotateRightAndMoveForwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rfrf') equals: 2@0.! !
+
+MarsRoverTest removeSelector: #test16MarsRoverRotateRightAndMoveForwardTwoTimesMovesToTheRightTwice!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:47:56' prior: 50746472!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:48:08' prior: 50746520!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].	
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:50:50'!
+test18MarsRoverRotateLeftAndMoveBackwardTwoTimesMovesToTheLeftTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lblb') equals: 2@2.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:51:32' prior: 50746550!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:51:47' prior: 50746589!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:53:19'!
+test19MarsRoverRotateRightAndMoveBackwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rbrb') equals: 0@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:53:58' prior: 50746622!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/6/2019 12:54:39' prior: 50746654!
+test19MarsRoverRotateRightAndMoveBackwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rbrb') equals: 0@2.! !
+
+----SNAPSHOT----(6 October 2019 13:03:08) clase2.image priorSource: 13235389!
+
+----QUIT----(6 October 2019 13:03:22) clase2.image priorSource: 13281787!
