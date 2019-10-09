@@ -12014,3 +12014,1055 @@ test19MarsRoverRotateRightAndMoveBackwardTwoTimesMovesToTheRightTwice
 ----SNAPSHOT----(6 October 2019 13:03:08) clase2.image priorSource: 13235389!
 
 ----QUIT----(6 October 2019 13:03:22) clase2.image priorSource: 13281787!
+
+----STARTUP---- (7 October 2019 14:44:24) as /home/mregnier/isw1/linux64/clase2.image!
+
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:46:30'!
+test20MarsRoverRotateLeftAndMoveBackwardFourTimesMovesToTheLeftFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'lblblblb') equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:47:03'!
+test21MarsRoverRotateRightAndMoveBackwardFourTimesMovesToTheRightFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rbrb') equals: 0@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:47:17' prior: 50746723!
+test21MarsRoverRotateRightAndMoveBackwardFourTimesMovesToTheRightFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: #North andMoved: 'rbrbrbrb') equals: 1@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:48:20' prior: 50746663!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rfrfrfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rbrbrbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:49:07' prior: 50746743!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rfrfrfrf' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rbrbrbrb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:50:11' prior: 50746784!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rfrfrfrf' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'lblblblb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:50:35' prior: 50746825!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rbrbrbrb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'lblblblb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:56:59' prior: 50746866!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self moveLeft ].
+		
+		].
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rbrbrbrb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'lblblblb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:57:11' prior: 50746907!
+move: anInstructionString
+
+	| amountOfForwards amountOfBackwards |
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self moveLeft ].
+		].
+
+	anInstructionString  isEmpty ifTrue: [ ^ position ].
+
+	anInstructionString = 'lf' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'lflf' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: -1 ].
+	
+	anInstructionString = 'lb' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'lblb' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: 1 ].
+	
+	anInstructionString = 'rf' ifTrue: [ ^ self moveXTimes: 1 ].
+	
+	anInstructionString = 'rfrf' ifTrue: [ ^ self moveXTimes: 1; moveYTimes: -1 ].
+	
+	anInstructionString = 'rbrbrbrb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+	
+	anInstructionString = 'rb' ifTrue: [ ^ self moveXTimes: -1 ].
+
+	anInstructionString = 'rbrb' ifTrue: [ ^ self moveXTimes: -1; moveYTimes: 1 ].
+	
+	anInstructionString = 'lblblblb' ifTrue: [ ^ self moveXTimes: 0; moveYTimes: 0 ].
+
+
+	amountOfForwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $f ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+
+	amountOfBackwards := anInstructionString inject: 0 into: [ :sum :elem | elem = $b ifTrue: [ sum + 1 ] ifFalse: [ sum ]].
+	
+	^ (self moveYTimes:  amountOfForwards - amountOfBackwards ).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:57:59'!
+moveForward
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:58:06'!
+moveBackwards
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:58:10'!
+moveBackward
+! !
+
+MarsRover removeSelector: #moveBackwards!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 14:59:44' prior: 50747000!
+moveForward
+	
+	orientation  = #North ifTrue: [ .].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:00:00'!
+increaseX
+	^ position := position + (1@0).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:00:09'!
+decreaseX
+	^ position := position + (-1@0).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:00:19'!
+decreaseY
+	^ position := position + (0@-1).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:00:26'!
+increaseY
+	^ position := position + (0@1).! !
+
+MarsRover removeSelector: #moveXTimes:!
+
+MarsRover removeSelector: #moveYTimes:!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:00:48' prior: 50747011!
+moveForward
+	
+	orientation  = #North ifTrue: [ self increaseX.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:01:13' prior: 50747035!
+moveForward
+	
+	orientation  = #North ifTrue: [ self increaseX.].
+	
+	orientation  = #East ifTrue: [ self increaseX.].
+	
+	orientation  = #South ifTrue: [ self increaseX.].
+	
+	orientation  = #West ifTrue: [ self increaseX.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:01:58' prior: 50747041!
+moveForward
+	
+	orientation  = #North ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #East ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #South ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self increaseX.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:02:25' prior: 50747051!
+moveForward
+	
+	orientation  = #North ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #East ifTrue: [ ^ self increaseY.].
+	
+	orientation  = #South ifTrue: [ ^ self decreaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self decreaseY.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:02:40' prior: 50747006!
+moveBackward
+
+	orientation  = #North ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #East ifTrue: [ ^ self increaseY.].
+	
+	orientation  = #South ifTrue: [ ^ self decreaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self decreaseY.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:03:10' prior: 50747073!
+moveBackward
+
+	orientation  = #North ifTrue: [ ^ self decreaseX.].
+	
+	orientation  = #East ifTrue: [ ^ self decreaseY.].
+	
+	orientation  = #South ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self increaseY.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:03:28'!
+moveRight
+
+	orientation  = #North ifTrue: [ ^ self decreaseX.].
+	
+	orientation  = #East ifTrue: [ ^ self decreaseY.].
+	
+	orientation  = #South ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self increaseY.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:03:59' prior: 50747094!
+moveRight
+
+	orientation  = #North ifTrue: [ orientation := #East.].
+	
+	orientation  = #East ifTrue: [ ^ self decreaseY.].
+	
+	orientation  = #South ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #West ifTrue: [ ^ self increaseY.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:05:00' prior: 50747105!
+moveRight
+
+	orientation  = #North ifTrue: [ orientation := #East.].
+	
+	orientation  = #East ifTrue: [ orientation := #South. ].
+	
+	orientation  = #South ifTrue: [ orientation := #West. ].
+	
+	orientation  = #West ifTrue: [ orientation := #North.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:05:07'!
+moveLeft
+
+	orientation  = #North ifTrue: [ orientation := #East.].
+	
+	orientation  = #East ifTrue: [ orientation := #South. ].
+	
+	orientation  = #South ifTrue: [ orientation := #West. ].
+	
+	orientation  = #West ifTrue: [ orientation := #North.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:05:16' prior: 50747127!
+moveLeft
+
+	orientation  = #North ifTrue: [ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ orientation := #South. ].
+	
+	orientation  = #South ifTrue: [ orientation := #West. ].
+	
+	orientation  = #West ifTrue: [ orientation := #North.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:05:47' prior: 50747138!
+moveLeft
+
+	orientation  = #North ifTrue: [ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ orientation := #North. ].
+	
+	orientation  = #South ifTrue: [ orientation := #East. ].
+	
+	orientation  = #West ifTrue: [ orientation := #South.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:06:32' prior: 50746954!
+move: anInstructionString
+
+	| |
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self moveLeft ].
+		].
+	
+	^ self position.! !
+
+MarsRover removeSelector: #position!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:07:00' prior: 50747160!
+move: anInstructionString
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self moveLeft ].
+		].
+	
+	^ self position.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:07:05' prior: 50747173!
+move: anInstructionString
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self moveLeft ].
+		].
+	
+	^ position.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:08:16' prior: 50747062!
+moveForward
+	
+	orientation  = #North ifTrue: [ ^ self increaseY.].
+	
+	orientation  = #East ifTrue: [ ^ self increaseX.].
+	
+	orientation  = #South ifTrue: [ ^ self decreaseY.].
+	
+	orientation  = #West ifTrue: [ ^ self decreaseX.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:08:39' prior: 50747084!
+moveBackward
+
+	orientation  = #North ifTrue: [ ^ self decreaseY.].
+	
+	orientation  = #East ifTrue: [ ^ self decreaseX.].
+	
+	orientation  = #South ifTrue: [ ^ self increaseY.].
+	
+	orientation  = #West ifTrue: [ ^ self increaseX.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:14:55' prior: 50747116!
+moveRight
+
+	orientation  = #North ifTrue: [ ^ orientation := #East.].
+	
+	orientation  = #East ifTrue: [ ^ orientation := #South. ].
+	
+	orientation  = #South ifTrue: [ ^ orientation := #West. ].
+	
+	orientation  = #West ifTrue: [ ^ orientation := #North.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:15:05' prior: 50747149!
+moveLeft
+
+	orientation  = #North ifTrue: [ ^ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ orientation := #North. ].
+	
+	orientation  = #South ifTrue: [ orientation := #East. ].
+	
+	orientation  = #West ifTrue: [ orientation := #South.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:15:09' prior: 50747228!
+moveLeft
+
+	orientation  = #North ifTrue: [ ^ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ ^ orientation := #North. ].
+	
+	orientation  = #South ifTrue: [ orientation := #East. ].
+	
+	orientation  = #West ifTrue: [ orientation := #South.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:15:15' prior: 50747239!
+moveLeft
+
+	orientation  = #North ifTrue: [ ^ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ ^ orientation := #North. ].
+	
+	orientation  = #South ifTrue: [ ^ orientation := #East. ].
+	
+	orientation  = #West ifTrue: [ orientation := #South.].! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:15:19' prior: 50747250!
+moveLeft
+
+	orientation  = #North ifTrue: [ ^ orientation := #West.].
+	
+	orientation  = #East ifTrue: [ ^ orientation := #North. ].
+	
+	orientation  = #South ifTrue: [ ^ orientation := #East. ].
+	
+	orientation  = #West ifTrue: [ ^ orientation := #South.].! !
+
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverCardinalPoint category: #MarsRover!
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRoverCardinalPoint subclass: #North
+	instanceVariableNames: 'position orientation'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRoverCardinalPoint subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #North category: #MarsRover!
+MarsRoverCardinalPoint subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRoverCardinalPoint subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #East category: #MarsRover!
+MarsRoverCardinalPoint subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRoverCardinalPoint subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #South category: #MarsRover!
+MarsRoverCardinalPoint subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+MarsRoverCardinalPoint subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #West category: #MarsRover!
+MarsRoverCardinalPoint subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #MarsRoverCardinalPoint category: #MarsRover!
+Object subclass: #MarsRoverCardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverCardinalPoint class methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:18:33'!
+new
+
+	^self subclassResponsibility.! !
+
+!classDefinition: 'East class' category: #MarsRover!
+East class
+	instanceVariableNames: 'uniqueInstance'!
+!East class methodsFor: 'nil' stamp: 'mr 10/7/2019 15:19:56'!
+new
+
+	^ uniqueInstance.! !
+!East class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:20:40'!
+intialize
+	uniqueInstance  := self basicNew.! !
+!East class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:20:47' prior: 50747351!
+intialize
+	^ uniqueInstance  := self basicNew.! !
+!East methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:24:47'!
+cardinalPointToTheLeft
+
+	^ North new.! !
+!East methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:24:57'!
+cardinalPointToTheRight
+
+	^ South new.! !
+!North methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:25:09'!
+cardinalPointToTheLeft
+
+	^ West new.! !
+!North methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:25:19'!
+cardinalPointToTheRight
+
+	^ East new.! !
+!South methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:25:36'!
+cardinalPointToTheLeft
+
+	^ East new.! !
+!South methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:25:50'!
+cardinalPointToTheRight
+
+	^ West new.! !
+!West methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:26:09'!
+cardinalPointToTheLeft
+
+	^ South new.! !
+!West methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:26:20'!
+cardinalPointToTheRight
+
+	^ North new.! !
+!MarsRoverCardinalPoint methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:26:43'!
+cardinalPointToTheLeft
+
+	^ self subclassResponsibility.! !
+!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:26:48'!
+cardinalPointToTheRight
+
+	^ self subclassResponsibility.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:27:46' prior: 50746290!
+test01EmptyInstructionDoesNotMove
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: '') equals: 1@1.! !
+!East class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:28:44'!
+initialize
+	^ uniqueInstance  := self basicNew.! !
+
+East class removeSelector: #intialize!
+
+!classDefinition: 'North class' category: #MarsRover!
+North class
+	instanceVariableNames: 'uniqueInstance'!
+!North class methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:29:00'!
+initialize
+	^ uniqueInstance  := self basicNew.
+! !
+
+!classDefinition: 'South class' category: #MarsRover!
+South class
+	instanceVariableNames: 'uniqueInstance'!
+!South class methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:29:16'!
+initialize
+	^ uniqueInstance  := self basicNew.! !
+
+!classDefinition: 'West class' category: #MarsRover!
+West class
+	instanceVariableNames: 'uniqueInstance'!
+!West class methodsFor: 'no messages' stamp: 'mr 10/7/2019 15:29:24'!
+initialize
+	^ uniqueInstance  := self basicNew.! !
+
+East class removeSelector: #new!
+!East class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:30:49'!
+new
+
+	^ uniqueInstance.! !
+!East class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:31:02' prior: 50747441!
+new
+
+	^ uniqueInstance.! !
+!North class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:31:07'!
+new
+
+	^ uniqueInstance.! !
+!South class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:31:13'!
+new
+
+	^ uniqueInstance.! !
+!West class methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:31:32'!
+new
+
+	^ uniqueInstance.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:32:44' prior: 50746306!
+test03MarsRoverMovesBackward
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'b') equals: 1@0.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:32:50' prior: 50746298!
+test02MarsRoverMovesForward
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'f') equals: 1@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:32:57' prior: 50746314!
+test04MarsRoverMovesForwardTwice
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'ff') equals: 1@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:03' prior: 50746322!
+test05MarsRoverMovesBackwardTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'bb') equals: 1@-1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:09' prior: 50746330!
+test06MarsRoverMovesForwardThreeTimes
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'fff')equals: 1@4.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:21' prior: 50746338!
+test07MarsRoverMovesBackwardThreeTimes
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'bbb') equals: 1@-2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:31' prior: 50746346!
+test08MarsRoverMovesForwardFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'ffff') equals: 1@5.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:37' prior: 50746354!
+test09MarsRoverMovesBackwardFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'bbbb') equals: 1@-3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:43' prior: 50746362!
+test10MarsRoverMovesForwardOnceAndBackwardOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'fb') equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:33:52' prior: 50746118!
+test11MarsRoverMovesForwardOnceAndThenForwardAgainIsInCorrectPosition
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: North new.
+
+	newPosition := marsRover move: 'f'.
+	
+	newPosition := marsRover move: 'f'.
+
+	self assert: newPosition equals: 1@3.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:00' prior: 50746380!
+test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lf') equals: 0@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:07' prior: 50746389!
+test13MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rf') equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:14' prior: 50746406!
+test14MarsRoverRotateLeftAndMoveBackwardMovesToTheLeftOnce
+
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lb') equals: 2@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:18' prior: 50746426!
+test15MarsRoverRotateRightAndMoveBackwardMovesToTheRightOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rb') equals: 0@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:26' prior: 50746463!
+test16MarsRoverRotateLeftAndMoveForwardTwoTimesMovesToTheLeftTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lflf') equals: 0@0.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:32' prior: 50746508!
+test17MarsRoverRotateRightAndMoveForwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rfrf') equals: 2@0.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:38' prior: 50746580!
+test18MarsRoverRotateLeftAndMoveBackwardTwoTimesMovesToTheLeftTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lblb') equals: 2@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:44' prior: 50746698!
+test19MarsRoverRotateRightAndMoveBackwardTwoTimesMovesToTheRightTwice
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rbrb') equals: 0@2.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:48' prior: 50746714!
+test20MarsRoverRotateLeftAndMoveBackwardFourTimesMovesToTheLeftFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lblblblb') equals: 1@1.! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:34:55' prior: 50746733!
+test21MarsRoverRotateRightAndMoveBackwardFourTimesMovesToTheRightFourTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rbrbrbrb') equals: 1@1.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:36:16' prior: 50747261!
+moveLeft
+
+	orientation := orientation cardinalPointToTheLeft! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:36:46' prior: 50747639!
+moveLeft
+
+	^ orientation := orientation cardinalPointToTheLeft! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:36:54' prior: 50747217!
+moveRight
+
+	^ orientation := orientation cardinalPointToTheLeft! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:36:58' prior: 50747649!
+moveRight
+
+	^ orientation := orientation cardinalPointToTheRight! !
+!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:48:52'!
+characteristicVersor
+
+	^ self subclassResponsibility .! !
+!MarsRoverCardinalPoint methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:49:02'!
+oppositeCharacteristicVersor
+
+	^ self subclassResponsibility .! !
+!East methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:49:52'!
+characteristicVersor
+
+	^ 1@0.! !
+!East methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:50:08'!
+oppositeCharacteristicVersor
+
+	^ -1@0.! !
+!North methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:50:51'!
+characteristicVersor
+
+	^ 0@1.! !
+!North methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:51:02'!
+oppositeCharacteristicVersor
+
+	^ 0@-1.! !
+!South methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:55:43'!
+oppositeCharacteristicVersor
+
+	^ 0@1.! !
+!South methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:55:50'!
+characteristicVersor
+
+	^ 0@-1.! !
+!West methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:56:09'!
+oppositeCharacteristicVersor
+
+	^ 1@0.! !
+!West methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:56:14'!
+characteristicVersor
+
+	^ -1@0.! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:58:09' prior: 50747195!
+moveForward
+	
+	position := position + orientation characteristicVersor. ! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 15:58:27' prior: 50747206!
+moveBackward
+
+	position := position + orientation oppositeCharacteristicVersor.! !
+
+----SNAPSHOT----(7 October 2019 15:59:34) clase2.image priorSource: 13281866!
+
+----SNAPSHOT----(7 October 2019 16:00:26) clase2.image priorSource: 13313970!
+
+----QUIT----(7 October 2019 16:00:29) clase2.image priorSource: 13314049!
+
+----STARTUP---- (7 October 2019 16:00:33) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+----SNAPSHOT----(7 October 2019 16:02:49) clase2.image priorSource: 13314128!
+
+----QUIT----(7 October 2019 16:02:52) clase2.image priorSource: 13314292!
+
+----STARTUP---- (7 October 2019 16:02:56) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+Smalltalk removeClassNamed: #West!
+
+Smalltalk removeClassNamed: #South!
+
+Smalltalk removeClassNamed: #North!
+
+Smalltalk removeClassNamed: #East!
+
+Smalltalk removeClassNamed: #MarsRoverCardinalPoint!
+
+Smalltalk removeClassNamed: #MarsRover!
+
+Smalltalk removeClassNamed: #MarsRoverTest!
+
+----End fileIn of /home/mregnier/isw1/linux64/MarsRover.st----!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:10:27'!
+rotateLeft
+
+	^ orientation := orientation cardinalPointToTheLeft! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:10:27' prior: 50747974!
+move: anInstructionString
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self moveRight ].
+		elem = $l ifTrue: [ self rotateLeft ].
+		].
+	
+	^ position.! !
+
+MarsRover removeSelector: #moveLeft!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:10:56'!
+rotateRight
+
+	^ orientation := orientation cardinalPointToTheRight! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:10:56' prior: 50748239!
+move: anInstructionString
+
+	anInstructionString  do: [:elem |
+		elem = $f ifTrue: [ self moveForward ].
+		elem = $b ifTrue: [ self moveBackward ].
+		elem = $r ifTrue: [ self rotateRight ].
+		elem = $l ifTrue: [ self rotateLeft ].
+		].
+	
+	^ position.! !
+
+MarsRover removeSelector: #moveRight!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:13:15'!
+test22MarsRoverRotateLeftTwiceAndRemembersOrientationAfterFirstRotation
+
+! !
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/7/2019 16:14:16' prior: 50748269!
+test22MarsRoverRotateLeftTwiceAndRemembersOrientationAfterFirstRotation
+
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: North new.
+
+	newPosition := marsRover move: 'l'.
+	
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 1@0.! !
+
+MarsRover removeSelector: #increaseY!
+
+MarsRover removeSelector: #increaseX!
+
+MarsRover removeSelector: #decreaseY!
+
+MarsRover removeSelector: #decreaseX!
+
+----SNAPSHOT----(7 October 2019 16:33:52) clase2.image priorSource: 13314371!
+
+----QUIT----(7 October 2019 16:33:55) clase2.image priorSource: 13332496!
+
+----STARTUP---- (9 October 2019 14:51:42) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+MarsRoverTest removeSelector: #test06MarsRoverMovesForwardThreeTimes!
+
+MarsRoverTest removeSelector: #test07MarsRoverMovesBackwardThreeTimes!
+
+MarsRoverTest removeSelector: #test08MarsRoverMovesForwardFourTimes!
+
+MarsRoverTest removeSelector: #test09MarsRoverMovesBackwardFourTimes!
+
+MarsRoverTest removeSelector: #test14MarsRoverRotateLeftAndMoveBackwardMovesToTheLeftOnce!
+
+MarsRoverTest removeSelector: #test15MarsRoverRotateRightAndMoveBackwardMovesToTheRightOnce!
+
+MarsRoverTest removeSelector: #test18MarsRoverRotateLeftAndMoveBackwardTwoTimesMovesToTheLeftTwice!
+
+MarsRoverTest removeSelector: #test19MarsRoverRotateRightAndMoveBackwardTwoTimesMovesToTheRightTwice!
+
+MarsRoverTest removeSelector: #test20MarsRoverRotateLeftAndMoveBackwardFourTimesMovesToTheLeftFourTimes!
+
+MarsRoverTest removeSelector: #test21MarsRoverRotateRightAndMoveBackwardFourTimesMovesToTheRightFourTimes!
+!MarsRoverTest methodsFor: 'as yet unclassified' stamp: 'mr 10/9/2019 15:07:30'!
+test18MarsRoverDoAllPossibleInstructions
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rflb') equals: 2@0.! !
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:09:11'!
+test06MarsRoverMovesForwardOnceAndBackwardOnce
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'fb') equals: 1@1.! !
+
+MarsRoverTest removeSelector: #test10MarsRoverMovesForwardOnceAndBackwardOnce!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:09:55'!
+test07MarsRoverMovesForwardOnceAndThenForwardAgain
+	
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: North new.
+
+	newPosition := marsRover move: 'f'.
+	
+	newPosition := marsRover move: 'f'.
+
+	self assert: newPosition equals: 1@3.! !
+
+MarsRoverTest removeSelector: #test11MarsRoverMovesForwardOnceAndThenForwardAgainIsInCorrectPosition!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:10:20'!
+test08MarsRoverRotatesLeftAndMovesForward
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lf') equals: 0@1.! !
+
+MarsRoverTest removeSelector: #test12MarsRoverRotateLeftAndMoveForwardMovesToTheLeftOnce!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:10:45'!
+test09MarsRoverRotatesRightAndMovesForward
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rf') equals: 2@1.! !
+
+MarsRoverTest removeSelector: #test13MarsRoverRotateRightAndMoveForwardMovesToTheRightOnce!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:11:15'!
+test10MarsRoverRotatesLeftAndMovesForwardTwoTimes
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'lflf') equals: 0@0.! !
+
+MarsRoverTest removeSelector: #test16MarsRoverRotateLeftAndMoveForwardTwoTimesMovesToTheLeftTwice!
+
+MarsRoverTest removeSelector: #test10MarsRoverRotatesLeftAndMovesForwardTwoTimes!
+
+MarsRoverTest removeSelector: #test17MarsRoverRotateRightAndMoveForwardTwoTimesMovesToTheRightTwice!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:13:09'!
+test22MarsRoverRotatesLeftTwiceAndRemembersOrientationAndPositionAfterFirstRotation
+
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: East new.
+
+	newPosition := marsRover move: 'lf'.
+	
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 1@0.! !
+
+MarsRoverTest removeSelector: #test22MarsRoverRotateLeftTwiceAndRemembersOrientationAfterFirstRotation!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:13:54' prior: 50748397!
+test22MarsRoverRotatesLeftTwiceAndRemembersOrientationAndPositionAfterFirstRotation
+
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: East new.
+
+	newPosition := marsRover move: 'lf'.
+	
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 0@0.! !
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:14:26' prior: 50748412!
+test22MarsRoverRotatesLeftTwiceAndRemembersOrientationAndPositionAfterFirstRotation
+
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: East new.
+
+	newPosition := marsRover move: 'lf'.
+	
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 0@2.! !
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:16:42'!
+test10MarsRoverDoesAllPossibleInstructions
+	
+	self assert: (self obtainPositionOfMarsRoverStartedAt: 1@1 inOrientation: North new andMoved: 'rflb') equals: 2@0.! !
+
+MarsRoverTest removeSelector: #test18MarsRoverDoAllPossibleInstructions!
+!MarsRoverTest methodsFor: 'test' stamp: 'mr 10/9/2019 15:16:55'!
+test11MarsRoverRotatesLeftTwiceAndRemembersOrientationAndPositionAfterFirstRotation
+
+	| marsRover newPosition |
+
+	marsRover := MarsRover at: 1@1 orientedAt: East new.
+
+	newPosition := marsRover move: 'lf'.
+	
+	newPosition := marsRover move: 'lf'.
+
+	self assert: newPosition equals: 0@2.! !
+
+MarsRoverTest removeSelector: #test22MarsRoverRotatesLeftTwiceAndRemembersOrientationAndPositionAfterFirstRotation!
+
+----SNAPSHOT----(9 October 2019 15:19:08) clase2.image priorSource: 13332575!
+
+----SNAPSHOT----(9 October 2019 15:23:03) clase2.image priorSource: 13337941!
