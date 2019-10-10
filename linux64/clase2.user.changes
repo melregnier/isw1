@@ -13066,3 +13066,950 @@ MarsRoverTest removeSelector: #test22MarsRoverRotatesLeftTwiceAndRemembersOrient
 ----SNAPSHOT----(9 October 2019 15:19:08) clase2.image priorSource: 13332575!
 
 ----SNAPSHOT----(9 October 2019 15:23:03) clase2.image priorSource: 13337941!
+
+----QUIT----(9 October 2019 15:29:15) clase2.image priorSource: 13338020!
+
+----STARTUP---- (10 October 2019 17:09:58) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+Object subclass: #TaTeTiGame
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TaTeTi'!
+
+!classDefinition: #TaTeTiGame category: #TaTeTi!
+Object subclass: #TaTeTiGame
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TaTeTi'!
+
+TestCase subclass: #TaTeTiGameTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TaTeTi'!
+
+!classDefinition: #TaTeTiGameTest category: #TaTeTi!
+TestCase subclass: #TaTeTiGameTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TaTeTi'!
+!TaTeTiGameTest methodsFor: 'no messages' stamp: 'mr 10/10/2019 17:13:29'!
+test01Player1Starts
+
+	| tatetiGame |
+	tatetiGame := TaTeTiGame new.
+	
+! !
+!TaTeTiGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:13:35' prior: 50748491!
+test01Player1Starts
+
+	| tatetiGame |
+	
+	tatetiGame := TaTeTiGame new.
+	
+! !
+!TaTeTiGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:19:20' prior: 50748497!
+test01Player1Starts
+
+	| tatetiGame |
+	
+	tatetiGame := TaTeTiGame new.
+	tatetiGame plays: #Player1 on: 1@3.
+! !
+!TaTeTiGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:20:15' prior: 50748503!
+test01Player1Starts
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame plays: #Player1 on: 1@3.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:21:05' prior: 50748510!
+test01Player1Starts
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame playsX.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:21:42' prior: 50748517!
+test01Player1Starts
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self assert: tatetiGame playsX.
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:21:57'!
+playsX
+	self shouldBeImplemented.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:22:11' prior: 50748531!
+playsX
+	^ true.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:22:41'!
+test01PlayerXStarts
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self assert: tatetiGame playsX.
+! !
+
+TerniLapilliGameTest removeSelector: #test01Player1Starts!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:23:00'!
+test01PlayerODoesNotStart
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self assert: tatetiGame playsX.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:23:19' prior: 50748549!
+test01PlayerODoesNotStart
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self deny: tatetiGame playsO.
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:23:35'!
+playsO
+	self shouldBeImplemented.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:23:55' prior: 50748563!
+playsO
+	^ false.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:24:10'!
+test02PlayerODoesNotStart
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self deny: tatetiGame playsO.
+! !
+
+TerniLapilliGameTest removeSelector: #test01PlayerODoesNotStart!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:25:15'!
+test03PlayerXPlacesChip
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	self deny: tatetiGame playsO.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:26:55'!
+test03PlayerXPlacesChipInRange
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1
+	
+	self deny: tatetiGame playsO.
+! !
+
+TerniLapilliGameTest removeSelector: #test03PlayerXPlacesChip!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:27:06' prior: 50748588!
+test03PlayerXPlacesChipInRange
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self deny: tatetiGame playsO.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:28:29' prior: 50748599!
+test03PlayerXPlacesChipInRange
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self assert: (tatetiGame isXChip: 1@1).
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:28:58'!
+placeXChipAt: aPoint 
+	self shouldBeImplemented.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:30:36' prior: 50748616!
+placeXChipAt: aCell
+	
+	^true! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:30:53'!
+isXChip: aPoint 
+	self shouldBeImplemented.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:31:00' prior: 50748625!
+isXChip: aPoint 
+	^ true.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:34:05' prior: 50748608!
+test03PlayerXPlacesChipInRange
+
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self assert: (tatetiGame isXChip: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:35:53'!
+test04PlayerOPlaysAfterPlayerX
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self assert: (tatetiGame isXChip: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:36:36' prior: 50748643!
+test04PlayerOPlaysAfterPlayerX
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self assert: (tatetiGame playsO).
+! !
+
+Object subclass: #TerniLapilliGame
+	instanceVariableNames: 'turn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+
+!classDefinition: #TerniLapilliGame category: #TerniLapilli!
+Object subclass: #TerniLapilliGame
+	instanceVariableNames: 'turn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:37:33' prior: 50748621!
+placeXChipAt: aCell
+	
+	turn := #O.
+	^true! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:38:20'!
+initialize
+
+	turn := #X.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:39:18' prior: 50748568!
+playsO
+
+	^ self playsX not.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:42:00' prior: 50748536!
+playsX
+	
+	turn = #X.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:42:17' prior: 50748686!
+playsX
+	
+	^ turn = #X.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:49:56'!
+test05PlayerOPlaysAfterPlayerX
+	| tatetiGame |
+	
+	tatetiGame := TerniLapilliGame new.
+	tatetiGame placeXChipAt: 1@1.
+	
+	self assert: (tatetiGame playsO).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:50:58' prior: 50748635!
+test03PlayerXPlacesChipInRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game isXChip: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:51:14' prior: 50748540!
+test01PlayerXStarts
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self assert: game playsX.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:51:33' prior: 50748572!
+test02PlayerODoesNotStart
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self deny: game playsO.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:51:51' prior: 50748652!
+test04PlayerOPlaysAfterPlayerX
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game playsO).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 17:52:05' prior: 50748694!
+test05PlayerOPlaysAfterPlayerX
+	
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game playsO).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:15:05'!
+test04PlayerXPlacesChipInRangeAndOtherCellsAreEmpty
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game isXChip: 1@1).
+	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:15:37'!
+test03PlayerXPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game isXChip: 1@1).
+! !
+
+TerniLapilliGameTest removeSelector: #test03PlayerXPlacesChipInRange!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:16:45' prior: 50748741!
+test04PlayerXPlacesChipInRangeAndOtherCellsAreEmpty
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self deny: (game isXChip: 0@0).
+	self deny: (game isXChip: 0@1).
+	self deny: (game isXChip: 0@2).
+	self deny: (game isXChip: 1@0).
+	self deny: (game isXChip: 1@2).
+	self deny: (game isXChip: 2@0).
+	self deny: (game isXChip: 2@1).
+	self deny: (game isXChip: 2@2).	
+! !
+
+!classDefinition: #TerniLapilliGame category: #TerniLapilli!
+Object subclass: #TerniLapilliGame
+	instanceVariableNames: 'turn xChips'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:18:36' prior: 50748630!
+isXChip: aPoint 
+	^ xChips detect: []! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:19:35' prior: 50748782!
+isXChip: aCell 
+	^ xChips includes: aCell! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:20:23' prior: 50748671!
+placeXChipAt: aCell
+	
+	xChips add: aCell .
+	turn := #O.
+	^true! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:21:03' prior: 50748676!
+initialize
+
+	turn := #X.
+	xChips := OrderedCollection new.! !
+
+TerniLapilliGameTest removeSelector: #test05PlayerOPlaysAfterPlayerX!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:21:38'!
+test05PlayerOPlaysAfterPlayerX
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game playsO).
+! !
+
+TerniLapilliGameTest removeSelector: #test04PlayerOPlaysAfterPlayerX!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:23:30'!
+test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game isXChip: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:25:16' prior: 50748815!
+test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0. 
+	
+	self assert: (game isOChip: 0@0).
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:25:28'!
+placeOChipAt: aPoint 
+	self shouldBeImplemented.! !
+
+!classDefinition: #TerniLapilliGame category: #TerniLapilli!
+Object subclass: #TerniLapilliGame
+	instanceVariableNames: 'turn xChips oChips'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:26:11' prior: 50748833!
+placeOChipAt: aCell
+	oChips add: aCell.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:26:58' prior: 50748798!
+initialize
+
+	turn := #X.
+	xChips := OrderedCollection new.
+	oChips := OrderedCollection new.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:27:04' prior: 50748787!
+isXChip: aCell 
+
+	^ xChips includes: aCell! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:27:12'!
+isOChip: aCell 
+
+	^ xChips includes: aCell! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:27:18' prior: 50748862!
+isOChip: aCell 
+
+	^ oChips includes: aCell! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:28:54'!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self deny: (game isXChip: 0@0).
+	self deny: (game isXChip: 0@1).
+	self deny: (game isXChip: 0@2).
+	self deny: (game isXChip: 1@0).
+	self deny: (game isXChip: 1@2).
+	self deny: (game isXChip: 2@0).
+	self deny: (game isXChip: 2@1).
+	self deny: (game isXChip: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:29:25' prior: 50748872!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0.
+	
+	self deny: (game isXChip: 0@0).
+	self deny: (game isXChip: 0@1).
+	self deny: (game isXChip: 0@2).
+	self deny: (game isXChip: 1@0).
+	self deny: (game isXChip: 1@2).
+	self deny: (game isXChip: 2@0).
+	self deny: (game isXChip: 2@1).
+	self deny: (game isXChip: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:32:44' prior: 50748888!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0.
+	
+	self assert: (game isOChip: 0@0).
+	self deny: (game isXChip: 0@1).
+	self deny: (game isXChip: 0@2).
+	self deny: (game isXChip: 1@0).
+	self deny: (game isXChip: 1@2).
+	self deny: (game isXChip: 2@0).
+	self deny: (game isXChip: 2@1).
+	self deny: (game isXChip: 2@2).	
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:32'!
+isOCell: aCell 
+
+	^ oChips includes: aCell! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:32' prior: 50748905!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self deny: (game isXChip: 0@1).
+	self deny: (game isXChip: 0@2).
+	self deny: (game isXChip: 1@0).
+	self deny: (game isXChip: 1@2).
+	self deny: (game isXChip: 2@0).
+	self deny: (game isXChip: 2@1).
+	self deny: (game isXChip: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:32' prior: 50748824!
+test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0. 
+	
+	self assert: (game isOCell: 0@0).
+! !
+
+TerniLapilliGame removeSelector: #isOChip:!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:57'!
+isXCell: aCell 
+
+	^ xChips includes: aCell! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:57' prior: 50748749!
+test03PlayerXPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self assert: (game isXCell: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:57' prior: 50748926!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game placeOChipAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self deny: (game isXCell: 0@1).
+	self deny: (game isXCell: 0@2).
+	self deny: (game isXCell: 1@0).
+	self deny: (game isXCell: 1@2).
+	self deny: (game isXCell: 2@0).
+	self deny: (game isXCell: 2@1).
+	self deny: (game isXCell: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:33:57' prior: 50748760!
+test04PlayerXPlacesChipInRangeAndOtherCellsAreEmpty
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	
+	self deny: (game isXCell: 0@0).
+	self deny: (game isXCell: 0@1).
+	self deny: (game isXCell: 0@2).
+	self deny: (game isXCell: 1@0).
+	self deny: (game isXCell: 1@2).
+	self deny: (game isXCell: 2@0).
+	self deny: (game isXCell: 2@1).
+	self deny: (game isXCell: 2@2).	
+! !
+
+TerniLapilliGame removeSelector: #isXChip:!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:23'!
+putOAt: aCell
+	oChips add: aCell.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:23' prior: 50748967!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game putOAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self deny: (game isXCell: 0@1).
+	self deny: (game isXCell: 0@2).
+	self deny: (game isXCell: 1@0).
+	self deny: (game isXCell: 1@2).
+	self deny: (game isXCell: 2@0).
+	self deny: (game isXCell: 2@1).
+	self deny: (game isXCell: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:23' prior: 50748943!
+test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game placeXChipAt: 1@1.
+	game putOAt: 0@0. 
+	
+	self assert: (game isOCell: 0@0).
+! !
+
+TerniLapilliGame removeSelector: #placeOChipAt:!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40'!
+putXAt: aCell
+	
+	xChips add: aCell .
+	turn := #O.
+	^true! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40' prior: 50748958!
+test03PlayerXPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self assert: (game isXCell: 1@1).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40' prior: 50748805!
+test05PlayerOPlaysAfterPlayerX
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self assert: (game playsO).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40' prior: 50749006!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self deny: (game isXCell: 0@1).
+	self deny: (game isXCell: 0@2).
+	self deny: (game isXCell: 1@0).
+	self deny: (game isXCell: 1@2).
+	self deny: (game isXCell: 2@0).
+	self deny: (game isXCell: 2@1).
+	self deny: (game isXCell: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40' prior: 50748984!
+test04PlayerXPlacesChipInRangeAndOtherCellsAreEmpty
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self deny: (game isXCell: 0@0).
+	self deny: (game isXCell: 0@1).
+	self deny: (game isXCell: 0@2).
+	self deny: (game isXCell: 1@0).
+	self deny: (game isXCell: 1@2).
+	self deny: (game isXCell: 2@0).
+	self deny: (game isXCell: 2@1).
+	self deny: (game isXCell: 2@2).	
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40' prior: 50749023!
+test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0. 
+	
+	self assert: (game isOCell: 0@0).
+! !
+
+TerniLapilliGame removeSelector: #placeXChipAt:!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:24'!
+isPlayingO
+
+	^ self playsX not.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:24' prior: 50749048!
+test05PlayerOPlaysAfterPlayerX
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self assert: (game isPlayingO).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:24' prior: 50748718!
+test02PlayerODoesNotStart
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self deny: game isPlayingO.
+! !
+
+TerniLapilliGame removeSelector: #playsO!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:45'!
+isPlayingX
+	
+	^ turn = #X.! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:45' prior: 50749099!
+isPlayingO
+
+	^ self isPlayingX not.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:45' prior: 50748711!
+test01PlayerXStarts
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self assert: game isPlayingX.
+! !
+
+TerniLapilliGame removeSelector: #playsX!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:38:38' prior: 50749056!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self assert: (game isXCell: 1@1).
+	self deny: (game isXCell: 0@2).! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:38:52' prior: 50749138!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self assert: (game isXCell: 1@1).
+	self deny: (game isOCell: 0@2).! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:40:05'!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCellsOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0.
+	
+	self assert: (game isOCell: 0@0).
+	self assert: (game isXCell: 1@1).
+	self deny: (game isOCell: 0@2).! !
+
+TerniLapilliGameTest removeSelector: #test07PlayerOPlacesChipInRangeAndGameRemembersOtherCells!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:41:17'!
+test08PlayerXPlaysAfterPlayerO
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	
+	game putXAt: 1@1.
+	game putOAt: 1@2.
+	
+	
+	self assert: (game isPlayingX).
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:41:52' prior: 50749001!
+putOAt: aCell
+
+	turn := #X.
+	oChips add: aCell.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:49:23'!
+test09PlayerCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self should: [ game putXAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: 'Cell not valid'.
+
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:52:14' prior: 50749033!
+putXAt: aCell
+	
+	self checkValidationOfCell: aCell.
+	
+	xChips add: aCell .
+	turn := #O.
+	^true! !
+
+(1@1).!
+
+(1@1).!
+
+1@1 between: 0@0 and: 2@2.!
+
+1@1 between: 0@0 and: 2@2.!
+
+1@1 between: 0@0 and: 2@2.!
+
+0@0 between: 0@0 and: 2@2.!
+
+3@0 between: 0@0 and: 2@2.!
+
+1@0 between: 0@0 and: 2@2.!
+
+1@1 between: 0@0 and: 2@2.!
+
+1@2 between: 0@0 and: 2@2.!
+
+2@2 between: 0@0 and: 2@2.!
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:57:12'!
+checkValidationOfCell: aCell.
+	
+	^ (aCell between: 0@0 and: 2@2) ifFalse: [self error: 'Cell not valid']! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 19:14:26' prior: 50749213!
+checkValidationOfCell: aCell.
+	
+	^ (aCell between: 0@0 and: 2@2) ifFalse: [self error: self class cellNotValidError]! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 19:15:24'!
+cellNotValidError
+
+	^ 'Cell not valid'! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:13:17' prior: 50749188!
+test09PlayerCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self should: [ game putXAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: 'Cell not valid'.
+	self deny: (game isXCell: -1@3).
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:13:52' prior: 50749232!
+test09PlayerCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self should: [ game putXAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: TerniLapilliGame cellNotValidError.
+	self deny: (game isXCell: -1@3).
+! !
+!TerniLapilliGame class methodsFor: 'no messages' stamp: 'mr 10/10/2019 20:14:38'!
+cellNotValidError
+
+	^ 'Cell not valid'! !
+
+TerniLapilliGame removeSelector: #cellNotValidError!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:16:29'!
+test04PlayerXPlacesChipInRangeAndAnotherCellIsEmpty
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self deny: (game isXCell: 0@0).
+	
+! !
+
+TerniLapilliGameTest removeSelector: #test04PlayerXPlacesChipInRangeAndOtherCellsAreEmpty!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:16:55' prior: 50749160!
+test07PlayerOPlacesChipInRangeAndGameRemembersOtherCellsOcuppied
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt: 0@0.
+	
+	self deny: (game isOCell: 0@2).! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:33:08' prior: 50749220!
+checkValidationOfCell: aCell.
+	
+	(aCell between: 0@0 and: 2@2) ifFalse: [self error: self class cellNotValidError]! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:38:43'!
+test10PlayerOCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	
+	self should: [ game putOAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: TerniLapilliGame cellNotValidError.
+	
+	self deny: (game isOCell: -1@3).
+	self assert: game isPlayingO.
+! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:38:57'!
+test09PlayerXCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self should: [ game putXAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: TerniLapilliGame cellNotValidError.
+	self deny: (game isXCell: -1@3).
+! !
+
+TerniLapilliGameTest removeSelector: #test09PlayerCannotPlaceChipOutOfRange!
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:39:14' prior: 50749301!
+test09PlayerXCannotPlaceChipOutOfRange
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	self should: [ game putXAt: -1@3. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: TerniLapilliGame cellNotValidError.
+	self deny: (game isXCell: -1@3).
+	self assert: game isPlayingX .
+! !
+!TerniLapilliGame methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:39:47' prior: 50749183!
+putOAt: aCell
+
+	self checkValidationOfCell: aCell.
+
+	
+	turn := #X.
+	oChips add: aCell.! !
+!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:42:38'!
+test10PlayerXCannotPlaceChipsInAnOccupiedCell
+
+	| game |
+	
+	game := TerniLapilliGame new.
+	game putXAt: 1@1.
+	game putOAt:  0@0.
+		
+	self should: [ game putXAt: 0@0. ]
+		raise: Error -MessageNotUnderstood 
+		withMessageText: TerniLapilliGame cellOccupiedError.
+	
+	self deny: (game isOCell: 0@0).
+	self assert: game isPlayingX.
+! !
+
+----SNAPSHOT----(10 October 2019 20:58:51) clase2.image priorSource: 13338099!
+
+----QUIT----(10 October 2019 20:58:59) clase2.image priorSource: 13366250!
