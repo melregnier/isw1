@@ -5,7 +5,7 @@ TestCase subclass: #TerniLapilliGameTest
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:45'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:35:45'!
 test01PlayerXStarts
 
 	| game |
@@ -14,7 +14,7 @@ test01PlayerXStarts
 	self assert: game isPlayingX.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:24'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:35:24'!
 test02PlayerODoesNotStart
 
 	| game |
@@ -23,7 +23,7 @@ test02PlayerODoesNotStart
 	self deny: game isPlayingO.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:34:40'!
 test03PlayerXPlacesChipInRangeAndTheCellIsNowOcuppied
 
 	| game |
@@ -34,7 +34,7 @@ test03PlayerXPlacesChipInRangeAndTheCellIsNowOcuppied
 	self assert: (game isXCell: 1@1).
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:16:29'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 20:16:29'!
 test04PlayerXPlacesChipInRangeAndAnotherCellIsEmpty
 
 	| game |
@@ -46,7 +46,7 @@ test04PlayerXPlacesChipInRangeAndAnotherCellIsEmpty
 	
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:35:24'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:35:24'!
 test05PlayerOPlaysAfterPlayerX
 
 	| game |
@@ -57,7 +57,7 @@ test05PlayerOPlaysAfterPlayerX
 	self assert: (game isPlayingO).
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:34:40'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:34:40'!
 test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
 
 	| game |
@@ -69,7 +69,7 @@ test06PlayerOPlacesChipInRangeAndTheCellIsNowOcuppied
 	self assert: (game isOCell: 0@0).
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:16:55'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 20:16:55'!
 test07PlayerOPlacesChipInRangeAndGameRemembersOtherCellsOcuppied
 
 	| game |
@@ -80,7 +80,7 @@ test07PlayerOPlacesChipInRangeAndGameRemembersOtherCellsOcuppied
 	
 	self deny: (game isOCell: 0@2).! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 18:41:17'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'mr 10/10/2019 18:41:17'!
 test08PlayerXPlaysAfterPlayerO
 
 	| game |
@@ -94,7 +94,7 @@ test08PlayerXPlaysAfterPlayerO
 	self assert: (game isPlayingX).
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:39:14'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:11:15'!
 test09PlayerXCannotPlaceChipOutOfRange
 
 	| game |
@@ -103,11 +103,11 @@ test09PlayerXCannotPlaceChipOutOfRange
 	self should: [ game putXAt: -1@3. ]
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError.
-	self deny: (game isXCell: -1@3).
-	self assert: game isPlayingX .
+	
+	self assertIsPlayerXTurnAndDoesNotOwn: -1@3 in: game
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'mr 10/10/2019 20:38:43'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:11:32'!
 test10PlayerOCannotPlaceChipOutOfRange
 
 	| game |
@@ -119,11 +119,10 @@ test10PlayerOCannotPlaceChipOutOfRange
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError.
 	
-	self deny: (game isOCell: -1@3).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesNotOwn: -1@3 in: game
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 15:44:55'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:11:51'!
 test11PlayerXCannotPlaceChipsInAnOccupiedCell
 
 	| game |
@@ -136,11 +135,10 @@ test11PlayerXCannotPlaceChipsInAnOccupiedCell
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellOccupiedError.
 	
-	self deny: (game isXCell: 0@0).
-	self assert: game isPlayingX.
+	self assertIsPlayerXTurnAndDoesNotOwn: 0@0 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 15:45:51'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:12:12'!
 test12PlayerOCannotPlaceChipsInAnOccupiedCell
 
 	| game |
@@ -152,11 +150,10 @@ test12PlayerOCannotPlaceChipsInAnOccupiedCell
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellOccupiedError.
 	
-	self deny: (game isOCell: 0@0).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesNotOwn: 0@0 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 17:13:02'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 17:13:02'!
 test13PlayerXCannotPlaceChipsTwoTimesInARow
 
 	| game |
@@ -172,7 +169,7 @@ test13PlayerXCannotPlaceChipsTwoTimesInARow
 	self assert: game isPlayingO.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 17:13:14'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 17:13:14'!
 test14PlayerOCannotPlaceChipsTwoTimesInARow
 
 	| game |
@@ -188,7 +185,7 @@ test14PlayerOCannotPlaceChipsTwoTimesInARow
 	self assert: game isPlayingX.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:36:50'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:13:22'!
 test15PlayerXCannotPlaceMoreThanThreeChips
 
 	| game |
@@ -205,11 +202,10 @@ test15PlayerXCannotPlaceMoreThanThreeChips
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotPlaceMoreThanThreeChips.
 	
-	self deny: (game isXCell: 1@2).
-	self assert: game isPlayingX.
+	self assertIsPlayerXTurnAndDoesNotOwn: 1@2 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:35:27'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:13:41'!
 test16PlayerOCannotPlaceMoreThanThreeChips
 
 	| game |
@@ -227,11 +223,10 @@ test16PlayerOCannotPlaceMoreThanThreeChips
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotPlaceMoreThanThreeChips.
 	
-	self deny: (game isOCell: 1@1).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesNotOwn: 1@1 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:10:11'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 16:10:11'!
 test17PlayerXCannotSlideBeforePlacingThreeChips
 
 	| game |
@@ -251,7 +246,7 @@ test17PlayerXCannotSlideBeforePlacingThreeChips
 	self assert: game isPlayingX.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:32:13'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 16:32:13'!
 test18PlayerOCannotSlideBeforePlacingThreeChips
 
 	| game |
@@ -272,7 +267,7 @@ test18PlayerOCannotSlideBeforePlacingThreeChips
 	self assert: game isPlayingO.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:36:56'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:14:37'!
 test19PlayerXCannotSlideFromAnInvalidPosition
 
 	| game |
@@ -289,11 +284,10 @@ test19PlayerXCannotSlideFromAnInvalidPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError.
 	
-	self deny: (game isXCell: 2@0).
-	self assert: game isPlayingX.
+	self assertIsPlayerXTurnAndDoesNotOwn: 2@0 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:37:10'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:14:53'!
 test20PlayerOCannotSlideFromAnInvalidPosition
 
 	| game |
@@ -311,11 +305,10 @@ test20PlayerOCannotSlideFromAnInvalidPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError .
 	
-	self deny: (game isOCell: 2@1).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesNotOwn: 2@1 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:37:21'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:15:59'!
 test21PlayerXCannotSlideToAnInvalidPosition
 
 	| game |
@@ -332,11 +325,9 @@ test21PlayerXCannotSlideToAnInvalidPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError .
 	
-	self assert: (game isXCell: 1@1).
-	self assert: game isPlayingX.
-! !
+	self assertIsPlayerXTurnAndDoesOwn: 1@1 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:37:29'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:17:49'!
 test22PlayerOCannotSlideToAnInvalidPosition
 
 	| game |
@@ -354,11 +345,10 @@ test22PlayerOCannotSlideToAnInvalidPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellNotValidError .
 	
-	self assert: (game isOCell: 1@0).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesOwn: 1@0 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:48:59'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:18:19'!
 test23PlayerXCannotSlideFromAPositionNotOwned
 
 	| game |
@@ -375,12 +365,10 @@ test23PlayerXCannotSlideFromAPositionNotOwned
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideChipFromAPositionNotOwnedError.
 	
-	self deny: (game isXCell: 2@0).
 	self assert: (game isOCell: 1@0).
-	self assert: game isPlayingX.
-! !
+	self assertIsPlayerXTurnAndDoesNotOwn: 2@0 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 16:49:11'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:18:48'!
 test24PlayerOCannotSlideFromAPositionNotOwned
 
 	| game |
@@ -398,11 +386,10 @@ test24PlayerOCannotSlideFromAPositionNotOwned
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideChipFromAPositionNotOwnedError.
 	
-	self deny: (game isOCell: 2@1).
-	self assert: game isPlayingO.
+	self assertIsPlayerOTurnAndDoesNotOwn: 2@1 in: game.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:37:38'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:19:16'!
 test25PlayerXCannotSlideToAnOccupiedPosition
 
 	| game |
@@ -419,12 +406,10 @@ test25PlayerXCannotSlideToAnOccupiedPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellOccupiedError .
 	
-	self assert: (game isXCell: 1@1).
 	self assert: (game isOCell: 1@0).
-	self assert: game isPlayingX.
-! !
+	self assertIsPlayerXTurnAndDoesOwn: 1@1 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:37:45'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:19:43'!
 test26PlayerOCannotSlideToAnOccupiedPosition
 
 	| game |
@@ -442,12 +427,10 @@ test26PlayerOCannotSlideToAnOccupiedPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame cellOccupiedError .
 	
-	self assert: (game isOCell: 1@0).
 	self assert: (game isXCell: 1@1).
-	self assert: game isPlayingO.
-! !
+	self assertIsPlayerOTurnAndDoesOwn: 1@0 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:24:52'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/16/2019 16:24:52'!
 test27PlayerXCannotSlideInTheTurnOfTheOtherPlayer
 
 	| game |
@@ -468,7 +451,7 @@ test27PlayerXCannotSlideInTheTurnOfTheOtherPlayer
 	self assert: game isPlayingO.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:25:01'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/16/2019 16:25:01'!
 test28PlayerOCannotSlideInTheTurnOfTheOtherPlayer
 
 	| game |
@@ -490,7 +473,7 @@ test28PlayerOCannotSlideInTheTurnOfTheOtherPlayer
 	self assert: game isPlayingX.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 17:43:37'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:20:37'!
 test29PlayerXCannotSlideToANotNeighbourPosition
 
 	| game |
@@ -507,12 +490,10 @@ test29PlayerXCannotSlideToANotNeighbourPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideToAPositionNotFollowingPredefinedLinesError.
 	
-	self assert: (game isXCell: 2@2).
 	self deny: (game isXCell: 2@0).
-	self assert: game isPlayingX.
-! !
+	self assertIsPlayerXTurnAndDoesOwn: 2@2 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 17:51:20'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:21:01'!
 test30PlayerOCannotSlideToANotNeighbourPosition
 
 	| game |
@@ -530,12 +511,10 @@ test30PlayerOCannotSlideToANotNeighbourPosition
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideToAPositionNotFollowingPredefinedLinesError.
 	
-	self assert: (game isOCell: 1@0).
 	self deny: (game isOCell: 1@2).
-	self assert: game isPlayingO.
-! !
+	self assertIsPlayerOTurnAndDoesOwn: 1@0 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 18:09:50'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:21:19'!
 test31PlayerXCannotSlideNotFollowingThePredefinedLines
 
 	| game |
@@ -552,12 +531,10 @@ test31PlayerXCannotSlideNotFollowingThePredefinedLines
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideToAPositionNotFollowingPredefinedLinesError.
 	
-	self assert: (game isXCell: 0@1).
 	self deny: (game isXCell: 1@2).
-	self assert: game isPlayingX.
-! !
+	self assertIsPlayerXTurnAndDoesOwn: 0@1 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 18:52:09'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:21:39'!
 test32PlayerOCannotSlideNotFollowingThePredefinedLines
 
 	| game |
@@ -575,12 +552,10 @@ test32PlayerOCannotSlideNotFollowingThePredefinedLines
 		raise: Error -MessageNotUnderstood 
 		withMessageText: TerniLapilliGame playerCannotSlideToAPositionNotFollowingPredefinedLinesError.
 	
-	self assert: (game isOCell: 1@0).
 	self deny: (game isOCell: 2@1).
-	self assert: game isPlayingO.
-! !
+	self assertIsPlayerOTurnAndDoesOwn: 1@0 in: game.! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 18:55:59'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 18:55:59'!
 test33PlayerXSlideUpdatesTheChipPosition
 
 	| game |
@@ -600,7 +575,7 @@ test33PlayerXSlideUpdatesTheChipPosition
 	self assert: game isPlayingO.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 19:00:42'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 19:00:42'!
 test34PlayerOSlideUpdatesTheChipPosition
 
 	| game |
@@ -621,7 +596,7 @@ test34PlayerOSlideUpdatesTheChipPosition
 	self assert: game isPlayingX.
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:16:07'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:06:13'!
 test35GameIsOverWithHorizontalLine
 
 	| game |
@@ -633,11 +608,9 @@ test35GameIsOverWithHorizontalLine
 	game putOAt: 0@0.
 	game putXAt: 2@1.
 	
-	self assert: game isOver.
-	self deny: game isTied.
-	! !
+	self assertGameOverNotTiedAndNeitherPlayerTurnIn: game.	! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:16:31'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:06:19'!
 test36GameIsOverWithVerticalLine
 
 	| game |
@@ -649,12 +622,10 @@ test36GameIsOverWithVerticalLine
 	game putOAt: 0@2.
 	game putXAt: 1@0.
 	
-	self assert: game isOver.
-	self deny: game isTied.
-	
+	self assertGameOverNotTiedAndNeitherPlayerTurnIn: game.
 	! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:16:39'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/17/2019 16:06:27'!
 test37GameIsOverWithDiagonalLine
 
 	| game |
@@ -666,12 +637,10 @@ test37GameIsOverWithDiagonalLine
 	game putOAt: 0@2.
 	game putXAt: 2@2.
 	
-	self assert: game isOver.
-	self deny: game isTied.
-	
+	self assertGameOverNotTiedAndNeitherPlayerTurnIn: game.
 	! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 19:34:42'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 19:34:42'!
 test38PlayerOCannotPlaceWhenGameIsOver
 
 	| game |
@@ -689,7 +658,7 @@ test38PlayerOCannotPlaceWhenGameIsOver
 	
 	self deny: (game isOCell: 1@0).! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 19:52:44'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 19:52:44'!
 test39PlayerXCannotSlideWhenGameIsOver
 
 	| game |
@@ -709,7 +678,7 @@ test39PlayerXCannotSlideWhenGameIsOver
 	self deny: (game isXCell: 2@2).
 	self assert: (game isXCell: 1@2).! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/15/2019 19:52:23'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/15/2019 19:52:23'!
 test40PlayerOCannotSlideWhenGameIsOver
 
 	| game |
@@ -730,7 +699,7 @@ test40PlayerOCannotSlideWhenGameIsOver
 	self deny: (game isOCell: 2@0).
 	self assert: (game isOCell: 1@1).! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:13:54'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/16/2019 15:13:54'!
 test41PlayerXHasWon
 
 	| game |
@@ -747,7 +716,7 @@ test41PlayerXHasWon
 	
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:14:13'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/16/2019 15:14:13'!
 test42PlayerOHasWon
 
 	| game |
@@ -765,7 +734,7 @@ test42PlayerOHasWon
 	
 ! !
 
-!TerniLapilliGameTest methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 15:13:20'!
+!TerniLapilliGameTest methodsFor: 'test' stamp: 'D 10/16/2019 15:13:20'!
 test43GameIsTied
 
 	| game |
@@ -781,10 +750,47 @@ test43GameIsTied
 	
 ! !
 
+
+!TerniLapilliGameTest methodsFor: 'private assertions' stamp: 'D 10/17/2019 16:05:48'!
+assertGameOverNotTiedAndNeitherPlayerTurnIn: game
+	
+	self assert: game isOver.
+	self deny: game isTied.
+	self deny: game isPlayingX.
+	self deny: game isPlayingO.	! !
+
+!TerniLapilliGameTest methodsFor: 'private assertions' stamp: 'D 10/17/2019 16:10:12'!
+assertIsPlayerOTurnAndDoesNotOwn: aCell in: game
+	
+	self deny: (game isOCell: aCell).
+	self assert: game isPlayingO.
+! !
+
+!TerniLapilliGameTest methodsFor: 'private assertions' stamp: 'D 10/17/2019 16:16:45'!
+assertIsPlayerOTurnAndDoesOwn: aCell in: game
+	
+	self assert: (game isOCell: aCell).
+	self assert: game isPlayingO.
+! !
+
+!TerniLapilliGameTest methodsFor: 'private assertions' stamp: 'D 10/17/2019 16:11:00'!
+assertIsPlayerXTurnAndDoesNotOwn: aCell in: game
+	
+	self deny: (game isXCell: aCell).
+	self assert: game isPlayingX.
+! !
+
+!TerniLapilliGameTest methodsFor: 'private assertions' stamp: 'D 10/17/2019 16:16:31'!
+assertIsPlayerXTurnAndDoesOwn: aCell in: game
+	
+	self assert: (game isXCell: aCell).
+	self assert: game isPlayingX.
+! !
+
 
 !classDefinition: #TerniLapilliGame category: #TerniLapilli!
 Object subclass: #TerniLapilliGame
-	instanceVariableNames: 'xChips oChips gameState turn'
+	instanceVariableNames: 'xChips oChips gameState'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
@@ -837,17 +843,28 @@ horizontalLineIn: positions
 
 	^ positions allSatisfy: [:position | position y = positions first y]! !
 
+!TerniLapilliGame methodsFor: 'private testing' stamp: 'D 10/17/2019 16:02:28'!
+isGameOver
+	^ self isXWinner or: self isOWinner.! !
+
+!TerniLapilliGame methodsFor: 'private testing' stamp: 'D 10/17/2019 15:54:01'!
+isOWinner
+	^ self canWinWithPositions: oChips.! !
+
+!TerniLapilliGame methodsFor: 'private testing' stamp: 'D 10/17/2019 15:53:47'!
+isXWinner
+	^ self canWinWithPositions: xChips.! !
+
 !TerniLapilliGame methodsFor: 'private testing' stamp: 'D 10/15/2019 19:16:50'!
 verticalLineIn: positions
 	
 	^ positions allSatisfy: [:position | position x = positions first x]! !
 
 
-!TerniLapilliGame methodsFor: 'initialization' stamp: 'D 10/16/2019 16:15:32'!
+!TerniLapilliGame methodsFor: 'initialization' stamp: 'D 10/17/2019 15:49:53'!
 initialize
 
-	turn := XTurnTerniLapilli new.
-	gameState := PlacingChipsTerniLapilliGameState new.
+	gameState := XPlacingChipsTerniLapilliGameState new.
 	xChips := OrderedCollection new.
 	oChips := OrderedCollection new.! !
 
@@ -880,65 +897,50 @@ checkValidationOfCell: aCell withError: anErrorMessage.
 	(aCell between: 0@0 and: 2@2) ifFalse: [self error: anErrorMessage]! !
 
 
-!TerniLapilliGame methodsFor: 'placing' stamp: 'D 10/16/2019 17:24:22'!
+!TerniLapilliGame methodsFor: 'placing' stamp: 'D 10/17/2019 15:33:45'!
 putOAt: aCell
 
 	self checkIfIsAnInRangeEmptyCell: aCell.
-	
-	turn checkIfItIsOTurn.
 
 	gameState := gameState putOAt: aCell atGame: self.
-
-	turn := XTurnTerniLapilli new.
  ! !
 
-!TerniLapilliGame methodsFor: 'placing' stamp: 'D 10/16/2019 17:24:30'!
+!TerniLapilliGame methodsFor: 'placing' stamp: 'D 10/17/2019 15:34:31'!
 putXAt: aCell
 	
 	self checkIfIsAnInRangeEmptyCell: aCell.
 
-	turn checkIfItIsXTurn.
-
-	gameState := gameState putXAt: aCell atGame: self.
-
-	turn := OTurnTerniLapilli new.
-! !
+	gameState := gameState putXAt: aCell atGame: self.! !
 
 
-!TerniLapilliGame methodsFor: 'sliding' stamp: 'D 10/16/2019 17:32:51'!
+!TerniLapilliGame methodsFor: 'sliding' stamp: 'D 10/17/2019 15:50:16'!
 slideOFrom: originCell to: destinyCell 
 
 	self checkIfIsAnInRangeOccupiedByOCell: originCell.
 	self checkIfIsAnInRangeEmptyCell: destinyCell .
 	(self connectedByLineFrom: originCell to: destinyCell) ifFalse: [ self error: self class playerCannotSlideToAPositionNotFollowingPredefinedLinesError ].
 		
-	turn checkIfItIsOTurn.
-
 	gameState := gameState slideOFrom: originCell to: destinyCell atGame: self.
+! !
 
-	turn := XTurnTerniLapilli new.! !
-
-!TerniLapilliGame methodsFor: 'sliding' stamp: 'D 10/16/2019 17:31:48'!
+!TerniLapilliGame methodsFor: 'sliding' stamp: 'D 10/17/2019 15:50:30'!
 slideXFrom: originCell to: destinyCell 
 	
 	self checkIfIsAnInRangeOccupiedByXCell: originCell.
 	self checkIfIsAnInRangeEmptyCell: destinyCell.
 	(self connectedByLineFrom: originCell to: destinyCell) ifFalse: [ self error: self class playerCannotSlideToAPositionNotFollowingPredefinedLinesError ].
-		
-	turn checkIfItIsXTurn.
 
 	gameState := gameState slideXFrom: originCell to: destinyCell atGame: self.
+! !
 
-	turn := OTurnTerniLapilli new.! !
 
-
-!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/15/2019 19:58:25'!
+!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/17/2019 15:58:05'!
 hasWonO
-	^ self canWinWithPositions: oChips.! !
+	^ gameState hasWonOAtGame: self.! !
 
-!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/15/2019 19:59:03'!
+!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/17/2019 15:58:13'!
 hasWonX
-	^ self canWinWithPositions: xChips.! !
+	^ gameState hasWonXAtGame: self.! !
 
 !TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/15/2019 17:04:14'!
 isEmptyCell: aCell
@@ -950,19 +952,19 @@ isOCell: aCell
 
 	^ oChips includes: aCell! !
 
-!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/15/2019 19:59:03'!
+!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/17/2019 15:42:23'!
 isOver
-	^ self hasWonX or: self hasWonO.! !
+	^ gameState isOver.! !
 
-!TerniLapilliGame methodsFor: 'testing' stamp: 'mr 10/10/2019 18:35:45'!
+!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/17/2019 15:40:51'!
 isPlayingO
 
-	^ self isPlayingX not.! !
+	^ gameState isPlayingO.! !
 
-!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/16/2019 17:11:30'!
+!TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/17/2019 15:36:42'!
 isPlayingX
 	
-	^ turn isXTurn.! !
+	^ gameState isPlayingX.! !
 
 !TerniLapilliGame methodsFor: 'testing' stamp: 'D 10/16/2019 15:14:56'!
 isTied
@@ -1039,24 +1041,9 @@ playerCannotPlayWhenGameIsOverError
 playerCannotSlideBeforePlacingThreeChipsError
 	^ 'Place all your chips before sliding them'! !
 
-!TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/15/2019 16:19:56'!
+!TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/17/2019 15:33:04'!
 playerCannotSlideChipFromAPositionNotOwnedError
-	^ 'You cannot slide a chip from a position you don not own'! !
-
-!TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/15/2019 16:42:24'!
-playerCannotSlideChipFromAnInvalidPositionError
-	
-	^ 'You cannot slide from an invalid cell'! !
-
-!TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/15/2019 16:48:23'!
-playerCannotSlideChipToAnInvalidPositionError
-	
-	^ 'You cannot slide into an invalid cell'! !
-
-!TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/15/2019 16:55:51'!
-playerCannotSlideChipToAnOccupiedPositionError
-	
-	^ 'You cannot slide your chip to an occupied cell'! !
+	^ 'You cannot slide a chip from a position you do not own'! !
 
 !TerniLapilliGame class methodsFor: 'error messages' stamp: 'D 10/15/2019 17:40:37'!
 playerCannotSlideToANotNeighbourPositionError
@@ -1075,24 +1062,51 @@ Object subclass: #TerniLapilliGameState
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
 
-!TerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:36:11'!
-putOAt: aCell atGame: aTerniLapilliGame
-
-	self subclassResponsibility.! !
-
-!TerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:30:26'!
-putXAt: aCell atGame: aTerniLapilliGame
-
-	self subclassResponsibility.! !
-
-!TerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:51:34'!
+!TerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/16/2019 16:51:34'!
 slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	self subclassResponsibility .! !
 
-!TerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:51:28'!
+!TerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/16/2019 16:51:28'!
 slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
+	self subclassResponsibility .! !
+
+
+!TerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/16/2019 16:36:11'!
+putOAt: aCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility.! !
+
+!TerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/16/2019 16:30:26'!
+putXAt: aCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility.! !
+
+
+!TerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:57:34'!
+hasWonOAtGame: aTerniLapilliGame
+
+	^ false.! !
+
+!TerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:57:45'!
+hasWonXAtGame: aTerniLapilliGame
+
+	^ false.! !
+
+!TerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:56:12'!
+isOver
+
+	^ false.! !
+
+!TerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 16:24:55'!
+isPlayingO
+	
+	self subclassResponsibility .! !
+
+!TerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 16:24:52'!
+isPlayingX
+	
 	self subclassResponsibility .! !
 
 
@@ -1103,25 +1117,56 @@ TerniLapilliGameState subclass: #GameOverTerniLapilliGameState
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
 
-!GameOverTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:39:27'!
-putOAt: aCell atGame: aTerniLapilliGame
-
-	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError .! !
-
-!GameOverTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:39:33'!
-putXAt: aCell atGame: aTerniLapilliGame
-
-	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError .! !
-
-!GameOverTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:58:30'!
+!GameOverTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/16/2019 16:58:30'!
 slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError.! !
 
-!GameOverTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:58:35'!
+!GameOverTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/16/2019 16:58:35'!
 slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError.! !
+
+
+!GameOverTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/16/2019 16:39:27'!
+putOAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError .! !
+
+!GameOverTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/16/2019 16:39:33'!
+putXAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayWhenGameIsOverError .! !
+
+
+!GameOverTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:57:16'!
+hasWonOAtGame: aTerniLapilliGame
+
+	^ aTerniLapilliGame isOWinner.
+
+	! !
+
+!GameOverTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:57:06'!
+hasWonXAtGame: aTerniLapilliGame
+
+	^ aTerniLapilliGame isXWinner.
+
+	! !
+
+!GameOverTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:51:56'!
+isOver
+
+	^ true.! !
+
+!GameOverTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:37:22'!
+isPlayingO
+
+	^ false.! !
+
+!GameOverTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:37:19'!
+isPlayingX
+
+	^ false.! !
 
 
 !classDefinition: #PlacingChipsTerniLapilliGameState category: #TerniLapilli!
@@ -1131,35 +1176,127 @@ TerniLapilliGameState subclass: #PlacingChipsTerniLapilliGameState
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
 
-!PlacingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:16:28'!
+!PlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:46:14'!
+slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility .! !
+
+!PlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:46:04'!
+slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility .! !
+
+
+!PlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:45:14'!
 putOAt: aCell atGame: aTerniLapilliGame
 
-	aTerniLapilliGame placeOChipAt: aCell.
-	
-	aTerniLapilliGame isOver ifTrue: [ ^ GameOverTerniLapilliGameState new. ].
-	
-	aTerniLapilliGame amountOfXChips = 3 ifTrue: [ ^ SlidingChipsTerniLapilliGameState new ].
-	
-	^ PlacingChipsTerniLapilliGameState new.! !
+	self subclassResponsibility ! !
 
-!PlacingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:15:49'!
+!PlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:45:19'!
 putXAt: aCell atGame: aTerniLapilliGame
 
-	aTerniLapilliGame placeXChipAt: aCell.
-	
-	aTerniLapilliGame isOver ifTrue: [ ^ GameOverTerniLapilliGameState new. ].
-	
-	^ PlacingChipsTerniLapilliGameState new.! !
+	self subclassResponsibility ! !
 
-!PlacingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:57:45'!
+
+!PlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:38:19'!
+isPlayingO
+	
+	self subclassResponsibility ! !
+
+!PlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:38:22'!
+isPlayingX
+	
+	self subclassResponsibility ! !
+
+
+!classDefinition: #OPlacingChipsTerniLapilliGameState category: #TerniLapilli!
+PlacingChipsTerniLapilliGameState subclass: #OPlacingChipsTerniLapilliGameState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+
+!OPlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:45:34'!
 slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	self error: TerniLapilliGame playerCannotSlideBeforePlacingThreeChipsError.! !
 
-!PlacingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:57:50'!
+!OPlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:31:38'!
+slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+
+
+!OPlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:51:18'!
+putOAt: aCell atGame: aTerniLapilliGame
+
+	aTerniLapilliGame placeOChipAt: aCell.
+	
+	aTerniLapilliGame isGameOver ifTrue: [ ^ GameOverTerniLapilliGameState new. ].
+	
+	aTerniLapilliGame amountOfXChips = 3 ifTrue: [ ^ XSlidingChipsTerniLapilliGameState new ].
+	
+	^ XPlacingChipsTerniLapilliGameState new.! !
+
+!OPlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:27:25'!
+putXAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError.! !
+
+
+!OPlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:39:16'!
+isPlayingO
+
+	^ true.! !
+
+!OPlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:39:03'!
+isPlayingX
+
+	^ false.! !
+
+
+!classDefinition: #XPlacingChipsTerniLapilliGameState category: #TerniLapilli!
+PlacingChipsTerniLapilliGameState subclass: #XPlacingChipsTerniLapilliGameState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:31:22'!
+slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError.! !
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:45:48'!
 slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	self error: TerniLapilliGame playerCannotSlideBeforePlacingThreeChipsError.! !
+
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:30:29'!
+putOAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:43:16'!
+putXAt: aCell atGame: aTerniLapilliGame
+
+	aTerniLapilliGame placeXChipAt: aCell.
+	
+	aTerniLapilliGame isGameOver ifTrue: [ ^ GameOverTerniLapilliGameState new. ].
+		
+	^ OPlacingChipsTerniLapilliGameState new.! !
+
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:39:37'!
+isPlayingO
+
+	^ false.! !
+
+!XPlacingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:39:34'!
+isPlayingX
+
+	^ true.! !
 
 
 !classDefinition: #SlidingChipsTerniLapilliGameState category: #TerniLapilli!
@@ -1169,80 +1306,123 @@ TerniLapilliGameState subclass: #SlidingChipsTerniLapilliGameState
 	poolDictionaries: ''
 	category: 'TerniLapilli'!
 
-!SlidingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:40:12'!
+!SlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:48:17'!
+slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility .! !
+
+!SlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:48:11'!
+slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self subclassResponsibility .! !
+
+
+!SlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:46:43'!
 putOAt: aCell atGame: aTerniLapilliGame
 
-	self error: TerniLapilliGame playerCannotPlaceMoreThanThreeChips .! !
+	self subclassResponsibility .! !
 
-!SlidingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:40:18'!
+!SlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:46:56'!
 putXAt: aCell atGame: aTerniLapilliGame
 
-	self error: TerniLapilliGame playerCannotPlaceMoreThanThreeChips .! !
+	self subclassResponsibility .
+	! !
 
-!SlidingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:54:59'!
+
+!SlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:38:28'!
+isPlayingO
+	
+	self subclassResponsibility ! !
+
+!SlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:38:36'!
+isPlayingX
+	
+	self subclassResponsibility ! !
+
+
+!classDefinition: #OSlidingChipsTerniLapilliGameState category: #TerniLapilli!
+SlidingChipsTerniLapilliGameState subclass: #OSlidingChipsTerniLapilliGameState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+
+!OSlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:43:41'!
 slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	aTerniLapilliGame slideOChipFrom: originCell to: destinyCell.
 	
-	aTerniLapilliGame isOver ifTrue: [ ^ GameOverTerniLapilliGameState new ].
+	aTerniLapilliGame isGameOver ifTrue: [ ^ GameOverTerniLapilliGameState new ].
 	
-	^ SlidingChipsTerniLapilliGameState new.! !
+	^ XSlidingChipsTerniLapilliGameState new.! !
 
-!SlidingChipsTerniLapilliGameState methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:54:12'!
+!OSlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:24:43'!
+slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+
+
+!OSlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:47:30'!
+putOAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlaceMoreThanThreeChips .! !
+
+!OSlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:22:20'!
+putXAt: aCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+
+
+!OSlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:40:02'!
+isPlayingO
+
+	^ true.! !
+
+!OSlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:39:51'!
+isPlayingX
+
+	^ false.! !
+
+
+!classDefinition: #XSlidingChipsTerniLapilliGameState category: #TerniLapilli!
+SlidingChipsTerniLapilliGameState subclass: #XSlidingChipsTerniLapilliGameState
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TerniLapilli'!
+
+!XSlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:25:58'!
+slideOFrom: originCell to: destinyCell atGame: aTerniLapilliGame
+
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+
+!XSlidingChipsTerniLapilliGameState methodsFor: 'sliding' stamp: 'D 10/17/2019 15:43:48'!
 slideXFrom: originCell to: destinyCell atGame: aTerniLapilliGame
 
 	aTerniLapilliGame slideXChipFrom: originCell to: destinyCell.
 	
-	aTerniLapilliGame isOver ifTrue: [ ^ GameOverTerniLapilliGameState new ].
+	aTerniLapilliGame isGameOver ifTrue: [ ^ GameOverTerniLapilliGameState new ].
 	
-	^ SlidingChipsTerniLapilliGameState new.! !
+	^ OSlidingChipsTerniLapilliGameState new.! !
 
-
-!classDefinition: #TurnTerniLapilli category: #TerniLapilli!
-Object subclass: #TurnTerniLapilli
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TerniLapilli'!
 
-!TurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:25:22'!
-checkIfItIsOTurn! !
+!XSlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:22:35'!
+putOAt: aCell atGame: aTerniLapilliGame
 
-!TurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:25:19'!
-checkIfItIsXTurn! !
+	self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
 
-
-!classDefinition: #OTurnTerniLapilli category: #TerniLapilli!
-TurnTerniLapilli subclass: #OTurnTerniLapilli
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TerniLapilli'!
+!XSlidingChipsTerniLapilliGameState methodsFor: 'placing' stamp: 'D 10/17/2019 15:47:44'!
+putXAt: aCell atGame: aTerniLapilliGame
 
-!OTurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:26:08'!
-checkIfItIsXTurn
-	
-	^ self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError .! !
+	self error: TerniLapilliGame playerCannotPlaceMoreThanThreeChips .! !
 
-!OTurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:12:09'!
-isXTurn
-	
+
+!XSlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:40:08'!
+isPlayingO
+
 	^ false.! !
 
-
-!classDefinition: #XTurnTerniLapilli category: #TerniLapilli!
-TurnTerniLapilli subclass: #XTurnTerniLapilli
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TerniLapilli'!
+!XSlidingChipsTerniLapilliGameState methodsFor: 'testing' stamp: 'D 10/17/2019 15:40:14'!
+isPlayingX
 
-!XTurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 16:22:13'!
-checkIfItIsOTurn
-
-	^ self error: TerniLapilliGame playerCannotPlayTwoTimesInARowError.! !
-
-!XTurnTerniLapilli methodsFor: 'as yet unclassified' stamp: 'D 10/16/2019 17:11:58'!
-isXTurn
-	
 	^ true.! !
