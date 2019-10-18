@@ -21519,3 +21519,58 @@ assertIfIncludes: anElement
 ----SNAPSHOT----(18 October 2019 20:27:46) clase2.image priorSource: 13667705!
 
 ----QUIT----(18 October 2019 20:27:58) clase2.image priorSource: 13679812!
+
+----STARTUP---- (18 October 2019 20:29:43) as /home/dago/Documents/Facultad/isw1/isw1/linux64/clase2.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:32:29' prior: 50757684!
+test02PortfolioWithOneAccountReturnsBalanceOfThatAccount
+	
+	| portfolio account |
+
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self addAccountWith: 100 toPortfolio: portfolio 
+	
+	self assert: portfolio  balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:33:52'!
+addAccountWith: anAmount toPortfolio: aPortfolio 
+	
+	| account |
+
+	account := ReceptiveAccount  new.
+	Deposit register: anAmount on: account.
+	
+	aPortfolio add: account.
+	^aPortfolio .
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:34:20' prior: 50759154!
+test02PortfolioWithOneAccountReturnsBalanceOfThatAccount
+	
+	| portfolio |
+
+	portfolio := Portfolio new.
+
+	self addAccountWith: 100 toPortfolio: portfolio.
+	
+	self assert: portfolio  balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:36:39' prior: 50757723!
+test03PortfolioWithTwoAccountsReturnsBalanceOfBothAccounts
+	
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	self addAccountWith: 100 toPortfolio: portfolio.
+	self addAccountWith: 50 toPortfolio: portfolio.
+		
+	self assert: portfolio  balance equals: 150.
+	! !
+
+----SNAPSHOT----(18 October 2019 20:37:01) clase2.image priorSource: 13679892!
+
+----QUIT----(18 October 2019 20:37:05) clase2.image priorSource: 13681475!
