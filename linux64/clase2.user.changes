@@ -20557,3 +20557,590 @@ PortfolioTest removeSelector: #test11PortfolioWithAccountAndPortfolioTransaction
 ----SNAPSHOT----(17 October 2019 21:24:55) clase2.image priorSource: 13605579!
 
 ----QUIT----(17 October 2019 21:24:58) clase2.image priorSource: 13649492!
+
+----STARTUP---- (18 October 2019 17:39:45) as /home/melissa/Mel/college shit/Ingeniería de Software I/isw1/linux64/clase2.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 17:57:13'!
+test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
+
+	| portfolio anAccount |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.
+	! !
+!Portfolio class methodsFor: 'no messages' stamp: 'mr 10/18/2019 17:57:58'!
+cannotAddAnExistentAccountError
+
+	 ^ 'You cannot add an already existent account'! !
+
+Object subclass: #Portfolio
+	instanceVariableNames: 'contents roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'contents roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:00:34' prior: 50757883!
+add: anElement
+
+	anElement addRoot: self.
+	contents add: anElement.
+
+	
+
+! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'mr 10/18/2019 18:01:44'!
+addRoot: anElement
+
+	roots add: anElement .! !
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'mr 10/18/2019 18:02:01' prior: 50757020!
+initialize
+
+	transactions := OrderedCollection new.
+	roots := OrderedCollection new.! !
+
+Object subclass: #BankContainersXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #BankContainersXX category: #'Portfolio-Ejercicio'!
+Object subclass: #BankContainersXX
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankContainers subclass: #Portfolio
+	instanceVariableNames: 'contents roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+BankContainersXX subclass: #Portfolio
+	instanceVariableNames: 'contents roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankContainersXX subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
+BankContainersXX subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+ReceptiveAccount removeSelector: #addRoot:!
+
+BankContainersXX subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
+BankContainersXX subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankContainersXX subclass: #Portfolio
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+BankContainersXX subclass: #Portfolio
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+Object subclass: #BankContainersXX
+	instanceVariableNames: 'roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #BankContainersXX category: #'Portfolio-Ejercicio'!
+Object subclass: #BankContainersXX
+	instanceVariableNames: 'roots'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!BankContainersXX methodsFor: 'no messages' stamp: 'mr 10/18/2019 18:04:51'!
+addRoot: anElement
+
+	roots add: anElement .! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:14:00' prior: 50758265!
+add: anElementToAdd
+
+	roots detect: [:aRoot | (aRoot canAdd: anElementToAdd) not. ] 
+		   ifFound: 
+				   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]
+		   ifNone: [ self error: self class ]. 
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:15:21' prior: 50758358!
+add: anElementToAdd
+
+	roots detect: [:aRoot | (aRoot canAdd: anElementToAdd) not. ] 
+		   ifFound: 
+				   [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone: [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:15:44' prior: 50758368!
+add: anElementToAdd
+
+	roots detect:   [:aRoot | (aRoot canAdd: anElementToAdd) not. ] 
+		   ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone:   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:16:47'!
+includes: anElement! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:17:11' prior: 50758379!
+add: anElementToAdd
+
+	roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		   ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone:   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:18:00' prior: 50758390!
+includes: anElement
+
+	self subclassResponsibility .! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 18:23:21'!
+includes: anElement! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:24:56' prior: 50758394!
+add: anElementToAdd
+
+	
+	"roots do:" 
+	roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		   ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone:   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+
+!classDefinition: #BankContainersXX category: #'Portfolio-Ejercicio'!
+Object subclass: #BankContainersXX
+	instanceVariableNames: 'roots parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:25:20' prior: 50758353!
+addRoot: anElement
+
+	parents add: anElement .! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:25:20' prior: 50758275!
+initialize
+
+	transactions := OrderedCollection new.
+	parents := OrderedCollection new.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:25:20' prior: 50758414!
+add: anElementToAdd
+
+	
+	"roots do:" 
+	parents detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		   ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone:   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+
+!classDefinition: #BankContainersXX category: #'Portfolio-Ejercicio'!
+Object subclass: #BankContainersXX
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:25:45' prior: 50758444!
+add: anElementToAdd
+
+	
+	| roots |
+	roots := OrderedCollection new.
+	parents detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		   ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		   ifNone:   [ anElementToAdd addRoot: self.
+				     contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:31:02'!
+roots
+
+	| roots |
+	
+	roots := OrderedCollection new.
+	
+	parents inject: roots into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	 
+	^ roots.
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:31:52' prior: 50758475!
+roots
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 18:33:23' prior: 50758463!
+add: anElementToAdd
+
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		          ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		          ifNone:   [ anElementToAdd addRoot: self.
+				              contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:34:21'!
+roots
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+! !
+
+Portfolio removeSelector: #roots!
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 18:38:47' prior: 50758410!
+includes: anElement
+
+	contents detect: [:anElem | anElem includes: anElement ] ifNone: [].! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 18:38:56' prior: 50758513!
+includes: anElementToInclude
+
+	contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [].! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 18:40:14' prior: 50758519!
+includes: anElementToInclude
+
+	contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+	
+	^ true. ! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:41:18'!
+includes: anElementToInclude
+
+	^ self = anElementToInclude.
+
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:50:05'!
+test13AddingToAnEmptyPortfolioRegisteredInTwoPortfoliosAnAccountRegisteredInOneOfThemRaisesError
+
+	| portfolio anAccount anotherAccount anotherPortfolio emptyPortfolio |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 150 on: anotherAccount.
+	
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	emptyPortfolio := Portfolio new.
+	
+	portfolio add: emptyPortfolio.
+	anotherPortfolio add: emptyPortfolio.
+	
+	self should: [ portfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:51:19' prior: 50758538!
+test13AddingToAnEmptyPortfolioRegisteredInTwoPortfoliosAnAccountRegisteredInOneOfThemRaisesError
+
+	| portfolio anAccount anotherAccount anotherPortfolio emptyPortfolio |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 150 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	emptyPortfolio := Portfolio new.
+	
+	portfolio add: emptyPortfolio.
+	anotherPortfolio add: emptyPortfolio.
+	
+	self should: [ emptyPortfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: emptyPortfolio balance equals: 0.	! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:53:03'!
+addParent: anElement
+
+	parents add: anElement .! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:53:03' prior: 50758492!
+add: anElementToAdd
+
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+		          ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		          ifNone:   [ anElementToAdd addParent: self.
+				              contents add: anElementToAdd. ]. 
+	
+	
+
+! !
+
+BankContainersXX removeSelector: #addRoot:!
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:53:35' prior: 50758594!
+addParent: aParent
+
+	parents add: aParent .! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 18:54:19' prior: 50758566!
+test13AddingToAnEmptyPortfolioRegisteredInTwoPortfoliosAnAccountRegisteredInOneOfThemRaisesError
+
+	| portfolio anAccount anotherAccount anotherPortfolio emptyPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 150 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	emptyPortfolio := Portfolio new.
+	
+	portfolio add: emptyPortfolio.
+	anotherPortfolio add: emptyPortfolio.
+	
+	self should: [ emptyPortfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: emptyPortfolio balance equals: 0.	! !
+!Portfolio methodsFor: 'initialization' stamp: 'mr 10/18/2019 18:55:55' prior: 50757861!
+initialize
+
+	contents := OrderedCollection new.
+	parents := OrderedCollection new.
+! !
+
+self roots!
+
+self roots.!
+
+parents!
+
+self roots!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:05:03' prior: 50758599!
+add: anElementToAdd
+
+	(self includes: anElementToAdd) or: [
+		 self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+			           ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		  	           ifNone:   [ anElementToAdd addParent: self.
+				                     contents add: anElementToAdd. ]. ]
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:09:03' prior: 50758653!
+add: anElementToAdd
+
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+				anElementToAdd addParent: self.
+				contents add: anElementToAdd. 
+			    ].
+	
+	
+
+! !
+
+self roots!
+
+self roots!
+
+self parents!
+
+parents!
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 19:18:56' prior: 50758504!
+roots
+
+	parents isEmpty ifTrue: [ ^ OrderedCollection new; add: self ].
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 19:20:40' prior: 50758684!
+roots
+
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		^ roots add: self. ].
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 19:21:34' prior: 50758694!
+roots
+
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:25:04' prior: 50758667!
+add: anElementToAdd
+
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+				anElementToAdd addParent: self.
+				contents add: anElementToAdd. 
+			    ].
+	
+	
+
+! !
+
+self roots!
+
+self roots!
+
+self roots!
+
+self roots!
+
+self!
+
+self roots!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:31:49'!
+roots
+
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	^ parents inject: OrderedCollection new
+			    into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+! !
+
+BankContainersXX removeSelector: #roots!
+
+self roots!
+
+aParent roots!
+
+aParent roots!
+
+parents inject: OrderedCollection new into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:41:20' prior: 50758734!
+roots
+
+	| rootsAux |
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	rootsAux := OrderedCollection new.
+	
+	parents inject: rootsAux
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+	^ rootsAux.
+! !
+
+----SNAPSHOT----(18 October 2019 19:44:38) clase2.image priorSource: 13649572!
+
+----QUIT----(18 October 2019 19:44:42) clase2.image priorSource: 13667625!
