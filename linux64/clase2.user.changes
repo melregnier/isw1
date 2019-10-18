@@ -21144,3 +21144,378 @@ roots
 ----SNAPSHOT----(18 October 2019 19:44:38) clase2.image priorSource: 13649572!
 
 ----QUIT----(18 October 2019 19:44:42) clase2.image priorSource: 13667625!
+
+----STARTUP---- (18 October 2019 19:50:08) as /home/dago/Documents/Facultad/isw1/isw1/linux64/clase2.image!
+
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 19:51:50' prior: 50758752!
+roots
+
+	| |
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	
+	
+	^ parents inject: OrderedCollection new
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+	
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 19:52:00' prior: 50758773!
+roots
+
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	^ parents inject: OrderedCollection new
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+	
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/18/2019 19:41:20' prior: 50758784!
+roots
+
+	| rootsAux |
+	parents isEmpty ifTrue: [ | roots |
+		roots := OrderedCollection new.
+		roots add: self.
+		^ roots ].
+
+	rootsAux := OrderedCollection new.
+	
+	parents inject: rootsAux
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+	^ rootsAux.
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 19:54:54' prior: 50758795!
+roots
+
+	| roots |
+	
+	roots := OrderedCollection new.
+	parents isEmpty ifTrue: [ 
+		roots add: self.
+		^ roots ].
+	
+	parents inject: roots
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+	
+	^ roots.
+! !
+!Portfolio methodsFor: 'testing' stamp: 'DR 10/18/2019 19:58:57' prior: 50758526!
+includes: anElementToInclude
+
+	contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+	
+	^ true. ! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 19:59:42'!
+test14APortfolioCannotIncludeHimselfShouldRaiseError
+
+	| portfolio anAccount anotherAccount anotherPortfolio emptyPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 150 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	emptyPortfolio := Portfolio new.
+	
+	portfolio add: emptyPortfolio.
+	anotherPortfolio add: emptyPortfolio.
+	
+	self should: [ emptyPortfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: emptyPortfolio balance equals: 0.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:00:29' prior: 50758825!
+test14APortfolioCannotIncludeHimselfShouldRaiseError
+
+	| portfolio anAccount emptyPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add. portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: emptyPortfolio balance equals: 0.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:00:58' prior: 50758852!
+test14APortfolioCannotIncludeHimselfShouldRaiseError
+
+	| portfolio anAccount |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add. portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:01:18' prior: 50758869!
+test14APortfolioCannotIncludeHimselfShouldRaiseError
+
+	| portfolio anAccount |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add: portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!Portfolio methodsFor: 'testing' stamp: 'DR 10/18/2019 20:02:11' prior: 50758818!
+includes: anElementToInclude
+	
+	^ self = anElementToInclude or: [
+		contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+	
+		^ true. ]! !
+!Portfolio methodsFor: 'testing' stamp: 'DR 10/18/2019 20:02:38' prior: 50758902!
+includes: anElementToInclude
+	
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:04:22'!
+test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShouldRaiseError
+
+	| portfolio anAccount |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add: portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:04:33'!
+test14APortfolioCannotIncludeAndHimselfShouldRaiseError
+
+	| portfolio anAccount |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self should: [ portfolio add: portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+
+PortfolioTest removeSelector: #test14APortfolioCannotIncludeHimselfShouldRaiseError!
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:05:06' prior: 50758919!
+test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShouldRaiseError
+
+	| portfolio anAccount anotherAccount anotherPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 150 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	self should: [ portfolio add: portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:05:24' prior: 50758955!
+test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShouldRaiseError
+
+	| portfolio anAccount anotherPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anAccount.
+	
+	self should: [ portfolio add: portfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:05:33' prior: 50758979!
+test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShouldRaiseError
+
+	| portfolio anAccount anotherPortfolio |
+
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anAccount.
+	
+	self should: [ portfolio add: anotherPortfolio. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.	! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:08:13' prior: 50758716!
+add: anElementToAdd
+	
+	self assertIf: self isIncludedIn: anElementToAdd .
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+				anElementToAdd addParent: self.
+				contents add: anElementToAdd. 
+			    ].
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:10:32' prior: 50759020!
+add: anElementToAdd
+	
+	self assertIfincludes: anElementToAdd.
+	anElementToAdd  assertIfIncludes: self.
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+				anElementToAdd addParent: self.
+				contents add: anElementToAdd. 
+			    ].
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:11:31'!
+assertIfincludes: anElementToAdd.
+	
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+			    ].
+	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:12:12' prior: 50759038!
+add: anElementToAdd
+	
+	self assertIfincludes: anElementToAdd.
+	anElementToAdd  assertIfIncludes: self.
+	
+	anElementToAdd addParent: self.
+	contents add: anElementToAdd. 
+	
+
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:12:40'!
+assertIfIncludes: aPortfolio 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:12:48' prior: 50759079!
+assertIfIncludes: aPortfolio 
+	! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:15:21' prior: 50759070!
+add: anElementToAdd
+	
+	self assertIfincludes: anElementToAdd.
+	anElementToAdd assertIfincludes: self.
+	
+	anElementToAdd addParent: self.
+	contents add: anElementToAdd. 
+	
+
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:16:06'!
+assertIfincludes: aPortfolio 
+	! !
+
+ReceptiveAccount removeSelector: #assertIfincludes:!
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:16:33' prior: 50759089!
+add: anElementToAdd
+	
+	self assertIfIncludes: anElementToAdd.
+	anElementToAdd assertIfIncludes: self.
+	
+	anElementToAdd addParent: self.
+	contents add: anElementToAdd. 
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:16:39'!
+assertIfIncludes: anElementToAdd.
+	
+	self roots detect:   [:aRoot | aRoot includes: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self includes: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+			    ].
+	
+	
+
+! !
+
+Portfolio removeSelector: #assertIfincludes:!
+!Portfolio methodsFor: 'accessing' stamp: 'DR 10/18/2019 20:19:30' prior: 50759104!
+add: anElementToAdd
+	
+	self assertIfIncludes: anElementToAdd.
+	
+	anElementToAdd addParent: self.
+	contents add: anElementToAdd. 
+	
+
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:23:33' prior: 50759085!
+assertIfIncludes: anElement
+
+ 
+	! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 20:24:12' prior: 50759136!
+assertIfIncludes: anElement
+
+	 
+	! !
+
+----SNAPSHOT----(18 October 2019 20:27:46) clase2.image priorSource: 13667705!
+
+----QUIT----(18 October 2019 20:27:58) clase2.image priorSource: 13679812!
