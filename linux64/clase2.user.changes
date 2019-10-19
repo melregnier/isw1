@@ -21728,3 +21728,231 @@ test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
 ----SNAPSHOT----(18 October 2019 21:45:35) clase2.image priorSource: 13681555!
 
 ----QUIT----(18 October 2019 21:45:41) clase2.image priorSource: 13686441!
+
+----STARTUP---- (18 October 2019 22:27:59) as /home/melissa/Mel/college shit/Ingeniería de Software I/isw1/linux64/clase2.image!
+
+
+ReceptiveAccount removeSelector: #assertIfIncludes:!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:31:16'!
+hasElementsInCommonWith: anElementToInclude
+
+	^ self = anElementToInclude.
+
+	! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16'!
+hasElementsInCommonWith: anElement
+
+	self subclassResponsibility .! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:31:16'!
+hasElementsInCommonWith: anElementToInclude
+	
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50758166!
+hasRegistered: aTransaction 
+	
+	^ self transactions hasElementsInCommonWith: aTransaction .! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50758910!
+includes: anElementToInclude
+	
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem hasElementsInCommonWith: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50759112!
+assertIfIncludes: anElementToAdd.
+	
+	self roots detect:   [:aRoot | aRoot hasElementsInCommonWith: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				(self hasElementsInCommonWith: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ].
+			    ].
+	
+	
+
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50757039!
+hasRegistered: aTransaction
+
+	^ transactions hasElementsInCommonWith: aTransaction 
+! !
+!ReceptiveAccountTest methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50756904!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 100 on: account1.
+		
+	self assert: 1 equals: account1 transactions size .
+	self assert: (account1 transactions hasElementsInCommonWith: deposit1).
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 23:31:16' prior: 50759374!
+hasElementsInCommonWith: anElementToInclude
+	
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem hasElementsInCommonWith: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]! !
+
+ReceptiveAccount removeSelector: #includes:!
+
+BankContainersXX removeSelector: #includes:!
+
+Portfolio removeSelector: #includes:!
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:32:22'!
+includes: anElementToInclude
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:32:46' prior: 50759446!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem hasElementsInCommonWith: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:33:51' prior: 50759433!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ]. 
+	! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:35:13'!
+includes: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [  ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:35:19' prior: 50759466!
+includes: anElementToInclude
+
+	! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:35:33' prior: 50759472!
+includes: anElementToInclude
+
+	^ self = anElementToInclude.
+
+	! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:35:52' prior: 50759363!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ].
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:37:29' prior: 50759459!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ 
+		
+		self : anElementToInclude 
+	
+	   ]. 
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:42:45' prior: 50759488!
+hasElementsInCommonWith: anElementToInclude
+
+	"^ (anElementToInclude includes: self) or: ["
+	contents detect: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ifNone: [ ^ false ].
+		^ true.
+		"]."
+! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:43:02' prior: 50759495!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [
+		contents detect: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ifNone: [ ^ false ].
+		^ true.
+	].
+! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:43:37' prior: 50759450!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem includes: anElementToInclude ] ifNone: [ ^ false ].
+									   ^ true. ]
+
+	! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:44:42' prior: 50759481!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ].
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/18/2019 23:47:50' prior: 50759383!
+hasRegistered: aTransaction 
+	
+	^ self transactions includes: aTransaction .! !
+!Portfolio methodsFor: 'asserts' stamp: 'mr 10/18/2019 23:54:11' prior: 50759398!
+assertIfIncludes: anElementToAdd.
+	
+	self roots detect:   [:aRoot | aRoot hasElementsInCommonWith: anElementToAdd. ] 
+	                ifFound: [ :rootThatHasElement | self error: self class cannotAddAnExistentAccountError. ]
+		  	    ifNone:   [ 
+				"(self hasElementsInCommonWith: anElementToAdd) ifTrue: [ self error: self class cannotAddAnExistentAccountError. ]."
+			    ].
+	
+	
+
+! !
+!Portfolio methodsFor: 'asserts' stamp: 'mr 10/18/2019 23:59:32' prior: 50759537!
+assertIfIncludes: anElementToAdd.
+	
+	self roots detect:   [:aRoot | aRoot hasElementsInCommonWith: anElementToAdd. ] 
+		  	    ifNone:   [ ^ self. ].
+	
+	self error: self class cannotAddAnExistentAccountError.	
+	
+
+! !
+!Portfolio methodsFor: 'asserts' stamp: 'mr 10/18/2019 23:59:37' prior: 50759552!
+assertIfIncludes: anElementToAdd.
+	
+	self roots detect:   [ :aRoot | aRoot hasElementsInCommonWith: anElementToAdd. ] 
+		  	    ifNone:   [ ^ self. ].
+	
+	self error: self class cannotAddAnExistentAccountError.	
+	
+
+! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/19/2019 00:01:35' prior: 50759515!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ contents detect: [:anElem | anElem includes: anElementToInclude ] ifFound: [ ^ true. ] ifNone: [ ^ false ] ]
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/19/2019 00:06:06' prior: 50759572!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ contents anySatisfy: [:anElem | anElem includes: anElementToInclude ] ]
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/19/2019 00:06:10' prior: 50759581!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ contents anySatisfy: [:anElem | anElem includes: anElementToInclude ] ].
+
+	! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/19/2019 00:06:43' prior: 50759505!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [
+		contents anySatisfy: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ].
+! !
+!Portfolio methodsFor: 'testing' stamp: 'mr 10/19/2019 00:06:52' prior: 50759597!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ contents anySatisfy: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ].
+! !
+!BankContainersXX methodsFor: 'testing - private' stamp: 'mr 10/19/2019 00:14:37'!
+includes: anElement
+
+	self subclassResponsibility .! !
+!BankContainersXX methodsFor: 'nil' stamp: 'mr 10/19/2019 00:15:05'!
+transactions
+
+	self subclassResponsibility.! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/19/2019 00:15:10'!
+balance
+
+	self subclassResponsibility.! !
+!BankContainersXX methodsFor: 'as yet unclassified' stamp: 'mr 10/19/2019 00:15:24'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility.! !
+
+----SNAPSHOT----(19 October 2019 00:20:03) clase2.image priorSource: 13686521!
+
+----QUIT----(19 October 2019 00:20:17) clase2.image priorSource: 13695421!
