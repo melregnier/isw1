@@ -21574,3 +21574,157 @@ test03PortfolioWithTwoAccountsReturnsBalanceOfBothAccounts
 ----SNAPSHOT----(18 October 2019 20:37:01) clase2.image priorSource: 13679892!
 
 ----QUIT----(18 October 2019 20:37:05) clase2.image priorSource: 13681475!
+
+----STARTUP---- (18 October 2019 21:31:32) as /home/dago/Documents/Facultad/isw1/isw1/linux64/clase2.image!
+
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:33:49' prior: 50757766!
+test04PortfolioWithAPortfolioHasBalanceOfThePortfolio
+	
+	| portfolio portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	portfolio := Portfolio new.
+	
+	self addAccountWith: 100 toPortfolio: portfolioToInclude.
+	
+	portfolio add: portfolioToInclude.
+		
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:35:22' prior: 50759206!
+test04PortfolioWithAPortfolioHasBalanceOfThePortfolio
+	
+	| portfolio portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	portfolio := Portfolio new.
+	
+	self addPortfolioWithAccountWith: 100 toPortfolio: portfolioToInclude.
+	
+	portfolio add: portfolioToInclude.
+		
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:36:19'!
+addPortfolioWithAccountWith: anAmount toPortfolio: aPortfolio
+	
+	| portfolio portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	portfolio := Portfolio new.
+	
+	
+	portfolio add: portfolioToInclude.
+		
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:36:54' prior: 50759232!
+addPortfolioWithAccountWith: anAmount toPortfolio: aPortfolios
+	
+	| portfolio portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	portfolio := Portfolio new.
+	
+	
+	portfolio add: portfolioToInclude.
+		
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:37:03' prior: 50759244!
+addPortfolioWithAccountWith: anAmount toPortfolio: aPortfolios
+	
+	| aPortfolio portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	aPortfolio := Portfolio new.
+	
+	
+	aPortfolio add: portfolioToInclude.
+		
+	self assert: aPortfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:38:23' prior: 50759256!
+addPortfolioWithAccountWith: anAmount toPortfolio: aPortfolio
+	
+	| portfolioToInclude |
+
+	portfolioToInclude := Portfolio new.
+	self addAccountWith: anAmount toPortfolio: portfolioToInclude .
+	aPortfolio add: portfolioToInclude.
+	^aPortfolio.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:39:17' prior: 50759219!
+test04PortfolioWithAPortfolioHasBalanceOfThePortfolio
+	
+	| portfolio |
+
+	portfolio := Portfolio new.
+	
+	self addPortfolioWithAccountWith: 100 toPortfolio: portfolio.
+		
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:41:06' prior: 50757805!
+test05PortfolioWithTwoPortfoliosHasBalanceOfBothPortfolios
+	
+	| portfolio portfolioToInclude anotherPortfolioToInclude |
+	
+	portfolioToInclude := Portfolio new.
+	anotherPortfolioToInclude := Portfolio new.
+	
+	self addPortfolioWithAccountWith: 100 toPortfolio: portfolioToInclude.
+	self addPortfolioWithAccountWith: 50 toPortfolio: anotherPortfolioToInclude .
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioToInclude.
+	portfolio add: anotherPortfolioToInclude.
+		
+	self assert: portfolio balance equals: 150.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:42:25' prior: 50757711!
+test07PortfolioWithOneAccountHasTransactionsOfThatAccount
+
+	| portfolio account |
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+	
+	portfolio := Portfolio new.
+	portfolio add: account.
+	
+	self assert: portfolio transactions equals: account transactions .
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:44:13' prior: 50758207!
+test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
+
+	| portfolio anAccount |
+	
+	portfolio := Portfolio new.
+	self addAccountWith: 100 toPortfolio: portfolio .
+	
+	self should: [ portfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.
+	! !
+!PortfolioTest methodsFor: 'as yet unclassified' stamp: 'DR 10/18/2019 21:45:16' prior: 50759321!
+test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
+
+	| portfolio anAccount |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount .
+	
+	self should: [ portfolio add: anAccount. ]
+	       raise: Error - MessageNotUnderstood
+		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+	
+	self assert: portfolio balance equals: 100.
+	! !
+
+----SNAPSHOT----(18 October 2019 21:45:35) clase2.image priorSource: 13681555!
+
+----QUIT----(18 October 2019 21:45:41) clase2.image priorSource: 13686441!
