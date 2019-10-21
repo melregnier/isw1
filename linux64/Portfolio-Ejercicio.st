@@ -191,7 +191,7 @@ test11PortfolioWithAccountAndPortfolioHasRegisteredTheirTransactions
 	self assert: (portfolio hasRegistered: aTransaction).
 	self assert: (portfolio hasRegistered: anotherTransaction ).! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 21:45:16'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:48:02'!
 test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
 
 	| portfolio anAccount |
@@ -203,12 +203,12 @@ test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
 	
 	self should: [ portfolio add: anAccount. ]
 	       raise: Error - MessageNotUnderstood
-		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+		 withMessageText: Portfolio cannotAddAnExistentEntityError.
 	
 	self assert: portfolio balance equals: 100.
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/18/2019 18:54:19'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:48:02'!
 test13AddingToAnEmptyPortfolioRegisteredInTwoPortfoliosAnAccountRegisteredInOneOfThemRaisesError
 
 	| portfolio anAccount anotherAccount anotherPortfolio emptyPortfolio |
@@ -232,11 +232,11 @@ test13AddingToAnEmptyPortfolioRegisteredInTwoPortfoliosAnAccountRegisteredInOneO
 	
 	self should: [ emptyPortfolio add: anAccount. ]
 	       raise: Error - MessageNotUnderstood
-		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+		 withMessageText: Portfolio cannotAddAnExistentEntityError.
 	
 	self assert: emptyPortfolio balance equals: 0.	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 20:04:33'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:48:02'!
 test14APortfolioCannotIncludeAndHimselfShouldRaiseError
 
 	| portfolio anAccount |
@@ -249,11 +249,11 @@ test14APortfolioCannotIncludeAndHimselfShouldRaiseError
 	
 	self should: [ portfolio add: portfolio. ]
 	       raise: Error - MessageNotUnderstood
-		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+		 withMessageText: Portfolio cannotAddAnExistentEntityError.
 	
 	self assert: portfolio balance equals: 100.	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 20:05:33'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:48:02'!
 test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShouldRaiseError
 
 	| portfolio anAccount anotherPortfolio |
@@ -269,7 +269,7 @@ test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShoul
 	
 	self should: [ portfolio add: anotherPortfolio. ]
 	       raise: Error - MessageNotUnderstood
-		 withMessageText: Portfolio cannotAddAnExistentAccountError.
+		 withMessageText: Portfolio cannotAddAnExistentEntityError.
 	
 	self assert: portfolio balance equals: 100.	! !
 
@@ -572,13 +572,13 @@ roots
 ! !
 
 
-!Portfolio methodsFor: 'asserts - private' stamp: 'mr 10/21/2019 15:36:02'!
+!Portfolio methodsFor: 'asserts - private' stamp: 'mr 10/21/2019 15:48:02'!
 assertIfIncludes: anEntityToAdd.
 	
 	self roots detect:   [ :aRoot | aRoot hasEntitiesInCommonWith: anEntityToAdd. ] 
 		  	    ifNone:   [ ^ self. ].
 	
-	self error: self class cannotAddAnExistentAccountError.	
+	self error: self class cannotAddAnExistentEntityError.	
 	
 
 ! !
@@ -603,10 +603,10 @@ includes: anEntityToInclude
 Portfolio class
 	instanceVariableNames: ''!
 
-!Portfolio class methodsFor: 'as yet unclassified' stamp: 'mr 10/18/2019 17:57:58'!
-cannotAddAnExistentAccountError
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:48:12'!
+cannotAddAnExistentEntityError
 
-	 ^ 'You cannot add an already existent account'! !
+	 ^ 'You cannot add an already existent entity'! !
 
 
 !classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
@@ -648,16 +648,16 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
-hasEntitiesInCommonWith: anElementToInclude
+!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:54:30'!
+hasEntitiesInCommonWith: anEntityToInclude
 
-	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ].
+	^ (anEntityToInclude includes: self) or: [ self includes: anEntityToInclude ].
 
 	! !
 
-!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/18/2019 23:35:33'!
-includes: anElementToInclude
+!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:54:09'!
+includes: anEntityToInclude
 
-	^ self = anElementToInclude.
+	^ self = anEntityToInclude.
 
 	! !
