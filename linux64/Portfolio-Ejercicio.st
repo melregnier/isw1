@@ -1,5 +1,13 @@
+!classDefinition: #BankEntityTest category: #'Portfolio-Ejercicio'!
+TestCase subclass: #BankEntityTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+
 !classDefinition: #PortfolioTest category: #'Portfolio-Ejercicio'!
-TestCase subclass: #PortfolioTest
+BankEntityTest subclass: #PortfolioTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -51,8 +59,8 @@ test02PortfolioWithOneAccountReturnsBalanceOfThatAccount
 	self assert: portfolio  balance equals: 100.
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 20:36:39'!
-test03PortfolioWithTwoAccountsReturnsBalanceOfBothAccounts
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:42:20'!
+test03PortfolioWithManyAccountsReturnsBalanceOfAllAccounts
 	
 	| portfolio |
 	
@@ -75,8 +83,8 @@ test04PortfolioWithAPortfolioHasBalanceOfThePortfolio
 	self assert: portfolio balance equals: 100.
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 21:41:06'!
-test05PortfolioWithTwoPortfoliosHasBalanceOfBothPortfolios
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:42:38'!
+test05PortfolioWithManyPortfoliosHasBalanceOfAllPortfolios
 	
 	| portfolio portfolioToInclude anotherPortfolioToInclude |
 	
@@ -116,8 +124,8 @@ test07PortfolioWithOneAccountHasTransactionsOfThatAccount
 	self assert: portfolio transactions equals: account transactions .
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'D 10/17/2019 20:16:27'!
-test08PortfolioWithTwoAccountsHasTransactionsOfBothAccounts
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:12:40'!
+test08PortfolioWithManyAccountsHasTransactionsOfAllAccounts
 
 	| portfolio anAccount anotherAccount |
 	anAccount := ReceptiveAccount  new.
@@ -130,10 +138,11 @@ test08PortfolioWithTwoAccountsHasTransactionsOfBothAccounts
 	portfolio add: anAccount.
 	portfolio add: anotherAccount.
 	
-	self assert: portfolio transactions equals: (anAccount transactions addAllLast: anotherAccount transactions) .
+	self assert: (portfolio transactions includesAllOf: anAccount transactions).
+	self assert: (portfolio transactions includesAllOf: anotherAccount transactions).
 	! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'D 10/17/2019 20:21:31'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:13:45'!
 test09PortfolioWithOnePortfolioHasTransactionsOfThePortfolio
 
 	| portfolio anAccount portfolioToInclude |
@@ -146,7 +155,7 @@ test09PortfolioWithOnePortfolioHasTransactionsOfThePortfolio
 	portfolio := Portfolio new.
 	portfolio add: portfolioToInclude.
 	
-	self assert: portfolio transactions equals: portfolioToInclude transactions .
+	self assert: (portfolio transactions includesAllOf: portfolioToInclude transactions).
 	! !
 
 !PortfolioTest methodsFor: 'tests' stamp: 'D 10/17/2019 20:36:56'!
@@ -161,17 +170,26 @@ test10EmptyPortfolioHasNoRegisteredTransactions
 	
 	self deny: (portfolio hasRegistered: aTransaction).! !
 
-!PortfolioTest methodsFor: 'tests' stamp: 'D 10/17/2019 20:51:05'!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:48:01'!
 test11PortfolioWithAccountAndPortfolioHasRegisteredTheirTransactions
 
-	| portfolio anAccount aTransaction |
+	| portfolio anotherPortfolio anAccount anotherAccount aTransaction anotherTransaction |
+	
 	anAccount := ReceptiveAccount  new.
 	aTransaction := Deposit register: 100 on: anAccount.
 	
-	portfolio := Portfolio new.
-
+	anotherAccount := ReceptiveAccount  new.
+	anotherTransaction := Deposit register: 150 on: anotherAccount.
 	
-	self deny: (portfolio hasRegistered: aTransaction).! !
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherPortfolio.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+	self assert: (portfolio hasRegistered: anotherTransaction ).! !
 
 !PortfolioTest methodsFor: 'tests' stamp: 'DR 10/18/2019 21:45:16'!
 test12AddingAnAccountToAPortfolioThatAlreadyHasItRaisesError
@@ -257,7 +275,7 @@ test15APortfolioWithAnAccountCannotAddAnotherPortfolioWithTheSameAccountAndShoul
 
 
 !classDefinition: #ReceptiveAccountTest category: #'Portfolio-Ejercicio'!
-TestCase subclass: #ReceptiveAccountTest
+BankEntityTest subclass: #ReceptiveAccountTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -320,7 +338,7 @@ test05ReceptiveAccountKnowsRegisteredTransactions
 	self assert: (account hasRegistered: withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:54'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:17:55'!
 test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 
 	| account deposit withdraw |
@@ -330,10 +348,10 @@ test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
 	withdraw := Withdraw for: 50.
 		
 	self deny: (account hasRegistered: deposit).
-	self deny: (account hasRegistered:withdraw).
+	self deny: (account hasRegistered: withdraw).
 ! !
 
-!ReceptiveAccountTest methodsFor: 'tests' stamp: 'mr 10/18/2019 23:31:16'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:17:35'!
 test07AccountKnowsItsTransactions 
 
 	| account1 deposit1 |
@@ -343,7 +361,7 @@ test07AccountKnowsItsTransactions
 	deposit1 := Deposit register: 100 on: account1.
 		
 	self assert: 1 equals: account1 transactions size .
-	self assert: (account1 transactions hasElementsInCommonWith: deposit1).
+	self assert: (account1 transactions includes: deposit1).
 ! !
 
 
@@ -358,6 +376,11 @@ Object subclass: #AccountTransaction
 value 
 
 	self subclassResponsibility ! !
+
+!AccountTransaction methodsFor: 'value' stamp: 'mr 10/21/2019 15:31:07'!
+valueForBalance
+
+	self subclassResponsibility.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -394,8 +417,8 @@ value
 
 	^ value! !
 
-!Deposit methodsFor: 'value' stamp: 'D 10/17/2019 18:44:30'!
-xxxvalue
+!Deposit methodsFor: 'value' stamp: 'mr 10/21/2019 15:30:26'!
+valueForBalance
 
 	^ value.! !
 
@@ -429,8 +452,8 @@ value
 
 	^ value! !
 
-!Withdraw methodsFor: 'value' stamp: 'D 10/17/2019 19:11:14'!
-xxxvalue
+!Withdraw methodsFor: 'value' stamp: 'mr 10/21/2019 15:30:45'!
+valueForBalance
 
 	^ value negated.! !
 
@@ -446,81 +469,82 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #BankContainersXX category: #'Portfolio-Ejercicio'!
-Object subclass: #BankContainersXX
+!classDefinition: #BankEntity category: #'Portfolio-Ejercicio'!
+Object subclass: #BankEntity
 	instanceVariableNames: 'parents'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!BankContainersXX methodsFor: 'operations - private' stamp: 'mr 10/18/2019 18:53:35'!
+!BankEntity methodsFor: 'operations - private' stamp: 'mr 10/18/2019 18:53:35'!
 addParent: aParent
 
 	parents add: aParent .! !
 
 
-!BankContainersXX methodsFor: 'testing - private' stamp: 'mr 10/18/2019 23:31:16'!
-hasElementsInCommonWith: anElement
+!BankEntity methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anElement
 
 	self subclassResponsibility .! !
 
-!BankContainersXX methodsFor: 'testing - private' stamp: 'mr 10/19/2019 00:14:37'!
+!BankEntity methodsFor: 'testing - private' stamp: 'mr 10/19/2019 00:14:37'!
 includes: anElement
 
 	self subclassResponsibility .! !
 
 
-!BankContainersXX methodsFor: 'testing' stamp: 'mr 10/19/2019 00:15:24'!
+!BankEntity methodsFor: 'testing' stamp: 'mr 10/19/2019 00:15:24'!
 hasRegistered: aTransaction
 
 	self subclassResponsibility.! !
 
 
-!BankContainersXX methodsFor: 'accessing' stamp: 'mr 10/19/2019 00:15:10'!
+!BankEntity methodsFor: 'accessing' stamp: 'mr 10/19/2019 00:15:10'!
 balance
 
 	self subclassResponsibility.! !
 
-!BankContainersXX methodsFor: 'accessing' stamp: 'mr 10/19/2019 00:15:05'!
+!BankEntity methodsFor: 'accessing' stamp: 'mr 10/19/2019 00:15:05'!
 transactions
 
 	self subclassResponsibility.! !
 
 
 !classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
-BankContainersXX subclass: #Portfolio
-	instanceVariableNames: 'contents'
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'entities'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'operations' stamp: 'DR 10/18/2019 20:19:30'!
-add: anElementToAdd
+!Portfolio methodsFor: 'operations' stamp: 'mr 10/21/2019 15:20:31'!
+add: anEntityToAdd
 	
-	self assertIfIncludes: anElementToAdd.
+	self assertIfIncludes: anEntityToAdd.
 	
-	anElementToAdd addParent: self.
-	contents add: anElementToAdd. 
+	anEntityToAdd addParent: self.
+	entities add: anEntityToAdd. 
 	
 
 ! !
 
 
-!Portfolio methodsFor: 'accessing' stamp: 'D 10/17/2019 19:59:30'!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:21:03'!
 balance
 	
-	^ (contents sum: [ :anElement | anElement balance ] ifEmpty: [ 0 ]).! !
+	^ (entities sum: [ :anEntity | anEntity balance ] ifEmpty: [ 0 ]).! !
 
-!Portfolio methodsFor: 'accessing' stamp: 'D 10/17/2019 20:11:17'!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:28:51'!
 transactions
 	
-	^ contents inject: OrderedCollection new into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: anElem transactions ].! !
+	^ entities inject: OrderedCollection new into: [ :collectionOfTransactions :anEntity | collectionOfTransactions addAllLast: (anEntity transactions); yourself ].
+! !
 
 
-!Portfolio methodsFor: 'initialization' stamp: 'mr 10/18/2019 18:55:55'!
+!Portfolio methodsFor: 'initialization' stamp: 'mr 10/21/2019 15:19:11'!
 initialize
 
-	contents := OrderedCollection new.
+	entities := OrderedCollection new.
 	parents := OrderedCollection new.
 ! !
 
@@ -531,7 +555,7 @@ hasRegistered: aTransaction
 	^ self transactions includes: aTransaction .! !
 
 
-!Portfolio methodsFor: 'accessing - private' stamp: 'DR 10/18/2019 19:54:54'!
+!Portfolio methodsFor: 'accessing - private' stamp: 'mr 10/21/2019 15:25:13'!
 roots
 
 	| roots |
@@ -542,16 +566,16 @@ roots
 		^ roots ].
 	
 	parents inject: roots
-			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: aParent roots. ].
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: (aParent roots); yourself. ].
 	
 	^ roots.
 ! !
 
 
-!Portfolio methodsFor: 'asserts - private' stamp: 'mr 10/18/2019 23:59:37'!
-assertIfIncludes: anElementToAdd.
+!Portfolio methodsFor: 'asserts - private' stamp: 'mr 10/21/2019 15:36:02'!
+assertIfIncludes: anEntityToAdd.
 	
-	self roots detect:   [ :aRoot | aRoot hasElementsInCommonWith: anElementToAdd. ] 
+	self roots detect:   [ :aRoot | aRoot hasEntitiesInCommonWith: anEntityToAdd. ] 
 		  	    ifNone:   [ ^ self. ].
 	
 	self error: self class cannotAddAnExistentAccountError.	
@@ -560,16 +584,16 @@ assertIfIncludes: anElementToAdd.
 ! !
 
 
-!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/19/2019 00:06:52'!
-hasElementsInCommonWith: anElementToInclude
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anEntityToInclude
 
-	^ (anElementToInclude includes: self) or: [ contents anySatisfy: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ].
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anEntity | anEntity hasEntitiesInCommonWith: anEntityToInclude ] ].
 ! !
 
-!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/19/2019 00:06:10'!
-includes: anElementToInclude
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:22:00'!
+includes: anEntityToInclude
 
-	^ self = anElementToInclude or: [ contents anySatisfy: [:anElem | anElem includes: anElementToInclude ] ].
+	^ self = anEntityToInclude or: [ entities anySatisfy: [:anEntity | anEntity includes: anEntityToInclude ] ].
 
 	! !
 
@@ -586,7 +610,7 @@ cannotAddAnExistentAccountError
 
 
 !classDefinition: #ReceptiveAccount category: #'Portfolio-Ejercicio'!
-BankContainersXX subclass: #ReceptiveAccount
+BankEntity subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -606,17 +630,17 @@ register: aTransaction
 ! !
 
 
-!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/18/2019 23:31:16'!
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/21/2019 15:18:18'!
 hasRegistered: aTransaction
 
-	^ transactions hasElementsInCommonWith: aTransaction 
+	^ transactions includes: aTransaction 
 ! !
 
 
-!ReceptiveAccount methodsFor: 'accessing' stamp: 'D 10/17/2019 18:44:12'!
+!ReceptiveAccount methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:30:45'!
 balance
 
-	^transactions sum: [ :aTransaction | aTransaction xxxvalue ] ifEmpty: [ 0 ]! !
+	^transactions sum: [ :aTransaction | aTransaction valueForBalance ] ifEmpty: [ 0 ]! !
 
 !ReceptiveAccount methodsFor: 'accessing' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 transactions 
@@ -624,8 +648,8 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/18/2019 23:44:42'!
-hasElementsInCommonWith: anElementToInclude
+!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anElementToInclude
 
 	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ].
 

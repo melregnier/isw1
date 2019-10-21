@@ -21956,3 +21956,636 @@ hasRegistered: aTransaction
 ----SNAPSHOT----(19 October 2019 00:20:03) clase2.image priorSource: 13686521!
 
 ----QUIT----(19 October 2019 00:20:17) clase2.image priorSource: 13695421!
+
+----STARTUP---- (21 October 2019 14:38:45) as /home/mregnier/isw1/linux64/clase2.image!
+
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:41:44' prior: 50758183!
+test11PortfolioWithAccountAndPortfolioHasRegisteredTheirTransactions
+
+	| portfolio anAccount aTransaction |
+	anAccount := ReceptiveAccount  new.
+	aTransaction := Deposit register: 100 on: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	
+	self assert: (portfolio hasRegistered: aTransaction).! !
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:42:20'!
+test03PortfolioWithManyAccountsReturnsBalanceOfAllAccounts
+	
+	| portfolio |
+	
+	portfolio := Portfolio new.
+	self addAccountWith: 100 toPortfolio: portfolio.
+	self addAccountWith: 50 toPortfolio: portfolio.
+		
+	self assert: portfolio  balance equals: 150.
+	! !
+
+PortfolioTest removeSelector: #test03PortfolioWithTwoAccountsReturnsBalanceOfBothAccounts!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:42:38'!
+test05PortfolioWithManyPortfoliosHasBalanceOfAllPortfolios
+	
+	| portfolio portfolioToInclude anotherPortfolioToInclude |
+	
+	portfolioToInclude := Portfolio new.
+	anotherPortfolioToInclude := Portfolio new.
+	
+	self addPortfolioWithAccountWith: 100 toPortfolio: portfolioToInclude.
+	self addPortfolioWithAccountWith: 50 toPortfolio: anotherPortfolioToInclude .
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioToInclude.
+	portfolio add: anotherPortfolioToInclude.
+		
+	self assert: portfolio balance equals: 150.
+	! !
+
+PortfolioTest removeSelector: #test05PortfolioWithTwoPortfoliosHasBalanceOfBothPortfolios!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:42:56'!
+test08PortfolioWithManyAccountsHasTransactionsOfAllAccounts
+
+	| portfolio anAccount anotherAccount |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 50 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherAccount.
+	
+	self assert: portfolio transactions equals: (anAccount transactions addAllLast: anotherAccount transactions) .
+	! !
+
+PortfolioTest removeSelector: #test08PortfolioWithTwoAccountsHasTransactionsOfBothAccounts!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:47:38' prior: 50759641!
+test11PortfolioWithAccountAndPortfolioHasRegisteredTheirTransactions
+
+	| portfolio anotherPortfolio anAccount anotherAccount aTransaction anotherTransaction |
+	
+	anAccount := ReceptiveAccount  new.
+	aTransaction := Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	anotherTransaction := Deposit register: 150 on: anotherAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherPortfolio.
+	
+	self assert: (portfolio hasRegistered: aTransaction).! !
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 14:48:01' prior: 50759711!
+test11PortfolioWithAccountAndPortfolioHasRegisteredTheirTransactions
+
+	| portfolio anotherPortfolio anAccount anotherAccount aTransaction anotherTransaction |
+	
+	anAccount := ReceptiveAccount  new.
+	aTransaction := Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	anotherTransaction := Deposit register: 150 on: anotherAccount.
+	
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherPortfolio.
+	
+	self assert: (portfolio hasRegistered: aTransaction).
+	self assert: (portfolio hasRegistered: anotherTransaction ).! !
+
+anAccount transactions!
+
+anotherAccount transactions!
+
+anotherPortfolio transactions!
+
+portfolio transactions!
+
+portfolio hasRegistered: aTransaction!
+
+portfolio transactions!
+
+self transactions!
+
+self transactions!
+
+anElem transactions!
+
+anElem transactions!
+
+collectionOfTransactions!
+
+collectionOfTransactions!
+
+----SNAPSHOT----(21 October 2019 14:55:34) clase2.image priorSource: 13695501!
+
+Smalltalk removeClassNamed: #ReceptiveAccount!
+
+Smalltalk removeClassNamed: #Portfolio!
+
+Smalltalk removeClassNamed: #BankContainersXX!
+
+Smalltalk removeClassNamed: #Withdraw!
+
+Smalltalk removeClassNamed: #Deposit!
+
+Smalltalk removeClassNamed: #AccountTransaction!
+
+Smalltalk removeClassNamed: #ReceptiveAccountTest!
+
+Smalltalk removeClassNamed: #PortfolioTest!
+
+----End fileIn of /home/mregnier/isw1/linux64/Portfolio-Ejercicio2.st----!
+
+portfolio transactions!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 14:59:39' prior: 50760274!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	^ contents inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: anElem transactions ].! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:00:00' prior: 50760395!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	contents inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: anElem transactions ].
+	
+	^ transactions.! !
+
+collection addAllLast: otherCollection.!
+
+
+|collection otherCollection|
+
+collection := OrderedCollection new.
+otherCollection := OrderedCollection new.
+otherCollection add: 1.
+
+
+
+collection addAllLast: otherCollection.!
+
+|collection otherCollection|
+
+collection := OrderedCollection new.
+collection add: 2.
+
+otherCollection := OrderedCollection new.
+otherCollection add: 1.
+
+collection addAllLast: otherCollection.!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:03:58' prior: 50760405!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	contents inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: anElem transactions; self ].
+	
+	^ transactions.! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:04:05' prior: 50760428!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	contents inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: anElem transactions; yourself ].
+	
+	^ transactions.! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:04:58' prior: 50760439!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	contents inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: (anElem transactions); yourself ].
+	
+	^ transactions.! !
+
+	transactions addAllLast: transactions2; yourself.!
+
+| transactions transactions2 |
+	
+	transactions := OrderedCollection new.
+	transactions add: 1.
+	
+	transactions2 :=OrderedCollection new.
+	transactions2 add: 2.
+	
+	transactions addAllLast: transactions2; yourself.
+!
+
+	transactions addAllLast: transactions2.!
+
+| transactions transactions2 |
+	
+	transactions := OrderedCollection new.
+	transactions add: 1.
+	
+	transactions2 :=OrderedCollection new.
+	transactions2 add: 2.
+	
+	transactions addAllLast: transactions2.!
+
+	transactions union: transactions2.!
+
+| transactions transactions2 |
+	
+	transactions := OrderedCollection new.
+	transactions add: 1.
+	
+	transactions2 :=OrderedCollection new.
+	transactions2 add: 2.
+	
+	transactions addAllLast: transactions2.
+	
+	transactions union: transactions2.
+!
+
+| transactions transactions2 |
+	
+	transactions := OrderedCollection new.
+	transactions add: 1.
+	
+	transactions2 :=OrderedCollection new.
+	transactions2 add: 2.
+		
+	transactions union: transactions2.
+!
+
+| transactions transactions2 |
+	
+	transactions := OrderedCollection new.
+	transactions add: 1.
+	
+	transactions2 :=OrderedCollection new.
+	transactions2 add: 2.
+	
+	transactions addAllLast: transactions2; yourself.!
+
+portfolio transactions.!
+
+anAccount transactions!
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:11:25' prior: 50759883!
+test08PortfolioWithManyAccountsHasTransactionsOfAllAccounts
+
+	| portfolio anAccount anotherAccount |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 50 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherAccount.
+	
+	self assert: portfolio transactions includes: anAccount transactions.
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:12:40' prior: 50760500!
+test08PortfolioWithManyAccountsHasTransactionsOfAllAccounts
+
+	| portfolio anAccount anotherAccount |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	anotherAccount := ReceptiveAccount  new.
+	Deposit register: 50 on: anotherAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: anAccount.
+	portfolio add: anotherAccount.
+	
+	self assert: (portfolio transactions includesAllOf: anAccount transactions).
+	self assert: (portfolio transactions includesAllOf: anotherAccount transactions).
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:13:36' prior: 50759900!
+test09PortfolioWithOnePortfolioHasTransactionsOfThePortfolio
+
+	| portfolio anAccount portfolioToInclude |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolioToInclude := Portfolio new.
+	portfolioToInclude add: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioToInclude.
+	
+	self assert: (portfolio transactions includesAllOf: portfolioToInclude transactions) .
+	! !
+!PortfolioTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:13:45' prior: 50760536!
+test09PortfolioWithOnePortfolioHasTransactionsOfThePortfolio
+
+	| portfolio anAccount portfolioToInclude |
+	anAccount := ReceptiveAccount  new.
+	Deposit register: 100 on: anAccount.
+	
+	portfolioToInclude := Portfolio new.
+	portfolioToInclude add: anAccount.
+	
+	portfolio := Portfolio new.
+	portfolio add: portfolioToInclude.
+	
+	self assert: (portfolio transactions includesAllOf: portfolioToInclude transactions).
+	! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:17:35' prior: 50760101!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 100 on: account1.
+		
+	self assert: 1 equals: account1 transactions size .
+	self assert: (account1 transactions includes: deposit1).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'mr 10/21/2019 15:17:55' prior: 50760089!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 100.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'mr 10/21/2019 15:18:18' prior: 50760364!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'contents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'contents entities'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760321!
+includes: anElementToInclude
+
+	^ self = anElementToInclude or: [ entities anySatisfy: [:anElem | anElem includes: anElementToInclude ] ].
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760312!
+hasElementsInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ entities anySatisfy: [ :anElem | anElem hasElementsInCommonWith: anElementToInclude ] ].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760282!
+initialize
+
+	entities := OrderedCollection new.
+	parents := OrderedCollection new.
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760262!
+add: anElementToAdd
+	
+	self assertIfIncludes: anElementToAdd.
+	
+	anElementToAdd addParent: self.
+	entities add: anElementToAdd. 
+	
+
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760450!
+transactions
+	
+	| transactions |
+	
+	transactions := OrderedCollection new.
+	
+	entities inject: transactions into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: (anElem transactions); yourself ].
+	
+	^ transactions.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:19:11' prior: 50760269!
+balance
+	
+	^ (entities sum: [ :anElement | anElement balance ] ifEmpty: [ 0 ]).! !
+
+!classDefinition: #Portfolio category: #'Portfolio-Ejercicio'!
+BankEntity subclass: #Portfolio
+	instanceVariableNames: 'entities'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+TestCase subclass: #BankEntityTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #BankEntityTest category: #'Portfolio-Ejercicio'!
+TestCase subclass: #BankEntityTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankEntity subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: #'Portfolio-Ejercicio'!
+BankEntity subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankEntityTest subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioTest category: #'Portfolio-Ejercicio'!
+BankEntityTest subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+BankEntityTest subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccountTest category: #'Portfolio-Ejercicio'!
+BankEntityTest subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'operations' stamp: 'mr 10/21/2019 15:20:31' prior: 50760639!
+add: anEntityToAdd
+	
+	self assertIfIncludes: anEntityToAdd.
+	
+	anEntityToAdd addParent: self.
+	entities add: anEntityToAdd. 
+	
+
+! !
+!Portfolio methodsFor: 'asserts - private' stamp: 'mr 10/21/2019 15:20:51' prior: 50760302!
+assertIfIncludes: anEntityToAdd.
+	
+	self roots detect:   [ :aRoot | aRoot hasElementsInCommonWith: anEntityToAdd. ] 
+		  	    ifNone:   [ ^ self. ].
+	
+	self error: self class cannotAddAnExistentAccountError.	
+	
+
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:21:03' prior: 50760658!
+balance
+	
+	^ (entities sum: [ :anEntity | anEntity balance ] ifEmpty: [ 0 ]).! !
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:21:14' prior: 50760624!
+hasElementsInCommonWith: anEntityToInclude
+
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anElem | anElem hasElementsInCommonWith: anEntityToInclude ] ].
+! !
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:21:28' prior: 50760739!
+hasElementsInCommonWith: anEntityToInclude
+
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anEntity | anEntity hasElementsInCommonWith: anEntityToInclude ] ].
+! !
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:21:50' prior: 50760616!
+includes: anEntityToInclude
+
+	^ self = anEntityToInclude or: [ entities anySatisfy: [:anElem | anElem includes: anEntityToInclude ] ].
+
+	! !
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:22:00' prior: 50760757!
+includes: anEntityToInclude
+
+	^ self = anEntityToInclude or: [ entities anySatisfy: [:anEntity | anEntity includes: anEntityToInclude ] ].
+
+	! !
+
+emptyPortfolio roots!
+!Portfolio methodsFor: 'accessing - private' stamp: 'mr 10/21/2019 15:25:13' prior: 50760292!
+roots
+
+	| roots |
+	
+	roots := OrderedCollection new.
+	parents isEmpty ifTrue: [ 
+		roots add: self.
+		^ roots ].
+	
+	parents inject: roots
+			 into: [ :collectionOfRoots :aParent | collectionOfRoots addAllLast: (aParent roots); yourself. ].
+	
+	^ roots.
+! !
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:25:40' prior: 50760647!
+transactions
+	
+	^ entities inject: OrderedCollection new into: [ :collectionOfTransactions :anElem | collectionOfTransactions addAllLast: (anElem transactions); yourself ].
+! !
+
+emptyPortfolio roots!
+!Portfolio methodsFor: 'accessing' stamp: 'mr 10/21/2019 15:28:51' prior: 50760785!
+transactions
+	
+	^ entities inject: OrderedCollection new into: [ :collectionOfTransactions :anEntity | collectionOfTransactions addAllLast: (anEntity transactions); yourself ].
+! !
+!Deposit methodsFor: 'value' stamp: 'mr 10/21/2019 15:30:26'!
+valueForBalance
+
+	^ value.! !
+
+Deposit removeSelector: #xxxvalue!
+!Withdraw methodsFor: 'value' stamp: 'mr 10/21/2019 15:30:45'!
+valueForBalance
+
+	^ value negated.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:30:45' prior: 50760370!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction valueForBalance ] ifEmpty: [ 0 ]! !
+
+Withdraw removeSelector: #xxxvalue!
+!AccountTransaction methodsFor: 'nil' stamp: 'mr 10/21/2019 15:31:07'!
+valueForBalance
+
+	self subclassResponsibility.! !
+!BankEntity methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anElement
+
+	self subclassResponsibility .! !
+!ReceptiveAccount methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anElementToInclude
+
+	^ (anElementToInclude includes: self) or: [ self includes: anElementToInclude ].
+
+	! !
+!Portfolio methodsFor: 'testing - private' stamp: 'mr 10/21/2019 15:36:02'!
+hasEntitiesInCommonWith: anEntityToInclude
+
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anEntity | anEntity hasElementsInCommonWith: anEntityToInclude ] ].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:36:02' prior: 50760748!
+hasElementsInCommonWith: anEntityToInclude
+
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anEntity | anEntity hasEntitiesInCommonWith: anEntityToInclude ] ].
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:36:02' prior: 50760723!
+assertIfIncludes: anEntityToAdd.
+	
+	self roots detect:   [ :aRoot | aRoot hasEntitiesInCommonWith: anEntityToAdd. ] 
+		  	    ifNone:   [ ^ self. ].
+	
+	self error: self class cannotAddAnExistentAccountError.	
+	
+
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 15:36:02' prior: 50760835!
+hasEntitiesInCommonWith: anEntityToInclude
+
+	^ (anEntityToInclude includes: self) or: [ entities anySatisfy: [ :anEntity | anEntity hasEntitiesInCommonWith: anEntityToInclude ] ].
+! !
+
+BankEntity removeSelector: #hasElementsInCommonWith:!
+
+ReceptiveAccount removeSelector: #hasElementsInCommonWith:!
+
+Portfolio removeSelector: #hasElementsInCommonWith:!
