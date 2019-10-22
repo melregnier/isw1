@@ -23766,3 +23766,907 @@ hasEntitiesInCommonWith: anEntityToInclude
 ----SNAPSHOT----(21 October 2019 16:00:50) clase2.image priorSource: 13699686!
 
 ----QUIT----(21 October 2019 16:00:54) clase2.image priorSource: 13794241!
+
+----STARTUP---- (21 October 2019 17:55:25) as /home/mregnier/isw1/linux64/clase2.image!
+
+
+Smalltalk removeClassNamed: #ReceptiveAccount!
+
+Smalltalk removeClassNamed: #Portfolio!
+
+Smalltalk removeClassNamed: #BankEntity!
+
+Smalltalk removeClassNamed: #Withdraw!
+
+Smalltalk removeClassNamed: #Deposit!
+
+Smalltalk removeClassNamed: #AccountTransaction!
+
+Smalltalk removeClassNamed: #ReceptiveAccountTest!
+
+Smalltalk removeClassNamed: #PortfolioTest!
+
+Smalltalk removeClassNamed: #BankEntityTest!
+
+----End fileIn of /home/mregnier/isw1/23-Portfolio/solucion/Portfolio-Solucion.st----!
+
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferTest category: #'Portfolio-Solucion'!
+TestCase subclass: #TransferTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'no messages' stamp: 'mr 10/21/2019 19:15:58'!
+Test01TransferChangeBalanceOfSender
+
+	| aPortfolio anotherPortfolio |
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:17:13'!
+test01TransferChangeBalanceOfSender
+
+	| aPortfolio anotherPortfolio |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	
+	self addAccountWith: 100 to: aPortfolio.
+	self addAccountWith: 100 to: aPortfolio.
+
+	! !
+
+TransferTest removeSelector: #Test01TransferChangeBalanceOfSender!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:17:35'!
+test01TransferChangeBalanceOfExtractee
+
+	| aPortfolio anotherPortfolio |
+	
+	aPortfolio := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	
+	self addAccountWith: 100 to: aPortfolio.
+	self addAccountWith: 100 to: aPortfolio.
+
+	! !
+
+TransferTest removeSelector: #test01TransferChangeBalanceOfSender!
+!TransferTest methodsFor: 'test - private' stamp: 'mr 10/21/2019 19:18:04'!
+addAccountWith: aSmallInteger to: aPortfolio 
+	self shouldBeImplemented.! !
+!TransferTest methodsFor: 'test - private' stamp: 'mr 10/21/2019 19:19:54' prior: 50763472!
+addAccountWith: anAmount to: aPortfolio 
+	
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	Deposit register: anAmount on: aPortfolio .! !
+!TransferTest methodsFor: 'test - private' stamp: 'mr 10/21/2019 19:20:53' prior: 50763478!
+addAccountWith: anAmount to: aPortfolio 
+	
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	Deposit register: anAmount on: anAccount .
+	
+	aPortfolio add: anAccount .
+	^aPortfolio .! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:21:57' prior: 50763460!
+test01TransferChangeBalanceOfExtractee
+
+	| aPortfolio anotherPortfolio anAccount |
+	
+	anAccount := Portfolio new.
+	anotherPortfolio := Portfolio new.
+	
+	self addAccountWith: 100 to: aPortfolio.
+	self addAccountWith: 100 to: aPortfolio.
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:23:14' prior: 50763495!
+test01TransferChangeBalanceOfExtractee
+
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	
+	
+	self addAccountWith: 100 to: aPortfolio.
+	self addAccountWith: 100 to: aPortfolio.
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:23:28' prior: 50763506!
+test01TransferChangeBalanceOfExtractee
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+
+	
+	
+
+	! !
+
+!classDefinition: #Transfer category: #'Portfolio-Solucion'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:25:04' prior: 50763520!
+test01TransferChangeBalanceOfExtractee
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	Transfer register: 50 from: anAccount to: anotherAccount .
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:27:09' prior: 50763538!
+test01TransferChangeBalanceOfExtractee
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount balance equals: 50.
+	
+
+	
+	
+
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:27:57'!
+register: aSmallInteger from: aReceptiveAccount to: aReceptiveAccount3 
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:29:49' prior: 50763565!
+register: anAmount from: aSender to: aReceiver
+	self shouldBeImplemented.! !
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value senderAccount receiverAccount '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: #'Portfolio-Solucion'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value senderAccount receiverAccount'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:31:58' prior: 50763572!
+register: anAmount from: aSender to: aReceiver
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:42:17' prior: 50763591!
+register: anAmount from: aSender to: aReceiver
+	
+	| transfer |
+	transfer := self new intializeWith: anAmount  from: aSender  to: aReceiver.
+	aSender register: transfer.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:42:37' prior: 50763596!
+register: anAmount from: aSender to: aReceiver
+	
+	| transfer |
+	transfer := self new intializeWith: anAmount  from: aSender  to: aReceiver.
+	aSender register: transfer.
+	^ transfer.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:42:47' prior: 50763605!
+register: anAmount from: aSender to: aReceiver
+	
+	| transfer |
+	
+	transfer := self new intializeWith: anAmount  from: aSender  to: aReceiver.
+	aSender register: transfer.
+	
+	^ transfer.! !
+!Transfer methodsFor: 'no messages' stamp: 'mr 10/21/2019 19:44:02'!
+initializeWith: anAmount from: aSender to: aReceiver
+
+	value := anAmount .
+	senderAccount := aSender.
+	receiverAccount  := aReceiver.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'mr 10/21/2019 19:48:04' prior: 50763304!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance for: self ]! !
+!AccountTransaction methodsFor: 'balance' stamp: 'mr 10/21/2019 19:48:30'!
+affectBalance: aBalance for: anAccount
+
+	self subclassResponsibility ! !
+!Deposit methodsFor: 'balance' stamp: 'mr 10/21/2019 19:48:43'!
+affectBalance: aBalance for: anAccount
+
+	^aBalance + value ! !
+!Withdraw methodsFor: 'balance' stamp: 'mr 10/21/2019 19:48:53'!
+affectBalance: aBalance for: anAccount
+
+	^aBalance - value! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:50:22'!
+affectBalance: aBalance for: anAccount
+
+	anAccount = senderAccount ifTrue: [aBalance - value]! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:50:27' prior: 50763652!
+affectBalance: aBalance for: anAccount
+
+	anAccount = senderAccount ifTrue: [^aBalance - value]! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:50:30' prior: 50763658!
+affectBalance: aBalance for: anAccount
+
+	anAccount = senderAccount ifTrue: [^ aBalance - value]! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:50:35' prior: 50763664!
+affectBalance: aBalance for: anAccount
+
+	anAccount = senderAccount ifTrue: [ ^ aBalance - value]! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 19:50:40' prior: 50763670!
+affectBalance: aBalance for: anAccount
+
+	anAccount = senderAccount ifTrue: [ ^ aBalance - value ]! !
+
+AccountTransaction removeSelector: #affectBalance:for:!
+
+Deposit removeSelector: #affectBalance:for:!
+
+Withdraw removeSelector: #affectBalance:for:!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'mr 10/21/2019 19:59:47' prior: 50763631!
+balance
+
+	^transactions 
+		inject: 0
+		into: [ :currentBalance :transaction | transaction affectBalance: currentBalance ]! !
+
+Transfer subclass: #TransferIn
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferIn category: #'Portfolio-Solucion'!
+Transfer subclass: #TransferIn
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Transfer subclass: #TransferOut
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferOut category: #'Portfolio-Solucion'!
+Transfer subclass: #TransferOut
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value transferIn transferOut'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: #'Portfolio-Solucion'!
+AccountTransaction subclass: #Transfer
+	instanceVariableNames: 'value transferIn transferOut'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:03:35' prior: 50763623!
+initializeWith: anAmount from: aSender to: aReceiver
+
+	value := anAmount .
+	transferOut := TransferOut for: self.
+	transferIn  := TransferIn for: self.
+	! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:07:27' prior: 50763614!
+register: anAmount from: aSender to: aReceiver
+	
+	^ self new intializeWith: anAmount from: aSender  to: aReceiver.
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:07:37' prior: 50763739!
+register: anAmount from: aSender to: aReceiver
+	
+	^ self new intializeWith: anAmount from: aSender to: aReceiver.
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:08:04' prior: 50763746!
+register: anAmount from: aSender to: aReceiver
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:08:56' prior: 50763731!
+initializeWith: anAmount from: aSender to: aReceiver
+
+	value := anAmount .
+	transferOut := TransferOut for: self.
+	transferIn  := TransferIn for: self.
+	
+	aSender register: transferOut.
+	aReceiver register: transferIn.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:09:59' prior: 50763760!
+initializeWith: anAmount from: aSender to: aReceiver
+
+	value := anAmount .
+	transferOut := TransferOut for: self.
+	transferIn  := TransferIn for: self.
+	
+	aSender register: transferOut.
+	aReceiver register: transferIn.
+	! !
+!TransferIn class methodsFor: 'no messages' stamp: 'mr 10/21/2019 20:10:45'!
+for: aMainTransfer
+
+	! !
+!TransferIn class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:11:09' prior: 50763780!
+for: aMainTransfer
+
+	^ self new initializeFor: aMainTransfer .! !
+!TransferOut class methodsFor: 'no messages' stamp: 'mr 10/21/2019 20:12:02'!
+for: aMainTransfer
+
+	^ self new initializeFor: aMainTransfer .! !
+!TransferOut methodsFor: 'no messages' stamp: 'mr 10/21/2019 20:14:00'!
+initializeFor: aMainTransfer
+
+	mainTransfer  := aMainTransfer .! !
+!TransferIn methodsFor: 'no messages' stamp: 'mr 10/21/2019 20:14:08'!
+initializeFor: aMainTransfer
+
+	mainTransfer  := aMainTransfer .! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:15:30'!
+affectBalance: aBalance
+
+	^ aBalance + mainTransfer value.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:15:45'!
+affectBalance: aBalance
+
+	^ aBalance - mainTransfer value.! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:16:42'!
+value
+
+	^ value.! !
+
+Transfer removeSelector: #affectBalance:for:!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:18:04'!
+test02TransferChangeBalanceOfReceiver
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anotherAccount balance equals: 150.
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:18:12'!
+test01TransferChangeBalanceOfSender
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount balance equals: 50.
+	
+
+	
+	
+
+	! !
+
+TransferTest removeSelector: #test01TransferChangeBalanceOfExtractee!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:25:14'!
+test03TransferCannotTransferZero
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	Transfer register: 0 from: anAccount to: anotherAccount .
+	
+	self assert: anotherAccount balance equals: 150.
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:27:28' prior: 50763849!
+test03TransferCannotTransferZero
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	self 
+		should: [ Transfer register: 0 from: anAccount to: anotherAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anAccount  balance equals: 100.
+			self assert: anotherAccount balance equals: 100.
+			]
+
+	
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:28:30' prior: 50763864!
+test03TransferCannotTransferZero
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	self 
+		should: [ Transfer register: 0 from: anAccount to: anotherAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferZeroErrorMessage equals: anError messageText.
+			self assert: anAccount  balance equals: 100.
+			self assert: anotherAccount balance equals: 100.
+			]
+
+	
+! !
+!TransferTest methodsFor: 'failing' stamp: 'mr 10/21/2019 20:28:41'!
+signalFailure: aString 
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:30:36'!
+cannotTransferZeroErrorMessage
+
+	^ 'You cannot transfer 0 '! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:30:45' prior: 50763909!
+cannotTransferZeroErrorMessage
+
+	^ 'You cannot transfer zero '! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:32:30'!
+cannotTransferNegativeAmountErrorMessage
+
+	^ 'Stop trying to steal, the bank will file a report '! !
+
+TransferTest removeSelector: #signalFailure:!
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:36:29' prior: 50763753!
+register: anAmount from: aSender to: aReceiver
+	
+	anAmount = 0 ifTrue: [self error: self cannotTransferZeroErrorMessage ].
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:36:33' prior: 50763928!
+register: anAmount from: aSender to: aReceiver
+	
+	anAmount = 0 ifTrue: [ self error: self cannotTransferZeroErrorMessage ].
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:36:36' prior: 50763938!
+register: anAmount from: aSender to: aReceiver
+	
+	anAmount = 0 ifTrue: [ self error: self cannotTransferZeroErrorMessage ].
+	
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:37:31' prior: 50763948!
+register: anAmount from: aSender to: aReceiver
+	
+	anAmount = 0 ifTrue: [ self error: self cannotTransferZeroErrorMessage ].
+	anAmount < 0 ifTrue: [ self error: self cannotTransferNegativeAmountErrorMessage ].
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:38:44'!
+test04TransferCannotStealFromTheReceiver
+
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	self 
+		should: [ Transfer register: -50 from: anAccount to: anotherAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferNegativeAmountErrorMessage equals: anError messageText.
+			self assert: anAccount  balance equals: 100.
+			self assert: anotherAccount balance equals: 100.
+			]
+
+	
+! !
+
+AccountTransaction subclass: #TransferIn
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferIn category: #'Portfolio-Solucion'!
+AccountTransaction subclass: #TransferIn
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountTransaction subclass: #TransferOut
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferOut category: #'Portfolio-Solucion'!
+AccountTransaction subclass: #TransferOut
+	instanceVariableNames: 'mainTransfer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #Transfer
+	instanceVariableNames: 'value transferIn transferOut'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transfer category: #'Portfolio-Solucion'!
+Object subclass: #Transfer
+	instanceVariableNames: 'value transferIn transferOut'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:49:31'!
+value
+
+	^ mainTransfer  value.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:49:38'!
+value
+
+	^ mainTransfer  value.! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:52:00'!
+test04TransferCannotBeToYourself
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self 
+		should: [ Transfer register: -50 from: anAccount to: anAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToYourselfErrorMessage equals: anError messageText.
+			self assert: anAccount  balance equals: 100.
+			]
+
+	
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:52:21'!
+cannotTransferToYourselfErrorMessage
+	self shouldBeImplemented.! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:53:06' prior: 50764052!
+cannotTransferToYourselfErrorMessage
+	
+	^ 'You cannot transfer to the same account '! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:53:27'!
+test05TransferCannotBeToYourself
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self 
+		should: [ Transfer register: -50 from: anAccount to: anAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToYourselfErrorMessage equals: anError messageText.
+			self assert: anAccount  balance equals: 100.
+			]
+
+	
+! !
+
+TransferTest removeSelector: #test04TransferCannotBeToYourself!
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:10:03'!
+transferIn
+
+	^ transferIn ! !
+!Transfer methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:10:12'!
+transferOut
+
+	^ transferOut ! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:12:43'!
+test06TransferIsRegisteredInSender
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount transactions includes
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:20:07' prior: 50764090!
+test06TransferIsRegisteredInSender
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount transactions includes: aTransfer transferIn
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:20:24' prior: 50764105!
+test06TransferIsRegisteredInSender
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount transactions includes: aTransfer transferOut
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:21:22' prior: 50764064!
+test05TransferCannotBeToYourself
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self 
+		should: [ Transfer register: 50 from: anAccount to: anAccount . ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: Transfer cannotTransferToYourselfErrorMessage equals: anError messageText.
+			self assert: anAccount  balance equals: 100.
+			]
+
+	
+! !
+!Transfer class methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:22:27' prior: 50763958!
+register: anAmount from: aSender to: aReceiver
+	
+	anAmount = 0 ifTrue: [ self error: self cannotTransferZeroErrorMessage ].
+	anAmount < 0 ifTrue: [ self error: self cannotTransferNegativeAmountErrorMessage ].
+	aSender = aReceiver ifTrue: [ self error: self cannotTransferToYourselfErrorMessage ].
+	
+	^ self new initializeWith: anAmount from: aSender to: aReceiver.
+! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:23:56'!
+test07TransferIsRegisteredInReceiver
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount transactions includes: aTransfer transferOut
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:24:03' prior: 50764169!
+test07TransferIsRegisteredInReceiver
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anAccount transactions includes: aTransfer transferIn
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:24:14' prior: 50764185!
+test07TransferIsRegisteredInReceiver
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anotherAccount transactions includes: aTransfer transferIn
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:25:25'!
+test08SenderAccountHasRegisteredTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: anotherAccount transactions includes: aTransfer transferIn
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:26:00' prior: 50764217!
+test08SenderAccountHasRegisteredTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anAccount hasRegistered: aTransfer transferIn ).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:26:05' prior: 50764233!
+test08SenderAccountHasRegisteredTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anAccount hasRegistered: aTransfer transferOut ).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 21:26:39'!
+test09ReceiverAccountHasRegisteredTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anotherAccount hasRegistered: aTransfer transferIn ).
+	
+
+	
+	
+
+	! !
+
+----SNAPSHOT----(21 October 2019 21:27:16) clase2.image priorSource: 13794321!
+
+----QUIT----(21 October 2019 21:27:28) clase2.image priorSource: 13844153!
