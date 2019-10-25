@@ -24670,3 +24670,413 @@ test09ReceiverAccountHasRegisteredTransferIn
 ----SNAPSHOT----(21 October 2019 21:27:16) clase2.image priorSource: 13794321!
 
 ----QUIT----(21 October 2019 21:27:28) clase2.image priorSource: 13844153!
+
+----STARTUP---- (24 October 2019 14:58:45) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:08:08'!
+test10SenderAccountHasKnowledgeOfReceiverAccount
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anotherAccount hasRegistered: aTransfer transferIn ).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:08:11' prior: 50764289!
+test10SenderAccountHasKnowledgeOfReceiverAccount
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anotherAccount hasRegistered: aTransfer transferIn ).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:08:49'!
+test10TransferOutHasKnowledgeOfTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( anotherAccount hasRegistered: aTransfer transferIn ).
+	
+
+	
+	
+
+	! !
+
+TransferTest removeSelector: #test10SenderAccountHasKnowledgeOfReceiverAccount!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:10:11' prior: 50764321!
+test10TransferOutHasKnowledgeOfTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( aTransfer transferIn transferOut equals: aTransfer transferOut).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:10:16' prior: 50764340!
+test10TransferOutHasKnowledgeOfTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( aTransfer transferIn transferOut equals: aTransfer transferOut ).
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:10:36' prior: 50764357!
+test10TransferOutHasKnowledgeOfTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert: ( aTransfer transferIn transferOut equals: aTransfer transferOut ).
+	
+
+	
+	
+
+	! !
+!Withdraw methodsFor: 'balance' stamp: 'Dr 10/24/2019 15:10:53' prior: 50763411!
+affectBalance: aBalance
+
+	^ aBalance - value! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:11:14' prior: 50764374!
+test10TransferOutHasKnowledgeOfTransferIn
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert:  aTransfer transferIn transferOut equals: aTransfer transferOut .
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:11:34'!
+test10TransferInHasKnowledgeOfTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert:  aTransfer transferIn transferOut equals: aTransfer transferOut .
+	
+
+	
+	
+
+	! !
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:11:42'!
+test11TransferInHasKnowledgeOfTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert:  aTransfer transferIn transferOut equals: aTransfer transferOut .
+	
+
+	
+	
+
+	! !
+
+TransferTest removeSelector: #test10TransferInHasKnowledgeOfTransferOut!
+!TransferTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:12:08' prior: 50764427!
+test11TransferInHasKnowledgeOfTransferOut
+
+	| anAccount anotherAccount aTransfer |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anotherAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anotherAccount .
+	
+	aTransfer := Transfer register: 50 from: anAccount to: anotherAccount .
+	
+	self assert:  aTransfer transferOut transferIn equals: aTransfer transferIn .
+	
+
+	
+	
+
+	! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:13:11'!
+transferOut
+	self shouldBeImplemented.! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:13:32' prior: 50764462!
+transferOut
+	
+	^ mainTransfer transferOut .! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:14:03'!
+transferIn
+	self shouldBeImplemented.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:14:12' prior: 50764471!
+transferIn
+	
+	^ mainTransfer transferIn .! !
+
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportTest category: #'Portfolio-Solucion'!
+TestCase subclass: #ReportTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportTest methodsFor: 'nil' stamp: 'Dr 10/24/2019 15:17:13'!
+test01EmptyAccountHasEmptyReport
+
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:19:55' prior: 50764490!
+test01EmptyAccountHasEmptyReport
+
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount netReport isEmpty .! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 15:20:34'!
+netReport
+
+	^ ''.! !
+
+----SNAPSHOT----(24 October 2019 15:21:35) clase2.image priorSource: 13844233!
+
+----QUIT----(24 October 2019 15:21:38) clase2.image priorSource: 13851348!
+
+----STARTUP---- (24 October 2019 16:42:42) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 16:45:10' prior: 50764495!
+test01EmptyAccountHasEmptyReport
+
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount netReport equals: 'Balance = 0' .! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 16:46:26' prior: 50764502!
+netReport
+
+	^ 'Balance = 0'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 16:47:47'!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount netReport equals: 'Balance = 0' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 16:47:51' prior: 50764526!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount netReport equals: 'Balance = 0' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 16:49:12' prior: 50764534!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self assert: anAccount netReport equals: 
+	'Depósito por 100.
+	Balance = 100' .! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 16:55:17' prior: 50764522!
+netReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, '
+		', aTransaction ]), 'Balance = ', self balance.! !
+
+	String enter!
+
+Character enter!
+
+Character enter!
+
+Character enter join: #(a b c)!
+
+Character enter asString join: #(a b c)!
+
+10 asCharacter!
+
+10 asCharacter!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:03:11' prior: 50764552!
+netReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter , aTransaction ]), 'Balance = ', self balance.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:04:37'!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter , aTransaction ]), 'Balance = ', self balance.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:04:37' prior: 50764542!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self assert: anAccount accountSummaryReport equals: 
+	'Depósito por 100.
+	Balance = 100' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:04:37' prior: 50764514!
+test01EmptyAccountHasEmptyReport
+
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount accountSummaryReport equals: 'Balance = 0' .! !
+
+ReceptiveAccount removeSelector: #netReport!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:04:54' prior: 50764573!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter asString , aTransaction ]), 'Balance = ', self balance.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:05:46' prior: 50764603!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter , aTransaction ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:05:53' prior: 50764612!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter asString , aTransaction ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:07:04' prior: 50764621!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, 10 asCharacter asString , aTransaction reportMessage ]), 'Balance = ', self balance asString.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:07:24'!
+reportMessage
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:07:50' prior: 50764639!
+reportMessage
+	^ 'Depósito por ', value asString .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:08:26' prior: 50764644!
+reportMessage
+	^ 'Depósito por ', value asString, '.' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:09:54' prior: 50764582!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self assert: anAccount accountSummaryReport equals: 
+	'Depósito por 100.',10 asCharacter asString , 'Balance = 100' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:27:29' prior: 50764654!
+test02AccountWithDepositHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self assert: anAccount accountSummaryReport equals: 
+	'Depósito por 100.',String newLineString , 'Balance = 100' .! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:28:47' prior: 50764630!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, String newLineString , aTransaction reportMessage ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:30:36' prior: 50764676!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage , String newLineString ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:30:43' prior: 50764685!
+accountSummaryReport
+	
+	^ (transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 17:37:13' prior: 50764694!
+accountSummaryReport
+	"^ Summary for: self value"
+	^ (transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Dr 10/24/2019 19:26:34' prior: 50764703!
+accountSummaryReport
+	"^ SummaryLines for: self value"
+	^ (transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
+
+----QUIT----(24 October 2019 21:05:30) clase2.image priorSource: 13851428!
