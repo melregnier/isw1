@@ -25080,3 +25080,1213 @@ accountSummaryReport
 	^ (transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
 
 ----QUIT----(24 October 2019 21:05:30) clase2.image priorSource: 13851428!
+
+----STARTUP---- (26 October 2019 16:37:50) as /home/melissa/Mel/college shit/IngenierÃ­a de Software I/isw1/linux64/clase2.image!
+
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:43:20'!
+test03AccountWithWithdrawHasValidReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: anAccount .
+
+	self assert: anAccount accountSummaryReport equals: 
+	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
+!Withdraw methodsFor: 'balance' stamp: 'mr 10/26/2019 16:44:05'!
+reportMessage
+
+	^ 'Extracción por ', value.! !
+!Withdraw methodsFor: 'balance' stamp: 'mr 10/26/2019 16:44:41' prior: 50764739!
+reportMessage
+
+	^ 'Extracción por ', value asString.! !
+!Withdraw methodsFor: 'balance' stamp: 'mr 10/26/2019 16:45:12' prior: 50764743!
+reportMessage
+
+	^ 'Extracción por ', value asString, '.'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:45:48'!
+test01EmptyAccountHasEmptyAccountSummary
+
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount accountSummaryReport equals: 'Balance = 0' .! !
+
+ReportTest removeSelector: #test01EmptyAccountHasEmptyReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:46:11'!
+test02AccountWithDepositHasValidAccountSummary
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	self assert: anAccount accountSummaryReport equals: 
+	'Depósito por 100.',String newLineString , 'Balance = 100' .! !
+
+ReportTest removeSelector: #test02AccountWithDepositHasValidReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:46:24'!
+test03AccountWithWithdrawHasValidAccountSummary
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: anAccount .
+
+	self assert: anAccount accountSummaryReport equals: 
+	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
+
+ReportTest removeSelector: #test03AccountWithWithdrawHasValidReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:47:52'!
+test04AccountWithTransferInHasValidAccountSummary
+
+	| anAccount aTransferingAccount |
+	
+	aTransferingAccount := ReceptiveAccount new.
+	Transfer.
+	
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: anAccount .
+
+	self assert: anAccount accountSummaryReport equals: 
+	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:49:25' prior: 50764789!
+test04AccountWithTransferInHasValidAccountSummary
+
+	| anAccount aTransferingAccount |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	self assert: anAccount accountSummaryReport equals: 
+	'Entrada por transferencia de 100.', String newLineString , 'Balance = 100' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:50:12'!
+test05AccountWithTransferOutHasValidAccountSummary
+
+	| anAccount aTransferingAccount |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	self assert: aTransferingAccount accountSummaryReport equals: 
+	'Salida por transferencia de 100.', String newLineString , 'Balance = -100' .! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:51:22'!
+reportMessage
+
+	^ 'Entrada por transferencia de ', mainTransfer value asString, '.'.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:52:07'!
+reportMessage
+
+	^ 'Salida por transferencia de ', mainTransfer value asString, '.'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:56:46'!
+test06AccountWithAllPossibleTransactionsHasValidAccountSummary
+
+	| anAccount aTransferingAccount |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	self assert: anAccount accountSummaryReport equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:02:47'!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+
+	| aPortfolio |
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 115'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:03:51' prior: 50764869!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 115'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:04:09' prior: 50764877!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 0'.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:05:04'!
+accountSummaryReport
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:05:26' prior: 50764894!
+accountSummaryReport
+	
+	^ 'Balance = 0.'! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:05:44' prior: 50764886!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 0.'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:06:15' prior: 50764904!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 0'.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:06:55' prior: 50764899!
+accountSummaryReport
+	
+	^ 'Balance = 0'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:12:42'!
+test08PortfolioWithOneAccountHasTheAccountSummary
+
+	| anAccount aPortfolio |
+
+	anAccount := ReceptiveAccount new.
+	
+	
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio accountSummaryReport equals: 'Balance = 0'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:15:19' prior: 50764926!
+test08PortfolioWithOneAccountHasTheAccountSummary
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+
+	self assert: aPortfolio accountSummaryReport equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:16:35' prior: 50764922!
+accountSummaryReport
+	"^ SummaryLines for: self value"
+	^ (self transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:27:25'!
+test09PortfolioWithManyAccountsHasTheAccountsSummary
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+
+	self assert: aPortfolio accountSummaryReport equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	'Salida por transferencia de 100.', String newLineString ,
+	'Entrada por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:27:51' prior: 50764972!
+test09PortfolioWithManyAccountsHasTheAccountsSummary
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+
+	self assert: aPortfolio accountSummaryReport equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	'Salida por transferencia de 100.', String newLineString ,
+	'Entrada por transferencia de 10.', String newLineString ,
+	'Balance = 25'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:29:53'!
+test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
+
+	| anAccount aTransferingAccount aPortfolio anotherPortfolio|
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anotherPortfolio.
+
+	self assert: aPortfolio accountSummaryReport equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	'Balance = 115'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:34:24'!
+test11EmptyAccountHasEmptyNetTransferReport
+
+	| anAccount|
+	
+	anAccount := ReceptiveAccount new.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:34:36' prior: 50765063!
+test11EmptyAccountHasEmptyNetTransferReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:34:49'!
+netTransferReport
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:39:04' prior: 50765081!
+netTransferReport
+	
+	^ 'Neto de transferencia = 0'.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:40:44'!
+test12AccountWithTransferInHasValidNetTransferReport
+
+	| anAccount aTransferingAccount |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 100'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:42:06' prior: 50765091!
+test12AccountWithTransferInHasValidNetTransferReport
+
+	| anAccount aTransferingAccount |
+
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 100'.
+! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:43:53' prior: 50765086!
+netTransferReport
+
+	^ 'Neto de transferencia = 0'.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:49:01' prior: 50765119!
+netTransferReport
+
+      | netTransfer |
+
+	netTransfer := self transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction valueForNetTranfer ].
+
+	^ 'Neto de transferencia = ', netTransfer asString.! !
+!AccountTransaction methodsFor: 'value' stamp: 'mr 10/26/2019 17:49:27'!
+valueForNetTransfer
+
+	^ 0.! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:50:10'!
+valueForNetTransfer
+
+	^ mainTransfer value.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:50:29'!
+valueForNetTransfer
+
+	^ mainTransfer value negated.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:51:52' prior: 50765124!
+netTransferReport
+
+      | netTransfer |
+
+	netTransfer := self transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction valueForNetTransfer ].
+
+	^ 'Neto de transferencia = ', netTransfer asString.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:57:49'!
+test13AccountWithTransferOutHasValidNetTransferReport
+
+	| anAccount aTransferingAccount |
+
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	self assert: aTransferingAccount netTransferReport equals: 'Neto de transferencia = -100'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:01:24'!
+test14AccountWithDepositHasValidNetTransferReport
+
+	| anAccount |
+
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:02:17'!
+test15AccountWithWithdrawHasValidNetTransferReport
+
+	| anAccount |
+
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 100 on: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:03:42'!
+test15AccountWithAllTransactionsHasValidNetTransferReport
+
+	| anAccount |
+
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 100 on: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:03:49'!
+test16AccountWithAllTransactionsHasValidNetTransferReport
+
+	| anAccount |
+
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 100 on: anAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+
+ReportTest removeSelector: #test15AccountWithAllTransactionsHasValidNetTransferReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:05:25' prior: 50765200!
+test16AccountWithAllTransactionsHasValidNetTransferReport
+
+	| anAccount aTransferingAccount |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 90'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:08:54'!
+test17EmptyPortfolioHasValidNetTransferReport
+
+
+	| aPortfolio |
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 90'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:12:36' prior: 50765232!
+test17EmptyPortfolioHasValidNetTransferReport
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:12:46'!
+netTransferReport
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:14:42' prior: 50765250!
+netTransferReport
+	
+	^ self transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction valueForNetTransfer ]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:16:07' prior: 50765255!
+netTransferReport
+	
+	^ 'Neto de transferencia = ', (self transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction valueForNetTransfer ]) asString! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:16:09' prior: 50765262!
+netTransferReport
+	
+	^ 'Neto de transferencia = ', (self transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction valueForNetTransfer ]) asString.! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:17:18'!
+test17PortfolioWithOneAccountHasValidNetTransferReport
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:17:27'!
+test18PortfolioWithOneAccountHasValidNetTransferReport
+
+	| aPortfolio |
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+
+ReportTest removeSelector: #test17PortfolioWithOneAccountHasValidNetTransferReport!
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:20:39' prior: 50764753!
+test01EmptyAccountHasEmptyAccountSummary
+
+	| anAccount |
+
+	anAccount := ReceptiveAccount new.
+	
+	self assert: anAccount accountSummaryReport equals: 'Balance = 0' .! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:24:01' prior: 50765288!
+test18PortfolioWithOneAccountHasValidNetTransferReport
+
+	| anAccount aPortfolio |
+
+	anAccount := ReceptiveAccount new.
+	
+
+	aPortfolio := Portfolio new.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:25:48' prior: 50765309!
+test18PortfolioWithOneAccountHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio  add: anAccount.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 90'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:26:46'!
+test19PortfolioWithManyAccountHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 90'.
+! !
+!ReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 18:26:54' prior: 50765340!
+test19PortfolioWithManyAccountHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aPortfolio |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+
+	self assert: aPortfolio netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+
+Object subclass: #AccountReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountReport category: #'Portfolio-Solucion'!
+Object subclass: #AccountReport
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryReport category: #'Portfolio-Solucion'!
+AccountReport subclass: #AccountSummaryReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+AccountReport subclass: #NetTransferReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #NetTransferReport category: #'Portfolio-Solucion'!
+AccountReport subclass: #NetTransferReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountReport methodsFor: 'no messages' stamp: 'mr 10/26/2019 19:03:27'!
+value
+
+	self subclassResponsibility.! !
+!AccountReport class methodsFor: 'no messages' stamp: 'mr 10/26/2019 19:04:19'!
+for: anAccount
+
+	^ self new initializeFor: anAccount.! !
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:04:38'!
+initializeFor: anAccount
+	
+	account := anAccount.! !
+!AccountSummaryReport methodsFor: 'no messages' stamp: 'mr 10/26/2019 19:05:01'!
+value
+
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:06:40' prior: 50765430!
+value
+
+	^ (account transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportMessage, String newLineString ]), 'Balance = ', self balance asString.! !
+
+String new nextPutAll: 'hola'!
+
+String nextPutAll: 'hola'!
+
+aString := String new.
+!
+
+aString := String new
+aString nextPutAll: 'hola'.!
+
+aString := String new.
+aString nextPutAll: 'hola'.!
+
+String superclass.!
+
+'xxx \ yyy' withNewLines.!
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:13:36' prior: 50765434!
+value
+
+	^ (account transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportInfoFor: self, String newLineString ]), 'Balance = ', self balance asString.! !
+!AccountTransaction methodsFor: 'nil' stamp: 'mr 10/26/2019 19:15:42'!
+reportInfoFor: aTransaction
+	self subclassResponsibility.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:16:52'!
+reportInfoFor: aReport
+	
+	^ aReport forDeposit: self.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:17:08' prior: 50765460!
+reportInfoFor: aReport
+	self subclassResponsibility.! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:17:36'!
+reportInfoFor: aReport
+
+	! !
+!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:18:03' prior: 50765475!
+reportInfoFor: aReport
+	
+	^ aReport forTransferIn: self.! !
+!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:18:23'!
+reportInfoFor: aReport
+	
+	^ aReport forTransferOut: self.! !
+!Withdraw methodsFor: 'nil' stamp: 'mr 10/26/2019 19:18:48'!
+reportInfoFor: aReport
+	
+	^ aReport forWithdraw: self.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:22:53'!
+forDeposit: aDeposit
+
+	^ 'Depósito por ', aDeposit value asString, '.'.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:23:20'!
+forTransferIn: aDeposit
+
+	^ 'Entrada por transferencia de ', aDeposit value asString, '.'.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:23:32'!
+forTransferOut: aDeposit
+
+	^ 'Salida por transferencia de ', aDeposit value asString, '.'.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:24:02'!
+forWithdraw: aDeposit
+
+	^ 'Extracción por ', aDeposit value asString, '.'.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:25:05' prior: 50765300!
+test01EmptyAccountHasEmptyAccountSummary
+
+	| anAccount anAccountSummaryReport |
+
+	anAccount := ReceptiveAccount new.
+	
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+	self assert: anAccount accountSummaryReport equals: 'Balance = 0' .! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:25:31' prior: 50765517!
+test01EmptyAccountHasEmptyAccountSummary
+
+	| anAccount anAccountSummaryReport |
+
+	anAccount := ReceptiveAccount new.
+	
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+	
+	self assert: anAccountSummaryReport value equals: 'Balance = 0' .! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:26:00' prior: 50765451!
+value
+
+	^ (account transactions inject: String new into: [ :report : aTransaction | report, aTransaction reportInfoFor: self, String newLineString ]), 'Balance = ', account balance asString.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:27:36' prior: 50764763!
+test02AccountWithDepositHasValidAccountSummary
+
+	| anAccount anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount .
+	
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Depósito por 100.',String newLineString , 'Balance = 100' .! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:29:58' prior: 50765541!
+value
+
+	^ (account transactions inject: String new into: [ :report : aTransaction | report, (aTransaction reportInfoFor: self), String newLineString ]), 'Balance = ', account balance asString.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:30:26' prior: 50764776!
+test03AccountWithWithdrawHasValidAccountSummary
+
+	| anAccount anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 50 on: anAccount .
+
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:30:44' prior: 50764803!
+test04AccountWithTransferInHasValidAccountSummary
+
+	| anAccount aTransferingAccount anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Entrada por transferencia de 100.', String newLineString , 'Balance = 100' .! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:31:31' prior: 50764818!
+test05AccountWithTransferOutHasValidAccountSummary
+
+	| anAccount aTransferingAccount anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	anAccountSummaryReport := AccountSummaryReport for: aTransferingAccount.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Salida por transferencia de 100.', String newLineString , 'Balance = -100' .! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:31:54' prior: 50764845!
+test06AccountWithAllPossibleTransactionsHasValidAccountSummary
+
+	| anAccount aTransferingAccount anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	anAccountSummaryReport := AccountSummaryReport for: anAccount.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:32:46' prior: 50764913!
+test07EmptyPortfolioHasEmptyAccountSummary
+
+	| aPortfolio anAccountSummaryReport |
+
+	aPortfolio := Portfolio new.
+	
+	anAccountSummaryReport := AccountSummaryReport for: aPortfolio.
+
+	self assert: anAccountSummaryReport value equals: 'Balance = 0'.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:33:24' prior: 50764936!
+test08PortfolioWithOneAccountHasTheAccountSummary
+
+	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+
+	anAccountSummaryReport := AccountSummaryReport for: aPortfolio.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:33:59' prior: 50765003!
+test09PortfolioWithManyAccountsHasTheAccountsSummary
+
+	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+
+	anAccountSummaryReport := AccountSummaryReport for: aPortfolio.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	'Salida por transferencia de 100.', String newLineString ,
+	'Entrada por transferencia de 10.', String newLineString ,
+	'Balance = 25'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:34:30' prior: 50765034!
+test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
+
+	| anAccount aTransferingAccount aPortfolio anotherPortfolio anAccountSummaryReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	anotherPortfolio := Portfolio new.
+	anotherPortfolio add: anAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anotherPortfolio.
+
+	anAccountSummaryReport := AccountSummaryReport for: aPortfolio.
+
+	self assert: anAccountSummaryReport value equals: 
+	'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	'Balance = 115'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:34:50' prior: 50765072!
+test11EmptyAccountHasEmptyNetTransferReport
+
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!NetTransferReport methodsFor: 'no messages' stamp: 'mr 10/26/2019 19:35:49'!
+value
+
+	! !
+
+ReceptiveAccount removeSelector: #accountSummaryReport!
+
+Portfolio removeSelector: #accountSummaryReport!
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:39:12' prior: 50765771!
+value
+
+	^ 'Neto de transferencia = ', (account transactions inject: 0 into: [ :amount :aTransaction | amount + aTransaction reportInfoFor: self ]) asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:39:48'!
+forDeposit: aDeposit
+
+	^ 0.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:00'!
+forWithdraw: aWithdraw
+
+	^ 0.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:38'!
+forTransferIn: aTransferIn
+
+	^ aTransferIn value.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:55'!
+forTransferOut: aTransferOut
+
+	^ aTransferOut value negated.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:41:35' prior: 50765499!
+forTransferIn: aTransferIn
+
+	^ 'Entrada por transferencia de ', aTransferIn value asString, '.'.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:41:55' prior: 50765505!
+forTransferOut: aTransferOut
+
+	^ 'Salida por transferencia de ', aTransferOut value asString, '.'.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:42:25' prior: 50765511!
+forWithdraw: aWithdraw
+
+	^ 'Extracción por ', aWithdraw value asString, '.'.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:44:17' prior: 50765762!
+test11EmptyAccountHasEmptyNetTransferReport
+
+	| anAccount aTransferReport |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: anAccount netTransferReport equals: 'Neto de transferencia = 0'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:44:42' prior: 50765825!
+test11EmptyAccountHasEmptyNetTransferReport
+
+	| anAccount aTransferReport |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:45:03' prior: 50765105!
+test12AccountWithTransferInHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aTransferReport |
+
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 100'.
+! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:45:42' prior: 50765778!
+value
+
+	^ 'Neto de transferencia = ', (account transactions inject: 0 into: [ :amount :aTransaction | amount + (aTransaction reportInfoFor: self) ]) asString.! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:46:05' prior: 50765157!
+test13AccountWithTransferOutHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aTransferReport |
+
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = -100'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:46:30' prior: 50765873!
+test13AccountWithTransferOutHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aTransferReport |
+
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+	
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+
+	aTransferReport := NetTransferReport for: aTransferingAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = -100'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:46:45' prior: 50765170!
+test14AccountWithDepositHasValidNetTransferReport
+
+	| anAccount aTransferReport |
+
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount.
+
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:47:09' prior: 50765180!
+test15AccountWithWithdrawHasValidNetTransferReport
+
+	| anAccount aTransferReport |
+
+	anAccount := ReceptiveAccount new.
+	Withdraw register: 100 on: anAccount.
+
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:47:45' prior: 50765214!
+test16AccountWithAllTransactionsHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aTransferReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aTransferReport := NetTransferReport for: anAccount .
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:48:26' prior: 50765241!
+test17EmptyPortfolioHasValidNetTransferReport
+
+	| aPortfolio aTransferReport |
+
+	aPortfolio := Portfolio new.
+	
+	aTransferReport := NetTransferReport for: aPortfolio.
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:48:49' prior: 50765320!
+test18PortfolioWithOneAccountHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aPortfolio aTransferReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio  add: anAccount.
+
+	aTransferReport := NetTransferReport for: aPortfolio.
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
+! !
+!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:49:09' prior: 50765361!
+test19PortfolioWithManyAccountHasValidNetTransferReport
+
+	| anAccount aTransferingAccount aPortfolio aTransferReport |
+	
+	anAccount := ReceptiveAccount new.
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+
+	aPortfolio := Portfolio new.
+	aPortfolio add: anAccount.
+	aPortfolio add: aTransferingAccount.
+	
+	aTransferReport := NetTransferReport for: aPortfolio.
+
+	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+! !
+
+Portfolio removeSelector: #netTransferReport!
+
+ReceptiveAccount removeSelector: #netTransferReport!
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:50:52'!
+forDeposit: aDeposit
+
+	self subclassResponsibility.! !
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:10'!
+forWithdraw: aWithdraw
+
+	self subclassResponsibility.! !
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:26'!
+forTransferIn: aTransferIn
+
+	self subclassResponsibility.! !
+!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:35'!
+forTransferOut: aTransferOut
+
+	self subclassResponsibility.! !
+!Account methodsFor: 'nil' stamp: 'mr 10/26/2019 20:03:08'!
+forEachTransactionsDo: aClosureToRun andInjectInto: anAccumulator
+
+	^ self transactions ! !
+!Account methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:03:43' prior: 50766030!
+forEachTransactionsDo: aClosureToRun andInjectInto: anAccumulator
+
+	^ self transactions inject: anAccumulator into: aClosureToRun.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:06:11' prior: 50765566!
+value
+
+	^ (account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
+										     String newLineString ] andInjectInto: String new ), 
+	'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:06:33' prior: 50766044!
+value
+
+	^ (account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
+										     String newLineString ] 
+				andInjectInto: String new ), 
+	'Balance = ', account balance asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:08:05' prior: 50765864!
+value
+
+	
+	^ 'Neto de transferencia = ', (account forEachTransactionsDo: [ :amount :aTransaction | amount + (aTransaction reportInfoFor: self) ] andInjectInto: 0 ) asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:08:09' prior: 50766066!
+value
+
+	
+	^ 'Neto de transferencia = ', (account forEachTransactionsDo: [ :amount :aTransaction | amount + (aTransaction reportInfoFor: self) ] andInjectInto: 0) asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:08:49' prior: 50766075!
+value
+
+	
+	^ 'Neto de transferencia = ', (account forEachTransactionsDo: [ :amount :aTransaction | amount + (aTransaction  
+																		reportInfoFor: self) ] 
+											andInjectInto: 0) asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:10:11'!
+netTransfer
+
+	^(account forEachTransactionsDo: [ :amount :aTransaction | amount + (aTransaction  
+																	reportInfoFor: self) ] 
+											andInjectInto: 0).! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:10:32' prior: 50766084!
+value
+
+	
+	^ 'Neto de transferencia = ', self netTransfer asString.! !
+!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:10:56' prior: 50766103!
+value
+	
+	^ 'Neto de transferencia = ', self netTransfer asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:12:08'!
+transactionsDescriptions
+	
+	^(account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
+										     String newLineString ] 
+				andInjectInto: String new ).
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:12:19' prior: 50766114!
+transactionsDescriptions
+	
+	^account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
+										     String newLineString ] 
+				andInjectInto: String new .
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:12:21' prior: 50766124!
+transactionsDescriptions
+	
+	^ account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
+										     String newLineString ] 
+				andInjectInto: String new .
+	! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:12:59' prior: 50766055!
+value
+
+	^ self transactionsDescriptions , 
+	'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:13:10' prior: 50766144!
+value
+
+	^ self transactionsDescriptions , 'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:13:19' prior: 50766150!
+value
+
+	^ self transactionsDescriptions, 'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:14:02'!
+balanceDescription
+
+	^'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:14:08' prior: 50766162!
+balanceDescription
+
+	^ 'Balance = ', account balance asString.! !
+!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:14:34' prior: 50766156!
+value
+
+	^ self transactionsDescriptions, self balanceDescription.! !
+
+----SNAPSHOT----(26 October 2019 20:16:55) clase2.image priorSource: 13858304!
