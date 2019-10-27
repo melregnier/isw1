@@ -5,7 +5,7 @@ TestCase subclass: #AccountReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:25:31'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:25:31'!
 test01EmptyAccountHasEmptyAccountSummary
 
 	| anAccount anAccountSummaryReport |
@@ -16,7 +16,7 @@ test01EmptyAccountHasEmptyAccountSummary
 	
 	self assert: anAccountSummaryReport value equals: 'Balance = 0' .! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:27:36'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:27:36'!
 test02AccountWithDepositHasValidAccountSummary
 
 	| anAccount anAccountSummaryReport |
@@ -29,7 +29,7 @@ test02AccountWithDepositHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Depósito por 100.',String newLineString , 'Balance = 100' .! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:30:26'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:30:26'!
 test03AccountWithWithdrawHasValidAccountSummary
 
 	| anAccount anAccountSummaryReport |
@@ -42,7 +42,7 @@ test03AccountWithWithdrawHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:30:44'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:30:44'!
 test04AccountWithTransferInHasValidAccountSummary
 
 	| anAccount aTransferingAccount anAccountSummaryReport |
@@ -57,7 +57,7 @@ test04AccountWithTransferInHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Entrada por transferencia de 100.', String newLineString , 'Balance = 100' .! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:31:31'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:31:31'!
 test05AccountWithTransferOutHasValidAccountSummary
 
 	| anAccount aTransferingAccount anAccountSummaryReport |
@@ -72,7 +72,7 @@ test05AccountWithTransferOutHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Salida por transferencia de 100.', String newLineString , 'Balance = -100' .! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:31:54'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:31:54'!
 test06AccountWithAllPossibleTransactionsHasValidAccountSummary
 
 	| anAccount aTransferingAccount anAccountSummaryReport |
@@ -94,7 +94,7 @@ test06AccountWithAllPossibleTransactionsHasValidAccountSummary
 	'Salida por transferencia de 10.', String newLineString ,
 	 'Balance = 115'.! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:32:46'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:32:46'!
 test07EmptyPortfolioHasEmptyAccountSummary
 
 	| aPortfolio anAccountSummaryReport |
@@ -105,7 +105,7 @@ test07EmptyPortfolioHasEmptyAccountSummary
 
 	self assert: anAccountSummaryReport value equals: 'Balance = 0'.! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:33:24'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:33:24'!
 test08PortfolioWithOneAccountHasTheAccountSummary
 
 	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
@@ -131,7 +131,7 @@ test08PortfolioWithOneAccountHasTheAccountSummary
 	 'Balance = 115'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:33:59'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:33:59'!
 test09PortfolioWithManyAccountsHasTheAccountsSummary
 
 	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
@@ -160,7 +160,7 @@ test09PortfolioWithManyAccountsHasTheAccountsSummary
 	'Balance = 25'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:34:30'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:34:30'!
 test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
 
 	| anAccount aTransferingAccount aPortfolio anotherPortfolio anAccountSummaryReport |
@@ -189,7 +189,7 @@ test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
 	'Balance = 115'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:44:42'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:44:42'!
 test11EmptyAccountHasEmptyNetTransferReport
 
 	| anAccount aTransferReport |
@@ -201,7 +201,7 @@ test11EmptyAccountHasEmptyNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:45:03'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:45:03'!
 test12AccountWithTransferInHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aTransferReport |
@@ -216,7 +216,7 @@ test12AccountWithTransferInHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 100'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:46:30'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:46:30'!
 test13AccountWithTransferOutHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aTransferReport |
@@ -231,7 +231,7 @@ test13AccountWithTransferOutHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = -100'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:46:45'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:46:45'!
 test14AccountWithDepositHasValidNetTransferReport
 
 	| anAccount aTransferReport |
@@ -244,7 +244,7 @@ test14AccountWithDepositHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:47:09'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:47:09'!
 test15AccountWithWithdrawHasValidNetTransferReport
 
 	| anAccount aTransferReport |
@@ -257,7 +257,7 @@ test15AccountWithWithdrawHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:47:45'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:47:45'!
 test16AccountWithAllTransactionsHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aTransferReport |
@@ -275,7 +275,7 @@ test16AccountWithAllTransactionsHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:48:26'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:48:26'!
 test17EmptyPortfolioHasValidNetTransferReport
 
 	| aPortfolio aTransferReport |
@@ -287,7 +287,7 @@ test17EmptyPortfolioHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:48:49'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:48:49'!
 test18PortfolioWithOneAccountHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aPortfolio aTransferReport |
@@ -308,7 +308,7 @@ test18PortfolioWithOneAccountHasValidNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
 ! !
 
-!AccountReportTest methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:49:09'!
+!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:49:09'!
 test19PortfolioWithManyAccountHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aPortfolio aTransferReport |
@@ -1140,32 +1140,34 @@ Object subclass: #AccountReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:50:52'!
-forDeposit: aDeposit
-
-	self subclassResponsibility.! !
-
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:26'!
-forTransferIn: aTransferIn
-
-	self subclassResponsibility.! !
-
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:35'!
-forTransferOut: aTransferOut
-
-	self subclassResponsibility.! !
-
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:51:10'!
-forWithdraw: aWithdraw
-
-	self subclassResponsibility.! !
-
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:04:38'!
+!AccountReport methodsFor: 'initialization' stamp: 'mr 10/26/2019 19:04:38'!
 initializeFor: anAccount
 	
 	account := anAccount.! !
 
-!AccountReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:03:27'!
+
+!AccountReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:50:52'!
+forDeposit: aDeposit
+
+	self subclassResponsibility.! !
+
+!AccountReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:51:26'!
+forTransferIn: aTransferIn
+
+	self subclassResponsibility.! !
+
+!AccountReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:51:35'!
+forTransferOut: aTransferOut
+
+	self subclassResponsibility.! !
+
+!AccountReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:51:10'!
+forWithdraw: aWithdraw
+
+	self subclassResponsibility.! !
+
+
+!AccountReport methodsFor: 'value' stamp: 'mr 10/26/2019 19:03:27'!
 value
 
 	self subclassResponsibility.! !
@@ -1189,32 +1191,28 @@ AccountReport subclass: #AccountSummaryReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:14:08'!
-balanceDescription
 
-	^ 'Balance = ', account balance asString.! !
-
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:22:53'!
+!AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:22:53'!
 forDeposit: aDeposit
 
 	^ 'Depósito por ', aDeposit value asString, '.'.! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:41:35'!
+!AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:41:35'!
 forTransferIn: aTransferIn
 
 	^ 'Entrada por transferencia de ', aTransferIn value asString, '.'.! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:41:55'!
+!AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:41:55'!
 forTransferOut: aTransferOut
 
 	^ 'Salida por transferencia de ', aTransferOut value asString, '.'.! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:42:25'!
+!AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:42:25'!
 forWithdraw: aWithdraw
 
 	^ 'Extracción por ', aWithdraw value asString, '.'.! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:12:21'!
+!AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 20:12:21'!
 transactionsDescriptions
 	
 	^ account forEachTransactionsDo:  [ :report : aTransaction | report, (aTransaction reportInfoFor: self), 
@@ -1222,10 +1220,17 @@ transactionsDescriptions
 				andInjectInto: String new .
 	! !
 
-!AccountSummaryReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:14:34'!
+
+!AccountSummaryReport methodsFor: 'value' stamp: 'mr 10/26/2019 20:14:34'!
 value
 
 	^ self transactionsDescriptions, self balanceDescription.! !
+
+
+!AccountSummaryReport methodsFor: 'balance description' stamp: 'mr 10/26/2019 20:14:08'!
+balanceDescription
+
+	^ 'Balance = ', account balance asString.! !
 
 
 !classDefinition: #NetTransferReport category: #'Portfolio-Solucion'!
@@ -1235,37 +1240,40 @@ AccountReport subclass: #NetTransferReport
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:39:48'!
+
+!NetTransferReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:39:48'!
 forDeposit: aDeposit
 
 	^ 0.! !
 
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:38'!
+!NetTransferReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:40:38'!
 forTransferIn: aTransferIn
 
 	^ aTransferIn value.! !
 
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:55'!
+!NetTransferReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:40:55'!
 forTransferOut: aTransferOut
 
 	^ aTransferOut value negated.! !
 
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:40:00'!
+!NetTransferReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:40:00'!
 forWithdraw: aWithdraw
 
 	^ 0.! !
 
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:10:11'!
+
+!NetTransferReport methodsFor: 'value' stamp: 'mr 10/26/2019 20:10:56'!
+value
+	
+	^ 'Neto de transferencia = ', self netTransfer asString.! !
+
+
+!NetTransferReport methodsFor: 'net transfer' stamp: 'mr 10/26/2019 20:10:11'!
 netTransfer
 
 	^(account forEachTransactionsDo: [ :amount :aTransaction | amount + (aTransaction  
 																	reportInfoFor: self) ] 
 											andInjectInto: 0).! !
-
-!NetTransferReport methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:10:56'!
-value
-	
-	^ 'Neto de transferencia = ', self netTransfer asString.! !
 
 
 !classDefinition: #AccountTransaction category: #'Portfolio-Solucion'!
@@ -1280,11 +1288,6 @@ value
 
 	self subclassResponsibility ! !
 
-!AccountTransaction methodsFor: 'value' stamp: 'mr 10/26/2019 17:49:27'!
-valueForNetTransfer
-
-	^ 0.! !
-
 
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
 affectBalance: aBalance
@@ -1292,7 +1295,7 @@ affectBalance: aBalance
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:17:08'!
+!AccountTransaction methodsFor: 'report' stamp: 'mr 10/26/2019 19:17:08'!
 reportInfoFor: aReport
 	self subclassResponsibility.! !
 
@@ -1338,14 +1341,10 @@ affectBalance: aBalance
 	^aBalance + value ! !
 
 
-!Deposit methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:16:52'!
+!Deposit methodsFor: 'report' stamp: 'mr 10/26/2019 19:16:52'!
 reportInfoFor: aReport
 	
 	^ aReport forDeposit: self.! !
-
-!Deposit methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 17:08:26'!
-reportMessage
-	^ 'Depósito por ', value asString, '.' .! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1366,40 +1365,34 @@ AccountTransaction subclass: #TransferIn
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:15:30'!
-affectBalance: aBalance
-
-	^ aBalance + mainTransfer value.! !
-
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:14:08'!
-initializeFor: aMainTransfer
-
-	mainTransfer  := aMainTransfer .! !
-
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:18:03'!
-reportInfoFor: aReport
-	
-	^ aReport forTransferIn: self.! !
-
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:51:22'!
-reportMessage
-
-	^ 'Entrada por transferencia de ', mainTransfer value asString, '.'.! !
-
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:13:32'!
+!TransferIn methodsFor: 'accesing' stamp: 'Dr 10/24/2019 15:13:32'!
 transferOut
 	
 	^ mainTransfer transferOut .! !
 
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:49:31'!
+
+!TransferIn methodsFor: 'balance' stamp: 'mr 10/21/2019 20:15:30'!
+affectBalance: aBalance
+
+	^ aBalance + mainTransfer value.! !
+
+
+!TransferIn methodsFor: 'initialization' stamp: 'mr 10/21/2019 20:14:08'!
+initializeFor: aMainTransfer
+
+	mainTransfer  := aMainTransfer .! !
+
+
+!TransferIn methodsFor: 'report' stamp: 'mr 10/26/2019 19:18:03'!
+reportInfoFor: aReport
+	
+	^ aReport forTransferIn: self.! !
+
+
+!TransferIn methodsFor: 'value' stamp: 'mr 10/21/2019 20:49:31'!
 value
 
 	^ mainTransfer  value.! !
-
-!TransferIn methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:50:10'!
-valueForNetTransfer
-
-	^ mainTransfer value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1420,40 +1413,34 @@ AccountTransaction subclass: #TransferOut
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:15:45'!
-affectBalance: aBalance
-
-	^ aBalance - mainTransfer value.! !
-
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:14:00'!
-initializeFor: aMainTransfer
-
-	mainTransfer  := aMainTransfer .! !
-
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:18:23'!
-reportInfoFor: aReport
-	
-	^ aReport forTransferOut: self.! !
-
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 16:52:07'!
-reportMessage
-
-	^ 'Salida por transferencia de ', mainTransfer value asString, '.'.! !
-
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'Dr 10/24/2019 15:14:12'!
+!TransferOut methodsFor: 'accesing' stamp: 'Dr 10/24/2019 15:14:12'!
 transferIn
 	
 	^ mainTransfer transferIn .! !
 
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/21/2019 20:49:38'!
+
+!TransferOut methodsFor: 'balance' stamp: 'mr 10/21/2019 20:15:45'!
+affectBalance: aBalance
+
+	^ aBalance - mainTransfer value.! !
+
+
+!TransferOut methodsFor: 'initialization' stamp: 'mr 10/21/2019 20:14:00'!
+initializeFor: aMainTransfer
+
+	mainTransfer  := aMainTransfer .! !
+
+
+!TransferOut methodsFor: 'report' stamp: 'mr 10/26/2019 19:18:23'!
+reportInfoFor: aReport
+	
+	^ aReport forTransferOut: self.! !
+
+
+!TransferOut methodsFor: 'value' stamp: 'mr 10/21/2019 20:49:38'!
 value
 
 	^ mainTransfer  value.! !
-
-!TransferOut methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 17:50:29'!
-valueForNetTransfer
-
-	^ mainTransfer value negated.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1497,7 +1484,7 @@ reportMessage
 	^ 'Extracción por ', value asString, '.'.! !
 
 
-!Withdraw methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:18:48'!
+!Withdraw methodsFor: 'report' stamp: 'mr 10/26/2019 19:18:48'!
 reportInfoFor: aReport
 	
 	^ aReport forWithdraw: self.! !

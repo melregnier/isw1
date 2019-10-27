@@ -1,0 +1,31 @@
+1)
+a) El decorator debe ser polimorfico con su decoratee sin embargo este puede definir nuevos mensajes para agregar fuincionalidades específicas. 
+
+
+Explique brevemente por qué el decorator adolece del problema de "identidad" o "self"
+
+b) El decorator junto con su decoratee pueden llegar a formar una cadena de decorators, donde el objeto final es aquel que se decora. Dentro de dicha cadena el mensaje enviado se reenvia al siguiente elemento de la cadena que desconoce los elementos anteriores dentro de la misma. Esto implica que en cada reenvio el valor de self se modifique de forma tal que no hay garantías acerca de los resultados obtenidos a partir de las operaciones relacionadas con la identidad.
+
+
+
+¿El orden de los decorators es importante? De un ejemplo sencillo y corto que lo muestre
+
+
+El orden de los decoratos en algunas ocasiones es importante. Por ejemplo si tuviera un objeto Humano el cual tiene los decoradores Remera y Buzo no debería ser decorado primero por Buzo y luego por Remera sino viceversa.(Todos sabemos que la remera va antes que el buzo!) Se podría definir un builder que se encargue de aplicar los decorators en un orden correcto al objeto Humano. 
+
+
+
+
+2)
+
+a)
+----
+
+b)
+¿Qué diferencia existe en Proxy y Decorator?
+
+El proxy tiene como objetivo controlar el acceso al objeto al cual referencia mientras que el decorator tiene como objetivo agregar dinamicamente funcionalidades o responsabilidades al objeto al cual referencia de forma flexible.
+
+c)
+¿Qué similitudes existe en Proxy y Decorator? 
+En ambos patrones existe un objeto que se coloca de manera talque cuando se desea enviar un mensaje al objeto al cual referencian, dicho mensaje primero pasa por ellos y luego es reenviado al mismo. Es decir esto agrega un objeto intermedio entre el objeto referenciado y quien quiera interactuar con el. Además este objeto puede realizar determinadas acciones que cambiaran dependiendo de cada patrón.
