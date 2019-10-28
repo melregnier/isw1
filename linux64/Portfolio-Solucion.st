@@ -5,8 +5,41 @@ TestCase subclass: #AccountReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:25:31'!
-test01EmptyAccountHasEmptyAccountSummary
+!AccountReportTest methodsFor: 'test - private' stamp: 'dr 10/27/2019 20:21:15'!
+accountSummaryForAllTransactions
+
+	^ 'Depósito por 50.', String newLineString ,
+	'Extracción por 25.', String newLineString ,
+	'Entrada por transferencia de 100.', String newLineString ,
+	'Salida por transferencia de 10.', String newLineString ,
+	 'Balance = 115'.! !
+
+!AccountReportTest methodsFor: 'test - private' stamp: 'dr 10/27/2019 20:34:08'!
+netTransferReportFor: aValue
+
+	^ 'Neto de transferencia = ', aValue asString.
+! !
+
+!AccountReportTest methodsFor: 'test - private' stamp: 'dr 10/27/2019 20:28:32'!
+registerAllTransactionsIn: anAccount
+
+	| aTransferingAccount |
+	
+	aTransferingAccount := ReceptiveAccount new.
+
+	Deposit register: 50 on: anAccount.
+	Withdraw register: 25 on: anAccount. 
+	Transfer register: 100 from: aTransferingAccount to: anAccount.
+	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	
+	^ aTransferingAccount .
+	
+
+! !
+
+
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:25:59'!
+test01EmptyReceptiveAccountHasEmptyAccountSummary
 
 	| anAccount anAccountSummaryReport |
 
@@ -16,8 +49,8 @@ test01EmptyAccountHasEmptyAccountSummary
 	
 	self assert: anAccountSummaryReport value equals: 'Balance = 0' .! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:27:36'!
-test02AccountWithDepositHasValidAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:07'!
+test02ReceptiveAccountWithDepositHasValidAccountSummary
 
 	| anAccount anAccountSummaryReport |
 	
@@ -29,8 +62,8 @@ test02AccountWithDepositHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Depósito por 100.',String newLineString , 'Balance = 100' .! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:30:26'!
-test03AccountWithWithdrawHasValidAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:14'!
+test03ReceptiveAccountWithWithdrawHasValidAccountSummary
 
 	| anAccount anAccountSummaryReport |
 	
@@ -42,8 +75,8 @@ test03AccountWithWithdrawHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Extracción por 50.',String newLineString , 'Balance = -50' .! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:30:44'!
-test04AccountWithTransferInHasValidAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:19'!
+test04ReceptiveAccountWithTransferInHasValidAccountSummary
 
 	| anAccount aTransferingAccount anAccountSummaryReport |
 	
@@ -57,8 +90,8 @@ test04AccountWithTransferInHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Entrada por transferencia de 100.', String newLineString , 'Balance = 100' .! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:31:31'!
-test05AccountWithTransferOutHasValidAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:26'!
+test05ReceptiveAccountWithTransferOutHasValidAccountSummary
 
 	| anAccount aTransferingAccount anAccountSummaryReport |
 	
@@ -72,27 +105,17 @@ test05AccountWithTransferOutHasValidAccountSummary
 	self assert: anAccountSummaryReport value equals: 
 	'Salida por transferencia de 100.', String newLineString , 'Balance = -100' .! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:31:54'!
-test06AccountWithAllPossibleTransactionsHasValidAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:34'!
+test06ReceptiveAccountWithAllPossibleTransactionsHasValidAccountSummary
 
-	| anAccount aTransferingAccount anAccountSummaryReport |
+	| anAccount anAccountSummaryReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	self registerAllTransactionsIn: anAccount .
 
 	anAccountSummaryReport := AccountSummaryReport for: anAccount.
 
-	self assert: anAccountSummaryReport value equals: 
-	'Depósito por 50.', String newLineString ,
-	'Extracción por 25.', String newLineString ,
-	'Entrada por transferencia de 100.', String newLineString ,
-	'Salida por transferencia de 10.', String newLineString ,
-	 'Balance = 115'.! !
+	self assert: anAccountSummaryReport value equals: self accountSummaryForAllTransactions. ! !
 
 !AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:32:46'!
 test07EmptyPortfolioHasEmptyAccountSummary
@@ -105,44 +128,28 @@ test07EmptyPortfolioHasEmptyAccountSummary
 
 	self assert: anAccountSummaryReport value equals: 'Balance = 0'.! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:33:24'!
-test08PortfolioWithOneAccountHasTheAccountSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:26:45'!
+test08PortfolioWithOneReceptiveAccountHasTheAccountSummary
 
-	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
+	| anAccount aPortfolio anAccountSummaryReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
-
+	self registerAllTransactionsIn: anAccount.
+	
 	aPortfolio := Portfolio new.
 	aPortfolio add: anAccount.
 
 	anAccountSummaryReport := AccountSummaryReport for: aPortfolio.
 
-	self assert: anAccountSummaryReport value equals: 
-	'Depósito por 50.', String newLineString ,
-	'Extracción por 25.', String newLineString ,
-	'Entrada por transferencia de 100.', String newLineString ,
-	'Salida por transferencia de 10.', String newLineString ,
-	 'Balance = 115'.
-! !
+	self assert: anAccountSummaryReport value equals: self accountSummaryForAllTransactions.! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:33:59'!
-test09PortfolioWithManyAccountsHasTheAccountsSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:30:19'!
+test09PortfolioWithManyReceptiveAccountsHasTheAccountsSummary
 
 	| anAccount aTransferingAccount aPortfolio anAccountSummaryReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	aTransferingAccount := self registerAllTransactionsIn: anAccount .
 
 	aPortfolio := Portfolio new.
 	aPortfolio add: anAccount.
@@ -160,18 +167,13 @@ test09PortfolioWithManyAccountsHasTheAccountsSummary
 	'Balance = 25'.
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:34:30'!
-test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:29:51'!
+test10PortfolioWithPortfolioWithReceptiveAccountsHasTheAccountsSummary
 
-	| anAccount aTransferingAccount aPortfolio anotherPortfolio anAccountSummaryReport |
+	| anAccount aPortfolio anotherPortfolio anAccountSummaryReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	self registerAllTransactionsIn: anAccount .
 
 	anotherPortfolio := Portfolio new.
 	anotherPortfolio add: anAccount.
@@ -189,8 +191,8 @@ test10PortfolioWithPortfolioWithAccountsHasTheAccountsSummary
 	'Balance = 115'.
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:44:42'!
-test11EmptyAccountHasEmptyNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:27:10'!
+test11EmptyReceptiveAccountHasEmptyNetTransferReport
 
 	| anAccount aTransferReport |
 	
@@ -201,8 +203,8 @@ test11EmptyAccountHasEmptyNetTransferReport
 	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:45:03'!
-test12AccountWithTransferInHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:35:02'!
+test12ReceptiveAccountWithTransferInHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aTransferReport |
 
@@ -213,11 +215,11 @@ test12AccountWithTransferInHasValidNetTransferReport
 
 	aTransferReport := NetTransferReport for: anAccount .
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 100'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 100).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:46:30'!
-test13AccountWithTransferOutHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:35:31'!
+test13ReceptiveAccountWithTransferOutHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aTransferReport |
 
@@ -228,11 +230,11 @@ test13AccountWithTransferOutHasValidNetTransferReport
 
 	aTransferReport := NetTransferReport for: aTransferingAccount .
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = -100'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: -100).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:46:45'!
-test14AccountWithDepositHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:36:27'!
+test14ReceptiveAccountWithDepositHasValidNetTransferReport
 
 	| anAccount aTransferReport |
 
@@ -241,11 +243,11 @@ test14AccountWithDepositHasValidNetTransferReport
 
 	aTransferReport := NetTransferReport for: anAccount .
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 0).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:47:09'!
-test15AccountWithWithdrawHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:37:00'!
+test15ReceptiveAccountWithWithdrawHasValidNetTransferReport
 
 	| anAccount aTransferReport |
 
@@ -254,28 +256,23 @@ test15AccountWithWithdrawHasValidNetTransferReport
 
 	aTransferReport := NetTransferReport for: anAccount .
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 0).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:47:45'!
-test16AccountWithAllTransactionsHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:37:24'!
+test16ReceptiveAccountWithAllTransactionsHasValidNetTransferReport
 
-	| anAccount aTransferingAccount aTransferReport |
+	| anAccount aTransferReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	self registerAllTransactionsIn: anAccount .
 
 	aTransferReport := NetTransferReport for: anAccount .
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 90).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:48:26'!
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:38:00'!
 test17EmptyPortfolioHasValidNetTransferReport
 
 	| aPortfolio aTransferReport |
@@ -284,42 +281,32 @@ test17EmptyPortfolioHasValidNetTransferReport
 	
 	aTransferReport := NetTransferReport for: aPortfolio.
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 0).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:48:49'!
-test18PortfolioWithOneAccountHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:39:58'!
+test18PortfolioWithOneReceptiveAccountHasValidNetTransferReport
 
-	| anAccount aTransferingAccount aPortfolio aTransferReport |
+	| anAccount aPortfolio aTransferReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	self registerAllTransactionsIn: anAccount .
 
 	aPortfolio := Portfolio new.
 	aPortfolio  add: anAccount.
 
 	aTransferReport := NetTransferReport for: aPortfolio.
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 90'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 90).
 ! !
 
-!AccountReportTest methodsFor: 'test' stamp: 'mr 10/26/2019 19:49:09'!
-test19PortfolioWithManyAccountHasValidNetTransferReport
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/27/2019 20:41:10'!
+test19PortfolioWithManyReceptiveAccountsHasValidNetTransferReport
 
 	| anAccount aTransferingAccount aPortfolio aTransferReport |
 	
 	anAccount := ReceptiveAccount new.
-	aTransferingAccount := ReceptiveAccount new.
-
-	Deposit register: 50 on: anAccount.
-	Withdraw register: 25 on: anAccount. 
-	Transfer register: 100 from: aTransferingAccount to: anAccount.
-	Transfer register: 10 from: anAccount to: aTransferingAccount.
+	aTransferingAccount := self registerAllTransactionsIn: anAccount .
 
 	aPortfolio := Portfolio new.
 	aPortfolio add: anAccount.
@@ -327,7 +314,7 @@ test19PortfolioWithManyAccountHasValidNetTransferReport
 	
 	aTransferReport := NetTransferReport for: aPortfolio.
 
-	self assert: aTransferReport value equals: 'Neto de transferencia = 0'.
+	self assert: aTransferReport value equals: (self netTransferReportFor: 0).
 ! !
 
 
@@ -889,11 +876,10 @@ addAccountWith: anAmount to: aPortfolio
 	aPortfolio add: anAccount .
 	^aPortfolio .! !
 
-
 
 !classDefinition: #Account category: #'Portfolio-Solucion'!
 Object subclass: #Account
-	instanceVariableNames: ''
+	instanceVariableNames: 'name'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -920,6 +906,11 @@ addTransactionsTo: aCollectionOfTransactions
 
 	self subclassResponsibility ! !
 
+!Account methodsFor: 'transactions' stamp: 'mr 10/26/2019 20:03:43'!
+forEachTransactionsDo: aClosureToRun andInjectInto: anAccumulator
+
+	^ self transactions inject: anAccumulator into: aClosureToRun.! !
+
 !Account methodsFor: 'transactions' stamp: 'HAW 5/25/2019 12:23:15'!
 transactions
 
@@ -932,10 +923,27 @@ addedTo: aPortfolio
 	self subclassResponsibility ! !
 
 
-!Account methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 20:03:43'!
-forEachTransactionsDo: aClosureToRun andInjectInto: anAccumulator
+!Account methodsFor: 'initialization' stamp: 'dr 10/27/2019 16:46:19'!
+initializeNamed: aName
 
-	^ self transactions inject: anAccumulator into: aClosureToRun.! !
+	name := aName .! !
+
+
+!Account methodsFor: 'accesing' stamp: 'dr 10/27/2019 16:47:01'!
+name
+
+	^ name .! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Account class' category: #'Portfolio-Solucion'!
+Account class
+	instanceVariableNames: ''!
+
+!Account class methodsFor: 'as yet unclassified' stamp: 'dr 10/27/2019 16:44:49'!
+named: aName
+	
+	^ self new initializeNamed: aName .! !
 
 
 !classDefinition: #Portfolio category: #'Portfolio-Solucion'!
@@ -1178,7 +1186,7 @@ value
 AccountReport class
 	instanceVariableNames: ''!
 
-!AccountReport class methodsFor: 'as yet unclassified' stamp: 'mr 10/26/2019 19:04:19'!
+!AccountReport class methodsFor: 'instance initialization' stamp: 'mr 10/26/2019 19:04:19'!
 for: anAccount
 
 	^ self new initializeFor: anAccount.! !
@@ -1190,7 +1198,6 @@ AccountReport subclass: #AccountSummaryReport
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
 
 !AccountSummaryReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:22:53'!
 forDeposit: aDeposit
@@ -1239,7 +1246,6 @@ AccountReport subclass: #NetTransferReport
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
-
 
 !NetTransferReport methodsFor: 'transactions description' stamp: 'mr 10/26/2019 19:39:48'!
 forDeposit: aDeposit

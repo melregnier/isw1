@@ -27342,3 +27342,796 @@ AccountReportTest removeSelector: #test19PortfolioWithManyAccountHasValidNetTran
 ----SNAPSHOT----(27 October 2019 20:42:42) clase2.image priorSource: 13956882!
 
 ----QUIT----(27 October 2019 20:42:44) clase2.image priorSource: 13956962!
+
+----STARTUP---- (28 October 2019 14:17:31) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:30:08' prior: 50766509!
+value
+	
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | self addIndented: anAccount to: report withDepth: depth ] withDepth: 0.  
+	! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:32:17'!
+addIndented: anAccount to: report withDepth: depth
+
+	^ report, self tabTimes: depth, anAccount name.
+	! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:36:55'!
+tabTimes: depth
+
+	| tabs |
+	tabs := '    '.
+
+	^ depth timesRepeat: [ tabs := tabs, '    ' ].! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:37:12' prior: 50767829!
+tabTimes: depth
+
+	| tabs |
+	
+	tabs := String new.
+
+	^ depth timesRepeat: [ tabs := tabs, '    ' ].! !
+
+|tab|
+tab := 0.
+0 timesRepeat: [ tab := tab + 2 ].!
+
+|tab|
+tab := 0.
+4 timesRepeat: [ tab := tab + 2 ].!
+
+tab!
+
+|tab|
+tab := 0.
+4 timesRepeat: [ tab := tab + 2 ].
+tab!
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:39:34' prior: 50767835!
+tabTimes: depth
+
+	| tabs |
+	
+	tabs := String new.
+
+	depth timesRepeat: [ tabs := tabs, '    ' ].
+	
+	^ tabs.! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:42:28'!
+add: anAccount toReport: report withIndentationDepth: depth
+
+	^ report, self tabTimes: depth, anAccount name.
+	! !
+!AccountStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:42:28' prior: 50767815!
+value
+	
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: 0.  
+	! !
+
+AccountStructureReport removeSelector: #addIndented:to:withDepth:!
+!Portfolio methodsFor: 'nil' stamp: 'dr 10/28/2019 14:44:05'!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:46:38' prior: 50767870!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	aClosureToRun with: aReport with: self with: aDepth.
+	
+	accounts inject: aReport into: [:report :anAccount | anAccount forEachAccountInject: report into: anAccount withDepth: aDepth + 1].! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:47:47' prior: 50767876!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	aClosureToRun with: aReport with: self with: aDepth.
+	
+	accounts inject: aReport into: [:report :anAccount | anAccount forEachAccountInject: report into: anAccount withDepth: aDepth + 1].
+	
+	^ aReport.! !
+!ReceptiveAccount methodsFor: 'nil' stamp: 'dr 10/28/2019 14:50:43'!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	^ aReport, aClosureToRun with: aReport with: self with: aDepth.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:51:55' prior: 50767899!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	^ aReport, (aClosureToRun with: aReport with: self with: aDepth).! !
+!NetTransferReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:52:44' prior: 50766109!
+value
+	
+	^ 'Neto de transferencia = ', self netTransfer asString.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:53:45' prior: 50767888!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	aClosureToRun value: aReport value: self value: aDepth.
+	
+	accounts inject: aReport into: [:report :anAccount | anAccount forEachAccountInject: report into: anAccount withDepth: aDepth + 1].
+	
+	^ aReport.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:53:59' prior: 50767907!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	^ aReport, (aClosureToRun value: aReport value: self value: aDepth).! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 14:54:24' prior: 50767853!
+add: anAccount toReport: report withIndentationDepth: depth
+
+	^ report, (self tabTimes: depth), anAccount name.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 14:55:14' prior: 50767921!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	aClosureToRun value: aReport value: self value: aDepth.
+	
+	accounts inject: aReport into: [:report :anAccount | anAccount forEachAccountInject: report into: aClosureToRun withDepth: aDepth + 1].
+	
+	^ aReport.! !
+
+self tabTimes: 0!
+
+anAccount name!
+
+report, (self tabTimes: depth), anAccount name.!
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 15:02:27' prior: 50767941!
+add: anAccount toReport: report withIndentationDepth: depth
+
+	^ report, (self tabTimes: depth), anAccount name.
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:04:20' prior: 50767948!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aClosureToRun value: aReport value: self value: aDepth.
+	
+	accounts inject: reportExtended into: [:report :anAccount | anAccount forEachAccountInject: report into: aClosureToRun withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+
+aClosureToRun value: aReport value: self value: aDepth!
+
+aClosureToRun value: aReport value: self value: aDepth!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:07:17' prior: 50767933!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	^ aClosureToRun value: aReport value: self value: aDepth.! !
+
+anAccount forEachAccountInject: report into: aClosureToRun withDepth: aDepth + 1!
+
+----SNAPSHOT----(28 October 2019 15:11:03) clase2.image priorSource: 13957042!
+
+----SNAPSHOT----(28 October 2019 15:11:06) clase2.image priorSource: 13963093!
+
+----QUIT----(28 October 2019 15:11:27) clase2.image priorSource: 13963173!
+
+----STARTUP---- (28 October 2019 15:11:30) as /home/drenteria/Documentos/isI/isw1/linux64/clase2.image!
+
+
+Smalltalk removeClassNamed: #Transfer!
+
+Smalltalk removeClassNamed: #Withdraw!
+
+Smalltalk removeClassNamed: #TransferOut!
+
+Smalltalk removeClassNamed: #TransferIn!
+
+Smalltalk removeClassNamed: #Deposit!
+
+Smalltalk removeClassNamed: #AccountTransaction!
+
+Smalltalk removeClassNamed: #NetTransferReport!
+
+Smalltalk removeClassNamed: #AccountSummaryReport!
+
+Smalltalk removeClassNamed: #AccountStructureReport!
+
+Smalltalk removeClassNamed: #AccountReport!
+
+Smalltalk removeClassNamed: #ReceptiveAccount!
+
+Smalltalk removeClassNamed: #Portfolio!
+
+Smalltalk removeClassNamed: #Account!
+
+Smalltalk removeClassNamed: #TransferTest!
+
+Smalltalk removeClassNamed: #ReceptiveAccountTest!
+
+Smalltalk removeClassNamed: #PortfolioTest!
+
+Smalltalk removeClassNamed: #AccountReportTest!
+
+----End fileIn of /home/drenteria/Documentos/isI/isw1/linux64/Portfolio-SolucionParcial.st----!
+
+anAccount forEachAccountInject: report into: aClosureToRun withDepth: aDepth + 1!
+
+accounts inject: String new into: [:report :anAccount | anAccount forEachAccountInject: report into: [:eport :acct | '1'] withDepth: 1]!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:18:45' prior: 50769138!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aClosureToRun value: aReport value: self value: aDepth.
+	
+	accounts do: [:report :anAccount | reportExtended := anAccount forEachAccountInject: report into: aClosureToRun withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:19:20' prior: 50769733!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aClosureToRun value: aReport value: self value: aDepth.
+	
+	accounts do: [ :anAccount | reportExtended := anAccount forEachAccountInject: reportExtended into: aClosureToRun withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 15:20:26' prior: 50769315!
+add: anAccount toReport: report withIndentationDepth: depth
+
+	^ report, (self tabTimes: depth), anAccount name, String newLineString.
+	! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:23:10' prior: 50768362!
+test20ReceptiveAccountHasNameOfAccountInAccountStructureReport
+
+	| anAccount  aStructureReport |
+	
+	anAccount := ReceptiveAccount named: 'Cuenta de Dago'.
+	
+	aStructureReport := AccountStructureReport for: anAccount .
+
+	self assert: aStructureReport value equals: 'Cuenta de Dago', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:23:43' prior: 50768374!
+test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport
+
+	| aPortfolio  aStructureReport |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:23:56' prior: 50768386!
+test22PortfolioWithOneReceptiveAccountHasNameOfPortfolioAndReceptiveAccountInAccountStructureReport
+
+	| aPortfolio  aStructureReport aReceptiveAccount |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+	aPortfolio add: aReceptiveAccount .
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago', String newLineString ,  '    Cuenta 1', String newLineString.	
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:30:16'!
+test23PortfolioWithOnePortfolioWithReceptiveAccountHasNameOfPortfoliosAndReceptiveAccountInAccountStructureReport
+
+	| aPortfolio anotherPortfolio aStructureReport aReceptiveAccount |
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+	anotherPortfolio add: aReceptiveAccount .
+	
+	aPortfolio := Portfolio named: 'Portfolio de Melissa'.
+
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Melissa', String newLineString , '    Portfolio de Dago', String newLineString ,  '        Cuenta 1', String newLineString.	
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:30:36' prior: 50769813!
+test23PortfolioWithOnePortfolioWithReceptiveAccountHasNameOfPortfoliosAndReceptiveAccountInAccountStructureReport
+
+	| aPortfolio anotherPortfolio aStructureReport aReceptiveAccount |
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+	anotherPortfolio add: aReceptiveAccount .
+	
+	aPortfolio := Portfolio named: 'Portfolio de Melissa'.
+	aPortfolio add: anotherPortfolio.
+
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Melissa', String newLineString , '    Portfolio de Dago', String newLineString ,  '        Cuenta 1', String newLineString.	
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:30:57' prior: 50769837!
+test23PortfolioWithOnePortfolioWithReceptiveAccountHasNameOfPortfoliosAndReceptiveAccountInAccountStructureReport
+
+	| aPortfolio anotherPortfolio aStructureReport aReceptiveAccount |
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+	anotherPortfolio add: aReceptiveAccount .
+	
+	aPortfolio := Portfolio named: 'Portfolio de Melissa'.
+	aPortfolio add: anotherPortfolio.
+
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 
+	'Portfolio de Melissa', String newLineString ,
+	'    Portfolio de Dago', String newLineString,
+	 '        Cuenta 1', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:31:07' prior: 50769862!
+test23PortfolioWithOnePortfolioWithReceptiveAccountHasNameOfPortfoliosAndReceptiveAccountInAccountStructureReport
+
+	| aPortfolio anotherPortfolio aStructureReport aReceptiveAccount |
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+	anotherPortfolio add: aReceptiveAccount .
+	
+	aPortfolio := Portfolio named: 'Portfolio de Melissa'.
+	aPortfolio add: anotherPortfolio.
+
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 
+	'Portfolio de Melissa', String newLineString ,
+	'    Portfolio de Dago', String newLineString,
+	'        Cuenta 1', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:37:31'!
+test24ReceptiveAccountWithNoTransactionsHasNameOfReceptiveAccountAndBalanceInAccountSummaryStructureReport
+
+	| aSummaryStructureReport aReceptiveAccount |
+
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+
+	aSummaryStructureReport := AccountStructureReport for: aReceptiveAccount.
+
+	self assert: aSummaryStructureReport value equals: 
+	'Cuenta 1', String newLineString,
+	'    Balance = 0'.
+! !
+
+!classDefinition: #AccountSummaryStructureReport category: #'Portfolio-Solucion'!
+AccountReport subclass: #AccountSummaryStructureReport
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 15:38:08' prior: 50769911!
+test24ReceptiveAccountWithNoTransactionsHasNameOfReceptiveAccountAndBalanceInAccountSummaryStructureReport
+
+	| aSummaryStructureReport aReceptiveAccount |
+
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+
+	aSummaryStructureReport := AccountSummaryStructureReport for: aReceptiveAccount.
+
+	self assert: aSummaryStructureReport value equals: 
+	'Cuenta 1', String newLineString,
+	'    Balance = 0'.
+! !
+!AccountSummaryStructureReport methodsFor: 'no messages' stamp: 'dr 10/28/2019 15:40:41'!
+value
+
+! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:41:47' prior: 50769950!
+value
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: 0.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:43:41' prior: 50769954!
+value
+
+	^ account reportInfoFor: self.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:46:38'!
+forPortfolio: aPortfolio andDepth: aDepth
+
+	^ (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth + 1), self balanceDescriptionWithDepth: aDepth.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:47:53'!
+balanceDescriptionFor: anAccount WithDepth: aDepth
+
+	^ self tab , 'Balance = '.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:48:23' prior: 50769980!
+balanceDescriptionFor: anAccount WithDepth: aDepth
+
+	^ self tabTimes: aDepth, 'Balance = ', anAccount balance asString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:48:54' prior: 50769968!
+forPortfolio: aPortfolio andDepth: aDepth
+
+	^ (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth + 1), (self balanceDescriptionFor: aPortfolio WithDepth: aDepth).! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:50:43'!
+forAccount: anAccount andDepth: aDepth
+
+	^ (anAccount ), (self balanceDescriptionFor: anAccount WithDepth: aDepth + 1).! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:50:59' prior: 50769995!
+forPortfolio: aPortfolio andDepth: aDepth
+
+	^ (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth + 1), (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1).! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:53:09'!
+forAccount: anAccount forReport: aReport andDepth: aDepth
+
+	^ (anAccount forEachTransactionsDo:[ :report :transaction |  ]  andInjectInto: String new), (self balanceDescriptionFor: anAccount WithDepth: aDepth + 1).! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 15:56:03'!
+reportInfoFor: aReport withDepth: aDepth
+
+	^ aReport forReceptiveAccount: self withDepth: aDepth.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:01:43'!
+forReceptiveAccount: aReceptiveAccount withDepth: aDepth
+
+	^ self tabTimes: aDepth, (aReceptiveAccount name), String newLineString,
+	  (aReceptiveAccount forEachTransactionsDo: [:aReport :aTransaction | aReport, (self tabTimes: aDepth + 1), 	         (aTransaction reportInfoFor: self), String newLineString] andInjectInto: String new),
+	  (self balanceDescriptionFor: aReceptiveAccount WithDepth: aDepth + 1).! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:02:13' prior: 50770044!
+forReceptiveAccount: aReceptiveAccount withDepth: aDepth
+
+	^ self tabTimes: aDepth, (aReceptiveAccount name), String newLineString,
+	  (aReceptiveAccount forEachTransactionsDo: [:aReport :aTransaction | aReport, (self tabTimes: aDepth + 1), 	 											             (aTransaction reportInfoFor: self), String newLineString] 
+						    andInjectInto: String new),
+	  (self balanceDescriptionFor: aReceptiveAccount WithDepth: aDepth + 1).! !
+!AccountReport methodsFor: 'nil' stamp: 'dr 10/28/2019 16:02:29'!
+tabTimes: depth
+
+	| tabs |
+	
+	tabs := String new.
+
+	depth timesRepeat: [ tabs := tabs, '    ' ].
+	
+	^ tabs.! !
+
+AccountStructureReport removeSelector: #tabTimes:!
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:03:16'!
+forWithdraw: aWithdraw
+
+	^ 'Extracción por ', aWithdraw value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:03:29' prior: 50770086!
+forWithdraw: aDeposit
+
+	^ 'Extracción por ', aDeposit value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:03:35'!
+forDeposit: aDeposit
+
+	^ 'Extracción por ', aDeposit value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:03:49' prior: 50770092!
+forWithdraw: aWithdraw
+
+	^ 'Extracción por ', aWithdraw value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:03'!
+forTransferIn: aWithdraw
+
+	^ 'Extracción por ', aWithdraw value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:11' prior: 50770110!
+forTransferIn: aTransferIn
+
+	^ 'Extracción por ', aTransferIn value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:24' prior: 50770116!
+forTransferIn: aTransferIn
+
+	^ 'Entrada por transferencia de ', aTransferIn value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:38' prior: 50770098!
+forDeposit: aDeposit
+
+	^ 'Depósito por ', aDeposit value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:49'!
+forTransferOut: aTransferIn
+
+	^ 'Entrada por transferencia de ', aTransferIn value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:04:56' prior: 50770134!
+forTransferOut: aTransferOut
+
+	^ 'Entrada por transferencia de ', aTransferOut value.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:05:02' prior: 50770141!
+forTransferOut: aTransferOut
+
+	^ 'Salida por transferencia de ', aTransferOut value.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:05:54'!
+reportInfoFor: aReport withDepth: aDepth
+
+	^ aReport forPortfolio: self withDepth: aDepth.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:06:56'!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	(aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth + 1), (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1).! !
+
+AccountSummaryStructureReport removeSelector: #forAccount:forReport:andDepth:!
+
+AccountSummaryStructureReport removeSelector: #forAccount:andDepth:!
+
+AccountSummaryStructureReport removeSelector: #forPortfolio:andDepth:!
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:10:11' prior: 50770160!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	   (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+		    												withDepth: depth ]
+				  withDepth: aDepth + 1),
+	 (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1).! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:10:44' prior: 50770182!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	   (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+		    												withDepth: depth ]
+				  withDepth: aDepth + 1),
+	 (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1), String newLineString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:10:54' prior: 50770061!
+forReceptiveAccount: aReceptiveAccount withDepth: aDepth
+
+	^ self tabTimes: aDepth, (aReceptiveAccount name), String newLineString,
+	  (aReceptiveAccount forEachTransactionsDo: [:aReport :aTransaction | aReport, (self tabTimes: aDepth + 1), 	 											             (aTransaction reportInfoFor: self), String newLineString] 
+						    andInjectInto: String new),
+	  (self balanceDescriptionFor: aReceptiveAccount WithDepth: aDepth + 1), String newLineString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:11:40' prior: 50770198!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	   (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+		    												withDepth: depth ]
+				  withDepth: aDepth + 1),
+	  (self tabTimes: aDepth + 1),
+	  (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1), String newLineString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:11:57' prior: 50770233!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	   (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+		    												withDepth: depth ]
+				  withDepth: aDepth + 1),
+	  (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1), String newLineString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:14:08' prior: 50769963!
+value
+
+	^ account reportInfoFor: self withDepth: 0.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:14:34' prior: 50770214!
+forReceptiveAccount: aReceptiveAccount withDepth: aDepth
+
+	^ (self tabTimes: aDepth), (aReceptiveAccount name), String newLineString,
+	  (aReceptiveAccount forEachTransactionsDo: [:aReport :aTransaction | aReport, (self tabTimes: aDepth + 1), 	 											             (aTransaction reportInfoFor: self), String newLineString] 
+						    andInjectInto: String new),
+	  (self balanceDescriptionFor: aReceptiveAccount WithDepth: aDepth + 1), String newLineString.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:14:52' prior: 50769987!
+balanceDescriptionFor: anAccount WithDepth: aDepth
+
+	^ (self tabTimes: aDepth), 'Balance = ', anAccount balance asString.! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 16:15:13' prior: 50769934!
+test24ReceptiveAccountWithNoTransactionsHasNameOfReceptiveAccountAndBalanceInAccountSummaryStructureReport
+
+	| aSummaryStructureReport aReceptiveAccount |
+
+	aReceptiveAccount := ReceptiveAccount named: 'Cuenta 1'.
+
+	aSummaryStructureReport := AccountSummaryStructureReport for: aReceptiveAccount.
+
+	self assert: aSummaryStructureReport value equals: 
+	'Cuenta 1', String newLineString,
+	'    Balance = 0', String newLineString.
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:17:00'!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth.  
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:18:34'!
+forReceptiveAccount: aReceptiveAccount withDepth: aDepth
+
+	^ (self tabTimes: aDepth), aReceptiveAccount name, String newLineString.! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:19:33' prior: 50770314!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | self add: anAccount toReport: report withIndentationDepth: depth ] withDepth: aDepth + 1.  
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:20:05' prior: 50770332!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self withDepth: depth ] withDepth: aDepth + 1.  
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:20:09' prior: 50770342!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self withDepth: depth ] withDepth: aDepth + 1.
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:20:45' prior: 50770352!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ account forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+			    										  withDepth: depth ]
+		          withDepth: aDepth + 1.
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:22:00' prior: 50770362!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ (self tabTimes: aDepth), aPortfolio name, String newLineString,
+	  account forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+			    										  withDepth: depth ]
+		          withDepth: aDepth + 1,
+	  String newLineString.
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:22:29' prior: 50769328!
+value
+	
+	^ account reportInfoFor: self withDepth: 0.! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:23:21' prior: 50770373!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ (self tabTimes: aDepth), aPortfolio name, String newLineString,
+	   (account forEachAccountInject: String new into: [ :report :anAccount :depth | report, anAccount reportInfoFor: self 
+			    										  withDepth: depth ]
+		           withDepth: aDepth + 1),
+	  String newLineString.
+! !
+!AccountStructureReport methodsFor: 'value' stamp: 'dr 10/28/2019 16:23:54' prior: 50770392!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ (self tabTimes: aDepth), aPortfolio name, String newLineString,
+	   (account forEachAccountInject: String new into: [ :report :anAccount :depth | report, (anAccount reportInfoFor: self 
+			    										  withDepth: depth) ]
+		           withDepth: aDepth + 1),
+	  String newLineString.
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:26:47' prior: 50769747!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := String new.
+
+	accounts do: [ :anAccount | reportExtended := anAccount forEachAccountInject: reportExtended into: aClosureToRun 
+																withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+!AccountSummaryStructureReport methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:29:01' prior: 50770250!
+forPortfolio: aPortfolio withDepth: aDepth
+
+	^ self tabTimes: aDepth, aPortfolio name, String newLineString, 
+	   (aPortfolio forEachAccountInject: String new into: [ :report :anAccount :depth | report, (anAccount reportInfoFor: self 
+		    												withDepth: depth) ]
+				  withDepth: aDepth + 1),
+	  (self balanceDescriptionFor: aPortfolio WithDepth: aDepth + 1), String newLineString.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:31:42' prior: 50770420!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+		reportExtended := aReport.
+
+	accounts do: [ :anAccount | reportExtended := anAccount forEachAccountInject: reportExtended into: aClosureToRun 
+																withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:31:47' prior: 50770449!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aReport.
+
+	accounts do: [ :anAccount | reportExtended := anAccount forEachAccountInject: reportExtended into: aClosureToRun 
+																withDepth: aDepth + 1].
+	
+	^ reportExtended.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:32:12' prior: 50770462!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aReport.
+
+	accounts do: [ :anAccount | reportExtended := reportExtended, (anAccount forEachAccountInject: reportExtended into: aClosureToRun 
+																withDepth: aDepth + 1)].
+	
+	^ reportExtended.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:32:32' prior: 50770475!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	| reportExtended |
+	
+	reportExtended := aReport.
+
+	accounts do: [ :anAccount | reportExtended := reportExtended, (anAccount forEachAccountInject: reportExtended
+																				     into: aClosureToRun 
+																				     withDepth: aDepth + 1)].
+	
+	^ reportExtended.! !
+
+ReceptiveAccount removeSelector: #forEachAccountInject:into:withDepth:!
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 16:36:36' prior: 50769782!
+test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport
+
+	| aPortfolio  aStructureReport |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago'.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 16:37:01' prior: 50770504!
+test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport
+
+	| aPortfolio  aStructureReport |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 16:37:07' prior: 50770516!
+test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport
+
+	| aPortfolio  aStructureReport |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago ', String newLineString.
+! !
+!AccountReportTest methodsFor: 'test' stamp: 'dr 10/28/2019 16:37:15' prior: 50770529!
+test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport
+
+	| aPortfolio  aStructureReport |
+	
+	aPortfolio := Portfolio named: 'Portfolio de Dago'.
+	
+	aStructureReport := AccountStructureReport for: aPortfolio .
+
+	self assert: aStructureReport value equals: 'Portfolio de Dago', String newLineString.
+! !
+
+AccountStructureReport removeSelector: #add:toReport:withIndentationDepth:!
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'dr 10/28/2019 16:40:56'!
+forEachAccountInject: aReport into: aClosureToRun withDepth: aDepth
+
+	^ aClosureToRun value: aReport value: self value: aDepth.! !
+
+----SNAPSHOT----(28 October 2019 16:45:34) clase2.image priorSource: 13963253!
+
+Smalltalk removeClassNamed: #Transfer!
+
+Smalltalk removeClassNamed: #Withdraw!
+
+Smalltalk removeClassNamed: #TransferOut!
+
+Smalltalk removeClassNamed: #TransferIn!
+
+Smalltalk removeClassNamed: #Deposit!
+
+Smalltalk removeClassNamed: #AccountTransaction!
+
+Smalltalk removeClassNamed: #NetTransferReport!
+
+Smalltalk removeClassNamed: #AccountSummaryStructureReport!
+
+Smalltalk removeClassNamed: #AccountSummaryReport!
+
+Smalltalk removeClassNamed: #AccountStructureReport!
+
+Smalltalk removeClassNamed: #AccountReport!
+
+Smalltalk removeClassNamed: #ReceptiveAccount!
+
+Smalltalk removeClassNamed: #Portfolio!
+
+Smalltalk removeClassNamed: #Account!
+
+Smalltalk removeClassNamed: #TransferTest!
+
+Smalltalk removeClassNamed: #ReceptiveAccountTest!
+
+Smalltalk removeClassNamed: #PortfolioTest!
+
+Smalltalk removeClassNamed: #AccountReportTest!
+
+----End fileIn of /home/drenteria/Documentos/isI/isw1/23-Portfolio/Portfolio-Solucion.st----!
+
+AccountReportTest removeSelector: #test20ReceptiveAccountHasNameOfAccountInAccountStructureReport!
+
+AccountReportTest removeSelector: #test21EmptyPortfolioHasNameOfPortfolioInAccountStructureReport!
+
+AccountReportTest removeSelector: #test22PortfolioWithOneReceptiveAccountHasNameOfPortfolioAndReceptiveAccountInAccountStructureReport!
+
+Smalltalk removeClassNamed: #AccountStructureReport!
+
+----SNAPSHOT----(28 October 2019 16:48:33) clase2.image priorSource: 14045218!
+
+----QUIT----(28 October 2019 16:48:36) clase2.image priorSource: 14099606!
