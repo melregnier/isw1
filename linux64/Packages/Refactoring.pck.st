@@ -1,39 +1,8 @@
-'From Cuis 5.0 of 7 November 2016 [latest update: #3639] on 4 March 2019 at 3:07:37 pm'!
-'Description Integration with ExtractToMethodObject. Last version before integrating to base'!
-!provides: 'Refactoring' 1 74!
-!requires: '__Refactoring-TestData__' 1 1 nil!
+'From Cuis 5.0 [latest update: #3926] on 23 October 2019 at 9:55:24 am'!
+'Description Lineup with 3926'!
+!provides: 'Refactoring' 1 537!
 SystemOrganization addCategory: #Refactoring!
 
-
-!classDefinition: #RefactoringError category: #Refactoring!
-Error subclass: #RefactoringError
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RefactoringError class' category: #Refactoring!
-RefactoringError class
-	instanceVariableNames: ''!
-
-!classDefinition: #CanNotRefactorDueToReferencesError category: #Refactoring!
-RefactoringError subclass: #CanNotRefactorDueToReferencesError
-	instanceVariableNames: 'references referencee'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'CanNotRefactorDueToReferencesError class' category: #Refactoring!
-CanNotRefactorDueToReferencesError class
-	instanceVariableNames: ''!
-
-!classDefinition: #RefactoringWarning category: #Refactoring!
-Warning subclass: #RefactoringWarning
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RefactoringWarning class' category: #Refactoring!
-RefactoringWarning class
-	instanceVariableNames: ''!
 
 !classDefinition: #EntranceExitBlockEnumerator category: #Refactoring!
 ParseNodeEnumerator subclass: #EntranceExitBlockEnumerator
@@ -45,24 +14,14 @@ ParseNodeEnumerator subclass: #EntranceExitBlockEnumerator
 EntranceExitBlockEnumerator class
 	instanceVariableNames: ''!
 
-!classDefinition: #ExtractToTemporaryRewriter category: #Refactoring!
-ParseNodeVisitor subclass: #ExtractToTemporaryRewriter
-	instanceVariableNames: 'refactoring finder'
+!classDefinition: #MessageSendingBlocksVariablesToExtractFinder category: #Refactoring!
+ParseNodeVisitor subclass: #MessageSendingBlocksVariablesToExtractFinder
+	instanceVariableNames: 'messageNode variablesToExtract currentScopeTemporaries'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'ExtractToTemporaryRewriter class' category: #Refactoring!
-ExtractToTemporaryRewriter class
-	instanceVariableNames: ''!
-
-!classDefinition: #ParseNodeToReplaceFinder category: #Refactoring!
-ParseNodeVisitor subclass: #ParseNodeToReplaceFinder
-	instanceVariableNames: 'refactoring currentBlock nodesToReplace blockContainingFirstNodeToReplace firstNodeToReplaceIndex currentStatementIndex'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'ParseNodeToReplaceFinder class' category: #Refactoring!
-ParseNodeToReplaceFinder class
+!classDefinition: 'MessageSendingBlocksVariablesToExtractFinder class' category: #Refactoring!
+MessageSendingBlocksVariablesToExtractFinder class
 	instanceVariableNames: ''!
 
 !classDefinition: #VariablesToExtractFinder category: #Refactoring!
@@ -75,84 +34,124 @@ ParseNodeVisitor subclass: #VariablesToExtractFinder
 VariablesToExtractFinder class
 	instanceVariableNames: ''!
 
-!classDefinition: #ChangeSelectorWizardStepWindow category: #Refactoring!
-MessageSetWindow subclass: #ChangeSelectorWizardStepWindow
-	instanceVariableNames: 'applier'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'ChangeSelectorWizardStepWindow class' category: #Refactoring!
-ChangeSelectorWizardStepWindow class
-	instanceVariableNames: ''!
-
-!classDefinition: #ChangeSelectorImplementorsStepWindow category: #Refactoring!
-ChangeSelectorWizardStepWindow subclass: #ChangeSelectorImplementorsStepWindow
+!classDefinition: #IndependentlyColoredButton category: #Refactoring!
+PluggableButtonMorph subclass: #IndependentlyColoredButton
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'ChangeSelectorImplementorsStepWindow class' category: #Refactoring!
-ChangeSelectorImplementorsStepWindow class
+!classDefinition: 'IndependentlyColoredButton class' category: #Refactoring!
+IndependentlyColoredButton class
 	instanceVariableNames: ''!
 
-!classDefinition: #ChangeSelectorSendersStepWindow category: #Refactoring!
-ChangeSelectorWizardStepWindow subclass: #ChangeSelectorSendersStepWindow
-	instanceVariableNames: 'changedMethods'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'ChangeSelectorSendersStepWindow class' category: #Refactoring!
-ChangeSelectorSendersStepWindow class
-	instanceVariableNames: ''!
-
-!classDefinition: #MethodNodeTest category: #Refactoring!
-TestCase subclass: #MethodNodeTest
-	instanceVariableNames: 'anInstVar'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'MethodNodeTest class' category: #Refactoring!
-MethodNodeTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #RefactoringExtentionsToCollectionTest category: #Refactoring!
-TestCase subclass: #RefactoringExtentionsToCollectionTest
+!classDefinition: #ImmutableTextModelMorph category: #Refactoring!
+TextModelMorph subclass: #ImmutableTextModelMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RefactoringExtentionsToCollectionTest class' category: #Refactoring!
-RefactoringExtentionsToCollectionTest class
+!classDefinition: 'ImmutableTextModelMorph class' category: #Refactoring!
+ImmutableTextModelMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #RefactoringTest category: #Refactoring!
-TestCase subclass: #RefactoringTest
-	instanceVariableNames: 'classCategories setUpAssertionsPassed'
+!classDefinition: #PreviewTextModelMorph category: #Refactoring!
+TextModelMorph subclass: #PreviewTextModelMorph
+	instanceVariableNames: 'previewModel'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RefactoringTest class' category: #Refactoring!
-RefactoringTest class
+!classDefinition: 'PreviewTextModelMorph class' category: #Refactoring!
+PreviewTextModelMorph class
 	instanceVariableNames: ''!
 
-!classDefinition: #AddInstanceVariableTest category: #Refactoring!
-RefactoringTest subclass: #AddInstanceVariableTest
-	instanceVariableNames: 'newVariable'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'AddInstanceVariableTest class' category: #Refactoring!
-AddInstanceVariableTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #AddParameterTest category: #Refactoring!
-RefactoringTest subclass: #AddParameterTest
+!classDefinition: #TabPassingTextModelMorph category: #Refactoring!
+TextModelMorph subclass: #TabPassingTextModelMorph
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'AddParameterTest class' category: #Refactoring!
-AddParameterTest class
+!classDefinition: 'TabPassingTextModelMorph class' category: #Refactoring!
+TabPassingTextModelMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #ColoredScrollPane category: #Refactoring!
+PluggableScrollPane subclass: #ColoredScrollPane
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'ColoredScrollPane class' category: #Refactoring!
+ColoredScrollPane class
+	instanceVariableNames: ''!
+
+!classDefinition: #ExtractToMethodObjectForm category: #Refactoring!
+SystemWindow subclass: #ExtractToMethodObjectForm
+	instanceVariableNames: 'scrollPane formLayout inputTable preview variablesToParametrize extractToMethodObjectRequest discardEdits firstTimeBuild initialExtent focusMorphs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'ExtractToMethodObjectForm class' category: #Refactoring!
+ExtractToMethodObjectForm class
+	instanceVariableNames: ''!
+
+!classDefinition: #IntroduceNullObjectForm category: #Refactoring!
+SystemWindow subclass: #IntroduceNullObjectForm
+	instanceVariableNames: 'initialExtent scrollPane formLayout introduceNullObjectRequest messageSendingList messageListModel ifNilChecksForms discardEdits firstTimeBuild hierarchySection messageSendingListSection actionButtonsSection ifNilChecks focusMorphs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'IntroduceNullObjectForm class' category: #Refactoring!
+IntroduceNullObjectForm class
+	instanceVariableNames: ''!
+
+!classDefinition: #FormSection category: #Refactoring!
+LayoutMorph subclass: #FormSection
+	instanceVariableNames: 'title borderMorph titleContainer titleMorph titleContainerLayoutSpec explanation explanationMorph explanationContainer explanationContainerLayoutSpec'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'FormSection class' category: #Refactoring!
+FormSection class
+	instanceVariableNames: ''!
+
+!classDefinition: #LabeledInput category: #Refactoring!
+LayoutMorph subclass: #LabeledInput
+	instanceVariableNames: 'labelMorph inputMorph'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'LabeledInput class' category: #Refactoring!
+LabeledInput class
+	instanceVariableNames: ''!
+
+!classDefinition: #MessageKeywordsAndParametersTable category: #Refactoring!
+LayoutMorph subclass: #MessageKeywordsAndParametersTable
+	instanceVariableNames: 'rowModels previewModel backgroundColor refactoringModel columnWidths variablesToParametrize'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'MessageKeywordsAndParametersTable class' category: #Refactoring!
+MessageKeywordsAndParametersTable class
+	instanceVariableNames: ''!
+
+!classDefinition: #TabPassingInnerTextMorph category: #Refactoring!
+InnerTextMorph subclass: #TabPassingInnerTextMorph
+	instanceVariableNames: 'focusMover'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'TabPassingInnerTextMorph class' category: #Refactoring!
+TabPassingInnerTextMorph class
+	instanceVariableNames: ''!
+
+!classDefinition: #PreviewInnerTextMorph category: #Refactoring!
+TabPassingInnerTextMorph subclass: #PreviewInnerTextMorph
+	instanceVariableNames: 'previewModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'PreviewInnerTextMorph class' category: #Refactoring!
+PreviewInnerTextMorph class
 	instanceVariableNames: ''!
 
 !classDefinition: #ExtractToMethodObjectTest category: #Refactoring!
@@ -165,104 +164,64 @@ RefactoringTest subclass: #ExtractToMethodObjectTest
 ExtractToMethodObjectTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #ExtractToTemporaryTest category: #Refactoring!
-RefactoringTest subclass: #ExtractToTemporaryTest
+!classDefinition: #IfNilChecksFinderTest category: #Refactoring!
+RefactoringTest subclass: #IfNilChecksFinderTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'ExtractToTemporaryTest class' category: #Refactoring!
-ExtractToTemporaryTest class
+!classDefinition: 'IfNilChecksFinderTest class' category: #Refactoring!
+IfNilChecksFinderTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #InsertSuperclassTest category: #Refactoring!
-RefactoringTest subclass: #InsertSuperclassTest
+!classDefinition: #IntroduceNullObjectTest category: #Refactoring!
+RefactoringTest subclass: #IntroduceNullObjectTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'InsertSuperclassTest class' category: #Refactoring!
-InsertSuperclassTest class
+!classDefinition: 'IntroduceNullObjectTest class' category: #Refactoring!
+IntroduceNullObjectTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #RemoveAllUnreferencedInstanceVariablesTest category: #Refactoring!
-RefactoringTest subclass: #RemoveAllUnreferencedInstanceVariablesTest
+!classDefinition: #MessageSendingBlocksVariablesToExtractFinderTest category: #Refactoring!
+RefactoringTest subclass: #MessageSendingBlocksVariablesToExtractFinderTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RemoveAllUnreferencedInstanceVariablesTest class' category: #Refactoring!
-RemoveAllUnreferencedInstanceVariablesTest class
+!classDefinition: 'MessageSendingBlocksVariablesToExtractFinderTest class' category: #Refactoring!
+MessageSendingBlocksVariablesToExtractFinderTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #RemoveInstanceVariableTest category: #Refactoring!
-RefactoringTest subclass: #RemoveInstanceVariableTest
+!classDefinition: #NullObjectHierarchyCreatorTest category: #Refactoring!
+RefactoringTest subclass: #NullObjectHierarchyCreatorTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RemoveInstanceVariableTest class' category: #Refactoring!
-RemoveInstanceVariableTest class
+!classDefinition: 'NullObjectHierarchyCreatorTest class' category: #Refactoring!
+NullObjectHierarchyCreatorTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #RemoveParameterTest category: #Refactoring!
-RefactoringTest subclass: #RemoveParameterTest
+!classDefinition: #ReplaceIfNilWithPolymorphismParametersTest category: #Refactoring!
+RefactoringTest subclass: #ReplaceIfNilWithPolymorphismParametersTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RemoveParameterTest class' category: #Refactoring!
-RemoveParameterTest class
+!classDefinition: 'ReplaceIfNilWithPolymorphismParametersTest class' category: #Refactoring!
+ReplaceIfNilWithPolymorphismParametersTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #RenameClassTest category: #Refactoring!
-RefactoringTest subclass: #RenameClassTest
+!classDefinition: #VariableToParametrizeKeywordDefinitionTest category: #Refactoring!
+RefactoringTest subclass: #VariableToParametrizeKeywordDefinitionTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RenameClassTest class' category: #Refactoring!
-RenameClassTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameInstanceVariableTest category: #Refactoring!
-RefactoringTest subclass: #RenameInstanceVariableTest
-	instanceVariableNames: 'oldVariable newVariable classToRefactor'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameInstanceVariableTest class' category: #Refactoring!
-RenameInstanceVariableTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameSelectorTest category: #Refactoring!
-RefactoringTest subclass: #RenameSelectorTest
-	instanceVariableNames: 'oldSelector newSelector senderOfOldSelector classToRefactor'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameSelectorTest class' category: #Refactoring!
-RenameSelectorTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameTemporaryTest category: #Refactoring!
-RefactoringTest subclass: #RenameTemporaryTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameTemporaryTest class' category: #Refactoring!
-RenameTemporaryTest class
-	instanceVariableNames: ''!
-
-!classDefinition: #SafelyRemoveClassTest category: #Refactoring!
-RefactoringTest subclass: #SafelyRemoveClassTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'SafelyRemoveClassTest class' category: #Refactoring!
-SafelyRemoveClassTest class
+!classDefinition: 'VariableToParametrizeKeywordDefinitionTest class' category: #Refactoring!
+VariableToParametrizeKeywordDefinitionTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #VariablesToExtractFinderTest category: #Refactoring!
@@ -275,69 +234,19 @@ RefactoringTest subclass: #VariablesToExtractFinderTest
 VariablesToExtractFinderTest class
 	instanceVariableNames: ''!
 
-!classDefinition: #Refactoring category: #Refactoring!
-Object subclass: #Refactoring
+!classDefinition: #VariablesToParametrizeKeywordsDefinitionsTest category: #Refactoring!
+RefactoringTest subclass: #VariablesToParametrizeKeywordsDefinitionsTest
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'Refactoring class' category: #Refactoring!
-Refactoring class
-	instanceVariableNames: ''!
-
-!classDefinition: #AddInstanceVariable category: #Refactoring!
-Refactoring subclass: #AddInstanceVariable
-	instanceVariableNames: 'newVariable classToRefactor'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'AddInstanceVariable class' category: #Refactoring!
-AddInstanceVariable class
-	instanceVariableNames: ''!
-
-!classDefinition: #ChangeSelector category: #Refactoring!
-Refactoring subclass: #ChangeSelector
-	instanceVariableNames: 'oldSelector newSelector implementors senders changes'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'ChangeSelector class' category: #Refactoring!
-ChangeSelector class
-	instanceVariableNames: ''!
-
-!classDefinition: #AddParameter category: #Refactoring!
-ChangeSelector subclass: #AddParameter
-	instanceVariableNames: 'newParameter newParameterValue implementorTrailingString senderTrailingString index isAddingLast'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'AddParameter class' category: #Refactoring!
-AddParameter class
-	instanceVariableNames: ''!
-
-!classDefinition: #RemoveParameter category: #Refactoring!
-ChangeSelector subclass: #RemoveParameter
-	instanceVariableNames: 'parameterToRemove parameterIndex senderReplacementString isLastParameter'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveParameter class' category: #Refactoring!
-RemoveParameter class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameSelector category: #Refactoring!
-ChangeSelector subclass: #RenameSelector
-	instanceVariableNames: 'newSelectorKeywords'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameSelector class' category: #Refactoring!
-RenameSelector class
+!classDefinition: 'VariablesToParametrizeKeywordsDefinitionsTest class' category: #Refactoring!
+VariablesToParametrizeKeywordsDefinitionsTest class
 	instanceVariableNames: ''!
 
 !classDefinition: #ExtractToMethodObject category: #Refactoring!
 Refactoring subclass: #ExtractToMethodObject
-	instanceVariableNames: 'methodObjectSuperclass methodObjectClassName methodObjectCategory methodToExtract methodVariableNamesToInstanceVariableNames methodObjectInstanceVariables methodObjectInvocationSelector keywordsDefinitions'
+	instanceVariableNames: 'methodObjectSuperclass methodObjectClassName methodObjectCategory methodToExtract methodVariableNamesToInstanceVariableNames methodObjectInstanceVariables keywordsDefinitions methodObjectEvaluationSelector'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
@@ -345,154 +254,24 @@ Refactoring subclass: #ExtractToMethodObject
 ExtractToMethodObject class
 	instanceVariableNames: ''!
 
-!classDefinition: #ExtractToTemporary category: #Refactoring!
-Refactoring subclass: #ExtractToTemporary
-	instanceVariableNames: 'newVariable parseNodeToExtract methodNodeToRefactor newTemporary'
+!classDefinition: #IntroduceNullObject category: #Refactoring!
+Refactoring subclass: #IntroduceNullObject
+	instanceVariableNames: 'instVar classToRefactor concreteClass nullClass replacementParameters'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'ExtractToTemporary class' category: #Refactoring!
-ExtractToTemporary class
+!classDefinition: 'IntroduceNullObject class' category: #Refactoring!
+IntroduceNullObject class
 	instanceVariableNames: ''!
 
-!classDefinition: #InsertSuperclass category: #Refactoring!
-Refactoring subclass: #InsertSuperclass
-	instanceVariableNames: 'classToRefactor superclassName'
+!classDefinition: #NullObjectHierarchyCreator category: #Refactoring!
+Refactoring subclass: #NullObjectHierarchyCreator
+	instanceVariableNames: 'concreteClass abstractClassName nullObjectClassName category'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'InsertSuperclass class' category: #Refactoring!
-InsertSuperclass class
-	instanceVariableNames: ''!
-
-!classDefinition: #PushUpMethod category: #Refactoring!
-Refactoring subclass: #PushUpMethod
-	instanceVariableNames: 'method'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'PushUpMethod class' category: #Refactoring!
-PushUpMethod class
-	instanceVariableNames: ''!
-
-!classDefinition: #RemoveAllUnreferencedInstanceVariables category: #Refactoring!
-Refactoring subclass: #RemoveAllUnreferencedInstanceVariables
-	instanceVariableNames: 'classToRefactor'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveAllUnreferencedInstanceVariables class' category: #Refactoring!
-RemoveAllUnreferencedInstanceVariables class
-	instanceVariableNames: ''!
-
-!classDefinition: #RemoveInstanceVariable category: #Refactoring!
-Refactoring subclass: #RemoveInstanceVariable
-	instanceVariableNames: 'variableToRemove classToRefactor'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveInstanceVariable class' category: #Refactoring!
-RemoveInstanceVariable class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameClass category: #Refactoring!
-Refactoring subclass: #RenameClass
-	instanceVariableNames: 'classToRename newClassName system undeclared classToRenameOriginalName'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameClass class' category: #Refactoring!
-RenameClass class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameInstanceVariable category: #Refactoring!
-Refactoring subclass: #RenameInstanceVariable
-	instanceVariableNames: 'oldVariable addInstanceVariable rewriter renamedReferences'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameInstanceVariable class' category: #Refactoring!
-RenameInstanceVariable class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameTemporary category: #Refactoring!
-Refactoring subclass: #RenameTemporary
-	instanceVariableNames: 'oldVariable newVariable methodNode'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameTemporary class' category: #Refactoring!
-RenameTemporary class
-	instanceVariableNames: ''!
-
-!classDefinition: #SafelyRemoveClass category: #Refactoring!
-Refactoring subclass: #SafelyRemoveClass
-	instanceVariableNames: 'classToRemove'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'SafelyRemoveClass class' category: #Refactoring!
-SafelyRemoveClass class
-	instanceVariableNames: ''!
-
-!classDefinition: #RefactoringApplier category: #Refactoring!
-Object subclass: #RefactoringApplier
-	instanceVariableNames: 'requestExitBlock refactoring changes'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RefactoringApplier class' category: #Refactoring!
-RefactoringApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #AddInstanceVariableApplier category: #Refactoring!
-RefactoringApplier subclass: #AddInstanceVariableApplier
-	instanceVariableNames: 'classToRefactor oldInstanceVariable newInstanceVariable browser'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'AddInstanceVariableApplier class' category: #Refactoring!
-AddInstanceVariableApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #ChangeSelectorApplier category: #Refactoring!
-RefactoringApplier subclass: #ChangeSelectorApplier
-	instanceVariableNames: 'oldSelector scopeChoice implementors senders implementingClass wizardStepWindow shouldShowChanges browser'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'ChangeSelectorApplier class' category: #Refactoring!
-ChangeSelectorApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #AddParameterApplier category: #Refactoring!
-ChangeSelectorApplier subclass: #AddParameterApplier
-	instanceVariableNames: 'newParameter newParameterValue newKeyword parameterIndex'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'AddParameterApplier class' category: #Refactoring!
-AddParameterApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RemoveParameterApplier category: #Refactoring!
-ChangeSelectorApplier subclass: #RemoveParameterApplier
-	instanceVariableNames: 'newParameter newParameterValue newKeyword originalMethod parameterToRemove'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveParameterApplier class' category: #Refactoring!
-RemoveParameterApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameSelectorApplier category: #Refactoring!
-ChangeSelectorApplier subclass: #RenameSelectorApplier
-	instanceVariableNames: 'newSelector'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameSelectorApplier class' category: #Refactoring!
-RenameSelectorApplier class
+!classDefinition: 'NullObjectHierarchyCreator class' category: #Refactoring!
+NullObjectHierarchyCreator class
 	instanceVariableNames: ''!
 
 !classDefinition: #ExtractToMethodObjectApplier category: #Refactoring!
@@ -505,153 +284,139 @@ RefactoringApplier subclass: #ExtractToMethodObjectApplier
 ExtractToMethodObjectApplier class
 	instanceVariableNames: ''!
 
-!classDefinition: #InsertSuperclassApplier category: #Refactoring!
-RefactoringApplier subclass: #InsertSuperclassApplier
-	instanceVariableNames: 'browser newSuperclassName classToRefactor'
+!classDefinition: #IntroduceNullObjectApplier category: #Refactoring!
+RefactoringApplier subclass: #IntroduceNullObjectApplier
+	instanceVariableNames: 'classToRefactor instanceVariable form done ifNilChecks introduceNullObjectRequest'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'InsertSuperclassApplier class' category: #Refactoring!
-InsertSuperclassApplier class
+!classDefinition: 'IntroduceNullObjectApplier class' category: #Refactoring!
+IntroduceNullObjectApplier class
 	instanceVariableNames: ''!
 
-!classDefinition: #RemoveAllUnreferencedInstanceVariablesApplier category: #Refactoring!
-RefactoringApplier subclass: #RemoveAllUnreferencedInstanceVariablesApplier
-	instanceVariableNames: 'classToRefactor browser variableToRemove'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveAllUnreferencedInstanceVariablesApplier class' category: #Refactoring!
-RemoveAllUnreferencedInstanceVariablesApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RemoveInstanceVariableApplier category: #Refactoring!
-RefactoringApplier subclass: #RemoveInstanceVariableApplier
-	instanceVariableNames: 'classToRefactor browser variableToRemove'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RemoveInstanceVariableApplier class' category: #Refactoring!
-RemoveInstanceVariableApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameClassApplier category: #Refactoring!
-RefactoringApplier subclass: #RenameClassApplier
-	instanceVariableNames: 'browser classToRename newClassName'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameClassApplier class' category: #Refactoring!
-RenameClassApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameInstanceVariableApplier category: #Refactoring!
-RefactoringApplier subclass: #RenameInstanceVariableApplier
-	instanceVariableNames: 'classToRefactor oldInstanceVariable newInstanceVariable browser'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameInstanceVariableApplier class' category: #Refactoring!
-RenameInstanceVariableApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RenameTemporaryApplier category: #Refactoring!
-RefactoringApplier subclass: #RenameTemporaryApplier
-	instanceVariableNames: 'classToRefactor oldVariable newVariable smalltalkEditor methodNode'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'RenameTemporaryApplier class' category: #Refactoring!
-RenameTemporaryApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #SafelyRemoveClassApplier category: #Refactoring!
-RefactoringApplier subclass: #SafelyRemoveClassApplier
-	instanceVariableNames: 'classToRemove browser'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Refactoring'!
-!classDefinition: 'SafelyRemoveClassApplier class' category: #Refactoring!
-SafelyRemoveClassApplier class
-	instanceVariableNames: ''!
-
-!classDefinition: #RefactoringMenues category: #Refactoring!
-Object subclass: #RefactoringMenues
+!classDefinition: #AutocompletedTextProvider category: #Refactoring!
+Object subclass: #AutocompletedTextProvider
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RefactoringMenues class' category: #Refactoring!
-RefactoringMenues class
+!classDefinition: 'AutocompletedTextProvider class' category: #Refactoring!
+AutocompletedTextProvider class
 	instanceVariableNames: ''!
 
-!classDefinition: #RefactoringPrecondition category: #Refactoring!
-Object subclass: #RefactoringPrecondition
+!classDefinition: #ChangeRowOrderButtonModel category: #Refactoring!
+Object subclass: #ChangeRowOrderButtonModel
+	instanceVariableNames: 'tableModel rowPosition'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'ChangeRowOrderButtonModel class' category: #Refactoring!
+ChangeRowOrderButtonModel class
+	instanceVariableNames: ''!
+
+!classDefinition: #ExtractToMethodObjectRequest category: #Refactoring!
+Object subclass: #ExtractToMethodObjectRequest
+	instanceVariableNames: 'methodObjectClassNameModel methodObjectCategoryModel methodObjectSuperclassNameModel methodObjectEvaluationMessageSelectorModel variableToParametrizeToInstVarNameModel instanceCreationMessageModels'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'ExtractToMethodObjectRequest class' category: #Refactoring!
+ExtractToMethodObjectRequest class
+	instanceVariableNames: ''!
+
+!classDefinition: #IfNilCheck category: #Refactoring!
+Object subclass: #IfNilCheck
+	instanceVariableNames: 'messageNode index methodNode'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'IfNilCheck class' category: #Refactoring!
+IfNilCheck class
+	instanceVariableNames: ''!
+
+!classDefinition: #IfNilChecksFinder category: #Refactoring!
+Object subclass: #IfNilChecksFinder
+	instanceVariableNames: 'contextClass instanceVariable'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'IfNilChecksFinder class' category: #Refactoring!
+IfNilChecksFinder class
+	instanceVariableNames: ''!
+
+!classDefinition: #IfNilMessageListModel category: #Refactoring!
+Object subclass: #IfNilMessageListModel
+	instanceVariableNames: 'listIndex ifNilChecks introduceNullObjectForm'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'IfNilMessageListModel class' category: #Refactoring!
+IfNilMessageListModel class
+	instanceVariableNames: ''!
+
+!classDefinition: #IntroduceNullObjectRequest category: #Refactoring!
+Object subclass: #IntroduceNullObjectRequest
+	instanceVariableNames: 'nullClassNameModel concreteClassNameModel messageKeywordsAndParametersModels'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'IntroduceNullObjectRequest class' category: #Refactoring!
+IntroduceNullObjectRequest class
+	instanceVariableNames: ''!
+
+!classDefinition: #MessageKeywordsAndParametersModel category: #Refactoring!
+Object subclass: #MessageKeywordsAndParametersModel
+	instanceVariableNames: 'models selectorModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'MessageKeywordsAndParametersModel class' category: #Refactoring!
+MessageKeywordsAndParametersModel class
+	instanceVariableNames: ''!
+
+!classDefinition: #RefactoringPackageRefactoringMenues category: #Refactoring!
+Object subclass: #RefactoringPackageRefactoringMenues
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'RefactoringPrecondition class' category: #Refactoring!
-RefactoringPrecondition class
+!classDefinition: 'RefactoringPackageRefactoringMenues class' category: #Refactoring!
+RefactoringPackageRefactoringMenues class
 	instanceVariableNames: ''!
 
-!classDefinition: #NewClassPrecondition category: #Refactoring!
-RefactoringPrecondition subclass: #NewClassPrecondition
-	instanceVariableNames: 'newClassName system undeclared'
+!classDefinition: #ReplaceIfNilWithPolymorphismParameters category: #Refactoring!
+Object subclass: #ReplaceIfNilWithPolymorphismParameters
+	instanceVariableNames: 'messageNode methodNode definitions'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'NewClassPrecondition class' category: #Refactoring!
-NewClassPrecondition class
+!classDefinition: 'ReplaceIfNilWithPolymorphismParameters class' category: #Refactoring!
+ReplaceIfNilWithPolymorphismParameters class
 	instanceVariableNames: ''!
 
-!classDefinition: #NewInstanceVariablePrecondition category: #Refactoring!
-RefactoringPrecondition subclass: #NewInstanceVariablePrecondition
-	instanceVariableNames: 'classToAddInstVar instVarName'
+!classDefinition: #VariableToParametrizeKeywordDefinition category: #Refactoring!
+Object subclass: #VariableToParametrizeKeywordDefinition
+	instanceVariableNames: 'variableName keyword parameterName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Refactoring'!
-!classDefinition: 'NewInstanceVariablePrecondition class' category: #Refactoring!
-NewInstanceVariablePrecondition class
+!classDefinition: 'VariableToParametrizeKeywordDefinition class' category: #Refactoring!
+VariableToParametrizeKeywordDefinition class
+	instanceVariableNames: ''!
+
+!classDefinition: #VariablesToParametrizeKeywordsDefinitions category: #Refactoring!
+Object subclass: #VariablesToParametrizeKeywordsDefinitions
+	instanceVariableNames: 'selector definitions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Refactoring'!
+!classDefinition: 'VariablesToParametrizeKeywordsDefinitions class' category: #Refactoring!
+VariablesToParametrizeKeywordsDefinitions class
 	instanceVariableNames: ''!
 
 
 !ExtractToMethodObject commentStamp: '<historical>' prior: 0!
 selectorKeywordToVariableName -> OrderedCollection of Associations (keyword -> variableName)!
-
-!CanNotRefactorDueToReferencesError methodsFor: 'references' stamp: 'HAW 7/11/2018 16:56:20'!
-anyReference
-	
-	^references anyOne ! !
-
-!CanNotRefactorDueToReferencesError methodsFor: 'references' stamp: 'HAW 7/11/2018 16:54:54'!
-numberOfReferences
-	
-	^references size! !
-
-!CanNotRefactorDueToReferencesError methodsFor: 'references' stamp: 'HAW 8/1/2018 17:26:49'!
-references
-
-	^references copy! !
-
-!CanNotRefactorDueToReferencesError methodsFor: 'initialization' stamp: 'HAW 8/1/2018 17:32:33'!
-initialize: aMessageText references: aCollectionOfReferences to: aReferencee
-
-	self messageText: aMessageText.
-	references := aCollectionOfReferences.
-	referencee := aReferencee ! !
-
-!CanNotRefactorDueToReferencesError methodsFor: 'referencee' stamp: 'HAW 8/1/2018 17:32:46'!
-referencee
-
-	^referencee ! !
-
-!CanNotRefactorDueToReferencesError class methodsFor: 'signaling' stamp: 'HAW 8/1/2018 17:32:15'!
-signal: aMessageText references: references to: aReferencee
-
-	self new 
-		initialize: aMessageText references: references to: aReferencee;
-		signal! !
 
 !EntranceExitBlockEnumerator methodsFor: 'as yet unclassified' stamp: 'FGJ 2/19/2019 18:04:25'!
 atEntranceBlock: aBlock atExitBlock: anotherBlock
@@ -673,115 +438,61 @@ atEntranceBlock: aBlock atExitBlock: anotherBlock
 
 	^self new atEntranceBlock: aBlock atExitBlock: anotherBlock! !
 
-!ExtractToTemporaryRewriter methodsFor: 'initialization' stamp: 'HAW 10/18/2017 18:21:40'!
-initializeOf: anExtractToTemporary on: aParseNodeToReplaceFinder 
-	
-	refactoring := anExtractToTemporary.
-	finder := aParseNodeToReplaceFinder ! !
+!MessageSendingBlocksVariablesToExtractFinder methodsFor: 'initialization' stamp: 'FGJ 3/28/2019 17:38:52'!
+initializeToFindIn: aMessageNode
 
-!ExtractToTemporaryRewriter methodsFor: 'visiting' stamp: 'HAW 10/18/2017 18:26:27'!
-visitBlockNode: aBlockNode
-
-	| statements |
-	
-	statements := aBlockNode statements.
-	statements withIndexDo: [ :statement :index |
-		(finder shouldReplace: statement)
-			ifTrue: [ statements at: index put: refactoring newTemporary ]
-			ifFalse: [ statement accept: self]]! !
-
-!ExtractToTemporaryRewriter methodsFor: 'visiting' stamp: 'HAW 10/19/2017 06:24:35'!
-visitMessageNode: aMessageNode
-
-	aMessageNode receiver accept: self.
-	aMessageNode selector accept: self.
-	aMessageNode argumentsInEvaluationOrder withIndexDo: [:argument :index | 
-		(finder shouldReplace: argument)
-			ifTrue: [ aMessageNode arguments at: index put: refactoring newTemporary ]
-			ifFalse: [ argument accept: self]]! !
-
-!ExtractToTemporaryRewriter methodsFor: 'visiting' stamp: 'HAW 10/19/2017 06:06:05'!
-visitReturnNode: aReturnNode
-
-	(finder shouldReplace: aReturnNode expr)
-		ifTrue: [ aReturnNode expr: refactoring newTemporary ]
-		ifFalse: [ super visitReturnNode: aReturnNode ]! !
-
-!ExtractToTemporaryRewriter class methodsFor: 'instance creation' stamp: 'HAW 10/18/2017 18:21:16'!
-of: anExtractToTemporary on: aParseNodeToReplaceFinder 
-	
-	^self new initializeOf: anExtractToTemporary on: aParseNodeToReplaceFinder 
+	messageNode := aMessageNode.
+	variablesToExtract  := Set new.
+	currentScopeTemporaries := Bag new.
 	! !
 
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 06:03:12'!
-addNodeToReplace: aParseNode
+!MessageSendingBlocksVariablesToExtractFinder methodsFor: 'evaluating' stamp: 'FGJ 3/29/2019 17:36:29'!
+value
 
-	nodesToReplace isEmpty ifTrue: [ 
-		blockContainingFirstNodeToReplace := currentBlock.
-		firstNodeToReplaceIndex := currentStatementIndex ].
-	
-	nodesToReplace add: aParseNode.! !
+	messageNode arguments do: [:argument |
+		currentScopeTemporaries := Bag new.
+		argument accept: self].
 
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 18:30:44'!
-blockContainingFirstNodeToReplace
-	
-	^blockContainingFirstNodeToReplace! !
+	variablesToExtract remove: 'true' ifAbsent: [nil].
+	variablesToExtract remove: 'false' ifAbsent: [nil].
 
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 18:31:00'!
-firstNodeToReplace
-	
-	^nodesToReplace first! !
 
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 18:39:56'!
-firstNodeToReplaceIndex
-	
-	^firstNodeToReplaceIndex! !
+	^OrderedCollection newFrom: variablesToExtract! !
 
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 18:12:47'!
-keepCurrentBlockIfFirstNodeToReplace
-	
-	nodesToReplace isEmpty ifTrue: [ blockContainingFirstNodeToReplace := currentBlock ].
-! !
-
-!ParseNodeToReplaceFinder methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 18:26:50'!
-shouldReplace: aParseNode
-
-	^nodesToReplace includes: aParseNode ! !
-
-!ParseNodeToReplaceFinder methodsFor: 'initialization' stamp: 'HAW 10/18/2017 18:12:47'!
-initializeOf: anExtractToTemporary
-
-	refactoring := anExtractToTemporary.
-	nodesToReplace := OrderedCollection new.! !
-
-!ParseNodeToReplaceFinder methodsFor: 'visiting' stamp: 'HAW 10/19/2017 06:02:34'!
+!MessageSendingBlocksVariablesToExtractFinder methodsFor: 'visiting' stamp: 'FGJ 3/28/2019 17:54:25'!
 visitBlockNode: aBlockNode
 
-	| previousBlock |
-	
-	previousBlock := currentBlock.
-	currentBlock := aBlockNode.
-	
-	aBlockNode statements withIndexDo: [:statement :index | 
-		currentStatementIndex := index.
-		statement accept: self].
-	
-	currentBlock := previousBlock ! !
+	 | temporariesNames argumentsNames |
 
-!ParseNodeToReplaceFinder methodsFor: 'visiting' stamp: 'HAW 10/18/2017 18:12:47'!
-visitLiteralNode: aLiteralNode
+	temporariesNames := aBlockNode temporaries collect: [:aTemp | aTemp name].
+	argumentsNames := aBlockNode arguments collect: [:anArg | anArg name].
+	currentScopeTemporaries addAll: temporariesNames.
+	currentScopeTemporaries addAll: argumentsNames.
 
-	(refactoring shouldExtract: aLiteralNode) ifTrue: [ self addNodeToReplace: aLiteralNode ]! !
+	super visitBlockNode: aBlockNode.
 
-!ParseNodeToReplaceFinder methodsFor: 'visiting' stamp: 'HAW 10/19/2017 06:20:02'!
-visitMessageNode: aMessageNode
+	temporariesNames := aBlockNode temporaries collect: [:aTemp | aTemp name].
+	currentScopeTemporaries removeAll: temporariesNames.! !
 
-	super visitMessageNode: aMessageNode! !
+!MessageSendingBlocksVariablesToExtractFinder methodsFor: 'visiting' stamp: 'FGJ 3/28/2019 19:10:32'!
+visitInstanceVariableNode: anInstanceVariableNode
 
-!ParseNodeToReplaceFinder class methodsFor: 'instance creation' stamp: 'HAW 10/18/2017 18:12:47'!
-of: anExtractToTemporary
-	
-	^self new initializeOf: anExtractToTemporary ! !
+	variablesToExtract add: anInstanceVariableNode name.! !
+
+!MessageSendingBlocksVariablesToExtractFinder methodsFor: 'visiting' stamp: 'FGJ 3/28/2019 19:12:06'!
+visitVariableNode: aVariableNode
+
+	| name |
+
+	name := aVariableNode name.
+
+	name = 'nil' ifTrue: [^self].
+	(currentScopeTemporaries includes: name) ifFalse: [variablesToExtract add: name].! !
+
+!MessageSendingBlocksVariablesToExtractFinder class methodsFor: 'evaluating' stamp: 'FGJ 3/28/2019 17:31:08'!
+valueIn: aMessageNode
+
+	^(self new initializeToFindIn: aMessageNode) value! !
 
 !VariablesToExtractFinder methodsFor: 'initialization' stamp: 'HAW 3/4/2019 13:35:48'!
 initializeIn: aMethodNode
@@ -792,10 +503,10 @@ initializeIn: aMethodNode
 
 !VariablesToExtractFinder methodsFor: 'evaluating' stamp: 'HAW 3/4/2019 14:34:24'!
 value
-	
+
 	variablesToExtract addAll: methodNode argumentNames.
 	methodNode accept: self.
-	
+
 	^variablesToExtract! !
 
 !VariablesToExtractFinder methodsFor: 'visiting' stamp: 'HAW 3/4/2019 13:46:05'!
@@ -807,7 +518,7 @@ visitInstanceVariableNode: anInstanceVariableNode
 visitLiteralVariableNode: aLiteralVariableNode
 
 	Smalltalk at: aLiteralVariableNode name asSymbol ifAbsent: [ variablesToExtract add: aLiteralVariableNode name ]
-	
+
 ! !
 
 !VariablesToExtractFinder methodsFor: 'visiting' stamp: 'HAW 3/4/2019 14:23:56'!
@@ -819,1585 +530,1370 @@ visitReturnNode: aReturnNode
 visitVariableNode: aVariableNode
 
 	aVariableNode isSelfPseudoVariable ifTrue: [ variablesToExtract add: aVariableNode name ].
-	super visitVariableNode: aVariableNode 
+	super visitVariableNode: aVariableNode
 	! !
 
 !VariablesToExtractFinder class methodsFor: 'evaluating' stamp: 'HAW 3/4/2019 14:36:12'!
-valueIn: aCompiledMethod 
-	
+valueIn: aCompiledMethod
+
 	^(self in: aCompiledMethod) value! !
 
 !VariablesToExtractFinder class methodsFor: 'instance creation' stamp: 'HAW 3/4/2019 13:23:23'!
-in: aCompiledMethod 
-	
+in: aCompiledMethod
+
 	^self new initializeIn: aCompiledMethod methodNode.
-	
+
 	! !
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 5/31/2017 17:26:05'!
-add
+!IndependentlyColoredButton methodsFor: 'as yet unclassified' stamp: 'FGJ 2/13/2019 12:38:30'!
+adoptWidgetsColor: paneColor! !
 
-	self subclassResponsibility ! !
+!ImmutableTextModelMorph class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 19:42:39'!
+minimumHeightToDisplay: aString on: aWidth
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 5/31/2017 17:36:12'!
-addToList: aMethod
+	| aComposer composition lines aText disregardHeight |
 
-	model addMethodReference: aMethod methodReference ifIncluded: [ self inform: 'Method already in list' ]! !
+	aComposer := TextComposer new.
+	aText := Text fromString: aString.
+	disregardHeight := 999999.
+	composition := aComposer composeLinesFrom: 1 to: aText size delta: 0 into: OrderedCollection new priorLines: Array new atY: 0 text: aText extentForComposing: aWidth @ disregardHeight.
+	lines := composition first asArray size.
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 10/9/2018 20:57:59'!
-do: aBlock withEnteredClassLabeled: aLabel
-		
-	| className |
-	
-	className := ClassNameRequestMorph request: aLabel onCancel: [ ^self ].
-	^self withClassNamed: className do: aBlock! !
+	^lines * self textHeight! !
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 5/31/2017 18:17:19'!
-inform: aClass doesNotImplement: aSelector
+!ImmutableTextModelMorph class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 19:43:22'!
+textHeight
 
- 	self inform: aClass name, ' does not implement #', aSelector ! !
+	^AbstractFont default height! !
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:02:43'!
-justRefactor
-	
-	applier doNotShowChanges.
-	self refactor.! !
+!ImmutableTextModelMorph class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 19:42:21'!
+withText: aText withColor: aColor withWidth: aWidth
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:16:36'!
-refactor
-	
-	applier wizardStepWindow: self. 	
-	applier wizardEnded.
+	| anInstance anInstanceLayoutSpec bottomSpaceToAccountForLettersBelowBaseLineLikep |
+
+	anInstance := super withText: aText.
+	anInstance color: aColor.
+	anInstance disableEditing.
+	anInstance drawKeyboardFocusIndicator: false.
+	anInstance lock: true.
+	anInstance hideScrollBarsIndefinitely.
+
+	bottomSpaceToAccountForLettersBelowBaseLineLikep := 5.
+	anInstanceLayoutSpec := LayoutSpec
+		proportionalWidth: 0.95
+		fixedHeight: (self minimumHeightToDisplay: aText on: aWidth) + bottomSpaceToAccountForLettersBelowBaseLineLikep.
+	anInstanceLayoutSpec minorDirectionPadding: #left.
+	anInstance layoutSpec: anInstanceLayoutSpec.
+
+	^anInstance! !
+
+!PreviewTextModelMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 10:40:38'!
+innerMorphClass
+
+	^PreviewInnerTextMorph ! !
+
+!TabPassingTextModelMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 4/11/2019 12:25:33'!
+innerMorphClass
+
+	^TabPassingInnerTextMorph ! !
+
+!ColoredScrollPane methodsFor: 'as yet unclassified' stamp: 'FGJ 4/5/2019 12:49:00'!
+bordersExtent
+
+	^extent - self viewableExtent! !
+
+!ColoredScrollPane methodsFor: 'as yet unclassified' stamp: 'FGJ 2/5/2019 16:22:45'!
+drawOn: aCanvas
+
+	color := Color lightGray.
+
+	super drawOn: aCanvas.! !
+
+!ColoredScrollPane methodsFor: 'as yet unclassified' stamp: 'FGJ 2/5/2019 16:24:51'!
+getMenu
+
+	^nil! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 2/5/2019 16:25:41'!
+backgroundColor
+
+	^Color lightGray! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 17:16:23'!
+initialExtent
+
+	^initialExtent! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 2/13/2019 20:07:25'!
+layoutSpecForSection: aSection
+
+	^LayoutSpec proportionalWidth: 1.0 fixedHeight: aSection recommendedHeight! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 2/7/2019 13:03:15'!
+recommendedWidthForLabels: labels
+
+	| rightMargin |
+
+	rightMargin := 20.
+	^(labels collect: [:aLabel | AbstractFont default widthOfString: aLabel]) max + rightMargin! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 16:50:26'!
+shouldStyle: text with: anSHTextStyler
+
+	text = self previewUnavailableMessage ifFalse: [
+		anSHTextStyler classOrMetaClass: Object.
+		^true].
+
+	^false.! !
+
+!ExtractToMethodObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 12:57:14'!
+textStylerClassFor: textGetter
+
+	^SHTextStylerST80 ! !
+
+!ExtractToMethodObjectForm methodsFor: 'open/close' stamp: 'FGJ 2/13/2019 16:00:39'!
+closeBoxHit
+
+	model panelWasClosed.! !
+
+!ExtractToMethodObjectForm methodsFor: 'open/close' stamp: 'FGJ 2/14/2019 19:58:44'!
+deleteDiscardingEdits
+
+	discardEdits := true.
+	super delete.! !
+
+!ExtractToMethodObjectForm methodsFor: 'open/close' stamp: 'FGJ 2/15/2019 10:20:40'!
+okToChange
+
+	discardEdits
+		ifTrue: [^true]
+		ifFalse: [^super okToChange].! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 2/13/2019 14:10:54'!
+buildActionButtonsSection
+
+	| section sectionLayoutSpec submorphsWidth sectionWidth submorphsHeight |
+
+	section := LayoutMorph newRow.
+	section separation: 10.
+	section color: self backgroundColor.
+
+	section addMorph: self buildCancelButton.
+	section addMorph: self buildSubmitButton.
+
+	submorphsWidth := (section submorphs collect: [:aSubmorph | aSubmorph layoutSpec fixedWidth]) sum.
+	sectionWidth := submorphsWidth + (section xSeparation * (section submorphs size + 1)).
+	submorphsHeight := (section submorphs collect: [:aSubmorph | aSubmorph layoutSpec fixedHeight]) max.
+	sectionLayoutSpec := LayoutSpec fixedWidth: sectionWidth fixedHeight: submorphsHeight * 2.
+	sectionLayoutSpec minorDirectionPadding: 0.95.
+
+	section layoutSpec: sectionLayoutSpec.
+
+	^section.
 	! !
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 5/31/2017 17:07:19'!
-remove
-	
-	model removeMessageFromBrowserKeepingLabel! !
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 2/16/2019 11:35:56'!
+buildCancelButton
 
-!ChangeSelectorWizardStepWindow methodsFor: 'actions' stamp: 'HAW 10/10/2018 05:46:24'!
-withClassNamed: aName do: aBlock
+	| button buttonLayoutSpec |
 
-	| trimmedNamed |
-	
-	trimmedNamed := aName withBlanksTrimmed.
-	
-	(Smalltalk classNamed: trimmedNamed asSymbol)
-		ifNotNil: aBlock
-		ifNil: [ self inform: 'Class ', trimmedNamed , ' does not exist' ].
+	button := IndependentlyColoredButton model: self action: #cancelButtonClicked label: 'Cancel'.
+	button color: Theme current cancelButton.
+
+	buttonLayoutSpec := LayoutSpec
+		fixedWidth: button morphWidth
+		fixedHeight: ExtractToMethodObjectForm fontProportionalUnitOfReferenceForHeight  * 2.
+	buttonLayoutSpec minorDirectionPadding: 0.85.
+	button layoutSpec: buttonLayoutSpec.
+
+	^button! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/10/2019 18:07:37'!
+buildInstanceCreationMessageSection
+
+	| section previewExplanation previewLayoutSpec |
+
+	section := FormSection
+		withTitle: 'Instance creation message definition'
+		withExplanation: 'The collaborators will be passed in the MethodObject instance creation message. Pick the keyword and the formal parameter name corresponding to each collaborator:'
+		withColor: self backgroundColor .
+
+	inputTable := MessageKeywordsAndParametersTable
+		withRows: variablesToParametrize
+		withColor: self backgroundColor
+		withPreviewModel: self
+		withRefactoringModel: extractToMethodObjectRequest.
+	section addMorph: inputTable.
+
+	previewExplanation := ImmutableTextModelMorph
+		withText: 'This is how the instance creation message header will look:'
+		withColor: self backgroundColor
+		withWidth: section fixedWidthForTexts.
+	section addMorph: previewExplanation.
+
+	preview := TextModelMorph textProvider: self.
+	preview model actualContents: self previewUnavailableMessage.
+	preview color: Color white.
+	preview disableEditing.
+	preview drawKeyboardFocusIndicator: false.
+	preview lock: true.
+	self buildPreview.
+
+	previewLayoutSpec := LayoutSpec
+		proportionalWidth: 0.95
+		fixedHeight: ExtractToMethodObjectForm fontProportionalUnitOfReferenceForHeight * 3.
+	previewLayoutSpec minorDirectionPadding: 0.3.
+	preview layoutSpec: previewLayoutSpec.
+
+	section addMorph: preview.
+
+	section layoutSpec: (self layoutSpecForSection: section).
+
+	^section! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/11/2019 13:05:10'!
+buildInstanceVariablesSection
+
+	| maxLabelWidth section |
+
+	section := FormSection
+			withTitle: 'Instance variables names'
+			withExplanation: 'Instance, class and pool variables referenced by the method will be passed as collaborators to the MethodObject. The method object will have one instance variable corresponding to each of them. Pick their names:'
+			withColor: self backgroundColor.
+
+	maxLabelWidth := self recommendedWidthForLabels: variablesToParametrize.
+
+	variablesToParametrize do: [ :aVariable | | labeledInput |
+		labeledInput := LabeledInput withLabel: aVariable withWidth: maxLabelWidth withModel: (extractToMethodObjectRequest nameModelForVariableToParametrize: aVariable) usingAs: self.
+		section addMorph: labeledInput].
+
+	section layoutSpec: (self layoutSpecForSection: section).
+
+	^section
 ! !
 
-!ChangeSelectorWizardStepWindow methodsFor: 'GUI building' stamp: 'HAW 5/31/2017 17:22:39'!
-addButton: button to: row color: buttonColor
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/11/2019 12:44:48'!
+buildMethodObjectClassSection
 
-	button color: buttonColor.
-	row addMorph: button proportionalWidth: 10! !
+	| section maxLabelWidth nameInput superclassNameInput categoryInput evaluationMessageSelectorInput |
 
-!ChangeSelectorWizardStepWindow methodsFor: 'GUI building' stamp: 'HAW 5/31/2017 17:18:46'!
-addButtonsTo: row color: buttonColor
-	
-	self subclassResponsibility ! !
+	section := FormSection withTitle: 'Method Object class' withColor: self backgroundColor.
 
-!ChangeSelectorWizardStepWindow methodsFor: 'GUI building' stamp: 'HAW 5/31/2017 17:26:55'!
-buildLowerPanes
+	maxLabelWidth := self recommendedWidthForLabels: #( 'Name' 'Superclass name' 'Category' 'Evaluation message selector').
 
-	| codeAndButtons  |
-	
-	codeAndButtons _ LayoutMorph newColumn.
-	codeAndButtons
-		addMorph: self buttonsRow fixedHeight: self defaultButtonPaneHeight;
-		addAdjusterMorph;
-		addMorph: self buildMorphicCodePane proportionalHeight: 1.0.
-	
-	^codeAndButtons ! !
+	nameInput := LabeledInput withLabel: 'Name' withWidth: maxLabelWidth withModel: extractToMethodObjectRequest methodObjectClassNameModel usingAs: self.
+	section addMorph: nameInput.
 
-!ChangeSelectorWizardStepWindow methodsFor: 'GUI building' stamp: 'HAW 5/31/2017 17:27:25'!
-buttonsRow
+	superclassNameInput := LabeledInput withLabel: 'Superclass name' withWidth: maxLabelWidth withModel: extractToMethodObjectRequest methodObjectSuperclassNameModel usingAs: self.
+	section addMorph: superclassNameInput.
 
-	| buttonColor row |
+	categoryInput := LabeledInput withLabel: 'Category' withWidth: maxLabelWidth withModel: extractToMethodObjectRequest methodObjectCategoryModel usingAs: self.
+	section addMorph: categoryInput.
 
-	buttonColor := self buttonColor.
+	evaluationMessageSelectorInput := LabeledInput withLabel: 'Evaluation message selector' withWidth: maxLabelWidth withModel: extractToMethodObjectRequest methodObjectEvaluationMessageSelectorModel usingAs: self.
+	section addMorph: evaluationMessageSelectorInput.
+
+	section layoutSpec: (self layoutSpecForSection: section).
+
+	^section
+! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/8/2019 17:27:35'!
+buildMorphicWindow
+
+	| requiredExtent instanceCreationMessageSection requiredHeight methodObjectClassSection instanceVariablesSection actionButtonsSection requiredWidth sections windowElementsExtent xtraBorderToAvoidScrollbars |
+
+	firstTimeBuild := true.
+
+	self initializeScrollableContainer.
+	self initializeFormLayout.
+	scrollPane scroller addMorph: formLayout.
+
+	sections := Set new.
+
+	"Method object class section"
+	methodObjectClassSection := self buildMethodObjectClassSection.
+	formLayout addMorph: methodObjectClassSection.
+	sections add: methodObjectClassSection.
+
+	variablesToParametrize isEmpty ifFalse: [
+		"Instance variables section"
+		instanceVariablesSection := self buildInstanceVariablesSection.
+		formLayout addMorph: instanceVariablesSection.
+		sections add: instanceVariablesSection.
+
+		"Instance creation message section"
+		instanceCreationMessageSection := self buildInstanceCreationMessageSection.
+		formLayout addMorph: instanceCreationMessageSection.
+		sections add: instanceCreationMessageSection.].
+
+	"Submit & Cancel buttons"
+	actionButtonsSection := self buildActionButtonsSection.
+	formLayout addMorph: actionButtonsSection.
+
+	requiredHeight := (sections collect: [:aSection | aSection recommendedHeight]) sum
+		+ actionButtonsSection layoutSpec fixedHeight
+		+ (formLayout ySeparation * 4).
+	requiredWidth := (sections collect: [:aSection | aSection recommendedWidth]) max + (formLayout xSeparation * 2).
+
+	requiredExtent := requiredWidth@requiredHeight.
+	formLayout morphExtent: requiredExtent.
+	scrollPane scroller morphExtent: requiredExtent.
+
+	windowElementsExtent := (borderWidth * 2)@(borderWidth * 2 + self labelHeight).
+	xtraBorderToAvoidScrollbars := 4@4.
+	windowElementsExtent := windowElementsExtent + scrollPane bordersExtent + xtraBorderToAvoidScrollbars.
+	firstTimeBuild ifTrue: [initialExtent := requiredExtent + windowElementsExtent. firstTimeBuild := false].! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/10/2019 18:37:23'!
+buildPreview
+
+	| keywordParamStrings previewContent |
+
+	keywordParamStrings := OrderedCollection new.
+	inputTable keywordsAndParametersDo: [:keyword :parameterName |
+		(keyword isEmpty or: [parameterName isEmpty]) ifTrue: [
+			preview model actualContents: self previewUnavailableMessage.
+			^self].
+
+		keywordParamStrings addFirst: '', keyword, ': ', parameterName].
+
+	previewContent := ' ' join: keywordParamStrings.
+
+	preview model actualContents: previewContent.! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 2/16/2019 11:35:56'!
+buildSubmitButton
+
+	| submitButton submitButtonLayoutSpec |
+
+	submitButton := IndependentlyColoredButton model: self action: #submitButtonClicked label: 'Refactor'.
+	submitButton color: Theme current acceptButton.
+
+	submitButtonLayoutSpec := LayoutSpec
+		fixedWidth: submitButton morphWidth
+		fixedHeight: ExtractToMethodObjectForm fontProportionalUnitOfReferenceForHeight  * 2.
+	submitButtonLayoutSpec minorDirectionPadding: 0.95.
+	submitButton layoutSpec: submitButtonLayoutSpec.
+
+	^submitButton! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 2/12/2019 15:29:28'!
+initializeFormLayout
+
+	formLayout := LayoutMorph newColumn.
+	formLayout separation: 10; color: self backgroundColor.! !
+
+!ExtractToMethodObjectForm methodsFor: 'GUI building' stamp: 'FGJ 2/7/2019 12:52:07'!
+initializeScrollableContainer
+
+	scrollPane := ColoredScrollPane initializedInstance.
+	scrollPane scroller color: self backgroundColor.
+	scrollPane scroller layoutSpec: LayoutSpec useAll.
+	scrollPane color: self backgroundColor.
+	self layoutMorph addMorphUseAll: scrollPane.! !
+
+!ExtractToMethodObjectForm methodsFor: 'events' stamp: 'FGJ 2/13/2019 15:29:04'!
+cancelButtonClicked
+
+	model cancel.! !
+
+!ExtractToMethodObjectForm methodsFor: 'events' stamp: 'FGJ 2/6/2019 13:12:47'!
+fontPreferenceChanged
+	"Copied from CodePackageListWindow"
+	"System fonts have changed; rebuild myself"
+	self layoutMorph removeAllMorphs.
+	super fontPreferenceChanged.
+	self buildMorphicWindow.
+! !
+
+!ExtractToMethodObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 12:39:00'!
+previewTextInputReceivedKeyStroke
+
+	self buildPreview.! !
+
+!ExtractToMethodObjectForm methodsFor: 'events' stamp: 'FGJ 2/10/2019 19:04:21'!
+row: aRowIndex wasSwappedWith: anotherRowIndex
+
+	self buildPreview.! !
+
+!ExtractToMethodObjectForm methodsFor: 'events' stamp: 'FGJ 2/14/2019 17:41:50'!
+submitButtonClicked
+
+	model userSubmitted: extractToMethodObjectRequest.! !
+
+!ExtractToMethodObjectForm methodsFor: 'messages' stamp: 'FGJ 2/11/2019 16:47:48'!
+previewUnavailableMessage
+
+	^'All the keywords and parameter names must be filled for the preview to appear here'! !
+
+!ExtractToMethodObjectForm methodsFor: 'initialization' stamp: 'FGJ 4/11/2019 16:53:08'!
+initializeWithModel: aModel
+
+	super model: aModel.
+
+	self setLabel: 'Extract Method to Method Object'.
+
+	discardEdits := false.
+	variablesToParametrize := model variablesToParametrize.
+	extractToMethodObjectRequest := ExtractToMethodObjectRequest for: aModel methodToExtract.
+	focusMorphs := OrderedCollection new.! !
+
+!ExtractToMethodObjectForm methodsFor: 'focus change' stamp: 'FGJ 4/11/2019 12:50:38'!
+addFocusReceiver: anInnerTextMorph
+
+	focusMorphs add: anInnerTextMorph.! !
+
+!ExtractToMethodObjectForm methodsFor: 'focus change' stamp: 'FGJ 4/11/2019 13:03:28'!
+moveFrom: anInnerTextMorph
+
+	| newFocusMorph oldFocusIndex |
+
+	oldFocusIndex := (1 to: focusMorphs size) detect: [:i | (focusMorphs at: i) = anInnerTextMorph].
+	newFocusMorph := focusMorphs at: (oldFocusIndex mod: focusMorphs size) + 1.
+
+	self world activeHand newKeyboardFocus: newFocusMorph.! !
+
+!ExtractToMethodObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 18:27:41'!
+fontProportionalUnitOfReferenceForHeight
+
+	^AbstractFont default height! !
+
+!ExtractToMethodObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 18:27:24'!
+fontProportionalUnitOfReferenceForWidth
+
+	^AbstractFont default widthOf: $A! !
+
+!ExtractToMethodObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 17:26:06'!
+open: aModel label: aString
+
+	|  window |
+
+	window _ self withModel: aModel.
+	window buildMorphicWindow.
+	aString ifNotNil: [ window setLabel: aString ].
+	window openInWorld.
+	^window! !
+
+!ExtractToMethodObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 18:27:24'!
+recommendedWidth
+
+	^self fontProportionalUnitOfReferenceForWidth * 70! !
+
+!ExtractToMethodObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 17:26:21'!
+withModel: aModel
+
+	^self new initializeWithModel: aModel! !
+
+!IntroduceNullObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 12:42:50'!
+backgroundColor
+
+	^Color lightGray! !
+
+!IntroduceNullObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 3/29/2019 16:41:04'!
+deleteDiscardingEdits
+
+	discardEdits := true.
+	super delete.! !
+
+!IntroduceNullObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 3/27/2019 17:26:18'!
+ifNilChecks: someMessageSendings
+
+	messageSendingList := someMessageSendings. ! !
+
+!IntroduceNullObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 12:44:02'!
+layoutSpecForSection: aSection
+
+	^LayoutSpec proportionalWidth: 1.0 fixedHeight: aSection recommendedHeight! !
+
+!IntroduceNullObjectForm methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 12:43:16'!
+recommendedWidthForLabels: labels
+
+	| rightMargin |
+
+	rightMargin := 20.
+	^(labels collect: [:aLabel | AbstractFont default widthOfString: aLabel]) max + rightMargin! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/29/2019 14:24:50'!
+buildActionButtonsSection
+
+	| section sectionLayoutSpec submorphsWidth sectionWidth submorphsHeight |
+
+	section := LayoutMorph newRow.
+	section separation: 10.
+	section color: self backgroundColor.
+
+	section addMorph: self buildCancelButton.
+	section addMorph: self buildSubmitButton.
+
+	submorphsWidth := (section submorphs collect: [:aSubmorph | aSubmorph layoutSpec fixedWidth]) sum.
+	sectionWidth := submorphsWidth + (section xSeparation * (section submorphs size + 1)).
+	submorphsHeight := (section submorphs collect: [:aSubmorph | aSubmorph layoutSpec fixedHeight]) max.
+	sectionLayoutSpec := LayoutSpec fixedWidth: sectionWidth fixedHeight: submorphsHeight * 2.
+	sectionLayoutSpec minorDirectionPadding: 0.95.
+
+	section layoutSpec: sectionLayoutSpec.
+
+	^section.
+	! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/29/2019 14:25:04'!
+buildCancelButton
+
+	| button buttonLayoutSpec |
+
+	button := IndependentlyColoredButton model: self action: #cancelButtonClicked label: 'Cancel'.
+	button color: Theme current cancelButton.
+
+	buttonLayoutSpec := LayoutSpec
+		fixedWidth: button morphWidth
+		fixedHeight: ExtractToMethodObjectForm fontProportionalUnitOfReferenceForHeight  * 2.
+	buttonLayoutSpec minorDirectionPadding: 0.85.
+	button layoutSpec: buttonLayoutSpec.
+
+	^button! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'HAW 10/23/2019 09:52:36'!
+buildCodePaneFor: anIfNilCheck
+
+	| codePane |
+
+	codePane := TextModelMorph textProvider: self.
+	codePane model actualContents: anIfNilCheck methodNode sourceText.
+	codePane color: Color white.
+	codePane disableEditing.
+	codePane drawKeyboardFocusIndicator: false.
+	codePane selectFrom: anIfNilCheck messageNodeIndex to: (anIfNilCheck methodNode encoder rangeForNode: anIfNilCheck messageNode ifAbsent: [ self shouldNotHappen ]) last.
+
+	codePane layoutSpec: (LayoutSpec proportionalWidth: 1.0 fixedHeight: (IntroduceNullObjectForm fontProportionalUnitOfReferenceForHeight * 7)).
+
+	^codePane! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/8/2019 12:42:52'!
+buildIfNilCheckFormFor: anIfNilCheck
+
+	| layout variablesToExtract polymorphicSelectorSection codePane |
+
+	layout := LayoutMorph newColumn.
+	layout color: self backgroundColor.
+	layout separation: 0@10.
+
+	codePane := self buildCodePaneFor: anIfNilCheck.
+	layout addMorph: codePane.
+
+	variablesToExtract := MessageSendingBlocksVariablesToExtractFinder valueIn: anIfNilCheck messageNode.
+	variablesToExtract
+		ifEmpty: [polymorphicSelectorSection := self buildPolymorphicSelectorInputFor: anIfNilCheck]
+		ifNotEmpty: [polymorphicSelectorSection := self buildPolymorphicSelectorTableFor: anIfNilCheck toSelectKeywordsAndParametersFor: variablesToExtract].
+	layout addMorph: polymorphicSelectorSection.
+
+	layout layoutSpec: (LayoutSpec
+		fixedWidth: polymorphicSelectorSection layoutSpec fixedWidth
+		fixedHeight: (codePane layoutSpec fixedHeight + polymorphicSelectorSection layoutSpec fixedHeight+ (layout ySeparation * 3))).
+
+	formLayout addMorph: layout.
+
+	layout hide.
+
+	variablesToExtract ifNotEmpty: [self buildPreviewOf: layout].
+
+	^layout.! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/29/2019 16:57:12'!
+buildIfNilChecksFormsFor: someIfNilChecks
+
+	ifNilChecksForms := someIfNilChecks collect: [:ifNilCheck | self buildIfNilCheckFormFor: ifNilCheck].! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/5/2019 15:34:42'!
+buildMessageSendingListSection
+
+	| list |
+
+	list := PluggableListMorph
+		model: messageListModel
+		listGetter: #messageList
+		indexGetter: #messageListIndex
+		indexSetter: #messageListIndex:
+		mainView: self
+		menuGetter: #messageListMenu
+		keystrokeAction: #messageListKey:from:.
+	list color: Color white.
+	list layoutSpec: (LayoutSpec proportionalWidth: 1.0 fixedHeight: IntroduceNullObjectForm fontProportionalUnitOfReferenceForHeight * 7).
+
+	^list! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/5/2019 16:22:49'!
+buildMorphicWindow
+
+	firstTimeBuild := true.
+
+	self initializeScrollableContainer.
+	self initializeFormLayout.
+	scrollPane scroller addMorph: formLayout.
+	formLayout padding: #top.
+
+	hierarchySection := self buildNullObjectHierarchyClassesSection.
+	formLayout addMorph: hierarchySection.
+
+	messageSendingListSection := self buildMessageSendingListSection.
+	formLayout addMorph: messageSendingListSection.
+
+	self buildIfNilChecksFormsFor: ifNilChecks.
+
+	actionButtonsSection := self buildActionButtonsSection.
+	formLayout addMorph: actionButtonsSection.
+
+	self setExtents.
+
+	self showFormForMessage: messageListModel messageListIndex.! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/11/2019 13:12:36'!
+buildNullObjectHierarchyClassesSection
+
+	| section maxLabelWidth nullClassInput concreteClassInput |
+
+	section := FormSection withTitle: 'Null Object Hierarchy' withColor: self backgroundColor.
+
+	maxLabelWidth := self recommendedWidthForLabels: #('Null Class' 'Concrete Class').
+
+	nullClassInput := LabeledInput withLabel: 'Null Class' withWidth: maxLabelWidth withModel: introduceNullObjectRequest nullClassNameModel usingAs: self.
+	section addMorph: nullClassInput.
+
+	concreteClassInput := LabeledInput withLabel: 'Concrete Class' withWidth: maxLabelWidth withModel: introduceNullObjectRequest concreteClassNameModel usingAs: self. 	section addMorph: concreteClassInput.
+
+	section layoutSpec: (self layoutSpecForSection: section).
+
+	^section
+! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/11/2019 13:13:50'!
+buildPolymorphicSelectorInputFor: anIfNilCheck
+
+	| selectorInput inputWidth ifNilCheckModel |
+
+	inputWidth := self recommendedWidthForLabels: #('Polymorphic Selector').
+	ifNilCheckModel := introduceNullObjectRequest messgeKeywordsAndParametersModelFor: anIfNilCheck.
+	selectorInput := LabeledInput withLabel: 'Polymorphic Selector' withWidth: inputWidth withModel: ifNilCheckModel selectorModel usingAs: self.
+
+	selectorInput layoutSpec: (LayoutSpec fixedWidth: LabeledInput inputWidth fixedHeight: IntroduceNullObjectForm fontProportionalUnitOfReferenceForHeight  * 2).
+
+	^selectorInput ! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/10/2019 18:07:05'!
+buildPolymorphicSelectorTableFor: anIfNilCheck toSelectKeywordsAndParametersFor: someVariablesToExtract
+
+	| parametersTable preview layout previewLayoutSpec |
+
+	layout := LayoutMorph newColumn.
+	layout color: self backgroundColor.
+	layout separation: 0@10.
+
+	parametersTable := MessageKeywordsAndParametersTable
+		withRows: someVariablesToExtract
+		withColor: self backgroundColor
+		withPreviewModel: self
+		withRefactoringModel: (introduceNullObjectRequest messgeKeywordsAndParametersModelFor: anIfNilCheck).
+	layout addMorph: parametersTable.
+
+	preview := TextModelMorph textProvider: self.
+	preview model actualContents: self previewUnavailableMessage.
+	preview color: Color white.
+	preview disableEditing.
+	preview drawKeyboardFocusIndicator: false.
+	preview lock: true.
+
+	previewLayoutSpec := LayoutSpec
+		proportionalWidth: 1.0
+		fixedHeight: IntroduceNullObjectForm fontProportionalUnitOfReferenceForHeight * 3.
+	previewLayoutSpec minorDirectionPadding: 0.3.
+	preview layoutSpec: previewLayoutSpec.
+
+	layout addMorph: preview.
+
+	layoutSpec := LayoutSpec
+		fixedWidth: parametersTable layoutSpec fixedWidth
+		fixedHeight: (preview layoutSpec fixedHeight + parametersTable layoutSpec fixedHeight + (layout ySeparation * 3)).
+	layout layoutSpec: layoutSpec.
+
+	^layout! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/10/2019 18:38:31'!
+buildPreviewOf: anIfNilCheckForm
+
+	| keywordParamStrings previewContent currentlyShownPreview currentlyShownTable |
+
+	currentlyShownTable := (anIfNilCheckForm submorphs at: 1) submorphs at: 2.
+	currentlyShownPreview := (anIfNilCheckForm submorphs at: 1) submorphs at: 1.
+
+	keywordParamStrings := OrderedCollection new.
+	currentlyShownTable keywordsAndParametersDo: [:keyword :parameterName |
+		(keyword isEmpty or: [parameterName isEmpty]) ifTrue: [
+			currentlyShownPreview model actualContents: self previewUnavailableMessage.
+			^self].
+
+		keywordParamStrings addFirst: '', keyword, ': ', parameterName.].
+
+	previewContent := ' ' join: keywordParamStrings.
+
+	currentlyShownPreview model actualContents: previewContent.! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/29/2019 14:25:18'!
+buildSubmitButton
+
+	| submitButton submitButtonLayoutSpec |
+
+	submitButton := IndependentlyColoredButton model: self action: #submitButtonClicked label: 'Refactor'.
+	submitButton color: Theme current acceptButton.
+
+	submitButtonLayoutSpec := LayoutSpec
+		fixedWidth: submitButton morphWidth
+		fixedHeight: ExtractToMethodObjectForm fontProportionalUnitOfReferenceForHeight  * 2.
+	submitButtonLayoutSpec minorDirectionPadding: 0.95.
+	submitButton layoutSpec: submitButtonLayoutSpec.
+
+	^submitButton! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/26/2019 12:27:29'!
+initializeFormLayout
+
+	formLayout := LayoutMorph newColumn.
+	formLayout separation: 10; color: self backgroundColor.! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 3/26/2019 12:26:44'!
+initializeScrollableContainer
+
+	scrollPane := ColoredScrollPane initializedInstance.
+	scrollPane scroller color: self backgroundColor.
+	scrollPane scroller layoutSpec: LayoutSpec useAll.
+	scrollPane color: self backgroundColor.
+	self layoutMorph addMorphUseAll: scrollPane.! !
+
+!IntroduceNullObjectForm methodsFor: 'GUI building' stamp: 'FGJ 4/8/2019 17:13:01'!
+setExtents
+
+
+	| requiredExtent requiredHeight requiredWidth windowElementsExtent xtraBorderToAvoidScrollbars |
+
+	requiredHeight := hierarchySection recommendedHeight
+		+ messageSendingListSection layoutSpec fixedHeight
+		+ (ifNilChecksForms at: messageListModel messageListIndex) layoutSpec fixedHeight
+		+ actionButtonsSection layoutSpec fixedHeight
+		+ (formLayout ySeparation * (formLayout submorphs size + 1)).
+	requiredWidth := {hierarchySection recommendedWidth. (ifNilChecksForms at: messageListModel messageListIndex) layoutSpec fixedWidth} max.
+	(ifNilChecksForms at: messageListModel messageListIndex) layoutSpec fixedWidth: requiredWidth.
+	requiredWidth := requiredWidth + (formLayout xSeparation * 2).
+
+	requiredExtent := requiredWidth@requiredHeight.
+	formLayout morphExtent: requiredExtent.
+	scrollPane scroller morphExtent: requiredExtent.
+
+	windowElementsExtent := (borderWidth * 2)@(borderWidth * 2 + self labelHeight).
+	xtraBorderToAvoidScrollbars := 4@4.
+	windowElementsExtent := windowElementsExtent + scrollPane bordersExtent + xtraBorderToAvoidScrollbars.
+	firstTimeBuild ifTrue: [initialExtent := requiredExtent + windowElementsExtent. firstTimeBuild := false].! !
+
+!IntroduceNullObjectForm methodsFor: 'open/close' stamp: 'FGJ 3/27/2019 17:41:06'!
+closeBoxHit
+
+	model formWasClosed.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 3/29/2019 14:26:25'!
+cancelButtonClicked
+
+	model cancel.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 12:40:02'!
+currentlyShownIfNilCheckForm
+
+	^ifNilChecksForms at: messageListModel messageListIndex! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/5/2019 15:19:11'!
+fontPreferenceChanged
+	"Copied from CodePackageListWindow"
+	"System fonts have changed; rebuild myself"
+	self layoutMorph removeAllMorphs.
+	super fontPreferenceChanged.
+	self buildMorphicWindow.
+! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 3/28/2019 16:39:03'!
+hideFormForMessage: anIndex
+
+	(ifNilChecksForms at: anIndex) hide.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 15:25:57'!
+okToChangeDueTo: aMorph
+
+	aMorph = messageSendingListSection ifTrue: [^true].
+
+	^self okToChange.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 12:39:44'!
+previewTextInputReceivedKeyStroke
+
+	self buildPreviewOf: self currentlyShownIfNilCheckForm.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 12:40:16'!
+row: aRowIndex wasSwappedWith: anotherRowIndex
+
+	self buildPreviewOf: self currentlyShownIfNilCheckForm.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 4/8/2019 12:44:18'!
+showFormForMessage: anIndex
+
+	| form |
+
+	form := ifNilChecksForms at: anIndex.
+	form show.
+
+	self setExtents.! !
+
+!IntroduceNullObjectForm methodsFor: 'events' stamp: 'FGJ 3/29/2019 14:26:42'!
+submitButtonClicked
+
+	model userSubmitted: introduceNullObjectRequest.! !
+
+!IntroduceNullObjectForm methodsFor: 'accessing' stamp: 'FGJ 4/4/2019 17:41:18'!
+initialExtent
+
+	^initialExtent! !
+
+!IntroduceNullObjectForm methodsFor: 'accessing' stamp: 'FGJ 3/28/2019 19:01:20'!
+previewUnavailableMessage
+
+	^'All the keywords and parameter names must be filled for the preview to appear here'! !
+
+!IntroduceNullObjectForm methodsFor: 'text provider' stamp: 'FGJ 3/28/2019 19:14:30'!
+shouldStyle: text with: anSHTextStyler
+
+	text = self previewUnavailableMessage ifFalse: [
+		anSHTextStyler classOrMetaClass: model classToRefactor.
+		^true].
+
+	^false.! !
+
+!IntroduceNullObjectForm methodsFor: 'text provider' stamp: 'FGJ 3/28/2019 13:21:08'!
+textStylerClassFor: textGetter
+
+	^SHTextStylerST80 ! !
+
+!IntroduceNullObjectForm methodsFor: 'user interface' stamp: 'FGJ 3/29/2019 16:41:15'!
+okToChange
+
+	discardEdits
+		ifTrue: [^true]
+		ifFalse: [^super okToChange].! !
+
+!IntroduceNullObjectForm methodsFor: 'initialization' stamp: 'FGJ 4/11/2019 13:14:48'!
+initializeWithModel: aModel
+
+	super model: aModel.
+
+	self setLabel: 'Introduce Null Object'.
+
+	discardEdits := false.
+
+	ifNilChecks := model ifNilChecks.
+	introduceNullObjectRequest := IntroduceNullObjectRequest for: ifNilChecks.
+	messageListModel := IfNilMessageListModel with: ifNilChecks withForm: self.
+	focusMorphs := OrderedCollection new.
+
+! !
+
+!IntroduceNullObjectForm methodsFor: 'focus change' stamp: 'FGJ 4/11/2019 13:13:28'!
+addFocusReceiver: anInnerTextMorph
+
+	focusMorphs add: anInnerTextMorph.! !
+
+!IntroduceNullObjectForm methodsFor: 'focus change' stamp: 'FGJ 4/11/2019 13:21:46'!
+moveFrom: anInnerTextMorph
+
+	| newFocusMorph oldFocusIndex |
+
+	oldFocusIndex := (1 to: focusMorphs size) detect: [:i | (focusMorphs at: i) = anInnerTextMorph].
+	newFocusMorph := focusMorphs at: (oldFocusIndex mod: focusMorphs size) + 1.
+	newFocusMorph isReallyVisible ifFalse: [newFocusMorph := focusMorphs at: 1].
+
+	self world activeHand newKeyboardFocus: newFocusMorph.! !
+
+!IntroduceNullObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 4/1/2019 14:39:26'!
+fontProportionalUnitOfReferenceForHeight
+
+	^AbstractFont default height! !
+
+!IntroduceNullObjectForm class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 14:32:21'!
+fontProportionalUnitOfReferenceForWidth
+
+	^AbstractFont default widthOf: $A! !
+
+!IntroduceNullObjectForm class methodsFor: 'instance creation' stamp: 'FGJ 4/5/2019 16:13:58'!
+open: aModel label: aString
+
+	|  window |
+
+	window _ self withModel: aModel.
+	window buildMorphicWindow.
+	aString ifNotNil: [ window setLabel: aString ].
+	window openInWorld.
+	^window! !
+
+!IntroduceNullObjectForm class methodsFor: 'instance creation' stamp: 'FGJ 4/5/2019 16:14:16'!
+withModel: aModel
+
+	^self new initializeWithModel: aModel! !
+
+!FormSection methodsFor: 'initialization' stamp: 'FGJ 2/13/2019 18:57:34'!
+initializeWithTitle: aTitle withExplanation: anExplanation withColor: aColor
+
+	| titleLayoutSpec |
+
+	title := aTitle.
+	explanation := anExplanation.
+
+	self separation: 3.
+	self color: aColor.
+
+	titleMorph := StringMorph
+		contents: title
+		font: Preferences windowTitleFont
+		emphasis: 1.
+	titleLayoutSpec := LayoutSpec
+		fixedWidth: titleMorph morphWidth
+		fixedHeight: titleMorph morphHeight.
+	titleLayoutSpec minorDirectionPadding: 0.03.
+
+	self addMorph: titleMorph layoutSpec: titleLayoutSpec.
+
+	explanation isEmpty ifFalse: [
+		explanationMorph := ImmutableTextModelMorph
+			withText: anExplanation
+			withColor: aColor
+			withWidth: self fixedWidthForTexts.
+		self addMorph: explanationMorph.
+	].! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/4/2019 12:53:57'!
+drawOn: aCanvas
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: color
+		borderWidth: 2
+		borderStyleSymbol: #simple
+		baseColorForBorder: Color darkGray ! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 11:35:56'!
+fixedWidthForTexts
+
+	^ExtractToMethodObjectForm recommendedWidth * 0.7! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/13/2019 18:17:02'!
+recommendedHeight
+
+	^((self submorphs collect: [:aMorph | aMorph layoutSpec fixedHeight]) sum) + ( (self submorphs size + 1) * self ySeparation) + self verticalMargins! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 11:53:17'!
+recommendedWidth
+
+	^(self submorphs collect: [:aMorph | aMorph layoutSpec fixedWidth]) max + (self xSeparation * 2) max: self fixedWidthForTexts! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 11:54:23'!
+textHeight
+
+	^AbstractFont default height! !
+
+!FormSection methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 17:14:53'!
+verticalMargins
+
+	^20! !
+
+!FormSection class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/5/2019 17:01:17'!
+withTitle: aTitle withColor: aColor
+
+	^self withTitle: aTitle withExplanation: '' withColor: aColor.! !
+
+!FormSection class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 11:36:16'!
+withTitle: aTitle withExplanation: anExplanation withColor: aColor
+
+	^FormSection newColumn initializeWithTitle: aTitle withExplanation: anExplanation withColor: aColor.! !
+
+!LabeledInput methodsFor: 'as yet unclassified' stamp: 'FGJ 1/22/2019 13:37:24'!
+drawOn: aCanvas
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: Color lightGray.! !
+
+!LabeledInput methodsFor: 'as yet unclassified' stamp: 'FGJ 4/5/2019 15:43:39'!
+textModel: aTextModel
+
+	inputMorph model: aTextModel.! !
+
+!LabeledInput methodsFor: 'as yet unclassified' stamp: 'FGJ 4/5/2019 15:46:45'!
+withLabel: aLabel withWidth: aWidth withModel: aTextModel
+
+	| labelLayoutSpec inputMorphLayoutSpec |
+
+	self separation: 5.
+	layoutSpec := LayoutSpec proportionalWidth: 0.95 fixedHeight: LabeledInput recommendedHeight.
+	self layoutSpec: layoutSpec.
+
+	labelMorph := StringMorph contents: aLabel.
+	labelLayoutSpec := LayoutSpec
+		fixedWidth: aWidth
+		fixedHeight: labelMorph morphHeight
+		minorDirectionPadding: #center.
+	self addMorph: labelMorph layoutSpec: labelLayoutSpec.
+
+	inputMorph := TextModelMorph withModel: aTextModel.
+	inputMorph hideScrollBarsIndefinitely.
+	inputMorphLayoutSpec :=
+		LayoutSpec
+			fixedWidth: LabeledInput inputWidth
+			fixedHeight: labelMorph morphHeight + 2.
+	self addMorph: inputMorph layoutSpec: inputMorphLayoutSpec.
+
+
+
+	! !
+
+!LabeledInput methodsFor: 'as yet unclassified' stamp: 'FGJ 4/11/2019 12:50:09'!
+withLabel: aLabel withWidth: aWidth withModel: aTextModel usingAs: focusMover
+
+	| labelLayoutSpec inputMorphLayoutSpec |
+
+	self separation: 5.
+	layoutSpec := LayoutSpec proportionalWidth: 0.95 fixedHeight: LabeledInput recommendedHeight.
+	self layoutSpec: layoutSpec.
+
+	labelMorph := StringMorph contents: aLabel.
+	labelLayoutSpec := LayoutSpec
+		fixedWidth: aWidth
+		fixedHeight: labelMorph morphHeight
+		minorDirectionPadding: #center.
+	self addMorph: labelMorph layoutSpec: labelLayoutSpec.
+
+	inputMorph := TabPassingTextModelMorph withModel: aTextModel.
+	inputMorph textMorph focusMover: focusMover.
+	focusMover addFocusReceiver: inputMorph textMorph.
+	inputMorph hideScrollBarsIndefinitely.
+	inputMorphLayoutSpec :=
+		LayoutSpec
+			fixedWidth: LabeledInput inputWidth
+			fixedHeight: labelMorph morphHeight + 2.
+	self addMorph: inputMorph layoutSpec: inputMorphLayoutSpec.
+
+
+
+	! !
+
+!LabeledInput class methodsFor: 'as yet unclassified' stamp: 'FGJ 4/4/2019 18:08:29'!
+inputWidth
+
+	^ExtractToMethodObjectForm fontProportionalUnitOfReferenceForWidth * 30! !
+
+!LabeledInput class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/6/2019 20:39:39'!
+recommendedHeight
+
+	^AbstractFont default height * 1.8! !
+
+!LabeledInput class methodsFor: 'instance creation' stamp: 'FGJ 4/5/2019 16:32:52'!
+withLabel: aLabel withWidth: aWidth withModel: aPluggableTextModel
+
+	^self newRow withLabel: aLabel withWidth: aWidth withModel: aPluggableTextModel! !
+
+!LabeledInput class methodsFor: 'instance creation' stamp: 'FGJ 4/11/2019 12:47:10'!
+withLabel: aLabel withWidth: aWidth withModel: aPreviewModel usingAs: aFocusMover
+
+	^self newRow withLabel: aLabel withWidth: aWidth withModel: aPreviewModel usingAs: aFocusMover! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/13/2019 14:16:02'!
+backgroundColor
+
+	^backgroundColor ! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 18:09:29'!
+columnWidthsRequiredForRowTitles: rowsTitles forInputColumns: numberOfInputColumns
+
+	| widths maxRowTitleWidth widthForInputs |
+
+	widths := OrderedCollection new.
+
+	maxRowTitleWidth := (rowsTitles collect: [:aRowTitle | AbstractFont default widthOfString: aRowTitle]) max + 20.
+	widths add: maxRowTitleWidth.
+
+	widthForInputs := ExtractToMethodObjectForm fontProportionalUnitOfReferenceForWidth * 20.
+	numberOfInputColumns timesRepeat: [widths add: widthForInputs].
+
+	rowsTitles size > 1 ifTrue: [widths add: (AbstractFont default widthOfString: 'Change order')].
+
+	^widths
+
+	! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 1/22/2019 15:30:47'!
+drawOn: aCanvas
+
+	aCanvas
+		fillRectangle: self morphLocalBounds
+		color: Color lightGray.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 17:15:41'!
+isBottomRow: aRowIndex
+
+	^aRowIndex == 1! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 18:36:30'!
+keywordsAndParametersDo: aBlock
+
+	| hasChangeOrderColumn |
+	hasChangeOrderColumn := self needsToReorderRows.
+
+	self submorphs allButLast do: [:aSubmorph | | keyword parameterName keywordMorph parameterMorph |
+		keywordMorph := aSubmorph submorphs at: (hasChangeOrderColumn ifTrue: [3] ifFalse: [2]).
+		parameterMorph := aSubmorph submorphs at: (hasChangeOrderColumn ifTrue: [2] ifFalse: [1]).
+		keyword := keywordMorph model actualContents string withBlanksTrimmed.
+		parameterName := parameterMorph model actualContents string withBlanksTrimmed.
+
+		aBlock value: keyword value: parameterName].! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:01:04'!
+moveDownRow: aRowIndex
+
+	(self isBottomRow: aRowIndex) ifFalse: [
+		self swapRow: aRowIndex with: aRowIndex -1.
+		self rowWasMovedDown: aRowIndex - 1.
+		self rowWasMovedUp: aRowIndex.].! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:01:10'!
+moveUpRow: aRowIndex
+
+	aRowIndex <  self numberOfRowsWithoutHeaders ifTrue: [
+		self swapRow: aRowIndex with: aRowIndex + 1.
+		self rowWasMovedUp: aRowIndex + 1.
+		self rowWasMovedDown: aRowIndex.].! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 18:17:14'!
+needsToReorderRows
+
+	^variablesToParametrize size > 1! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/10/2019 18:49:07'!
+notifyPreviewModelThat: aRowIndex wasSwappedWith: anotherRowIndex
+
+	previewModel row: aRowIndex wasSwappedWith: anotherRowIndex.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:03:43'!
+notifyRefactoringModelThat: aRowIndex wasSwappedWith: anotherRowIndex
+
+	refactoringModel keywordOfIndex: aRowIndex wasSwappedWithKeywordOfIndex: anotherRowIndex.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 16:59:36'!
+numberOfRowsWithoutHeaders
+
+	^self submorphs size - 1! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 12:11:01'!
+rowsLayoutSpec
+
+	^LayoutSpec fixedHeight: self rowHeight! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:01:38'!
+swapRow: aRowIndex with: anotherRowIndex
+
+	self swapRowSubmorph: aRowIndex with: anotherRowIndex.
+	self swapRowModel: aRowIndex with: anotherRowIndex.
+	self notifyPreviewModelThat: aRowIndex wasSwappedWith: anotherRowIndex.
+	self notifyRefactoringModelThat: aRowIndex wasSwappedWith: anotherRowIndex.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 17:16:44'!
+swapRowModel: aRowIndex with: anotherRowIndex
+
+	rowModels swap: aRowIndex with: anotherRowIndex.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 17:48:55'!
+swapRowSubmorph: aRowIndex with: anotherRowIndex
+
+	self privateSubmorphs swap: aRowIndex with: anotherRowIndex.
+
+	self flag: #todofgj.
+	"It seems that the redraw isn't needed. Remove later if that's the case."
+	"self redrawNeeded."
+	self layoutSubmorphs.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'initialization' stamp: 'FGJ 4/10/2019 18:17:38'!
+withRows: rowsTitles withColor: aColor withPreviewModel: aPreviewModel withRefactoringModel: aRefactoringModel
+
+	| rowsSeparation recommendedHeight numberOfRows columnsTitlesRow changeOrderButtons tableWidth inputColumnsTitles |
+
+	backgroundColor := aColor.
+	rowModels := OrderedCollection new.
+	previewModel := aPreviewModel.
+	refactoringModel := aRefactoringModel.
+	variablesToParametrize := rowsTitles.
+
+	rowsSeparation := 4.
+	self separation: rowsSeparation.
+
+	"Calculate table height"
+	numberOfRows := (rowsTitles size + 1).
+	recommendedHeight :=  self rowHeight * numberOfRows + (rowsSeparation * (numberOfRows + 1)).
+
+	"Calculate column widths"
+	inputColumnsTitles := #('Keyword' 'Parameter name').
+	columnWidths := self columnWidthsRequiredForRowTitles: rowsTitles forInputColumns: inputColumnsTitles size.
+
+	"Calculate table width"
+	tableWidth := columnWidths sum + (self columnSeparation * (columnWidths size + 1)).
+
+	self layoutSpec: (LayoutSpec fixedWidth: tableWidth fixedHeight: recommendedHeight).
+
+	"Buid the columns titles row"
+	columnsTitlesRow := self buildColumnTitlesRowFor: inputColumnsTitles.
+	self addMorph: columnsTitlesRow layoutSpec: self rowsLayoutSpec.
+
+	"Build the input rows"
+	rowsTitles withIndexDo: [:aRowTitle :index | | aRow changeOrderModel upButton downButton layoutButtons keywordModel keywordInputMorph inputMorphLayoutSpec parameternameInputMorph |
+		aRow := LayoutMorph newRow.
+		aRow color: self backgroundColor; separation: self columnSeparation.
+
+		aRow
+			addMorph: (StringMorph contents: aRowTitle)
+			layoutSpec: (LayoutSpec fixedWidth: (columnWidths at: 1)).
+
+		inputMorphLayoutSpec := LayoutSpec fixedWidth: (columnWidths at: 2) fixedHeight: self rowHeight.
+
+		keywordInputMorph := self buildInputMorphWith: (aRefactoringModel keywordModelOf: aRowTitle).
+		aRow addMorph: keywordInputMorph layoutSpec: inputMorphLayoutSpec.
+
+		parameternameInputMorph := self buildInputMorphWith: (aRefactoringModel parameterModelOf: aRowTitle).
+		aRow addMorph: parameternameInputMorph layoutSpec: inputMorphLayoutSpec.
+
+		self needsToReorderRows ifTrue: [
+			changeOrderModel := ChangeRowOrderButtonModel for: (rowsTitles size - (index - 1)) notifying: self.
+			rowModels addFirst: changeOrderModel.
+			changeOrderButtons := self buildChangeOrderButtonsWith: changeOrderModel.
+			aRow addMorph: changeOrderButtons layoutSpec: (LayoutSpec fixedWidth: (columnWidths last))].
+
+		self addMorph: aRow layoutSpec: self rowsLayoutSpec.
+	].! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'events' stamp: 'FGJ 2/9/2019 17:20:09'!
+rowWasMovedDown: aRowIndex
+
+	(rowModels at: aRowIndex) wasMovedDown.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'events' stamp: 'FGJ 2/9/2019 17:20:24'!
+rowWasMovedUp: aRowIndex
+
+	(rowModels at: aRowIndex) wasMovedUp.! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'GUI building' stamp: 'FGJ 2/13/2019 14:14:52'!
+buildChangeOrderButtonsWith: aModel
+
+	| downButton layoutButtons upButton |
+
+	upButton := PluggableButtonMorph new.
+	upButton icon: Theme current goUpIcon.
+	upButton model: aModel.
+	upButton action: #moveUp.
+
+	downButton := PluggableButtonMorph new.
+	downButton icon: Theme current goDownIcon.
+	downButton model: aModel.
+	downButton action: #moveDown.
+
+	layoutButtons := LayoutMorph newRow.
+	layoutButtons padding: #center; color: self backgroundColor.
+	layoutButtons addMorph: downButton; addMorph: upButton.
+
+	^layoutButtons! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'GUI building' stamp: 'FGJ 4/10/2019 18:17:57'!
+buildColumnTitlesRowFor: inputColumnsTitles
+
+	| columnsTitles row |
+
 	row := LayoutMorph newRow.
-	row doAdoptWidgetsColor.
-	row color: buttonColor.
+	row color: self backgroundColor.
+	row separation: self columnSeparation.
 
-	self addButtonsTo: row color: buttonColor.
-	
+	columnsTitles := OrderedCollection newFrom: inputColumnsTitles.
+	columnsTitles addFirst: ''.
+	self needsToReorderRows ifTrue: [columnsTitles addLast: 'Change order'].
+	columnsTitles withIndexDo: [:aColumnTitle :columnIndex | | columnTitleLayoutSpec titleLayout |
+		titleLayout := LayoutMorph newRow.
+		titleLayout color: self backgroundColor .
+		titleLayout padding: #center.
+		titleLayout addMorph: (StringMorph contents: aColumnTitle).
+		columnTitleLayoutSpec := LayoutSpec fixedWidth: (columnWidths at: columnIndex).
+		row
+			addMorph: titleLayout
+			layoutSpec: columnTitleLayoutSpec].
+
 	^row
-	
-	! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'compile methods' stamp: 'HAW 5/31/2017 17:08:14'!
-compiledMethodsFrom: methodReferences
-
-	^ methodReferences collect: [:aMethodReference | aMethodReference compiledMethod ]! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'button creation' stamp: 'HAW 5/31/2017 17:21:11'!
-createAddButton
-	
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #add
-		label: 'Add'.
-! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'button creation' stamp: 'HAW 5/31/2017 17:21:19'!
-createCancelButton
-	
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #delete
-		label: 'Cancel'.
-! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'button creation' stamp: 'HAW 10/10/2018 19:47:37'!
-createJustRefactorButton
-
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #justRefactor
-		label: 'Just Refactor!!'! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'button creation' stamp: 'HAW 10/10/2018 19:47:43'!
-createRefactorButton
-
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #refactor
-		label: 'Refactor'! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'button creation' stamp: 'HAW 5/31/2017 17:16:37'!
-createRemoveButton
-	
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: #isMessageSelected
-		action: #remove
-		label: 'Remove'.
-! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'initialization' stamp: 'HAW 1/7/2019 11:04:02'!
-initializeFrom: aChangeSelectorApplier
-
-	applier := aChangeSelectorApplier ! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'testing' stamp: 'HAW 6/5/2017 17:40:16'!
-isMessageSelected
-
-	^model isNil ifTrue: [ false ] ifFalse: [ model selection notNil ]! !
-
-!ChangeSelectorWizardStepWindow methodsFor: 'accessing' stamp: 'HAW 1/7/2019 11:02:43'!
-oldSelector
-	
-	^applier oldSelector ! !
-
-!ChangeSelectorWizardStepWindow class methodsFor: 'instance creation' stamp: 'HAW 5/31/2017 16:59:25'!
-methodReferencesOf: methods
-
-	^methods asOrderedCollection collect: [:aCompiledMethod | aCompiledMethod methodReference ].
-! !
-
-!ChangeSelectorWizardStepWindow class methodsFor: 'instance creation' stamp: 'HAW 1/7/2019 11:03:50'!
-openFrom: aChangeSelectorApplier methods: methods label: aLabel
-
-	| window |
-	
-	window := self openMessageList: (self methodReferencesOf: methods) label: aLabel autoSelect: aChangeSelectorApplier oldSelector.
-	window initializeFrom: aChangeSelectorApplier.
-	
-	^window 
-
-! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'actions' stamp: 'HAW 6/5/2017 17:33:16'!
-add
-		
-	self 
-		do: [ :classOfImplementorToAdd | self addImplementorIn: classOfImplementorToAdd ]
-		withEnteredClassLabeled:  'Class that implements ', self oldSelector ! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'actions' stamp: 'HAW 6/5/2017 17:33:26'!
-addImplementorIn: classOfImplementorToAdd 
-
-	| implementorToAdd |
-	
-	implementorToAdd := classOfImplementorToAdd 
-		compiledMethodAt: self oldSelector 
-		ifAbsent: [ ^self inform: classOfImplementorToAdd doesNotImplement: self oldSelector ].
-		
-	self addToList: implementorToAdd! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:02:43'!
-changeImplementors
-	
-	applier implementors: (self compiledMethodsFrom: model messageList).
-	! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'actions' stamp: 'HAW 10/10/2018 18:07:57'!
-refactor
-
-	self changeImplementors.
-	super refactor ! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:17:47'!
-seeSenders
-
-	self changeImplementors.
-	self delete.	
-	
-	ChangeSelectorSendersStepWindow openFrom: applier ! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'GUI building' stamp: 'HAW 10/10/2018 19:55:34'!
-addButtonsTo: row color: buttonColor
-
-	self addButton: self createRemoveButton to: row color: buttonColor.
-	self addButton: self createAddButton to: row color: buttonColor.
-	self addButton: self createSeeSendersButton to: row color: buttonColor.
-	self addButton: self createRefactorButton to: row color: buttonColor.
-	self addButton: self createJustRefactorButton to: row color: buttonColor.
-	self addButton: self createCancelButton to: row color: buttonColor.
-! !
-
-!ChangeSelectorImplementorsStepWindow methodsFor: 'button creation' stamp: 'HAW 10/10/2018 19:55:52'!
-createSeeSendersButton
-	
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #seeSenders
-		label: 'See Senders'.
-
-! !
-
-!ChangeSelectorImplementorsStepWindow class methodsFor: 'instance creation' stamp: 'HAW 8/18/2018 17:26:33'!
-openFrom: aChangeSelectorRequest
-
-	^self 
-		openFrom: aChangeSelectorRequest 
-		methods: aChangeSelectorRequest implementors 
-		label: 'Implementors of #', aChangeSelectorRequest oldSelector, ' to Refactor'  
-! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'actions' stamp: 'HAW 6/5/2017 17:36:00'!
-add
-	
-	self 
-		do: [ :classOfSenderToAdd | self askAndAddSenderOf: classOfSenderToAdd ]
-		withEnteredClassLabeled: 'Class that sends #', self oldSelector
-		! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'actions' stamp: 'HAW 11/8/2018 15:25:57'!
-askAndAddSenderOf: classOfSenderToAdd 
-		
-	| senderSelector senderToAdd |
-	
-	senderSelector := FillInTheBlankMorph request: 'Selector of sender of #', self oldSelector onCancel: [^self ].
-	senderToAdd := classOfSenderToAdd 
-		compiledMethodAt: senderSelector asSymbol
-		ifAbsent: [ ^self inform: classOfSenderToAdd doesNotImplement: senderSelector asSymbol].
-		
-	(senderToAdd sendsOrRefersTo: self oldSelector) ifFalse: [ ^self inform: senderToAdd classAndSelector, ' does not refer to #', self oldSelector ].
-	
-	self addToList: senderToAdd ! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:02:43'!
-changeRequestSenders
-	
-	applier senders: (self compiledMethodsFrom: model messageList).
-	! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'actions' stamp: 'HAW 10/10/2018 18:09:18'!
-refactor
-	
-	self changeRequestSenders.
-	super refactor ! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'actions' stamp: 'HAW 1/7/2019 11:17:34'!
-seeImplementors
-	
-	self changeRequestSenders.
-	self delete.
-	
-	ChangeSelectorImplementorsStepWindow openFrom: applier! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'GUI building' stamp: 'HAW 10/10/2018 19:56:45'!
-addButtonsTo: row color: buttonColor
-	
-	self addButton: self createRemoveButton to: row color: buttonColor.
-	self addButton: self createAddButton to: row color: buttonColor.
-	self addButton: self createSeeImplementorsButton to: row color: buttonColor.
-	self addButton: self createRefactorButton to: row color: buttonColor.
-	self addButton: self createJustRefactorButton to: row color: buttonColor.
-	self addButton: self createCancelButton to: row color: buttonColor.
-! !
-
-!ChangeSelectorSendersStepWindow methodsFor: 'button creation' stamp: 'HAW 10/10/2018 19:56:51'!
-createSeeImplementorsButton
-
-	^PluggableButtonMorph 
-		model: self
-		stateGetter: nil
-		action: #seeImplementors
-		label: 'See Implementors'.
-! !
-
-!ChangeSelectorSendersStepWindow class methodsFor: 'instance creation' stamp: 'HAW 8/18/2018 17:26:18'!
-openFrom: aChangeSelectorRequest
-
-	^self 
-		openFrom: aChangeSelectorRequest 
-		methods: aChangeSelectorRequest senders 
-		label: 'Senders of #', aChangeSelectorRequest oldSelector, ' to Refactor' ! !
-
-!MethodNodeTest methodsFor: 'as yet unclassified' stamp: 'HAW 3/1/2019 13:58:08'!
-blockParameterNamedAsInstVar
-
-    anInstVar isNil.
-    [:anInstVar | anInstVar isNil].! !
-
-!MethodNodeTest methodsFor: 'as yet unclassified' stamp: 'HAW 3/1/2019 14:35:36'!
-test01PositionsForInstanceVariableWorksWhenThereAreLocalVarsWithSameName
-
-	| instVarName methodNode methodUnderTest positions startPosition expectedPosition |
-	
-	instVarName := 'anInstVar'.
-	methodUnderTest := self class >> #blockParameterNamedAsInstVar.
-	methodNode := methodUnderTest methodNode.
-	
-	positions := methodNode positionsForInstanceVariable: instVarName ifAbsent: [ self fail ].
-	"I assume the inst var is the first in the source code - Hernan"
-	startPosition := methodUnderTest sourceCode indexOfSubCollection: instVarName startingAt: 1.
-	expectedPosition := startPosition to: startPosition+instVarName size-1.
-	
-	self assert: 1 equals: positions size.
-	self assert: expectedPosition equals: positions first
-	! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'as yet unclassified' stamp: 'HAW 1/7/2019 16:37:36'!
-test01AsCommaStringAndDoesNotAddAnythingWhenEmpty
-
-	self assert: #() asCommaStringAnd isEmpty ! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'as yet unclassified' stamp: 'HAW 1/7/2019 16:38:15'!
-test02AsCommaStringAndDoesNotAddAnythingWhenHasOneElement
-
-	self assert: #(1) asCommaStringAnd equals: '1' ! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'as yet unclassified' stamp: 'HAW 1/7/2019 16:40:23'!
-test03AsCommaStringAndSeparatesWithAndWhenTwoOneElements
-
-	self assert: #(1 2) asCommaStringAnd equals: '1 and 2' ! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'as yet unclassified' stamp: 'HAW 1/7/2019 16:40:04'!
-test04AsCommaStringAndSeparatesWithCommaButLastOneWithAndWhenMoreThanTwoElements
-
-	self assert: #(1 2 3) asCommaStringAnd equals: '1, 2 and 3' ! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'as yet unclassified' stamp: 'HAW 1/7/2019 16:49:48'!
-test05asCommaSeparatedOnWorksAsCommaStringAnd
-
-	"see tests 1 to 4 - Hernan"
-
-	self assertAsCommaSeparated: #() equals: ''. 
-	self assertAsCommaSeparated: #(1) equals: '2'.
-	self assertAsCommaSeparated: #(1 2) equals: '2 and 3'. 
-	self assertAsCommaSeparated: #(1 2 3) equals: '2, 3 and 4'.! !
-
-!RefactoringExtentionsToCollectionTest methodsFor: 'assertions' stamp: 'HAW 1/7/2019 16:48:36'!
-assertAsCommaSeparated: aCollection equals: expectedString 
-	
-	self 
-		assert: (String streamContents: [ :stream | aCollection asCommaSeparated: [ :elem | stream print: elem + 1] on: stream ])
-		equals: expectedString! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 3/4/2019 14:52:37'!
-allClassCategoriesOfTestData
-
-	^Array with: self classCategoryOfTestData ! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:48:04'!
-classCategoryOfTestData
-	
-	"I can not call it testDataClassCategory becuase it will be taken as test!! - Hernan"
-	
-	^'__Refactoring-TestData__'! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 8/9/2018 14:14:21'!
-createClassNamed: aName 
-
-	^self 
-		createClassNamed: aName asSymbol "Just in case it is a string... - Hernan"
-		subclassOf: Object 
-		instanceVariableNames: '' 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: self classCategoryOfTestData.
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:13:15'!
-createClassNamed: aName category: aCategory
-
-	^self 
-		createClassNamed: aName
-		subclassOf: Object 
-		instanceVariableNames: '' 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: aCategory 
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:48:27'!
-createClassNamed: aName instanceVariableNames: instanceVariables
-
-	^self 
-		createClassNamed: aName
-		subclassOf: Object 
-		instanceVariableNames: instanceVariables 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: self classCategoryOfTestData.
-
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:48:30'!
-createClassNamed: aName subclassOf: superclass 
-
-	^self 
-		createClassNamed: aName
-		subclassOf: superclass 
-		instanceVariableNames: '' 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: self classCategoryOfTestData.
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 21:50:32'!
-createClassNamed: aName subclassOf: superclass category: aCategory
-
-	^self 
-		createClassNamed: aName
-		subclassOf: superclass 
-		instanceVariableNames: '' 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: aCategory 
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:48:34'!
-createClassNamed: aName subclassOf: superclass instanceVariableNames: instanceVariables
-
-	^self 
-		createClassNamed: aName
-		subclassOf: superclass 
-		instanceVariableNames: instanceVariables 
-		classVariableNames: ''
-		poolDictionaries: ''
-		category: self classCategoryOfTestData.
-! !
-
-!RefactoringTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 21:29:11'!
-createClassNamed: aName subclassOf: superclass instanceVariableNames: instanceVariables classVariableNames: classVariables poolDictionaries: poolDictionaries category: category
-
-	self assert: (Smalltalk classNamed: aName) isNil description: 'Class ', aName, ' already exists'.
-	
-	classCategories add: category.
-	
-	^superclass
-		subclass: aName
-		instanceVariableNames: instanceVariables 
-		classVariableNames: classVariables 
-		poolDictionaries: poolDictionaries 
-		category: category 
-! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 5/28/2017 23:26:31'!
-assertAllClassCategoriesAreExpectedToBeRemoved
-
-	"I'm using a halt instead of assert or error becuase I want the programmer to see what class category 
-	was not defined in allClassCategoriesOfTestData - Hernan"
-	(classCategories difference: self allClassCategoriesOfTestData) notEmpty ifTrue: [ self halt: #allClassCategoriesOfTestData asString, ' is not implemented correctly' ]
-	! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 5/28/2017 22:57:42'!
-assertCanRunTest
-	
-	self assertNoTestDataClassCategoryExist.
-	! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 6/1/2017 19:01:00'!
-assertCreation: aCreationBlock failsWith: aMessageTextCreator
-
-	self 
-		should: aCreationBlock 
-		raise: self refactoringError
-		withMessageText: aMessageTextCreator ! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 6/1/2017 14:30:58'!
-assertCreation: aCreationBlock warnsWith: aMessageTextCreator 
-
-	self 
-		should: aCreationBlock 
-		raise: self refactoringWarning
-		withMessageText: aMessageTextCreator ! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 5/28/2017 23:07:36'!
-assertNoTestDataClassCategoryExist
-
-	self allClassCategoriesOfTestData do: [ :aClassCategory | self denyExistsClassCategory: aClassCategory ]
-		! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 5/28/2017 23:09:29'!
-denyExistsClassCategory: aClassCategory
-		
-	self deny: (SystemOrganization hasCategory: aClassCategory) description: 'Can not run test because class category ', aClassCategory, ' already exists'! !
-
-!RefactoringTest methodsFor: 'assertions' stamp: 'HAW 8/9/2018 16:26:02'!
-shouldFail: aBlock
-	
-	self should: aBlock raise: Exception ! !
-
-!RefactoringTest methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 16:38:44'!
-canNotRefactorDueToReferencesRefactoringError
-	
-	^ Refactoring canNotRefactorDueToReferencesErrorClass - MessageNotUnderstood.! !
-
-!RefactoringTest methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:58:26'!
-refactoringError
-
-	^ Refactoring refactoringErrorClass - MessageNotUnderstood.! !
-
-!RefactoringTest methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 12:05:52'!
-refactoringWarning
-
-	^ Refactoring refactoringWarningClass - MessageNotUnderstood.! !
-
-!RefactoringTest methodsFor: 'setup/teardown' stamp: 'HAW 5/28/2017 23:28:29'!
-setUp
-
-	"Because I'm using the same system to create classes and removed them with its category at tearDown, I want to be sure 
-	I will not remove something I don't have too - Hernan"
-	setUpAssertionsPassed := false.
-	self assertCanRunTest.
-	setUpAssertionsPassed := true.
-	
-	classCategories := Set new.! !
-
-!RefactoringTest methodsFor: 'setup/teardown' stamp: 'HAW 3/4/2019 11:37:29'!
-tearDown
-
-	setUpAssertionsPassed ifTrue: [
-		self assertAllClassCategoriesAreExpectedToBeRemoved.
-		SystemOrganization removeSystemCategories: classCategories.
-		"I commented this becuase it took too much time and the only ones runing these tests 
-		are the ones developing refactorings that know about creating/removing test data category - Hernan
-		Browser allInstancesDo: [:aBrowser | aBrowser changed: #systemCategoryList ]"]! !
-
-!AddInstanceVariableTest methodsFor: 'class factory' stamp: 'HAW 6/11/2017 18:12:55'!
-classToRefactorName
-
-	^#ClassToAddInstVar! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:17'!
-test01NewVariableNameCanNotBeEmpty
-	
-	newVariable := '   '.
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: self class ]
-		failsWith: [NewInstanceVariablePrecondition newVariableCanNotBeEmptyErrorMessage ]
-! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:21'!
-test02NewVariableNameCanNotContainBlanks
-	
-	newVariable := 'a b'.
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: self class ]
-		failsWith: [NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: newVariable ]
 
 	! !
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:25'!
-test03NewVariableNameCanNotContainInvalidCharacters
+!MessageKeywordsAndParametersTable methodsFor: 'GUI building' stamp: 'FGJ 4/11/2019 13:09:23'!
+buildInputMorphWith: aModel
 
-	newVariable := '2a'.
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: self class ]
-		failsWith: [NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: newVariable ]
+	| inputMorph |
 
-! !
+	inputMorph := PreviewTextModelMorph withModel: aModel.
+	inputMorph textMorph previewModel: previewModel.
+	inputMorph textMorph focusMover: previewModel.
+	previewModel addFocusReceiver: inputMorph textMorph.
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 6/11/2017 18:38:49'!
-test04ValidNewVariableNameGetBlanksTrimmed
+	inputMorph hideScrollBarsIndefinitely.
 
-	newVariable := ' a '.
-			
-	self assert: newVariable withBlanksTrimmed equals: (AddInstanceVariable named: newVariable to: self class) newVariable! !
+	^inputMorph! !
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:31'!
-test05NewVariableNameCanNotBeDefinedInClass
+!MessageKeywordsAndParametersTable methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 12:14:23'!
+columnSeparation
 
-	| classToRefactor |
-	
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName instanceVariableNames: newVariable.
-	
-	self 
-		assertCreation: [AddInstanceVariable named: newVariable to: classToRefactor ]
-		failsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactor )]
+	^4! !
+
+!MessageKeywordsAndParametersTable methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 12:09:59'!
+rowHeight
+
+	^AbstractFont default height * 1.6! !
+
+!MessageKeywordsAndParametersTable class methodsFor: 'instance creation' stamp: 'FGJ 4/10/2019 18:05:01'!
+withRows: rowsTitles withColor: aColor withPreviewModel: aPreviewModel withRefactoringModel: aRefactoringModel
+
+	^self newColumn withRows: rowsTitles withColor: aColor withPreviewModel: aPreviewModel withRefactoringModel: aRefactoringModel.
+
 	! !
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:43'!
-test06NewVariableNameCanNotBeDefinedInSuperclasses
+!TabPassingInnerTextMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 4/11/2019 12:31:07'!
+focusMover: aFocusMover
 
-	|  classToRefactorSuperclass classToRefactor  |
+	focusMover := aFocusMover.! !
 
-	newVariable := 'a'.
-	classToRefactorSuperclass := self createClassNamed: #SuperclassWithInstVar instanceVariableNames: newVariable.
-	classToRefactor := self createClassNamed: self classToRefactorName subclassOf: classToRefactorSuperclass.
-	
-	self 
-		assertCreation: [AddInstanceVariable named: newVariable to: classToRefactor ]
-		failsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactorSuperclass)]
-! !
+!TabPassingInnerTextMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 4/11/2019 12:28:05'!
+keyStroke: aKeyboardEvent
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:47'!
-test07NewVariableNameCanNotBeDefinedInAnySubclass
+	aKeyboardEvent isTab ifTrue: [focusMover moveFrom: self] ifFalse: [super keyStroke: aKeyboardEvent].! !
 
-	| classToRefactor classToRefactorSubclass |
-	
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactorSubclass := self createClassNamed: #SubclassWithInstVar subclassOf: classToRefactor instanceVariableNames: newVariable.
-	
-	self 
-		assertCreation: [AddInstanceVariable named: newVariable to: classToRefactor ]
-		failsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactorSubclass)]
-	
-		! !
+!PreviewInnerTextMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 11:37:10'!
+keyStroke: aKeyboardEvent
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 12:33:14'!
-test08AddCreatesNewInstanceVariable
+	super keyStroke: aKeyboardEvent.
 
-	| classToRefactor add | 
-	
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
+	previewModel previewTextInputReceivedKeyStroke.! !
 
-	add := AddInstanceVariable named: newVariable to: classToRefactor.
-	add apply.
-	
-	self assert: (classToRefactor definesInstanceVariableNamed: newVariable).
-	! !
+!PreviewInnerTextMorph methodsFor: 'as yet unclassified' stamp: 'FGJ 2/11/2019 10:40:05'!
+previewModel: aPreviewModel
 
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:42:54'!
-test09WarnsWhenNewVariableEqualsTemporaryVariableOfAMethodInClass
-
-	| selector classToRefactor |
-
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selector := #m1.
-	classToRefactor compile: selector, ' | ', newVariable, ' | ', newVariable, ' := 10.'.
-	
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:43:00'!
-test10WarnsWhenNewVariableEqualsArgumentOfAMethodInClass
-
-	| selector classToRefactor |
-
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selector := #m1:.
-	classToRefactor compile: selector, newVariable.
-	
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:43:04'!
-test11WarnsWhenNewVariableEqualsArgumentOfABlockInAMethodInClass
-
-	| selector classToRefactor |
-
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selector := #m1.
-	classToRefactor compile: selector, ' [ :', newVariable, ' | ] value: 1'.
-		
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:43:08'!
-test12WarnsWhenNewVariableEqualsTemporaryOfABlockInAMethodInClass
-
-	| selector classToRefactor |
-
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selector := #m1.
-	classToRefactor compile: selector, ' [ | ', newVariable, ' | ] value'.
-		
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	
-	! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:43:12'!
-test13WarnsWhenNewVariableIsHiddenInAnyMethodOfAnySubclass
-
-	| selector classToRefactor subclass |
-
-	newVariable := 'a'.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	subclass := self createClassNamed: #SubclassOfClassToRefactor subclassOf: classToRefactor.
-	selector := #m1.
-	subclass compile: selector, ' | ', newVariable, ' | '.
-		
-	self 
-		assertCreation: [ AddInstanceVariable named: newVariable to: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (subclass>>selector)) ].
-	
-	! !
-
-!AddInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:43:17'!
-test14NewVariableNameCanNotBeAReservedName
-
-	| classToRefactor |
-
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	
-	ClassBuilder reservedNames do: [ :aReservedName | 
-		self 
-			assertCreation: [AddInstanceVariable named: aReservedName to: classToRefactor ]
-			failsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariableCanNotBeAReservedName: aReservedName ]]
-		! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:28:03'!
-test01AddingParameterToUnaryMessageAddsColonAndParameter
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod |
-	
-	oldSelector := 'm1' asSymbol.
-	newSelector := (oldSelector, ':') asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue equals: (senderMethod methodNode block statements first arguments first literalValue) printString
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:33:13'!
-test02AddingParameterToKeywordMessageAddsNewKeywordAndParameter
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString, ' 1'.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue)
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:33:25'!
-test03AddingParameterToKeywordMessageMultipleSendsInSameMethodSameLiteral
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword collaboration |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	collaboration :=  ' self ', oldSelector asString, ' 1.'.
-	classToRefactor compile: senderSelector asString, collaboration, collaboration.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue)
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:33:34'!
-test04AddingParameterToKeywordMessageWithMessageSendAsLastFormalParameter
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword collaboration |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	collaboration :=  ' self ', oldSelector asString, ' self size.'.
-	classToRefactor compile: senderSelector asString, collaboration.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue)
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:33:50'!
-test05AddingParameterToKeywordMessageWithBinaryMessageSendAsLastFormalParameter
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword collaboration |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	collaboration :=  ' self ', oldSelector asString, ' self size + 4.'.
-	classToRefactor compile: senderSelector asString, collaboration.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue)
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:33:59'!
-test06AddingParameterToKeywordMessageWithKeywordMessageSendAsLastFormalParameter
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword collaboration |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	collaboration :=  ' self ', oldSelector asString, ' (self at: 1 put: 2).'.
-	classToRefactor compile: senderSelector asString, collaboration.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue)
-
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/16/2018 18:53:57'!
-test07AddingParameterToUnaryMessageChangesReferencesToSelector
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod |
-	
-	oldSelector := 'm1' asSymbol.
-	newSelector := (oldSelector, ':') asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: senderSelector asString, ' #', oldSelector asString, ' size'.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: 0 equals: (senderMethod indexOfLiteral: oldSelector).
-	self assert: 1 equals: (senderMethod indexOfLiteral: newSelector).
-	
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:34:17'!
-test08AddingParameterToKeywordMessageChangesReferencesToSelector
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword collaboration |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: (oldSelector asString, ' oldParam').
-	collaboration :=  ' #', oldSelector asString, ' size.'.
-	classToRefactor compile: senderSelector asString, collaboration.
-	
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode hasArgumentOrTemporary: newParameter).
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: 0 equals: (senderMethod indexOfLiteral: oldSelector).
-	self assert: 1 equals: (senderMethod indexOfLiteral: newSelector).
-	
-
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 12:24:53'!
-test09FailsIfNewParameterValueCanNotBeCompiled
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '+' toUnarySelector: thisContext selector 
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter newParameterValueDoesNotCompileErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 12:25:16'!
-test10FailsIfNewParameterValueIsEmpty
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: ' ' toUnarySelector: thisContext selector
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter newParameterValueCanNotBeEmptyErrorMessage ]
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 16:57:23'!
-test11NewParameterNameCanNotBeEmpty
-
-	| newParameter |
-	
-	newParameter := ' '.
-	self 
-		assertCreation: [ AddParameter 
-			named: newParameter initializedWith: '1' toUnarySelector: thisContext selector 
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter errorMessageForInvalidParameterName: newParameter withBlanksTrimmed ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 12:34:07'!
-test12NewParameterNameCanNotStartWithNumber
-
-	| newParameter |
-	
-	newParameter := '1x'.
-	self 
-		assertCreation: [ AddParameter 
-			named: newParameter initializedWith: '1' toUnarySelector: thisContext selector 
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter errorMessageForInvalidParameterName: newParameter  ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 12:34:28'!
-test13NewParameterNameCanNotContainSpaces
-
-	| newParameter |
-	
-	newParameter := 'an Integer'.
-	self 
-		assertCreation: [ AddParameter 
-			named: newParameter initializedWith: '1' toUnarySelector: thisContext selector 
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter errorMessageForInvalidParameterName: newParameter  ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 15:14:45'!
-test14NewParameterCanNotBeDefinedAsInstanceVariableInAnyImplementor
-
-	| classToRefactor oldSelector newParameter  |
-	
-	oldSelector := 'm1' asSymbol.
-	newParameter := 'newParam'.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName instanceVariableNames: newParameter.
-	classToRefactor compile: oldSelector asString.
-	
-	self 
-		assertCreation: [ AddParameter 
-			named: newParameter initializedWith: '1' toUnarySelector: oldSelector 
-			implementors: {classToRefactor>>oldSelector} senders: {} ]
-		 failsWith: [ AddParameter errorMessageForNewParameter: newParameter definedAsInstanceVariableIn: {classToRefactor} ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:59:27'!
-test15NewParameterCanNotBeDefinedAsParameterInAnyImplementor
-
-	| classToRefactor oldSelector newParameter implementors |
-	
-	oldSelector := 'm1:' asSymbol.
-	newParameter := 'newParam'.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, newParameter.
-	implementors := {classToRefactor>>oldSelector}.
-	
-	self 
-		assertCreation: [ AddParameter 
-			named: newParameter initializedWith: '1' using: 'm2:' asSymbol toKeywordSelector: oldSelector 
-			implementors: implementors senders: {} ]
-		 failsWith: [ AddParameter errorMessageForNewParameterDefinedAsLocal: newParameter ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 12:21:52'!
-test16WhenCreatedForUnarySelectorMustBeUnary
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' toUnarySelector: 'm1:' asSymbol 
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter selectorMustBeUnaryErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 12:27:42'!
-test17WhenCreatedForBinarySelectorMustBeBinary
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' using: 'm1:' asSymbol toKeywordSelector: thisContext selector
-			implementors: {thisContext method} senders: {} ]
-		 failsWith: [ AddParameter selectorMustBeKeywordErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 9/4/2018 20:10:41'!
-test18CanNotAddParameterToBinaryKeyword
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' at: 1 addingLast: true initializedWith: '1' to: '+' asSymbol implementing: 'm1:' asSymbol
-			addingToImplementors: '' addingToSenders: ''
-			implementors: {} senders: {} ]
-		 failsWith: [ AddParameter selectorCanNotBeBinaryErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 15:48:13'!
-test19AllImplementorsMustImplementOldSelector
-
-	| implementors |
-	
-	implementors := {thisContext method}.
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' toUnarySelector: (thisContext selector, 'x') asSymbol
-			implementors: implementors senders: {} ]
-		 failsWith: [ AddParameter errorMessageForInvalidImplementors: implementors ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 15:53:37'!
-test20AllSendersShouldSendOldSelector
-
-	| oldSelector invalidSenders |
-	
-	oldSelector := thisContext selector.
-	invalidSenders := {thisContext method}.
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' toUnarySelector: oldSelector
-			implementors: {thisContext method} senders: invalidSenders ]
-		 failsWith: [ AddParameter errorMessageForInvalidSenders: invalidSenders of: oldSelector ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 16:24:22'!
-test21NewKeywordToAddToOldSelectorCanNotBeUnary
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' using: 'm1' asSymbol toKeywordSelector: 'm1:' asSymbol
-			implementors: {} senders: {} ]
-		 failsWith: [ AddParameter notValidKeywordForNewParameterErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 16:26:55'!
-test22NewKeywordToAddToOldSelectorCanNotBeBinary
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' using: '+' asSymbol toKeywordSelector: 'm1:' asSymbol
-			implementors: {} senders: {} ]
-		 failsWith: [ AddParameter notValidKeywordForNewParameterErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 16:27:58'!
-test23NewKeywordToAddToOldSelectorCanNotBeKeywordWithMoreThanOneParameter
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParam' initializedWith: '1' using: 'm1:m2:' asSymbol toKeywordSelector: 'm1:' asSymbol
-			implementors: {} senders: {} ]
-		 failsWith: [ AddParameter notValidKeywordForNewParameterErrorMessage ]
-	
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/24/2018 17:10:04'!
-test24AddingParameterToSendersTakeCaresOfSeparators
-
-	| refactoring classToRefactor oldSelector newSelector newParameter newParameterValue senderSelector |
-	
-	oldSelector := 'm1' asSymbol.
-	newSelector := (oldSelector, ':') asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString, Character newLineCharacter asString,'	'.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	self shouldnt: [ refactoring apply ] raise: Error.
-	
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:29:28'!
-test25IfNewParameterValueIsKeywordMessageSendAddParenthesisToItForUnaryMessages
-
-	| refactoring classToRefactor oldSelector newParameter newParameterValue senderSelector newSelector senderMethod senderMethodNode senderSourceCode senderSourceRange |
-	
-	oldSelector := 'm1' asSymbol.
-	newSelector := (oldSelector, ':') asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := 'self at: 1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	senderMethodNode := senderMethod methodNode.
-	senderSourceRange := senderMethodNode encoder sourceRangeFor: senderMethodNode block statements first.
-	senderSourceCode := senderMethodNode sourceText copyFrom: senderSourceRange first to: senderSourceRange last.
-	self assert: (senderSourceCode endsWith: '(',newParameterValue,')')
-	
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:29:34'!
-test26IfNewParameterValueIsKeywordMessageSendAddParenthesisToItForKeywordMessages
-
-	| refactoring classToRefactor oldSelector newParameter newParameterValue senderSelector newSelector senderMethod newSelectorAddedKeyword senderMethodNode senderSourceCode senderSourceRange |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := 'self at: 1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, ' oldParam'.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString, ' 1'.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	senderMethodNode := senderMethod methodNode.
-	senderSourceRange := senderMethodNode encoder sourceRangeFor: senderMethodNode block statements first.
-	senderSourceCode := senderMethodNode sourceText copyFrom: senderSourceRange first to: senderSourceRange last.
-	self assert: (senderSourceCode endsWith: '(',newParameterValue,')')
-	
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 8/25/2018 11:23:42'!
-test27NewParameterValueCanNotHaveMoreThanOneStatement
-
-	self 
-		assertCreation: [ AddParameter 
-			named: 'newParameter' initializedWith: 'self m1. self m2.' toUnarySelector: thisContext selector 
-			implementors: {thisContext method} senders: {} ]
-		failsWith: [ AddParameter newParameterValueCanNotHaveMoreThanOneStatementErrorMessage ].
-	
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:29:39'!
-test28WhenSenderLastParameterIsABlockAddedParameterIsNotAddedInsideTheBlock
-
-	| refactoring classToRefactor oldSelector newParameter newParameterValue senderSelector newSelector senderMethod newSelectorAddedKeyword senderMethodNode senderSourceCode senderSourceRange senderFirstParameterValue |
-
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := (oldSelector,newSelectorAddedKeyword) asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	senderFirstParameterValue := '[ 1 factorial ]'.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, ' oldParam'.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString, senderFirstParameterValue.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	senderMethodNode := senderMethod methodNode.
-	senderSourceRange := senderMethodNode encoder sourceRangeFor: senderMethodNode block statements first arguments first closureCreationNode.
-	senderSourceCode := senderMethodNode sourceText copyFrom: senderSourceRange first to: senderSourceRange last.
-	self assert: senderFirstParameterValue equals: senderSourceCode
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:42:08'!
-test29AddingParameterAsFirstOneWorksAsExpected
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword |
-	
-	oldSelector := 'm1:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := 'm2:m1:' asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: 'm1: p1'.
-	classToRefactor compile: senderSelector asString, ' self m1: 1'.
-	
-	refactoring := AddParameter 
-		named: newParameter at: 1 initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode arguments at: 1) name equals: newParameter.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments first literalValue).
-	self assert: senderMethod sourceCode equals: senderSelector asString, ' self m2: 2 m1: 1'.
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:45:09'!
-test30AddingParameterInTheMiddleWorksAsExpected
-
-	| refactoring classToRefactor oldSelector newSelector newImplementorMethodNode newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword |
-	
-	oldSelector := 'm1:m3:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := 'm1:m2:m3:' asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: 'm1: p1 m3: p3'.
-	classToRefactor compile: senderSelector asString, ' self m1: 1 m3: 3'.
-	
-	refactoring := AddParameter 
-		named: newParameter at: 2 initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector).
-	
-	newImplementorMethodNode :=  (classToRefactor>>newSelector) methodNode.
-	self assert: (newImplementorMethodNode arguments at: 2) name equals: newParameter.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: newParameterValue asNumber equals: (senderMethod methodNode block statements first arguments second literalValue).
-	self assert: senderMethod sourceCode equals: senderSelector asString, ' self m1: 1 m2: 2 m3: 3'.
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:45:01'!
-test31AddingParameterInTheMiddleWithManySendersWorksAsExpected
-
-	| refactoring classToRefactor oldSelector newSelector newParameter newParameterValue senderSelector senderMethod newSelectorAddedKeyword |
-	
-	oldSelector := 'm1:m3:' asSymbol.
-	newSelectorAddedKeyword := 'm2:' asSymbol.
-	newSelector := 'm1:m2:m3:' asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '2'.
-	senderSelector := 'sender' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: 'm1: p1 m3: p3'.
-	classToRefactor compile: senderSelector asString, '
-	self m1: 1 m3: 3.
-	self
-		m1: 4
-		m3: 6'.
-	
-	refactoring := AddParameter 
-		named: newParameter at: 2 initializedWith: newParameterValue using: newSelectorAddedKeyword toKeywordSelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: senderMethod sourceCode equals: senderSelector asString, '
-	self m1: 1 m2: 2 m3: 3.
-	self
-		m1: 4
-		m2: 2 m3: 6'.
-! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:44:50'!
-test32IndexCanNotBeLessThanOne
-	
-	self 
-		assertCreation: [ 
-			AddParameter 
-				named: 'newParam' 
-				at: 0
-				initializedWith: '1' 
-				using: 'm2:' asSymbol 
-				toKeywordSelector: 'm1:' asSymbol  
-				implementors: {} 
-				senders: {} ]
-		failsWith: [ AddParameter errorMessageForInvalidParameterIndex: 0 for: 1 ]! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:44:43'!
-test33IndexCanNotBeBiggerThanNumberOfParametersPlusOne
-	
-	self 
-		assertCreation: [ 
-			AddParameter 
-				named: 'newParam' 
-				at: 3
-				initializedWith: '1' 
-				using: 'm2:' asSymbol 
-				toKeywordSelector: 'm1:' asSymbol  
-				implementors: {} 
-				senders: {} ]
-		failsWith: [ AddParameter errorMessageForInvalidParameterIndex: 3 for: 1 ]! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:44:36'!
-test34IndexMustBeInteger
-	
-	self 
-		assertCreation: [ 
-			AddParameter 
-				named: 'newParam' 
-				at: 1.5
-				initializedWith: '1' 
-				using: 'm2:' asSymbol 
-				toKeywordSelector: 'm1:' asSymbol  
-				implementors: {} 
-				senders: {} ]
-		failsWith: [ AddParameter errorMessageForInvalidParameterIndex: 1.5 for: 1 ]! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:44:23'!
-test35AddingParameterRetractsInsertionPointWhenAtInsertionPointIsANewLine
-
-	| refactoring classToRefactor oldSelector newParameter newParameterValue senderSelector |
-	
-	oldSelector := 'm1' asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, Character newLineCharacter asString, Character newLineCharacter asString.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	self shouldnt: [ refactoring apply ] raise: Error.
-	
-	! !
-
-!AddParameterTest methodsFor: 'tests' stamp: 'HAW 1/7/2019 13:44:13'!
-test36ParentesisAreAddedToSendersOfUnaryMessage
-
-	self shouldFail: [ | refactoring classToRefactor oldSelector newParameter newParameterValue senderSelector |
-	
-	oldSelector := 'm1' asSymbol.
-	newParameter := 'newParam'.
-	newParameterValue := '1'.
-	senderSelector := 'sender_m1' asSymbol.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: senderSelector asString, ' self ', oldSelector asString, ', self size'.
-
-	refactoring := AddParameter 
-		named: newParameter initializedWith: newParameterValue toUnarySelector: oldSelector  
-		implementors: {classToRefactor>>oldSelector} senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	self assert: senderSelector asString, ' (self ', oldSelector asString, '), self size' equals: (classToRefactor>>senderSelector) sourceCode 
-	]! !
-
-!AddParameterTest methodsFor: 'class factory' stamp: 'HAW 8/24/2018 17:20:56'!
-classToRefactorName
-	
-	^#ClassToAddParameter! !
+	previewModel := aPreviewModel.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:29:26'!
 test01MethodObjectClassNameMustNotBeEmpty
 
 	| anEmptyClassName |
-	
+
 	anEmptyClassName  := ''.
-	
-	self 
+
+	self
 		creationWithMethodObjectClassName: anEmptyClassName
 		failsWithMessageText: [ NewClassPrecondition newClassNameCanNotBeEmptyErrorMessage ].! !
 
@@ -2405,86 +1901,86 @@ test01MethodObjectClassNameMustNotBeEmpty
 test02MethodObjectClassNameMustBeASymbol
 
 	| aStringClassName |
-	
+
 	aStringClassName  := 'MethodObject'.
-	
-	self 
+
+	self
 		creationWithMethodObjectClassName: aStringClassName
 		failsWithMessageText: [ NewClassPrecondition newNameMustBeSymbolErrorMessage ].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 12/17/2018 18:04:32'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'HAW 10/23/2019 09:51:26'!
 test03MethodObjectClassNameMustStartWithUppercaseLetter
 
 	| nonCapitalizedClassName |
-	
+
 	nonCapitalizedClassName  := #methodObject.
-	
-	self 
+
+	self
 		creationWithMethodObjectClassName: nonCapitalizedClassName
-		failsWithMessageText:[ NewClassPrecondition newNameMustStartWithUppercaseLetterErrorMessage ].! !
+		failsWithMessageText:[ NewClassPrecondition newNameMustStartWithRightLetterErrorMessage ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 12/17/2018 18:01:52'!
 test04MethodObjectClassNameMustNotHaveSeparators
 
 	| classNameWithSeparators |
-	
+
 	classNameWithSeparators  := 'Method Object' asSymbol.
-	
-	self creationWithMethodObjectClassName: classNameWithSeparators 
+
+	self creationWithMethodObjectClassName: classNameWithSeparators
 		  failsWithMessageText: [ NewClassPrecondition newClassNameCanNotHaveSeparatorsErrorMessage ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 12/17/2018 18:06:57'!
 test05MethodObjectClassNameMustNotExist
 
 	| anExistingClassName |
-	
+
 	anExistingClassName  := #Object.
-	
-	self creationWithMethodObjectClassName: anExistingClassName 
+
+	self creationWithMethodObjectClassName: anExistingClassName
 		  failsWithMessageText: [ NewClassPrecondition errorMessageForAlreadyExistClassNamed: anExistingClassName ].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:45:17'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:15:20'!
 test06AllVariablesToParametrizeMustHaveACorrespondingMethodObjectInstanceVariableName
 
 	| namesForParametrizedMissingSelf keywordToParametrizedVariable variablesToParametrizeWithoutInstVarName |
-	
+
 	namesForParametrizedMissingSelf := #() asDictionary.
 	keywordToParametrizedVariable := { self keyword: #with varName: 'self' paramName: 'aParameterName'. }.
 	variablesToParametrizeWithoutInstVarName := Set with: 'self'.
-	
-	self 
+
+	self
 		creationWithExtractedVariablesToInstanceVariables: namesForParametrizedMissingSelf
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ ExtractToMethodObject 
+		failsWithMessageText: [ ExtractToMethodObject
 			variablesToParametrizedDoNotHaveInstanceVariableNamesErrorMessage: variablesToParametrizeWithoutInstVarName].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:47:31'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:15:30'!
 test07AllInstanceVariableNamesMustCorrespondToVariableToParametrize
 
 	| keywordToParametrizedVariable variablesToParametrizeWithoutInstVarName namesForParametrizedVariables |
-	
+
 	namesForParametrizedVariables := {
 		'self' -> 'oldSelf'.
 		'inexistentVariableToParametrize' -> 'anInstVarName'
 	} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
 	variablesToParametrizeWithoutInstVarName := Set with: 'inexistentVariableToParametrize'.
-	
-	self 
+
+	self
 		creationWithExtractedVariablesToInstanceVariables: namesForParametrizedVariables
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ ExtractToMethodObject 
+		failsWithMessageText: [ ExtractToMethodObject
 			unknownVariablesToParametrizeErrorMessage: variablesToParametrizeWithoutInstVarName].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:48:24'!
 test08MethodObjectInstanceVariableNamesMustNotBeEmpty
 
 	| keywordToParametrizedVariable namesWithEmptyInstanceVariable |
-	
+
 	namesWithEmptyInstanceVariable := {'self' -> ''.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	self 
+
+	self
 		creationWithExtractedVariablesToInstanceVariables: namesWithEmptyInstanceVariable
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
 		failsWithMessageText: [ NewInstanceVariablePrecondition newVariableCanNotBeEmptyErrorMessage].! !
@@ -2493,12 +1989,12 @@ test08MethodObjectInstanceVariableNamesMustNotBeEmpty
 test09MethodObjectInstanceVariableNamesCanNotContainBlanks
 
 	| keywordToParametrizedVariable namesWithBlanksInstanceVariable anInstVarNameWithBlanks |
-	
+
 	anInstVarNameWithBlanks := 'an Inst Var Name'.
 	namesWithBlanksInstanceVariable := {'self' -> anInstVarNameWithBlanks.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	self 
+
+	self
 		creationWithExtractedVariablesToInstanceVariables: namesWithBlanksInstanceVariable
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
 		failsWithMessageText: [ NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: anInstVarNameWithBlanks].! !
@@ -2507,12 +2003,12 @@ test09MethodObjectInstanceVariableNamesCanNotContainBlanks
 test10MethodObjectInstanceVariableNamesCanNotContainInvalidCharacters
 
 	| keywordToParametrizedVariable anInstVarNameWithInvalidCharacters namesWithInvalidCharsInstanceVariable |
-	
+
 	anInstVarNameWithInvalidCharacters := 'anInst2!!!!VarName'.
 	namesWithInvalidCharsInstanceVariable := {'self' -> anInstVarNameWithInvalidCharacters.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	self 
+
+	self
 		creationWithExtractedVariablesToInstanceVariables: namesWithInvalidCharsInstanceVariable
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
 		failsWithMessageText: [ NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: anInstVarNameWithInvalidCharacters].! !
@@ -2521,17 +2017,17 @@ test10MethodObjectInstanceVariableNamesCanNotContainInvalidCharacters
 test11MethodObjectInstanceVariableNamesCanNotBeDefinedInSuperclasses
 
 	| keywordToParametrizedVariable anInstVarName methodObjectSuperclass namesWithAlreadyDefinedInstanceVariable |
-	
+
 	anInstVarName := 'anInstVarName'.
 	methodObjectSuperclass := self
 		createClassNamed: #MethodObjectSuperclass
 		instanceVariableNames: anInstVarName.
 	namesWithAlreadyDefinedInstanceVariable := {'self' -> anInstVarName .} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	self 
+
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: methodObjectSuperclass
@@ -2540,7 +2036,7 @@ test11MethodObjectInstanceVariableNamesCanNotBeDefinedInSuperclasses
 				withInstanceCreationMessageFrom: keywordToParametrizedVariable
 				evaluatedWith: self defaultEvaluationSelector]
 		raise: RefactoringError
-		withMessageText: [ 
+		withMessageText: [
 			NewInstanceVariablePrecondition
 				errorMessageForNewInstanceVariable: anInstVarName
 				alreadyDefinedInAll: {methodObjectSuperclass} ].! !
@@ -2549,7 +2045,7 @@ test11MethodObjectInstanceVariableNamesCanNotBeDefinedInSuperclasses
 test12MethodObjectInstanceVariableNamesCanNotBeDuplicated
 
 	| keywordToParametrizedVariable anInstVarName namesWithDuplicatedInstanceVariable aClassToRefactor aDuplicatedInstVarName aCompiledMethodToRefactor sourceCode |
-	
+
 	anInstVarName := 'anInstVar'.
 	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: anInstVarName.
 	sourceCode := 'm1
@@ -2557,15 +2053,15 @@ test12MethodObjectInstanceVariableNamesCanNotBeDuplicated
 		', anInstVarName ,' isNil.'.
 	aClassToRefactor compile: sourceCode.
 	aCompiledMethodToRefactor := aClassToRefactor compiledMethodAt: #m1.
-	
+
 	aDuplicatedInstVarName := 'aDuplicatedInstVarName'.
 	namesWithDuplicatedInstanceVariable := {
 		'self' -> aDuplicatedInstVarName.
 		anInstVarName -> aDuplicatedInstVarName} asDictionary.
 	keywordToParametrizedVariable := {
-		self keyword: #with varName: 'self' paramName: 'aParamName'. 
+		self keyword: #with varName: 'self' paramName: 'aParamName'.
 		self keyword: #andWith varName: anInstVarName paramName: 'aParamName2'.}.
-	
+
 	self
 		creationFrom: aCompiledMethodToRefactor
 		withExtractedVariablesToInstanceVariables: namesWithDuplicatedInstanceVariable
@@ -2577,189 +2073,189 @@ test12MethodObjectInstanceVariableNamesCanNotBeDuplicated
 test13MethodObjectInstanceVariableNamesCanNotBeNamedAsMethodTemporal
 
 	| keywordToParametrizedVariable aClassToRefactor aCompiledMethodToRefactor aTemporalName namesWithSameAsTemporal |
-	
+
 	aClassToRefactor := self createClassNamed: #AClassToRefactor.
 	aTemporalName := 'aTemporal'.
 	aClassToRefactor compile: 'm1
 		| ', aTemporalName, ' |
-		
+
 		', aTemporalName, ' := 1.
 		self isNil.
-		
+
 		^', aTemporalName, ' + 2'.
-		
+
 	aCompiledMethodToRefactor := aClassToRefactor compiledMethodAt: #m1.
-	
+
 	namesWithSameAsTemporal := {'self' -> aTemporalName.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	self
 		creationFrom: aCompiledMethodToRefactor
 		withExtractedVariablesToInstanceVariables: namesWithSameAsTemporal
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject instanceVariableNamesSameAsTemporalsErrorMessageFor: {aTemporalName} ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:50:23'!
 test14MethodObjectInstanceVariableNamesCanNotBeNamedAsBlockTemporal
 
 	| keywordToParametrizedVariable aClassToRefactor aCompiledMethodToRefactor namesWithSameAsTemporal aBlockTemporalName |
-	
+
 	aClassToRefactor := self createClassNamed: #AClassToRefactor.
 	aBlockTemporalName := 'aBlockTemporal'.
 	aClassToRefactor compile: 'm1
 		^[
 			| ', aBlockTemporalName, ' |
-			
+
 			self isNil.
 			', aBlockTemporalName, '.]'.
-		
+
 	aCompiledMethodToRefactor := aClassToRefactor compiledMethodAt: #m1.
-	
+
 	namesWithSameAsTemporal := {'self' -> aBlockTemporalName.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	self
 		creationFrom: aCompiledMethodToRefactor
 		withExtractedVariablesToInstanceVariables: namesWithSameAsTemporal
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject instanceVariableNamesShadowedByBlockArgumentsOrTemporalsErrorMessageFor: {aBlockTemporalName} ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:50:36'!
 test15MethodObjectInstanceVariableNamesCanNotBeNamedAsBlockArgument
 
 	| keywordToParametrizedVariable aClassToRefactor aCompiledMethodToRefactor aBlockArgumentName namesWithSameAsArgument |
-	
+
 	aClassToRefactor := self createClassNamed: #AClassToRefactor.
 	aBlockArgumentName := 'aBlockArgument'.
 	aClassToRefactor compile: 'm1
 		^[:', aBlockArgumentName, ' |
 			self isNil.
 			', aBlockArgumentName, '.]'.
-		
+
 	aCompiledMethodToRefactor := aClassToRefactor compiledMethodAt: #m1.
-	
+
 	namesWithSameAsArgument := {'self' -> aBlockArgumentName.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'.}.
-	
+
 	self
 		creationFrom: aCompiledMethodToRefactor
 		withExtractedVariablesToInstanceVariables: namesWithSameAsArgument
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject instanceVariableNamesShadowedByBlockArgumentsOrTemporalsErrorMessageFor: {aBlockArgumentName} ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 12/19/2018 11:10:34'!
 test16MethodObjectInstanceCreationMessageMustHaveAKeywordForEveryVariableToParametrize
 
 	| keywordToParametrizedVariable variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := #().
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject variablesToParametrizeHaveNoKeywordErrorMessage: #('self') ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:51:37'!
 test17MethodObjectInstanceCreationMessageMustHaveOnlyOneKeywordForEveryVariableToParametrize
 
 	| keywordToParametrizedVariable variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := {
 		self keyword: #with varName: 'self' paramName: 'aParamName'.
 		self keyword: #andWith varName: 'self' paramName: 'aParamName2'}.
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject variablesToParametrizeHaveMultipleKeywordsErrorMessage: #('self') ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 14:52:26'!
 test18MethodObjectInstanceCreationMessageMustNotHaveKeywordForAnUnknownVariableToParametrize
 
 	| keywordToParametrizedVariable variablesToParametrizeToInstanceVariables anUnknownVariableToParametrize |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	anUnknownVariableToParametrize := 'anUnknownVariableToParametrize'.
 	keywordToParametrizedVariable := {
 		self keyword: #with varName: 'self' paramName: 'aParamName'.
 		self keyword: #andWith varName: anUnknownVariableToParametrize paramName: 'aParamName2'}.
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordToParametrizedVariable
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject keywordForUnknownVariablesToParametrizeErrorMessage: {anUnknownVariableToParametrize} ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:04:55'!
 test19MethodObjectInstanceCreationMessageKeywordsCanNotHaveInvalidCharacters
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables keywordWithInvalidCharacters |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordWithInvalidCharacters := 'wi(th' asSymbol.
 	keywordsDefinitions := {
 		self keyword: keywordWithInvalidCharacters varName: 'self' paramName: 'aParamName'.}.
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject keywordsContainInvalidCharactersErrorMessage: {keywordWithInvalidCharacters} ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:06:51'!
 test20MethodObjectInstanceCreationMessageSelectorStartsWithAnInvalidStartOfSelector
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables keyword |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keyword := '1with' asSymbol.
 	keywordsDefinitions := {self keyword: keyword varName: 'self' paramName: 'aParamName'.}.
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject selectorStartsWithInvalidStartOfSelectorCharacterErrorMessage].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:07:32'!
 test21MethodObjectInstanceCreationMessageKeywordsCannotBeEmpty
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables keyword |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keyword := '' asSymbol.
 	keywordsDefinitions := {self keyword: keyword varName: 'self' paramName: 'aParamName'.}.
-	
+
 	self
-		creationFrom: self compiledMethodReferencingSelf 
+		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject instanceCreationMessageKeywordsCannotBeEmptyErrorMessage ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 1/4/2019 13:25:39'!
 test22MethodObjectSuperclassCannotBeMeta
 
 	| aMetaClass |
-	
+
 	aMetaClass := (self createClassNamed: #MethodObjectSuperclass) class.
 
-	self 
+	self
 		should: [
-			ExtractToMethodObject 
-				from: self emptyCompiledMethod 
+			ExtractToMethodObject
+				from: self emptyCompiledMethod
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: aMetaClass
 				onCategory: self classCategoryOfTestData
@@ -2771,35 +2267,35 @@ test22MethodObjectSuperclassCannotBeMeta
 test23CreatesMethodObjectClass
 
 	| refactor |
-	
+
 	refactor :=
-		ExtractToMethodObject 
-			from: self emptyCompiledMethod 
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
 			toMethodObjectClassNamed: self methodObjectClassName
-			subclassing: self methodObjectSuperclass 
+			subclassing: self methodObjectSuperclass
 			onCategory: self classCategoryOfTestData
 			evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	self assert: (Smalltalk hasClassNamed: self methodObjectClassName).! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 1/3/2019 16:04:04'!
 test24CreatesMethodObjectClassAsSubclassOfTheChosenSuperclass
 
 	| refactor methodObjectClass methodObjectSuperclass |
-	
+
 	methodObjectSuperclass :=  self methodObjectSuperclass.
 	refactor :=
-		ExtractToMethodObject 
-			from: self emptyCompiledMethod 
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
 			toMethodObjectClassNamed: self methodObjectClassName
 			subclassing: methodObjectSuperclass
 			onCategory: self classCategoryOfTestData
 			evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	self assert: methodObjectSuperclass equals: methodObjectClass superclass.! !
 
@@ -2807,29 +2303,29 @@ test24CreatesMethodObjectClassAsSubclassOfTheChosenSuperclass
 test25CreatesMethodObjectClassInTheChosenCategory
 
 	| refactor methodObjectClass |
-	
+
 	refactor :=
-		ExtractToMethodObject 
-			from: self emptyCompiledMethod 
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
 			toMethodObjectClassNamed: self methodObjectClassName
 			subclassing: self methodObjectSuperclass
 			onCategory: self classCategoryOfTestData
 			evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	self assert: self classCategoryOfTestData equals: methodObjectClass category.! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:08:47'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:17:45'!
 test26MethodObjectClassInstanceCreationMessageReceivesTheSameNumberOfArgumentsAsVariablesToParametrizeInMethodToExtract
 
 	| refactor methodObjectClass keywordToParametrizedVariable variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2837,21 +2333,21 @@ test26MethodObjectClassInstanceCreationMessageReceivesTheSameNumberOfArgumentsAs
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordToParametrizedVariable
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	self assert: (methodObjectClass class selectors anySatisfy: [:aSelector | aSelector = #with:]).! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:13:35'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:17:54'!
 test27MethodObjectClassInstanceCreationMessageSelectorConsistsOfTheChosenKeywords
 
 	| refactor methodObjectClass keywordToParametrizedVariable variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2859,21 +2355,21 @@ test27MethodObjectClassInstanceCreationMessageSelectorConsistsOfTheChosenKeyword
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordToParametrizedVariable
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	self assert: (methodObjectClass class includesSelector: #with:).! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 15:34:04'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/10/2019 16:13:47'!
 test28MethodObjectClassInstanceCreationMessageCreatesARefactoringInstance
 
 	| refactor methodObjectClass keywordToParametrizedVariable variablesToParametrizeToInstanceVariables newRefactoringSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2881,25 +2377,25 @@ test28MethodObjectClassInstanceCreationMessageCreatesARefactoringInstance
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordToParametrizedVariable
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	newRefactoringSourceCode := 'with: aParamName',
 		String newLineString,
 		String tab,
-		'^self new with: aParamName'.
+		'^self new initializeWith: aParamName'.
 	self assert: newRefactoringSourceCode equals: (methodObjectClass class compiledMethodAt: #with:) sourceCode.! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:13:55'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:26:02'!
 test29MethodObjectInitializationMessageReceivesTheSameNumberOfArgumentsAsVariablesToParametrizeInMethodToExtract
 
 	| refactor methodObjectClass keywordToParametrizedVariable variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordToParametrizedVariable := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2907,21 +2403,21 @@ test29MethodObjectInitializationMessageReceivesTheSameNumberOfArgumentsAsVariabl
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordToParametrizedVariable
 				evaluatedWith: self defaultEvaluationSelector.
-	
-	refactor apply.
-	
-	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
-	self assert: (methodObjectClass selectors anySatisfy: [:aSelector | aSelector = #with:]).! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:14:16'!
-test30MethodObjectInitializationMessageSelectorConsistsOfTheChosenKeywords
+	refactor apply.
+
+	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
+	self assert: (methodObjectClass selectors anySatisfy: [:aSelector | aSelector = #initializeWith:]).! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:20:13'!
+test30MethodObjectInitializationMessageSelectorConsistsOfTheChosenKeywordsPrefixedWithInitializationPrefix
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2929,21 +2425,21 @@ test30MethodObjectInitializationMessageSelectorConsistsOfTheChosenKeywords
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
-	refactor apply.
-	
-	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
-	self assert: (methodObjectClass includesSelector: #with:).! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 15:34:15'!
+	refactor apply.
+
+	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
+	self assert: (methodObjectClass includesSelector: #initializeWith:).! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:25:35'!
 test31MethodObjectInitializationMessageAssignsTheInstanceVariables
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables intializationSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -2951,34 +2447,34 @@ test31MethodObjectInitializationMessageAssignsTheInstanceVariables
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
-	intializationSourceCode := 'with: aParamName
-		thePreviousSelf := aParamName.'.
-	self assert: intializationSourceCode equals: (methodObjectClass compiledMethodAt: #with:) sourceCode.! !
+	intializationSourceCode := 'initializeWith: aParamName
+	thePreviousSelf := aParamName.'.
+	self assert: intializationSourceCode equals: (methodObjectClass compiledMethodAt: #initializeWith:) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:14:51'!
 test32MethodObjectEvaluationMessageHasTheChosenSelector
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables customEvaluationSelector |
-	
+
 	variablesToParametrizeToInstanceVariables := #() asDictionary.
 	keywordsDefinitions := #().
 	customEvaluationSelector := #aCustomEvaluationSelector.
-	
-	refactor := ExtractToMethodObject 
-				from: self emptyCompiledMethod 
+
+	refactor := ExtractToMethodObject
+				from: self emptyCompiledMethod
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: customEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
 	self assert: (methodObjectClass includesSelector: customEvaluationSelector).! !
 
@@ -2986,14 +2482,14 @@ test32MethodObjectEvaluationMessageHasTheChosenSelector
 test33MethodObjectEvaluationMethodSourceCodeHasTheSameFormatAsTheExtractedMethod
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToRefactorSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	methodToRefactorSourceCode := 'm1', String newLineString, String tab, 'self isNil.'.
 	compiledMethodToRefactor := self compiledMethodFrom: methodToRefactorSourceCode.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3001,7 +2497,7 @@ test33MethodObjectEvaluationMethodSourceCodeHasTheSameFormatAsTheExtractedMethod
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3012,15 +2508,15 @@ test33MethodObjectEvaluationMethodSourceCodeHasTheSameFormatAsTheExtractedMethod
 test34MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVariableInsteadOfSelf
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToExtractSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	methodToExtractSourceCode := 'm1
 		self isNil.'.
 	compiledMethodToRefactor := self compiledMethodFrom: methodToExtractSourceCode.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3028,7 +2524,7 @@ test34MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3040,19 +2536,19 @@ test34MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 test35MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVariableInsteadOfClassToRefactorInstanceVariable
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode anInstVar correspondingInstVar compiledMethodToRefactor methodToRefactorSourceCode aClass |
-	
+
 	anInstVar := 'anInstVar'.
 	correspondingInstVar := 'aCorrespondingInstVar'.
 	variablesToParametrizeToInstanceVariables := {anInstVar -> correspondingInstVar.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: anInstVar paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass instanceVariableNames: anInstVar.
 	methodToRefactorSourceCode := 'm1
 		', anInstVar, ' isNil.'.
 	aClass compile: methodToRefactorSourceCode.
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3060,7 +2556,7 @@ test35MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3072,15 +2568,15 @@ test35MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 test36MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVariableInsteadOfExtractedMethodArgument
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToRefactorSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anArg' -> 'anArgReplacement'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anArg' paramName: 'aParamName'}.
-	
+
 	methodToRefactorSourceCode := 'm1: anArg
 		anArg isNil.'.
 	compiledMethodToRefactor := self compiledMethodFrom: methodToRefactorSourceCode.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3088,7 +2584,7 @@ test36MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3100,12 +2596,12 @@ test36MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 test37MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVariableInsteadOfClassToRefactorPoolVariable
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode correspondingInstVar compiledMethodToRefactor methodToRefactorSourceCode aClass aPool aPoolVar |
-	
+
 	aPoolVar := 'APoolVar'.
 	correspondingInstVar := 'aCorrespondingInstVar'.
 	variablesToParametrizeToInstanceVariables := {aPoolVar -> correspondingInstVar.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: aPoolVar paramName: 'aParamName'}.
-	
+
 	aPool := self
 		createClassNamed: #APool
 		subclassOf: SharedPool
@@ -3113,7 +2609,7 @@ test37MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 		classVariableNames: aPoolVar
 		poolDictionaries: ''
 		category: self classCategoryOfTestData.
-	
+
 	aClass := self
 		createClassNamed: #AClass
 		subclassOf: Object
@@ -3125,8 +2621,8 @@ test37MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 		', aPoolVar, ' isNil.'.
 	aClass compile: methodToRefactorSourceCode.
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3134,7 +2630,7 @@ test37MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3146,16 +2642,16 @@ test37MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 test38MethodObjectEvaluationMethodSourceCodeCommentsReferencingParametrizedVariableAreNotReplaced
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToRefactorSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	methodToRefactorSourceCode := 'm1
 		"A comment talking about self"
 		self isNil.'.
 	compiledMethodToRefactor := self compiledMethodFrom: methodToRefactorSourceCode.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3163,7 +2659,7 @@ test38MethodObjectEvaluationMethodSourceCodeCommentsReferencingParametrizedVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3172,24 +2668,26 @@ test38MethodObjectEvaluationMethodSourceCodeCommentsReferencingParametrizedVaria
 		thePreviousSelf isNil.'.
 	self assert: evaluationSourceCode equals: (methodObjectClass compiledMethodAt: self defaultEvaluationSelector ) sourceCode.! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:20:13'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/11/2019 12:09:05'!
 test39MethodObjectEvaluationMethodSourceCodePreservesBlockArgumentsShadowing
-	
+
+	"This case must not be considered because shadowing is not longer allowed - FGJ"
+
 	self shouldFail: [
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToRefactorSourceCode aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anInstVar' -> 'correspondingToAnInstVar'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anInstVar' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
 	methodToRefactorSourceCode := 'm1
 		anInstVar isNil.
 		[:anInstVar | anInstVar isNil].'.
 	aClass compile: methodToRefactorSourceCode.
-	
+
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3197,7 +2695,7 @@ test39MethodObjectEvaluationMethodSourceCodePreservesBlockArgumentsShadowing
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3207,24 +2705,26 @@ test39MethodObjectEvaluationMethodSourceCodePreservesBlockArgumentsShadowing
 	self assert: evaluationSourceCode equals: (methodObjectClass compiledMethodAt: self defaultEvaluationSelector ) sourceCode.
 	]! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:20:52'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/11/2019 12:09:15'!
 test40MethodObjectEvaluationMethodSourceCodePreservesBlockTemporalsShadowing
-	
+
+	"This case must not be considered because shadowing is not longer allowed - FGJ"
+
 	self shouldFail: [
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode compiledMethodToRefactor methodToRefactorSourceCode aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anInstVar' -> 'correspondingToAnInstVar'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anInstVar' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
 	methodToRefactorSourceCode := 'm1
 		anInstVar isNil.
 		[ | anInstVar | anInstVar isNil].'.
 	aClass compile: methodToRefactorSourceCode.
-	
+
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3232,7 +2732,7 @@ test40MethodObjectEvaluationMethodSourceCodePreservesBlockTemporalsShadowing
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3244,23 +2744,23 @@ test40MethodObjectEvaluationMethodSourceCodePreservesBlockTemporalsShadowing
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:21:04'!
 test41RefactoredMethodUnarySelectorIsPreserved
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := #() asDictionary.
 	keywordsDefinitions := #().
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1'.
-	refactor := ExtractToMethodObject 
-				from: (aClass compiledMethodAt: #m1) 
+	refactor := ExtractToMethodObject
+				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	self assert: 1 equals: aClass selectors size.
@@ -3268,23 +2768,23 @@ test41RefactoredMethodUnarySelectorIsPreserved
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:21:38'!
 test42RefactoredMethodBinarySelectorIsPreserved
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anArg' -> 'correspondingInstVar'.}  asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anArg' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: '!!@ anArg ^anArg.'.
-	refactor := ExtractToMethodObject 
-				from: (aClass compiledMethodAt: #!!@) 
+	refactor := ExtractToMethodObject
+				from: (aClass compiledMethodAt: #!!@)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	self assert: 1 equals: aClass selectors size.
@@ -3293,23 +2793,23 @@ test42RefactoredMethodBinarySelectorIsPreserved
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:22:07'!
 test43RefactoredMethodKeywordSelectorIsPreserved
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anArg' -> 'correspondingInstVar'.}  asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anArg' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1: anArg ^anArg.'.
-	refactor := ExtractToMethodObject 
-				from: (aClass compiledMethodAt: #m1:) 
+	refactor := ExtractToMethodObject
+				from: (aClass compiledMethodAt: #m1:)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	self assert: 1 equals: aClass selectors size.
@@ -3318,61 +2818,61 @@ test43RefactoredMethodKeywordSelectorIsPreserved
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:22:23'!
 test44WhenBinaryMethodIsRefactoredArgumentNameIsPreserved
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anArg' -> 'correspondingInstVar'.}  asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anArg' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: '!!@ anArg ^anArg.'.
-	refactor := ExtractToMethodObject 
-				from: (aClass compiledMethodAt: #!!@) 
+	refactor := ExtractToMethodObject
+				from: (aClass compiledMethodAt: #!!@)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	self assert: 'anArg' equals: (aClass compiledMethodAt: #!!@) methodNode arguments first name.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:22:40'!
 test45WhenKeywordsMethodIsRefactoredArgumentNamesArePreserved
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass |
-	
+
 	variablesToParametrizeToInstanceVariables := {'anArg' -> 'correspondingInstVar'.}  asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anArg' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1: anArg ^anArg.'.
-	refactor := ExtractToMethodObject 
-				from: (aClass compiledMethodAt: #m1:) 
+	refactor := ExtractToMethodObject
+				from: (aClass compiledMethodAt: #m1:)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	self assert: 'anArg' equals: (aClass compiledMethodAt: #m1:) methodNode arguments first name.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:22:52'!
 test46WhenThereAreNoVariablesToParametrizeTheRefactoredMethodUsesTheNewMessageToCreateTheMethodObjectInstance
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass expectedRefactoredSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := #()  asDictionary.
 	keywordsDefinitions := #().
 
 	aClass := self createClassNamed: #AClass.
-	aClass compile: 'm1'.	
-	refactor := ExtractToMethodObject 
+	aClass compile: 'm1'.
+	refactor := ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3380,28 +2880,28 @@ test46WhenThereAreNoVariablesToParametrizeTheRefactoredMethodUsesTheNewMessageTo
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	expectedRefactoredSourceCode := 'm1',
 		String newLineString,
-		String tab, 
+		String tab,
 		'(', self methodObjectClassName, ' new) ', self defaultEvaluationSelector.
-	self 
-		assert: expectedRefactoredSourceCode 
+	self
+		assert: expectedRefactoredSourceCode
 		equals: (aClass compiledMethodAt: #m1) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:23:24'!
 test47WhenThereAreVariablesToParametrizeTheRefactoredMethodUsesTheChosenMessageToCreateTheMethodObjectInstance
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass expectedRefactoredSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'correspondingInstVar'.}  asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
+
 	aClass := self createClassNamed: #AClass.
-	aClass compile: 'm1 ^self isNil'.	
-	refactor := ExtractToMethodObject 
+	aClass compile: 'm1 ^self isNil'.
+	refactor := ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3409,22 +2909,22 @@ test47WhenThereAreVariablesToParametrizeTheRefactoredMethodUsesTheChosenMessageT
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	expectedRefactoredSourceCode := 'm1',
 		String newLineString,
-		String tab, 
+		String tab,
 		'^(', self methodObjectClassName, ' with: self) ', self defaultEvaluationSelector.
-	self 
-		assert: expectedRefactoredSourceCode 
+	self
+		assert: expectedRefactoredSourceCode
 		equals: (aClass compiledMethodAt: #m1) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 15:33:39'!
 test48WhenThereAreMultipleVariablesToParametrizeTheRefactoredMethodPassesTheVariablesInTheChosenOrderToTheMessageToCreateTheMethodObjectInstance
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass expectedRefactoredSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := {
 		'self' -> 'selfCorrespondingInstVar'.
 		'anArg' -> 'anArgCorrespondingInstVar'.
@@ -3433,10 +2933,10 @@ test48WhenThereAreMultipleVariablesToParametrizeTheRefactoredMethodPassesTheVari
 		self keyword: #with varName: 'anArg' paramName: 'anArgParamName'.
 		self keyword: #andWith varName: 'self' paramName: 'aSelfParamName'
 	}.
-	
+
 	aClass := self createClassNamed: #AClass.
-	aClass compile: 'm1: anArg ^(self isNil) or: (anArg isNil)'.	
-	refactor := ExtractToMethodObject 
+	aClass compile: 'm1: anArg ^(self isNil) or: (anArg isNil)'.
+	refactor := ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1:)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3444,28 +2944,28 @@ test48WhenThereAreMultipleVariablesToParametrizeTheRefactoredMethodPassesTheVari
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	expectedRefactoredSourceCode := 'm1: anArg',
 		String newLineString,
-		String tab, 
+		String tab,
 		'^(', self methodObjectClassName, ' with: anArg andWith: self) ', self defaultEvaluationSelector.
-	self 
-		assert: expectedRefactoredSourceCode 
+	self
+		assert: expectedRefactoredSourceCode
 		equals: (aClass compiledMethodAt: #m1:) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:24:19'!
 test49TheRefactoredMethodUsesTheChosenEvaluationSelectorToEvaluateTheMethodObjectInstance
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass expectedRefactoredSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := #() asDictionary.
 	keywordsDefinitions := #().
-	
+
 	aClass := self createClassNamed: #AClass.
-	aClass compile: 'm1'.	
-	refactor := ExtractToMethodObject 
+	aClass compile: 'm1'.
+	refactor := ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3473,31 +2973,31 @@ test49TheRefactoredMethodUsesTheChosenEvaluationSelectorToEvaluateTheMethodObjec
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	expectedRefactoredSourceCode := 'm1',
 		String newLineString,
-		String tab, 
+		String tab,
 		'(', self methodObjectClassName, ' new) ', self defaultEvaluationSelector.
-	self 
-		assert: expectedRefactoredSourceCode 
+	self
+		assert: expectedRefactoredSourceCode
 		equals: (aClass compiledMethodAt: #m1) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:24:33'!
 test50TheRefactoredMethodPreservesTheImplicitReturn
-	
+
 	| refactor keywordsDefinitions variablesToParametrizeToInstanceVariables aClass expectedRefactoredSourceCode |
-	
+
 	variablesToParametrizeToInstanceVariables := #() asDictionary.
 	keywordsDefinitions := #().
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1
 		| a |
-		
-		a := 1 + 1.'.	
-	refactor := ExtractToMethodObject 
+
+		a := 1 + 1.'.
+	refactor := ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3505,33 +3005,33 @@ test50TheRefactoredMethodPreservesTheImplicitReturn
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	expectedRefactoredSourceCode := 'm1',
 		String newLineString,
-		String tab, 
+		String tab,
 		'(', self methodObjectClassName, ' new) ', self defaultEvaluationSelector.
-	self 
-		assert: expectedRefactoredSourceCode 
+	self
+		assert: expectedRefactoredSourceCode
 		equals: (aClass compiledMethodAt: #m1) sourceCode.! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:24:57'!
 test51TheMethodToExtractMustNotReferenceSuper
-	
+
 	| keywordsDefinitions variablesToParametrizeToInstVars aClass |
-	
+
 	variablesToParametrizeToInstVars := #().
 	keywordsDefinitions := #().
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1 ^super isNil'.
-	
-	self 
+
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
-				subclassing: self methodObjectSuperclass 
+				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstVars
 				withInstanceCreationMessageFrom: keywordsDefinitions
@@ -3541,21 +3041,21 @@ test51TheMethodToExtractMustNotReferenceSuper
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:25:34'!
 test52TheMethodToExtractMustNotContainInstVarAssignments
-	
+
 	| keywordsDefinitions variablesToParametrizeToInstVars aClass |
-	
+
 	variablesToParametrizeToInstVars := {'anInstVar' -> 'correspondingInstVar'} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'anInstVar' paramName: 'aParamName'}.
 	aClass := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
 	aClass compile: 'm1
 		anInstVar := 2.'.
-	
-	self 
+
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
-				subclassing: self methodObjectSuperclass 
+				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstVars
 				withInstanceCreationMessageFrom: keywordsDefinitions
@@ -3565,13 +3065,13 @@ test52TheMethodToExtractMustNotContainInstVarAssignments
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:26:10'!
 test53TheMethodToExtractMustNotContainClassVarAssignments
-	
+
 	| keywordsDefinitions variablesToParametrizeToInstVars aClass classVarName |
-	
+
 	classVarName := 'AClassVar'.
 	variablesToParametrizeToInstVars := {classVarName -> 'correspondingInstVar'} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: classVarName paramName: 'aParamName'}.
-	aClass := self 
+	aClass := self
 		createClassNamed: #AClass
 		subclassOf: Object
 		instanceVariableNames: ''
@@ -3581,13 +3081,13 @@ test53TheMethodToExtractMustNotContainClassVarAssignments
 
 	aClass compile: 'm1
 		', classVarName, ' := 2.'.
-	
-	self 
+
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: (aClass compiledMethodAt: #m1)
 				toMethodObjectClassNamed: self methodObjectClassName
-				subclassing: self methodObjectSuperclass 
+				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstVars
 				withInstanceCreationMessageFrom: keywordsDefinitions
@@ -3597,14 +3097,14 @@ test53TheMethodToExtractMustNotContainClassVarAssignments
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/16/2019 15:26:40'!
 test54TheMethodToExtractMustNotContainPoolVarAssignments
-	
+
 	| keywordsDefinitions aClass aPool aPoolVar compiledMethodToRefactor correspondingInstVar methodToRefactorSourceCode variablesToParametrizeToInstanceVariables |
-	
+
 	aPoolVar := 'APoolVar'.
 	correspondingInstVar := 'aCorrespondingInstVar'.
 	variablesToParametrizeToInstanceVariables := {aPoolVar -> correspondingInstVar.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: aPoolVar paramName: 'aParamName'}.
-	
+
 	aPool := self
 		createClassNamed: #APool
 		subclassOf: SharedPool
@@ -3612,7 +3112,7 @@ test54TheMethodToExtractMustNotContainPoolVarAssignments
 		classVariableNames: aPoolVar
 		poolDictionaries: ''
 		category: self classCategoryOfTestData.
-	
+
 	aClass := self
 		createClassNamed: #AClass
 		subclassOf: Object
@@ -3620,18 +3120,18 @@ test54TheMethodToExtractMustNotContainPoolVarAssignments
 		classVariableNames: ''
 		poolDictionaries: aPool name
 		category: self classCategoryOfTestData.
-	
+
 	methodToRefactorSourceCode := 'm1
 		', aPoolVar, ' := 2.'.
 	aClass compile: methodToRefactorSourceCode.
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-		self 
+
+		self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
-				subclassing: self methodObjectSuperclass 
+				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
@@ -3643,12 +3143,12 @@ test54TheMethodToExtractMustNotContainPoolVarAssignments
 test55MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVariableInsteadOfClassToRefactorClassVariable
 
 	| refactor methodObjectClass keywordsDefinitions variablesToParametrizeToInstanceVariables evaluationSourceCode correspondingInstVar compiledMethodToRefactor methodToRefactorSourceCode aClass aClassVar |
-	
+
 	aClassVar := 'AClassVar'.
 	correspondingInstVar := 'aCorrespondingInstVar'.
 	variablesToParametrizeToInstanceVariables := {aClassVar -> correspondingInstVar.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: aClassVar paramName: 'aParamName'}.
-	
+
 	aClass := self
 		createClassNamed: #AClass
 		subclassOf: Object
@@ -3660,8 +3160,8 @@ test55MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 		', aClassVar, ' isNil.'.
 	aClass compile: methodToRefactorSourceCode.
 	compiledMethodToRefactor := aClass compiledMethodAt: #m1.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: compiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3669,7 +3169,7 @@ test55MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
 
 	methodObjectClass := Smalltalk classNamed: self methodObjectClassName.
@@ -3681,102 +3181,102 @@ test55MethodObjectEvaluationMethodSourceCodeReferencesCorrespondingInstanceVaria
 test56MethodObjectInstanceCreationMessageParameterNamesMustNotRepeat
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables aClassToRefactor |
-	
+
 	variablesToParametrizeToInstanceVariables := {
 		'self' -> 'thePreviousSelf'.
 		'anInstVar' -> 'theInstVar'} asDictionary.
 	keywordsDefinitions := {
 		self keyword: #with varName: 'self' paramName: 'aParamName'.
 		self keyword: #with varName: 'anInstVar' paramName: 'aParamName'}.
-	
+
 	aClassToRefactor := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
 	aClassToRefactor compile: 'm1 self = anInstVar ifTrue: [^1] ifFalse: [^2]'.
-	
+
 	self
 		creationFrom: (aClassToRefactor compiledMethodAt: #m1)
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject instanceCreationMessageParameterNamesAreDuplicated: #('aParamName') ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 14:30:06'!
 test57MethodObjectInstanceCreationMessageParameterNamesMustNotBeEmpty
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: ''.}.
-	
+
 	self
 		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject invalidParameterNamesErrorMessage: #('') ].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 14:35:05'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:16:35'!
 test58MethodObjectInstanceCreationMessageParameterNamesMustNotContainSeparators
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables aParameterName |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'} asDictionary.
 	aParameterName := 'a Parameter Name'.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: aParameterName.}.
-	
+
 	self
 		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject invalidParameterNamesErrorMessage: (Array with: aParameterName) ].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 14:36:08'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:16:52'!
 test59MethodObjectInstanceCreationMessageParameterNamesMustNotContainInvalidCharacters
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables aParameterName |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'} asDictionary.
 	aParameterName := 'a(Parameter!!Name'.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: aParameterName.}.
-	
+
 	self
 		creationFrom: self compiledMethodReferencingSelf
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject invalidParameterNamesErrorMessage: (Array with: aParameterName) ].! !
 
 !ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 14:48:32'!
 test60MethodObjectInstanceCreationMessageParameterNamesMustNotBeEqualToAMethodObjectInstanceVariable
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables aClassToRefactor |
-	
+
 	variablesToParametrizeToInstanceVariables := {
 		'self' -> 'thePreviousSelf'.
 		'anInstVar' -> 'theInstVar'} asDictionary.
 	keywordsDefinitions := {
 		self keyword: #with varName: 'self' paramName: 'theInstVar'.
 		self keyword: #with varName: 'anInstVar' paramName: 'aParamName'}.
-	
+
 	aClassToRefactor := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
 	aClassToRefactor compile: 'm1 self = anInstVar ifTrue: [^1] ifFalse: [^2]'.
-	
+
 	self
 		creationFrom: (aClassToRefactor compiledMethodAt: #m1)
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		failsWithMessageText: [ 
+		failsWithMessageText: [
 			ExtractToMethodObject parameterNamesOverlapWithInstanceVariableNamesErrorMessage: #('theInstVar')].! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 15:01:31'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:17:03'!
 test61MethodObjectClassInstanceCreationMessageParameterNamesAreTheChosenOnes
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables refactor methodObjectClass instanceCreationMethod |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3784,23 +3284,23 @@ test61MethodObjectClassInstanceCreationMessageParameterNamesAreTheChosenOnes
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObjectClass := (Smalltalk classNamed: self methodObjectClassName) class.
 	instanceCreationMethod := methodObjectClass compiledMethodAt: #with:.
-	
+
 	self assert: 'aParamName' equals: instanceCreationMethod methodNode arguments first name.! !
 
-!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 2/17/2019 15:28:15'!
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/9/2019 12:25:53'!
 test62MethodObjectInstanceCreationMessageParameterNamesAreTheChosenOnes
 
 	| keywordsDefinitions variablesToParametrizeToInstanceVariables refactor instanceCreationMethod methodObject |
-	
+
 	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
 	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
-	
-	refactor := ExtractToMethodObject 
+
+	refactor := ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3808,22 +3308,139 @@ test62MethodObjectInstanceCreationMessageParameterNamesAreTheChosenOnes
 				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 				withInstanceCreationMessageFrom: keywordsDefinitions
 				evaluatedWith: self defaultEvaluationSelector.
-	
+
 	refactor apply.
-	
+
 	methodObject := Smalltalk classNamed: self methodObjectClassName.
-	instanceCreationMethod := methodObject compiledMethodAt: #with:.
-	
+	instanceCreationMethod := methodObject compiledMethodAt: #initializeWith:.
+
 	self assert: 'aParamName' equals: instanceCreationMethod methodNode arguments first name.! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/10/2019 16:16:32'!
+test63MethodObjectInstanceInitializationMessageIsCategorizedAsInitialization
+
+	| keywordsDefinitions variablesToParametrizeToInstanceVariables refactor instanceInitializationMethod methodObject |
+
+	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
+	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
+
+	refactor := ExtractToMethodObject
+				from: self compiledMethodReferencingSelf
+				toMethodObjectClassNamed: self methodObjectClassName
+				subclassing: self methodObjectSuperclass
+				onCategory: self classCategoryOfTestData
+				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
+				withInstanceCreationMessageFrom: keywordsDefinitions
+				evaluatedWith: self defaultEvaluationSelector.
+
+	refactor apply.
+
+	methodObject := Smalltalk classNamed: self methodObjectClassName.
+	instanceInitializationMethod := methodObject compiledMethodAt: #initializeWith:.
+
+	self assert: #initialization equals: instanceInitializationMethod category.! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/10/2019 16:16:54'!
+test64MethodObjectInstanceCreationMessageIsCategorizedAsInstanceCreation
+
+	| keywordsDefinitions variablesToParametrizeToInstanceVariables refactor instanceCreationMethod methodObject |
+
+	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
+	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
+
+	refactor := ExtractToMethodObject
+				from: self compiledMethodReferencingSelf
+				toMethodObjectClassNamed: self methodObjectClassName
+				subclassing: self methodObjectSuperclass
+				onCategory: self classCategoryOfTestData
+				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
+				withInstanceCreationMessageFrom: keywordsDefinitions
+				evaluatedWith: self defaultEvaluationSelector.
+
+	refactor apply.
+
+	methodObject := Smalltalk classNamed: self methodObjectClassName.
+	instanceCreationMethod := methodObject class compiledMethodAt: #with:.
+
+	self assert: #'instance creation' equals: instanceCreationMethod category.! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/10/2019 16:19:03'!
+test65MethodObjectEvaluationMessageIsCategorizedAsEvaluating
+
+	| keywordsDefinitions variablesToParametrizeToInstanceVariables refactor evaluationMethod methodObject |
+
+	variablesToParametrizeToInstanceVariables := {'self' -> 'thePreviousSelf'.} asDictionary.
+	keywordsDefinitions := {self keyword: #with varName: 'self' paramName: 'aParamName'}.
+
+	refactor := ExtractToMethodObject
+				from: self compiledMethodReferencingSelf
+				toMethodObjectClassNamed: self methodObjectClassName
+				subclassing: self methodObjectSuperclass
+				onCategory: self classCategoryOfTestData
+				withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
+				withInstanceCreationMessageFrom: keywordsDefinitions
+				evaluatedWith: self defaultEvaluationSelector.
+
+	refactor apply.
+
+	methodObject := Smalltalk classNamed: self methodObjectClassName.
+	evaluationMethod := methodObject compiledMethodAt: self defaultEvaluationSelector.
+
+	self assert: #'evaluating' equals: evaluationMethod category.! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/11/2019 11:42:37'!
+test66MethodObjectEvaluationSelectorMustNotBeEmpty
+
+	self should: [
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
+			toMethodObjectClassNamed: self methodObjectClassName
+			subclassing: self methodObjectSuperclass
+			onCategory: self classCategoryOfTestData
+			withExtractedVariablesToInstanceVariables: #() asDictionary
+			withInstanceCreationMessageFrom: #()
+			evaluatedWith: '']
+		raise: RefactoringError
+		withMessageText: [ExtractToMethodObject evaluationSelectorMustNotBeEmptyErrorMessage].! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/11/2019 11:50:57'!
+test67MethodObjectEvaluationSelectorMustNotContainInvalidCharacters
+
+	self should: [
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
+			toMethodObjectClassNamed: self methodObjectClassName
+			subclassing: self methodObjectSuperclass
+			onCategory: self classCategoryOfTestData
+			withExtractedVariablesToInstanceVariables: #() asDictionary
+			withInstanceCreationMessageFrom: #()
+			evaluatedWith: 'asdf:']
+		raise: RefactoringError
+		withMessageText: [ExtractToMethodObject evaluationSelectorMustNotInvalidCharactersErrorMessage].! !
+
+!ExtractToMethodObjectTest methodsFor: 'tests' stamp: 'FGJ 4/11/2019 11:52:08'!
+test68MethodObjectEvaluationSelectorMustNotStartWithAnInvalidStartOfSelector
+
+	self should: [
+		ExtractToMethodObject
+			from: self emptyCompiledMethod
+			toMethodObjectClassNamed: self methodObjectClassName
+			subclassing: self methodObjectSuperclass
+			onCategory: self classCategoryOfTestData
+			withExtractedVariablesToInstanceVariables: #() asDictionary
+			withInstanceCreationMessageFrom: #()
+			evaluatedWith: '1asdf']
+		raise: RefactoringError
+		withMessageText: [ExtractToMethodObject evaluationSelectorMustNotStartWithAnInvalidStartOfSelectorErrorMessage].! !
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 1/14/2019 11:55:33'!
 compiledMethodFrom: aSourceCode
 
 	| aClass |
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: aSourceCode.
-	
+
 	^aClass compiledMethodAt: (Parser selectorFrom: aSourceCode).! !
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 1/14/2019 11:04:52'!
@@ -3835,7 +3452,7 @@ compiledMethodReferencingSelf
 	aMessageSelector := #m1.
 	aMessageSourceCode := aMessageSelector asString, self sourceCodeBodyOfMethodReferencingSelf.
 	aClass compile: aMessageSourceCode.
-	
+
 	^aClass compiledMethodAt: aMessageSelector! !
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 12/18/2018 17:07:18'!
@@ -3843,10 +3460,10 @@ creationFrom: aCompiledMethodToRefactor
 withExtractedVariablesToInstanceVariables: namesWithDuplicatedInstanceVariable
 withInstanceCreationMessageFrom: keywordToParametrizedVariable
 failsWithMessageText: aMessageTextBlock
-	
-	self 
+
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: aCompiledMethodToRefactor
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3859,24 +3476,24 @@ failsWithMessageText: aMessageTextBlock
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 12/17/2018 11:21:23'!
 defaultEvaluationSelector
-	
+
 	^#defaultEvaluationSelector! !
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 12/17/2018 17:51:55'!
 emptyCompiledMethod
 
 	| aClass |
-	
+
 	aClass := self createClassNamed: #AClass.
 	aClass compile: 'm1'.
-	
+
 	^aClass compiledMethodAt: #m1.
 	! !
 
 !ExtractToMethodObjectTest methodsFor: 'factories' stamp: 'FGJ 2/16/2019 14:46:39'!
 keyword: aKeyword varName: aVariableName paramName: aParameterName
 
-	^{ 
+	^{
 		#keyword -> aKeyword.
 		#variableName -> aVariableName .
 		#parameterName -> aParameterName
@@ -3903,9 +3520,9 @@ creationWithExtractedVariablesToInstanceVariables: parametrizedVariablesToInstan
 withInstanceCreationMessageFrom: keywordToParametrizedVariable
 failsWithMessageText: aMessageTextBlock
 
-	self 
+	self
 		should: [
-			ExtractToMethodObject 
+			ExtractToMethodObject
 				from: self compiledMethodReferencingSelf
 				toMethodObjectClassNamed: self methodObjectClassName
 				subclassing: self methodObjectSuperclass
@@ -3918,2467 +3535,2155 @@ failsWithMessageText: aMessageTextBlock
 		! !
 
 !ExtractToMethodObjectTest methodsFor: 'assertions' stamp: 'FGJ 12/17/2018 18:03:06'!
-creationWithMethodObjectClassName: aClassName 
+creationWithMethodObjectClassName: aClassName
 failsWithMessageText: aMessageTextBlock
 
-	self 
+	self
 		should: [
-			ExtractToMethodObject 
-				from: self emptyCompiledMethod 
-				toMethodObjectClassNamed: aClassName 
-				subclassing: self methodObjectSuperclass 
+			ExtractToMethodObject
+				from: self emptyCompiledMethod
+				toMethodObjectClassNamed: aClassName
+				subclassing: self methodObjectSuperclass
 				onCategory: self classCategoryOfTestData
 				evaluatedWith: self defaultEvaluationSelector ]
 		raise: RefactoringError
 		withMessageText: aMessageTextBlock.! !
 
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 05:41:39'!
-assertIsAssigment: aParseNode of: newVariable toLiteralValueOf: aValue
-
-	self assert: aParseNode isAssignmentNode.
-	self assert: aParseNode variable name equals: newVariable.
-	self assert: aParseNode value isLiteralNode.
-	self assert: aParseNode value literalValue equals: aValue! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 05:45:03'!
-assertIsReturnSelf: aParseNode
-
-	self assert: aParseNode isReturnSelf ! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/26/2017 16:33:08'!
-classToRefactorName
-
-	^#ClassToExtractTemp! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/4/2017 18:42:13'!
-m1
-
-	| t1 |
-	
-	t1 := 1.
-	t1! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/26/2017 16:08:54'!
-methodNodeOf: aSourceCode
-
-	^self methodNodeOf: aSourceCode in: self class! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 9/11/2018 16:11:45'!
-methodNodeOf: aSourceCode in: aClass
-
-	^aClass methodNodeFor: aSourceCode ! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 9/11/2018 16:22:23'!
-test01NewVariableCanNotBeEmpty
-
-	| newVariable sourceCodeToExtract sourceCode intervalToExtract |
-	
-	newVariable := ''.
-	sourceCodeToExtract := '2'.
-	sourceCode := 'm1 | ', newVariable, ' | ', sourceCodeToExtract.
-	intervalToExtract := sourceCode intervalOfSubCollection: sourceCodeToExtract.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable at: intervalToExtract from: sourceCode in: self class ]
-		failsWith: [ ExtractToTemporary newVariableCanNotBeEmptyErrorMessage ]
-		! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 9/11/2018 16:27:16'!
-test02NewVariableHasToBeValid
-
-	| newVariable sourceCodeToExtract sourceCode intervalToExtract |
-	
-	newVariable := 'a b'.
-	sourceCodeToExtract := '2'.
-	sourceCode := 'm1 | ', newVariable, ' | ', sourceCodeToExtract.
-	intervalToExtract := sourceCode intervalOfSubCollection: sourceCodeToExtract.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable at: intervalToExtract from: sourceCode in: self class ]
-		failsWith: [ ExtractToTemporary errorMessageForInvalidTemporaryVariable: newVariable ]
-	! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 11/11/2018 14:10:22'!
-test03NewVariableNameCanNotBeDefinedInMethod
-
-	self shouldFail: [
-	| newVariable sourceCodeToExtract sourceCode intervalToExtract |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := '2'.
-	sourceCode := 'm1 | ', newVariable, ' | ', sourceCodeToExtract.
-	intervalToExtract := sourceCode intervalOfSubCollection: sourceCodeToExtract.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable at: intervalToExtract from: sourceCode in: self class ]
-		failsWith: [ ExtractToTemporary errorMessageForNewTemporaryVariable: newVariable isAlreadyDefinedIn: 1 ]
-	]	! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:39:47'!
-test04WarnsIfNewTemporaryIsEqualToInstanceVariableInClass
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor classToRefactor |
-	
-	newVariable := 'new'.
-	classToRefactor := self createClassNamed: self classToRefactorName instanceVariableNames: newVariable.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1' in: classToRefactor.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		warnsWith: [ ExtractToTemporary warningMessageFor: newVariable willHideInstanceVariableDefinedIn: classToRefactor ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:39:57'!
-test05WarnsIfNewTemporaryIsEqualToInstanceVariableInAnySuperclass
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor classToRefactor superclassToRefactor |
-	
-	newVariable := 'new'.
-	superclassToRefactor := self createClassNamed: #ClassToRefactorSuperclass instanceVariableNames: newVariable.
-	classToRefactor := self createClassNamed: self classToRefactorName subclassOf: superclassToRefactor.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1' in: classToRefactor.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		warnsWith: [ ExtractToTemporary warningMessageFor: newVariable willHideInstanceVariableDefinedIn: superclassToRefactor ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:40:11'!
-test06SourceCodeToExtractMustBePartOfMethodNodeToRefactor
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := '3'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1'.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		failsWith: [ ExtractToTemporary errorMessageMethodNodeToRefactorDoesNotInclude: sourceCodeToExtract ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:40:23'!
-test07SourceCodeToExtractCanNotIncludeReturn
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := '^1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ^1'.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		failsWith: [ ExtractToTemporary sourceCodeToExtractCanNotIncludeReturnErrorMessage ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:40:33'!
-test08SourceCodeToExtractCanNotBeEmpty
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := ' '.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ^1'.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		failsWith: [ ExtractToTemporary sourceCodeToExtractCanNotBeEmptyErrorMessage]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/18/2017 17:29:54'!
-test09SourceCodeToExtractCanNotHaveSyntaxErrors
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor expectedSyntaxErrorMessage |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := '1+'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1+2'.
-	 
-	[ Parser parse: sourceCodeToExtract class: self class noPattern: true.
-		self fail. ]
-		on: SyntaxErrorNotification 
-		do: [ :anError | expectedSyntaxErrorMessage :=  anError messageText].
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		failsWith: [ ExtractToTemporary errorMessageForSourceCodeToExtractHasSyntaxError: expectedSyntaxErrorMessage ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 6/30/2017 06:40:51'!
-test10SourceCodeToExtractHasToBeOneStatement
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor |
-	
-	newVariable := 'new'.
-	sourceCodeToExtract := '1+2. 3+4'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ', sourceCodeToExtract.
-	
-	self 
-		assertCreation: [ ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor ]
-		failsWith: [ ExtractToTemporary sourceCodeToExtractHasToBeOneStatementErrorMessage ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 3/6/2018 15:37:49'!
-test11WhenThereAreNoTemporariesExtractCreatesTemporariesAndAddsTemporaryNamedAsDefined
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable)
-	! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/4/2017 18:02:21'!
-test12WhenThereAreTemporariesExtractAddsTemporaryNamedAsDefined
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 | t2 | 1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable)
-	! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 3/6/2018 15:38:19'!
-test13CodeToExtractIsAssignedToNewTemporaryBeforeCodeToExtract
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	self assert: newMethodNode block statements size > 1.
-	self assertIsAssigment: newMethodNode block statements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 05:52:10'!
-test14ExtractOfLiteralAtTopBlockWorksAsExpected
-
-	"WorksAsExpected means: 1) extracted code is assign to new temporary 2) extracted code is replaced by temporary - Hernan"
-	
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 3.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: newMethodNodeStatements second equals: extract newTemporary.
-	self assert: newMethodNodeStatements third isReturnSelf! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 11/11/2018 14:11:02'!
-test15
-
-	self shouldFail: [
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ^1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	self deny: (newMethodNode block statements includes: extract parseNodeToExtract).
-	self assert: newMethodNode block statements second equals: extract newTemporary ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 05:52:19'!
-test15ExtractOfMoreThanOneLiteralAtTopBlockWorksAsExpected
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 1. 1.'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 4.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: newMethodNodeStatements second equals: extract newTemporary.
-	self assert: newMethodNodeStatements third equals: extract newTemporary.
-	self assert: newMethodNodeStatements fourth isReturnSelf! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 06:08:02'!
-test16ExtractOfLiteralAtReturnAtTopBlockExpressionWorksAsExpected
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ^1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 2.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: newMethodNodeStatements second isReturn.
-	self assert: newMethodNodeStatements second isVariableReference.
-	self assert: newMethodNodeStatements second expr name equals: newVariable.
-	! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 10/19/2017 06:17:38'!
-test17ExtractOfLiteralAtMessageSendAtTopBlockExpressionWorksAsExpected
-
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 2+1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 3.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: (newMethodNodeStatements second 
-		isMessage: #+ 
-		receiver: [ :receiver | receiver isLiteralNode and: [ receiver literalValue = 2 ]]
-		arguments: [ :collaborator | collaborator = extract newTemporary ]).
-	self assert: newMethodNodeStatements third isReturnSelf ! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 11/11/2018 14:10:36'!
-test18
-
-	self shouldFail: [
-		| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '2+1'.
-	methodNodeToRefactor := self methodNodeOf: 'm1 2+1'.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 3.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: (newMethodNodeStatements second 
-		isMessage: #+ 
-		receiver: [ :receiver | receiver isLiteralNode and: [ receiver literalValue = 2 ]]
-		arguments: [ :collaborator | collaborator = extract newTemporary ]).
-	self assert: newMethodNodeStatements third isReturnSelf ]! !
-
-!ExtractToTemporaryTest methodsFor: 'as yet unclassified' stamp: 'HAW 11/11/2018 14:10:50'!
-test19
-
-	self shouldFail: [
-	| newVariable sourceCodeToExtract methodNodeToRefactor extract newMethodNode newMethodNodeStatements |
-	
-	newVariable := 't1'.
-	sourceCodeToExtract := '''hola'''.
-	methodNodeToRefactor := self methodNodeOf: 'm1 ''hola'''.
-	
-	extract := ExtractToTemporary named: newVariable with: sourceCodeToExtract  in: methodNodeToRefactor.
-	newMethodNode := extract apply.
-	
-	newMethodNodeStatements := newMethodNode block statements.
-	self assert: newMethodNodeStatements size equals: 3.
-	self assertIsAssigment: newMethodNodeStatements first of: newVariable toLiteralValueOf: sourceCodeToExtract asNumber. 
-	self assert: (newMethodNodeStatements second 
-		isMessage: #+ 
-		receiver: [ :receiver | receiver isLiteralNode and: [ receiver literalValue = 2 ]]
-		arguments: [ :collaborator | collaborator = extract newTemporary ]).
-	self assert: newMethodNodeStatements third isReturnSelf ]! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:01:00'!
-test01ChangesTheSuperclassOfTheClassToRefactor
-
-	| classToRefactor refactoring oldSuperclass newSuperclass |
-	
-	classToRefactor := self createClassNamed: #ClassToAddSuperclass.
-	oldSuperclass := classToRefactor superclass.
-	
-	refactoring := InsertSuperclass to: classToRefactor named: #AddedSuperclass.
-	newSuperclass := refactoring apply.
-	
-	self assert: newSuperclass equals: classToRefactor superclass.
-	self assert: (newSuperclass subclasses includes: classToRefactor).
-	self assert: oldSuperclass equals: newSuperclass superclass.! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:29:50'!
-test02ClassToRefactorStructureIsMaintained
-
-	| classToRefactor refactoring instanceVariables category classVariables poolDictionaries |
-	
-	instanceVariables := 'instVar1 instVar2'.
-	classVariables := 'ClassVar1 ClassVar2'.
-	poolDictionaries := 'SharedAAA'.
-	category :=  self classCategoryOfTestData.
-	
-	[ Smalltalk at: poolDictionaries asSymbol put: Dictionary new.
-	classToRefactor := self 
-		createClassNamed: #ClassToAddSuperclass
-		subclassOf: Object
-		instanceVariableNames: instanceVariables
-		classVariableNames: classVariables
-		poolDictionaries: poolDictionaries
-		category: category.
-	
-	refactoring := InsertSuperclass to: classToRefactor named: #AddedSuperclass.
-	refactoring apply.
-	
-	self assert: instanceVariables equals: classToRefactor instanceVariablesString.
-	self assert: classVariables equals: classToRefactor classVariablesString.
-	self assert: poolDictionaries equals: classToRefactor sharedPoolsString.
-	self assert: category equals: classToRefactor category ] ensure: [ Smalltalk removeKey: poolDictionaries asSymbol ].! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:17:48'!
-test03NewSuperclassCategoryIsTheSameAsClassToRefactorCategory
-
-	| classToRefactor refactoring classToRefactorCategory newSuperclass |
-
-	classToRefactorCategory := self classCategoryOfTestData.
-	classToRefactor := self createClassNamed: #ClassToAddSuperclass category: classToRefactorCategory.
-	
-	refactoring := InsertSuperclass to: classToRefactor named: #AddedSuperclass.
-	newSuperclass := refactoring apply.
-	
-	self assert: classToRefactorCategory equals: newSuperclass category.! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:19:28'!
-test04NewSuperclassHasNoVariables
-
-	| classToRefactor refactoring classToRefactorCategory newSuperclass |
-
-	classToRefactorCategory := self classCategoryOfTestData.
-	classToRefactor := self createClassNamed: #ClassToAddSuperclass category: classToRefactorCategory.
-	
-	refactoring := InsertSuperclass to: classToRefactor named: #AddedSuperclass.
-	newSuperclass := refactoring apply.
-	
-	self assert: newSuperclass instVarNames isEmpty.
-	self assert: newSuperclass classVarNames isEmpty.
-	self assert: newSuperclass sharedPools isEmpty.! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:21:16'!
-test05NewSuperclassShouldNotExist
-
-	| classToRefactor existingClass existingClassName |
-	
-	classToRefactor := self createClassNamed: #ClassToAddSuperclass.
-	existingClassName := #AlreadyExistingClass.
-	existingClass := self createClassNamed: existingClassName.
-	
-	self
-		assertCreation: [ InsertSuperclass to: classToRefactor named: existingClassName ]
-		failsWith: [ NewClassPrecondition errorMessageForAlreadyExistClassNamed: existingClass name ].! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:22:13'!
-test06NewSuperclassNameHasToBeASymbol
-
-	self 
-		assertCreation: [ InsertSuperclass to: self class named: 'aString' ]
-		failsWith: [ NewClassPrecondition newNameMustBeSymbolErrorMessage ].! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:22:17'!
-test07NewSuperclassNameHasToStartWithUppercaseLetter
-	
-	self
-		assertCreation: [ InsertSuperclass to: self class named: #_A ]
-		failsWith: [ NewClassPrecondition newNameMustStartWithUppercaseLetterErrorMessage ].! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:22:31'!
-test08WhenAppliedToMetaclassWorksAsWithClass
-
-	| classToRefactor refactoring newSuperclass |
-	
-	classToRefactor := self createClassNamed: #ClassToAddSuperclass.
-	
-	refactoring := InsertSuperclass to: classToRefactor class named: #AddedSuperclass.
-	newSuperclass := refactoring apply.
-	
-	self assert: newSuperclass equals: classToRefactor superclass.! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:22:56'!
-test09NewSuperclassNameCanNotBeEmpty
-
-	self 
-		assertCreation: [ InsertSuperclass to: self class named: '' asSymbol ]
-		failsWith: [ NewClassPrecondition newClassNameCanNotBeEmptyErrorMessage ].! !
-
-!InsertSuperclassTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 09:13:27'!
-test10NewSuperclassNameCanNotHaveSpaces
-	
-	self
-		assertCreation: [ InsertSuperclass to: self class named: 'With spaces' asSymbol ]
-		failsWith: [ NewClassPrecondition newClassNameCanNotHaveSeparatorsErrorMessage ].! !
-
-!RemoveAllUnreferencedInstanceVariablesTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 16:15:11'!
-test01NoVariableIsRemovedWhenClassHasNoInstanceVariable
-
-	| classToRefactor refactoring removedInstanceVariables |
-	
-	classToRefactor := self createClassNamed: #ClassWithoutInstVar.
-	
-	refactoring := RemoveAllUnreferencedInstanceVariables from: classToRefactor.
-	removedInstanceVariables := refactoring apply.
-	
-	self assert: removedInstanceVariables isEmpty! !
-
-!RemoveAllUnreferencedInstanceVariablesTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 16:15:14'!
-test02UnreferencedVariablesAreRemoved
-
-	| classToRefactor refactoring removedInstanceVariables unreferencedVariable |
-	
-	unreferencedVariable := 'a'.
-	classToRefactor := self createClassNamed: #ClassWithInstVar instanceVariableNames: unreferencedVariable.
-	
-	refactoring := RemoveAllUnreferencedInstanceVariables from: classToRefactor.
-	removedInstanceVariables := refactoring apply.
-	
-	self assert: 1 equals: removedInstanceVariables size.
-	self assert: (removedInstanceVariables includes: unreferencedVariable)
-	! !
-
-!RemoveAllUnreferencedInstanceVariablesTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 16:15:18'!
-test03VariablesWithReferencesAreNotRemoved
-
-	| classToRefactor refactoring removedInstanceVariables unreferencedVariableName referencedVariableName |
-	
-	referencedVariableName := 'a'.
-	unreferencedVariableName := 'b'.
-	classToRefactor := self createClassNamed: #ClassWithInstVar instanceVariableNames: referencedVariableName, ' ', unreferencedVariableName.
-	classToRefactor compile: 'm1 ^', referencedVariableName.
-	
-	refactoring := RemoveAllUnreferencedInstanceVariables from: classToRefactor.
-	removedInstanceVariables := refactoring apply.
-	
-	self assert: 1 equals: removedInstanceVariables size.
-	self assert: (removedInstanceVariables includes: unreferencedVariableName).
-	
-	
-! !
-
-!RemoveAllUnreferencedInstanceVariablesTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 16:22:44'!
-test04VariablesWithReferencesInSubclassesAreNotRemoved
-
-	| classToRefactor refactoring removedInstanceVariables unreferencedVariableName referencedVariableName classToRefactorSubclass |
-	
-	referencedVariableName := 'a'.
-	unreferencedVariableName := 'b'.
-	classToRefactor := self createClassNamed: #ClassWithInstVar instanceVariableNames: referencedVariableName, ' ', unreferencedVariableName.
-	classToRefactorSubclass := self createClassNamed: #ClassWithReferenceInstVar subclassOf: classToRefactor.
-	classToRefactorSubclass compile: 'm1 ^', referencedVariableName.
-	
-	refactoring := RemoveAllUnreferencedInstanceVariables from: classToRefactor.
-	removedInstanceVariables := refactoring apply.
-	
-	self assert: 1 equals: removedInstanceVariables size.
-	self assert: (removedInstanceVariables includes: unreferencedVariableName).
-	
-! !
-
-!RemoveInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 6/12/2017 19:10:08'!
-test01CanNotRemoveAnInstanceVariableNotDefinedInClass
-
-	| variableToRemove classToRefactor |
-	
-	variableToRemove := 'a'.
-	classToRefactor := self createClassNamed: #ClassWithoutInstVar.
-	
-	self 
-		assertCreation: [ RemoveInstanceVariable named: variableToRemove from: classToRefactor ]
-		failsWith: [ RemoveInstanceVariable errorMessageForInstanceVariable: variableToRemove notDefinedIn: classToRefactor ].
-		
-	
-	! !
-
-!RemoveInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 15:24:17'!
-test02CanNotRemoveInstanceVariableWithReferences
-
-	| variableToRemove classToRefactor selector |
-	
-	variableToRemove := 'a'.
-	classToRefactor := self createClassNamed: #ClassWithInstVar instanceVariableNames: variableToRemove.
-	selector := #m1.
-	classToRefactor compile: selector,' ^', variableToRemove.
-	
-	self 
-		assertCreation: [ RemoveInstanceVariable named: variableToRemove from: classToRefactor ]
-		failsWith: [ RemoveInstanceVariable errorMessageForInstanceVariable: variableToRemove isReferencedInAll: (Array with: classToRefactor>>selector) ].
-		
-	
-	! !
-
-!RemoveInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 8/2/2018 15:24:28'!
-test03WhenAppliedRemovesInstanceVariable
-
-	| variableToRemove classToRefactor remove |
-	
-	variableToRemove := 'a'.
-	classToRefactor := self createClassNamed: #ClassWithInstVar instanceVariableNames: variableToRemove.
-	
-	remove := RemoveInstanceVariable named: variableToRemove from: classToRefactor.
-	remove apply.
-	
-	self deny: (classToRefactor definesInstanceVariableNamed: variableToRemove)	
-	
-	! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:46:28'!
-test01CanNotRemoveParameterFromUnaryMessages
-
-	self 
-		assertCreation: [ RemoveParameter 
-			named: 'aParameter' 
-			from: thisContext method 
-			implementors: {thisContext method} 
-			senders: {} ]
-		failsWith: [ RemoveParameter canNotRemoveParameterFromUnaryMessagesErrorMessage ]
-! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:46:43'!
-test02CanNotRemoveParameterFromBinaryMessages
-
-	self 
-		assertCreation: [ RemoveParameter 
-			named: '+' asSymbol 
-			from: Number>>#+ 
-			implementors: {Number>>#+} 
-			senders: {} ]
-		failsWith: [ RemoveParameter canNotRemoveParameterFromBinaryMessagesErrorMessage ]
-! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:46:52'!
-test03CanNotRemoveParameterNotInMessage
-
-	| classToRefactor selectorToRemoveParameterFrom parameterNotInMessage |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol.
-	classToRefactor compile: selectorToRemoveParameterFrom asString, ' parameter'.
-	parameterNotInMessage := 'otherParameter'.
-
-	self 
-		assertCreation: [ RemoveParameter 
-			named: parameterNotInMessage 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: {classToRefactor >> selectorToRemoveParameterFrom } 
-			senders: {} ]
-		failsWith: [ RemoveParameter errorMessageForParameterNotInMessage: parameterNotInMessage ]
-! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:46:03'!
-test04AllImplementorsMustImplementSelector
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove implementors |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol.
-	parameterToRemove := 'parameter'.
-	classToRefactor compile: selectorToRemoveParameterFrom asString, ' parameter'.
-	implementors := {thisContext method}.
-	
-	self 
-		assertCreation: [ RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: implementors 
-			senders: {} ]
-		failsWith: [ RemoveParameter errorMessageForInvalidImplementors: implementors ]
-! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:49:28'!
-test05AllSendersShouldSendSelector
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove invalidSenders |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol.
-	parameterToRemove := 'parameter'.
-	classToRefactor compile: selectorToRemoveParameterFrom asString, ' parameter'.
-	invalidSenders := {thisContext method}.
-	
-	self 
-		assertCreation: [ RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: {} 
-			senders: invalidSenders ]
-		failsWith: [ RemoveParameter errorMessageForInvalidSenders: invalidSenders of: selectorToRemoveParameterFrom ]
-	
-! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/2/2018 19:57:35'!
-test06NoImplementorReferencesParameterToRemove
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove implementorsReferencingParameter |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol.
-	parameterToRemove := 'parameter'.
-	classToRefactor compile: selectorToRemoveParameterFrom asString, ' parameter ^parameter'.
-	implementorsReferencingParameter := {classToRefactor>>selectorToRemoveParameterFrom }.
-	
-	self 
-		assertCreation: [ RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: implementorsReferencingParameter 
-			senders: {} ]
-		failsWith: [ RemoveParameter errorMessageForParameterToRemoveIsReferenced: parameterToRemove ]! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/3/2018 17:58:11'!
-test07FirstParameterIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove keywordToRemove keywordToKeep parameterToKeep refactoring |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	keywordToRemove := 'm1:'.
-	keywordToKeep := 'm2:'.
-	selectorToRemoveParameterFrom := (keywordToRemove, keywordToKeep) asSymbol. 
-	parameterToRemove := 'parameter1'.
-	parameterToKeep := 'parameter2'.
-	classToRefactor compile: keywordToRemove,parameterToRemove, ' 
-	', keywordToKeep, parameterToKeep.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {}.
-	refactoring apply.
-	
-	self assert: (classToRefactor canUnderstand: keywordToKeep asSymbol).
-	self assert: (classToRefactor sourceCodeAt: keywordToKeep asSymbol) equals: (keywordToKeep, parameterToKeep) ! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/3/2018 18:45:48'!
-test08LastParameterIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove keywordToRemove keywordToKeep parameterToKeep refactoring |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	keywordToKeep := 'm1:'.
-	keywordToRemove := 'm2:'.
-	selectorToRemoveParameterFrom := (keywordToKeep, keywordToRemove) asSymbol. 
-	parameterToKeep := 'parameter1'.
-	parameterToRemove := 'parameter2'.
-	classToRefactor compile: keywordToKeep,parameterToKeep, ' ', keywordToRemove, parameterToRemove,'
-	| t1 |'.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {}.
-	refactoring apply.
-	
-	self assert: (classToRefactor canUnderstand: keywordToKeep asSymbol).
-	self assert: (classToRefactor sourceCodeAt: keywordToKeep asSymbol) equals: (keywordToKeep, parameterToKeep,' 
-	| t1 |') ! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/4/2018 14:34:22'!
-test09MiddleParameterIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove keywordToRemove keywordToKeep parameterToKeep refactoring newSelector |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	keywordToRemove := 'm1:'.
-	keywordToKeep := 'm2:'.
-	selectorToRemoveParameterFrom := ('m0:',keywordToRemove, keywordToKeep) asSymbol. 
-	newSelector := ('m0:', keywordToKeep) asSymbol. 
-	parameterToRemove := 'parameter1'.
-	parameterToKeep := 'parameter2'.
-	classToRefactor compile: 'm0: parameter0 
-	',keywordToRemove,parameterToRemove, ' 
-	', keywordToKeep, parameterToKeep.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {}.
-	refactoring apply.
-	
-	self assert: (classToRefactor canUnderstand: newSelector).
-	self assert: (classToRefactor sourceCodeAt: newSelector) equals: ('m0: parameter0 
-	',keywordToKeep, parameterToKeep) ! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 9/3/2018 17:34:00'!
-test10ParameterFromOneKeywordSelectorIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove refactoring |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol. 
-	parameterToRemove := 'parameter1'.
-	classToRefactor compile: selectorToRemoveParameterFrom asString,parameterToRemove.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {}.
-	refactoring apply.
-	
-	self assert: (classToRefactor canUnderstand: 'm1' asSymbol).! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:29:53'!
-test11ParameterOfSendersOfMoreThanOneKeywordSelectorsIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove keywordToRemove keywordToKeep parameterToKeep refactoring senderSelector senderMethod |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	keywordToRemove := 'm1:'.
-	keywordToKeep := 'm2:'.
-	selectorToRemoveParameterFrom := (keywordToRemove, keywordToKeep) asSymbol. 
-	parameterToRemove := 'parameter1'.
-	parameterToKeep := 'parameter2'.
-	senderSelector := 'sender' asSymbol.
-	classToRefactor compile: keywordToRemove,parameterToRemove, ' ', keywordToKeep, parameterToKeep.
-	classToRefactor compile: senderSelector asString,'
-		self 
-			', keywordToRemove, ' 1 
-			', keywordToKeep, ' 2 '.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: keywordToKeep asSymbol).
-	self assert: senderMethod sourceCode equals: (senderSelector asString,'
-		self 
-			', keywordToKeep, ' 2 ')
-	
-	! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:30:01'!
-test12ParameterOfSendersOfOneKeywordSelectorsIsRemovedCorrectly
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove refactoring senderSelector senderMethod |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	selectorToRemoveParameterFrom := 'm1:' asSymbol. 
-	parameterToRemove := 'parameter1'.
-	senderSelector := 'sender' asSymbol.
-	classToRefactor compile: selectorToRemoveParameterFrom,parameterToRemove.
-	classToRefactor compile: senderSelector asString,'
-		self 
-			', selectorToRemoveParameterFrom, '
-			 (1+2).'.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: 'm1' asSymbol).
-	self assert: senderMethod sourceCode equals: (senderSelector asString,'
-		self 
-			m1.')
-	
-	! !
-
-!RemoveParameterTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 09:22:15'!
-test13ParameterIsRemovedCorrecltyFromSendersWithMoreThanOneSend
-
-	| classToRefactor selectorToRemoveParameterFrom parameterToRemove keywordToRemove keywordToKeep parameterToKeep refactoring senderSelector senderMethod |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	keywordToRemove := 'm1:'.
-	keywordToKeep := 'm2:'.
-	selectorToRemoveParameterFrom := (keywordToRemove, keywordToKeep) asSymbol. 
-	parameterToRemove := 'parameter1'.
-	parameterToKeep := 'parameter2'.
-	senderSelector := 'sender' asSymbol.
-	classToRefactor compile: keywordToRemove,parameterToRemove, ' ', keywordToKeep, parameterToKeep.
-	classToRefactor compile: senderSelector asString,'
-		self ', keywordToRemove, ' (1+1) ', keywordToKeep, ' 2.
-		self ', keywordToRemove, ' 3 ', keywordToKeep, ' 4.'.
-	
-	refactoring := RemoveParameter 
-			named: parameterToRemove 
-			from: classToRefactor>>selectorToRemoveParameterFrom  
-			implementors: { classToRefactor>>selectorToRemoveParameterFrom } 
-			senders: {classToRefactor>>senderSelector}.
-	refactoring apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderSelector.
-	self assert: (senderMethod sendsOrRefersTo: keywordToKeep asSymbol).
-	self assert: senderMethod sourceCode equals: (senderSelector asString,'
-		self ', keywordToKeep, ' 2.
-		self ', keywordToKeep, ' 4.')
-	
-	! !
-
-!RemoveParameterTest methodsFor: 'class factory' stamp: 'HAW 9/1/2018 12:24:23'!
-classToRefactorName
-	
-	^#ClassToRemoveParameter! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/1/2017 19:44:41'!
-test01NewClassNameHasToBeDifferentToOldOne
-
-	self 
-		assertCreation: [ RenameClass from: self class to: self class name ]
-		failsWith: [ RenameClass newNameEqualsOldNameErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:36:20'!
-test02NewClassNameHasToBeASymbol
-
-	self 
-		assertCreation: [ RenameClass from: self class to: 'aString' ]
-		failsWith: [ NewClassPrecondition newNameMustBeSymbolErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:36:37'!
-test03NewClassNameHasToStartWithUppercaseLetter
-
-	self 
-		assertCreation: [ RenameClass from: self class to: #_A ]
-		failsWith: [ NewClassPrecondition newNameMustStartWithUppercaseLetterErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:33:08'!
-test04NewClassShouldNotExist
-
-	| newClassName |
-	
-	newClassName := #Object.
-	
-	self 
-		assertCreation: [ RenameClass from: self class to: newClassName in: Smalltalk ]
-		failsWith: [ NewClassPrecondition errorMessageForAlreadyExistClassNamed: newClassName ]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 12/13/2018 17:59:19'!
-test04_01NewClassNameShouldNotBeAGlobalVariable
-
-	| newClassName |
-	
-	newClassName := #Smalltalk.
-	
-	self 
-		assertCreation: [ RenameClass from: self class to: newClassName in: Smalltalk ]
-		failsWith: [ NewClassPrecondition errorMessageForAlreadyExistGlobalNamed: newClassName ]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:33:35'!
-test05NewClassShouldNotBeUndeclare
-
-	| newClassName undeclared |
-	
-	newClassName := #UndeclareClass.
-	undeclared := Dictionary new.
-	undeclared at: newClassName put: nil.
-	
-	self 
-		assertCreation: [ RenameClass from: self class to: newClassName in: Smalltalk undeclared: undeclared ]
-		failsWith: [ NewClassPrecondition errorMessageForNewClassIsUndeclared: newClassName ]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/4/2017 19:12:10'!
-test06OldClassIsRenamedToNewClass
-
-	| oldClassName newClassName classToRefactor rename |
-
-	oldClassName :=  'OldClassTest07' asSymbol.
-	newClassName := 'NewClassTest07' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	self assert: (Smalltalk classNamed: oldClassName) isNil.
-	self deny: (Smalltalk classNamed: newClassName) isNil.! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/4/2017 18:18:12'!
-test07OldClassDirectReferencesAreRenamed
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	oldClassName := 'OldClassTest07' asSymbol.
-	newClassName := 'NewClassTest07' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' ', oldClassName asString, ' new'.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-	self assert: (referencingMethod hasLiteralThorough: newClassName).
-	self deny: (referencingMethod hasLiteralThorough: oldClassName)! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/4/2017 18:19:04'!
-test08OldClassLiteralReferencesAreRenamed
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	oldClassName := 'OldClassTest08' asSymbol.
-	newClassName := 'NewClassTest8' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' #', oldClassName asString, ' size'.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-	self assert: (referencingMethod hasLiteralThorough: newClassName).
-	self deny: (referencingMethod hasLiteralThorough: oldClassName)! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/4/2017 18:36:22'!
-test09OtherClassDirectReferencesAreNotRenamed
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	oldClassName := 'OldClassTest09' asSymbol.
-	newClassName := 'NewClassTest09' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' ', oldClassName asString, ' new. Object new'.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-	self assert: (referencingMethod hasLiteralThorough: newClassName).
-	self deny: (referencingMethod hasLiteralThorough: oldClassName).
-	self assert: (referencingMethod hasLiteralThorough: #Object).
-! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 6/4/2017 19:07:19'!
-test10OtherLiteralReferencesAreNotRenamed
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	oldClassName := 'OldClassTest10' asSymbol.
-	newClassName := 'NewClassTest10' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' #', oldClassName asString, ' size. #Object size'.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-	self assert: (referencingMethod hasLiteralThorough: newClassName).
-	self deny: (referencingMethod hasLiteralThorough: oldClassName).
-	self assert: (referencingMethod hasLiteralThorough: #Object).
-! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 16:30:56'!
-test11OldClassDirectAndLiteralReferencesAreRenameAtOnce
-
-	| oldClassName newClassName classToRefactor selector rename renamedReferences |
-	
-	oldClassName := 'OldClassTest11' asSymbol.
-	newClassName := 'NewClassTest11' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' ', oldClassName asString, ' new. #', oldClassName asString, ' size'.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	renamedReferences := rename apply.
-	
-	self assert: 1 equals: renamedReferences size.
-	self assert: selector equals: renamedReferences anyOne selector.
-	self assert: newClassName equals: renamedReferences anyOne classSymbol.
-	self assert: ((classToRefactor sourceCodeAt: selector) includesSubString: '#', newClassName)! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 4/4/2018 19:56:09'!
-test12CanNotRenameAMetaclass
-
-	self 
-		assertCreation: [ RenameClass from: self class class to: #Object ]
-		failsWith: [ RenameClass classToRenameCanNotBeMetaclassErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/13/2018 18:35:38'!
-test13NewClassNameHasToBeASymbol
-
-	self 
-		assertCreation: [ RenameClass from: self class to: '' asSymbol ]
-		failsWith: [ NewClassPrecondition newClassNameCanNotBeEmptyErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 09:20:07'!
-test14NewClassNameCanNotHaveSpaces
-
-	| oldClassName classToRefactor |
-
-	oldClassName :=  'OldClassTest14' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-
-	self 
-		assertCreation: [ RenameClass from: classToRefactor to: 'With spaces' asSymbol ]
-		failsWith: [ NewClassPrecondition newClassNameCanNotHaveSeparatorsErrorMessage]! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 14:44:13'!
-test15ItDoesNotRenameReferencesToClassVariableWithSameName
-
-	| classWithClassVariable oldClassName classToRefactor newClassName rename renamedReferences |
-
-	oldClassName :=  'OldClassTest15' asSymbol.
-	newClassName := 'NewClassTest15' asSymbol.
-	"First I create a class var with the same name as the class to rename and a reference to it - Hernan"
-	classWithClassVariable := self createClassNamed: 'ClassReferencingClassVar' asSymbol.
-	classWithClassVariable addClassVarName: oldClassName.
-	classWithClassVariable compile: 'm1 ^', oldClassName.
-
-	classToRefactor := self createClassNamed: oldClassName.
-
-	rename := RenameClass from: classToRefactor to: newClassName.
-	renamedReferences := rename apply.
-	
-	self assert: renamedReferences isEmpty.
-	
-	
-	! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 14:45:20'!
-test16ItDoesNotRenameReferencesToClassVariableWithSameNameDefinedInAnySuperclass
-
-	| classWithClassVariable oldClassName classToRefactor newClassName rename renamedReferences superClassOfClassWithClassVarReference |
-
-	oldClassName :=  'OldClassTest16' asSymbol.
-	newClassName := 'NewClassTest16' asSymbol.
-
-	superClassOfClassWithClassVarReference := self createClassNamed: 'ClassReferencingClassVarSuperclass' asSymbol.
-	superClassOfClassWithClassVarReference addClassVarName: oldClassName.
-	
-	classWithClassVariable := self createClassNamed: 'ClassReferencingClassVar' asSymbol subclassOf: superClassOfClassWithClassVarReference.
-	classWithClassVariable compile: 'm1 ^', oldClassName.
-
-	classToRefactor := self createClassNamed: oldClassName.
-
-	rename := RenameClass from: classToRefactor to: newClassName.
-	renamedReferences := rename apply.
-	
-	self assert: renamedReferences isEmpty.
-	
-	
-	! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 14:46:34'!
-test17ItDoesNotRenameReferencesToClassVariableWithSameNameAsNewClassDefinedInAnySuperclass
-
-	| classWithClassVariable oldClassName classToRefactor newClassName rename renamedReferences superClassOfClassWithClassVarReference |
-
-	oldClassName :=  'OldClassTest17' asSymbol.
-	newClassName := 'NewClassTest17' asSymbol.
-
-	superClassOfClassWithClassVarReference := self createClassNamed: 'ClassReferencingClassVarSuperclass' asSymbol.
-	superClassOfClassWithClassVarReference addClassVarName: newClassName.
-	
-	classWithClassVariable := self createClassNamed: 'ClassReferencingClassVar' asSymbol subclassOf: superClassOfClassWithClassVarReference.
-	classWithClassVariable compile: 'm1 ^', newClassName.
-
-	classToRefactor := self createClassNamed: oldClassName.
-
-	rename := RenameClass from: classToRefactor to: newClassName.
-	renamedReferences := rename apply.
-	
-	self assert: renamedReferences isEmpty.
-	
-	
-	! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 16:21:35'!
-test18WorksCorrectlyWhenSourceCodeEndsWithClassToRename
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	oldClassName := 'OldClassTest18' asSymbol.
-	newClassName := 'NewClassTest18' asSymbol.
-	classToRefactor := self createClassNamed: oldClassName.
-	selector := #m1.
-	classToRefactor compile: selector, ' ^', oldClassName asString.
-	
-	rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-	rename apply.
-	
-	referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-	self assert: (referencingMethod hasLiteralThorough: newClassName).
-	self deny: (referencingMethod hasLiteralThorough: oldClassName)! !
-
-!RenameClassTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 16:24:09'!
-test19RenamesClassWhenMethodReferencesClassAndDoesNothing
-
-	| oldClassName newClassName classToRefactor selector rename referencingMethod |
-	
-	"Currently the rename class is not handling this case becuase message #allCallsOn: does not return a method
-	that references a class but does nothing becuase it is optimize to return self... it is a really wierd case so I decided
-	no to solve it by now - Hernan"
-	self shouldFail: [
-		oldClassName := 'OldClassTest18' asSymbol.
-		newClassName := 'NewClassTest18' asSymbol.
-		classToRefactor := self createClassNamed: oldClassName.
-		selector := #m1.
-		classToRefactor compile: selector, ' ', oldClassName asString.
-	
-		rename := RenameClass from: classToRefactor to: newClassName in: Smalltalk undeclared: Undeclared.
-		rename apply.
-	
-		referencingMethod := (Smalltalk classNamed: newClassName) compiledMethodAt: selector.
-		self assert: (referencingMethod hasLiteralThorough: newClassName).
-		self deny: (referencingMethod hasLiteralThorough: oldClassName)] ! !
-
-!RenameInstanceVariableTest methodsFor: 'class factory' stamp: 'HAW 6/11/2017 18:13:05'!
-classToRefactorName
-
-	^#ClassToRenameInstVar! !
-
-!RenameInstanceVariableTest methodsFor: 'class factory' stamp: 'HAW 6/1/2017 14:28:02'!
-createClassToRefactor
-	
-	classToRefactor := self createClassNamed: self classToRefactorName instanceVariableNames: oldVariable ! !
-
-!RenameInstanceVariableTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 21:36:47'!
-createClassToRefactorAndAssertRenameCreationFailsWith: aMessageTextCreator
-
-	self createClassToRefactor.
-	self assertRenameCreationFailsWith: aMessageTextCreator ! !
-
-!RenameInstanceVariableTest methodsFor: 'assertions' stamp: 'HAW 6/1/2017 19:00:37'!
-assertRenameCreationFailsWith: aMessageTextCreator
-
-	self
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		failsWith: aMessageTextCreator ! !
-
-!RenameInstanceVariableTest methodsFor: 'setup' stamp: 'HAW 5/28/2017 21:33:44'!
-setUp
-
-	super setUp.
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/27/2017 11:21:06'!
-test01CanNotRenameAnInstanceVariableNotDefinedInClass
-
-	classToRefactor := self createClassNamed: #ClassWithoutInstVar instanceVariableNames: ''.
-	
-	self assertRenameCreationFailsWith: [ RenameInstanceVariable errorMessageForInstanceVariable: oldVariable notDefinedIn: classToRefactor ]
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:01'!
-test02NewVariableNameCanNotBeEmpty
-	
-	newVariable := '   '.
-	self createClassToRefactorAndAssertRenameCreationFailsWith: [NewInstanceVariablePrecondition newVariableCanNotBeEmptyErrorMessage ]
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:05'!
-test03NewVariableNameCanNotContainBlanks
-	
-	newVariable := 'a b'.
-	self createClassToRefactorAndAssertRenameCreationFailsWith: [NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: newVariable]
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:10'!
-test04NewVariableNameCanNotContainInvalidCharacters
-
-	newVariable := '2a'.
-	self createClassToRefactorAndAssertRenameCreationFailsWith: [NewInstanceVariablePrecondition errorMessageForInvalidInstanceVariable: newVariable]
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:33:30'!
-test05ValidNewVariableNameGetBlanksTrimmed
-
-	newVariable := ' a '.
-	self createClassToRefactor.
-			
-	self
-		shouldnt: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		raise: self refactoringError ! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:17'!
-test06NewVariableNameCanNotBeDefinedInClass
-
-	newVariable := oldVariable.
-	self createClassToRefactorAndAssertRenameCreationFailsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactor )]
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:22'!
-test07NewVariableNameCanNotBeDefinedInSuperclasses
-
-	|  classToRefactorSuperclass  |
-
-	classToRefactorSuperclass := self createClassNamed: #SuperclassWithInstVar instanceVariableNames: newVariable.
-	classToRefactor := self createClassNamed: self classToRefactorName subclassOf: classToRefactorSuperclass instanceVariableNames: oldVariable.
-	
-	self assertRenameCreationFailsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactorSuperclass)]
-	
-	
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:39'!
-test08NewVariableNameCanNotBeDefinedInAnySubclass
-
-	| classToRefactorSubclass |
-
-	self createClassToRefactor.
-	classToRefactorSubclass := self createClassNamed: #SubclassWithInstVar subclassOf: classToRefactor instanceVariableNames: newVariable.
-	
-	self assertRenameCreationFailsWith: [NewInstanceVariablePrecondition errorMessageForNewInstanceVariable: newVariable alreadyDefinedInAll: (Array with: classToRefactorSubclass)]
-	
-		! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/27/2017 11:36:03'!
-test09RenameCreatesNewInstanceVariableAndDeletesOldOne
-
-	| rename |
-
-	self createClassToRefactor.
-	
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor .
-	rename apply.
-	
-	self assert: (classToRefactor definesInstanceVariableNamed: newVariable).
-	self deny: (classToRefactor definesInstanceVariableNamed: oldVariable) 
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:05:15'!
-test10ReadReferencesToOldVariableAreRenamed
-
-	| selector method rename |
-
-	selector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: selector , ' ^' , oldVariable.
-	
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor.
-	rename apply.
-
-	method := classToRefactor >> selector.
-	self assert: (method readsInstanceVariable: newVariable).
-	self deny: (method readsInstanceVariable: oldVariable) 
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:07:27'!
-test11WriteReferencesToOldVariableAreRenamed
-
-	|  selector method rename |
-
-	selector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: selector , ' ' , oldVariable, ' := 10'.
-	
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor.
-	rename apply.
-
-	method := classToRefactor >> selector.
-	self assert: (method writesInstanceVariable: newVariable).
-	self deny: (method writesInstanceVariable: oldVariable) 
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:10:59'!
-test12ReferencesInSubclassesAreRenamed
-
-	| selector method classToRefactorSubclass rename |
-
-	selector := #m1.
-	self createClassToRefactor.
-	classToRefactorSubclass _ self createClassNamed: #SubclassWithInstVar subclassOf: classToRefactor instanceVariableNames: ''.
-	classToRefactorSubclass compile: selector , ' ' , oldVariable, ' := 10. ^' , oldVariable.
-
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor.
-	rename apply.
-
-	method := classToRefactorSubclass >> selector.
-	self assert: (method readsInstanceVariable: newVariable).
-	self assert: (method writesInstanceVariable: newVariable).
-	self deny: (method readsInstanceVariable: oldVariable).
-	self deny: (method writesInstanceVariable: oldVariable) ! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:46:36'!
-test13ReferencesToOtherVariablesAreNotRenamed
-
-	| variableToKeep selector method rename |
-
-	variableToKeep := 'keep'.
-	selector := #m1.
-	classToRefactor := self createClassNamed:  self classToRefactorName instanceVariableNames: oldVariable, ' ', variableToKeep.
-	classToRefactor compile: selector , ' ' , variableToKeep, ' := ' , oldVariable, '. ^' , variableToKeep.
-
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor.
-	rename apply.
-
-	method := classToRefactor >> selector.
-	self assert: (method readsInstanceVariable: variableToKeep).
-	self assert: (method writesInstanceVariable: variableToKeep) 
-! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 5/28/2017 21:15:59'!
-test14NewVariableOfExistingInstancesReferToOldVariableValue
-
-	| rename instance |
-
-	self createClassToRefactor.
-	instance := classToRefactor new.
-	instance instVarNamed: oldVariable put: 1.
-	
-	rename := RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor .
-	rename apply.
-	
-	self assert: 1 equals:  (instance instVarNamed: newVariable).
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:51'!
-test15WarnsWhenNewVariableEqualsTemporaryVariableOfAMethodInClass
-
-	| selector |
-
-	self createClassToRefactor.
-	selector := #m1.
-	classToRefactor compile: selector, ' | ', newVariable, ' | ', newVariable, ' := 10.'.
-	
-	self 
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:45:55'!
-test16WarnsWhenNewVariableEqualsArgumentOfAMethodInClass
-
-	| selector |
-
-	self createClassToRefactor.
-	selector := #m1:.
-	classToRefactor compile: selector, newVariable.
-	
-	self 
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:46:00'!
-test17WarnsWhenNewVariableEqualsArgumentOfABlockInAMethodInClass
-
-	| selector |
-
-	self createClassToRefactor.
-	selector := #m1.
-	classToRefactor compile: selector, ' [ :', newVariable, ' | ] value: 1'.
-	
-	self 
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:46:04'!
-test18WarnsWhenNewVariableEqualsTemporaryOfABlockInAMethodInClass
-
-	| selector |
-
-	self createClassToRefactor.
-	selector := #m1.
-	classToRefactor compile: selector, ' [ | ', newVariable, ' | ] value'.
-	
-	self 
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (classToRefactor>>selector)) ].
-	! !
-
-!RenameInstanceVariableTest methodsFor: 'tests' stamp: 'HAW 3/3/2019 08:46:09'!
-test19WarnsWhenNewVariableIsHiddenInAnyMethodOfAnySubclass
-
-	| selector subclass |
-
-	self createClassToRefactor.
-	subclass := self createClassNamed: #SubclassOfClassToRefactor subclassOf: classToRefactor.
-	selector := #m1.
-	subclass compile: selector, ' | ', newVariable, ' | '.
-	
-	self 
-		assertCreation: [ RenameInstanceVariable from: oldVariable to: newVariable in: classToRefactor ]
-		warnsWith: [ NewInstanceVariablePrecondition warningMessageForNewVariable: newVariable willBeHiddenAtAll: (Array with: (subclass>>selector)) ].
-	! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 23:26:45'!
+!IfNilChecksFinderTest methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 15:09:26'!
 allClassCategoriesOfTestData
 
-	^Array 
-		with: self classCategoryOfTestData 
-		with: self anotherClassCategoryOfTestData 
-		with: self classCategoryOfTestDataToAvoid ! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 3/4/2019 14:59:42'!
-anotherClassCategoryOfTestData
-
-	^self classCategoryOfTestData,'-Another'! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 3/4/2019 14:59:50'!
-classCategoryOfTestDataToAvoid
-
-	^self classCategoryOfTestData,'-toAvoid'! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 8/15/2018 12:03:16'!
-classToRefactorName
-
-	^#ClassToRenameSelector! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 22:48:43'!
-createClassToRefactor
-
-	classToRefactor := self createClassWithImplementorAndSenderNamed: self classToRefactorName subclassOf: Object categorizedAd: self classCategoryOfTestData.
-! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 5/25/2017 23:14:02'!
-createClassWithImplementorAndSenderInMetaTooNamed: aName subclassOf: aSuperclass categorizedAd: aCategory
-
-	| newClass |
-	
-	newClass := self createClassWithImplementorAndSenderNamed: aName subclassOf: aSuperclass categorizedAd: aCategory.
-	newClass class compile: oldSelector asString.
-	newClass class compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	^newClass
-! !
-
-!RenameSelectorTest methodsFor: 'class factory' stamp: 'HAW 5/28/2017 21:49:40'!
-createClassWithImplementorAndSenderNamed: aName subclassOf: aSuperclass categorizedAd: aCategory
-
-	| newClass |
-	
-	newClass := self createClassNamed: aName subclassOf: aSuperclass category: aCategory.
-	newClass compile: oldSelector asString.
-	newClass compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	^newClass
-! !
-
-!RenameSelectorTest methodsFor: 'assertions' stamp: 'HAW 11/8/2018 15:30:15'!
-assertWasNotRenamedInClass: aClass 
-
-	| senderMethod |
-	
-	senderMethod := aClass compiledMethodAt: senderOfOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: newSelector).
-	self assert: (senderMethod sendsOrRefersTo: oldSelector)! !
-
-!RenameSelectorTest methodsFor: 'assertions' stamp: 'HAW 11/8/2018 15:30:32'!
-assertWasRenamedInClassAndMeta: classToRefactor
-	
-	| senderMethod |
-	
-	self assert: (classToRefactor includesSelector: newSelector).
-	self deny: (classToRefactor includesSelector: oldSelector).
-	senderMethod := classToRefactor compiledMethodAt: senderOfOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	
-	self assert: (classToRefactor class includesSelector: newSelector).
-	self deny: (classToRefactor class includesSelector: oldSelector).
-	senderMethod := classToRefactor class compiledMethodAt: senderOfOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-! !
-
-!RenameSelectorTest methodsFor: 'setup' stamp: 'HAW 5/28/2017 21:46:55'!
-setUp
-
-	super setUp.
-	
-	oldSelector := 'oldXyz__' asSymbol.
-	newSelector := 'newXyz__' asSymbol.
-	senderOfOldSelector := 'm1__' asSymbol.! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:03:44'!
-test01MessageWithNoSendersCreatesNewMethodAndRemovesOldOne
-	
-	| rename |
-	
-	classToRefactor := self createClassNamed: self classToRefactorName..
-	classToRefactor compile: oldSelector asString.
-	
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: #().
-	rename apply.
-	self deny: (classToRefactor includesSelector: oldSelector).
-	self assert: (classToRefactor includesSelector: newSelector) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:30:40'!
-test02SendersOfMessageAreRenamed
-	
-	| rename senderMethod |
-	
-	self createClassToRefactor.
-	
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>senderOfOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderOfOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector)! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:30:51'!
-test03OtherMessagesSendsAreNotRenamed
-
-	|  rename senderMethod selectorToKeep |
-
-	selectorToKeep := #toKeep.
-	self createClassToRefactor.
-	classToRefactor compile: senderOfOldSelector asString , ' self ' , oldSelector asString , '. self ' , selectorToKeep asString.
-	
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>senderOfOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: senderOfOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector).
-	self assert: (senderMethod sendsOrRefersTo: selectorToKeep) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test04OldSelectorCanNotBeEmpty
-
-	self 
-		assertCreation: [ RenameSelector from: '' asSymbol to: newSelector implementors: #() senders: #() ]
-		failsWith: [ RenameSelector oldSelectorCanNotBeEmptyErrorMessage ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test05NewSelectorCanNotBeEmpty
-
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: '' asSymbol implementors: #() senders: #() ]
-		failsWith: [ RenameSelector newSelectorCanNotBeEmptyErrorMessage ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test06ThereMustBeImplementorsToRename
-
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: #() senders: #() ]
-		failsWith: [ RenameSelector implementorsCanNotBeEmptyErrorMessage ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/18/2018 15:48:43'!
-test07AllImplementorsMustImplementOldSelector
-
-	| invalidImplementors |
-	
-	invalidImplementors := Array with: Object>>#printString.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: invalidImplementors senders: #() ]
-		failsWith: [ RenameSelector errorMessageForInvalidImplementors: invalidImplementors ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test08AllSendersShouldSendOldSelector
-
-	| implementors invalidSenders |
-	
-	oldSelector := #printString.
-	implementors := Array with: Object>>oldSelector.
-	invalidSenders := Array with: Object>>#size.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: implementors senders: invalidSenders ]
-		failsWith: [ RenameSelector errorMessageForInvalidSenders: invalidSenders of: oldSelector ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test09NewSelectorMustBeOfSameTypeAsOldSelector
-
-	oldSelector := #size.
-	newSelector := #+.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: #() senders: #() ]
-		failsWith: [ RenameSelector errorMessageForNewSelector: newSelector isNotOfSameTypeAs: oldSelector ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test10NewSelectorMustHaveSameNumberOfArgumentsAsOldSelector
-
-	oldSelector := #printOn:.
-	newSelector := #do:separatedBy:.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: #() senders: #() ]
-		failsWith: [ RenameSelector errorMessageForNewSelector: newSelector doesNotHaveSameNumberOfArgumentsAs: oldSelector ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test11NewImplementorsKeepMethodCategory
-	
-	| rename oldSelectorCategory |
-	
-	oldSelectorCategory := 'oldSelectorCategory'.
-	self createClassToRefactor.
-	classToRefactor organization classify: oldSelector under: oldSelectorCategory.
-		
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>senderOfOldSelector).
-	rename apply.
-	
-	self assert: oldSelectorCategory equals: (classToRefactor organization categoryOfElement: newSelector)
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:30:58'!
-test12RenamesRecursiveMethodsWhenNotInSenders
-
-	| rename senderMethod |
-	
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString , ' self ' , oldSelector asString.
-		
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: #().
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: newSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector)
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:31:04'!
-test13RenamesRecursiveMethodsWhenInSenders
-
-	| rename senderMethod implementorsAndSenders |
-	
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString , ' self ' , oldSelector asString.
-	implementorsAndSenders := Array with: classToRefactor>>oldSelector.
-	
-	rename := RenameSelector from: oldSelector to: newSelector implementors: implementorsAndSenders senders: implementorsAndSenders.
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: newSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector)
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/8/2018 15:27:09'!
-test14RenamesSymbolsEqualToOldSelector
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' #' , oldSelector asString, ' size'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:03:55'!
-test15ScopeToRenameCanBeClassOnly
-	
-	| rename anotherClassSendingMessage |
-	
-	classToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: self classToRefactorName subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	
-	anotherClassSendingMessage := self createClassNamed: #ClassToAvoidRenameSelector.
-	anotherClassSendingMessage compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	rename := RenameSelector from: oldSelector to: newSelector in: classToRefactor.
-	rename apply.
-	
-	self assertWasRenamedInClassAndMeta: classToRefactor.
-	self assertWasNotRenamedInClass: anotherClassSendingMessage ! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:04:14'!
-test16ScopeToRenameCanBeHierarchyOnly
-	
-	| rename anotherClassSendingMessage superclassToRefactor subclassToRefactor |
-	
-	superclassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #SuperclassToRenameSelector subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	classToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: self classToRefactorName subclassOf: superclassToRefactor categorizedAd: self classCategoryOfTestData.
-	subclassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #SubclassToRenameSelector subclassOf: classToRefactor categorizedAd: self classCategoryOfTestData.
-
-	anotherClassSendingMessage := self createClassNamed: #ClassToAvoidRenameSelector.
-	anotherClassSendingMessage compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	rename := RenameSelector from: oldSelector to: newSelector inHierarchyOf: classToRefactor.
-	rename apply.
-	
-	self assertWasRenamedInClassAndMeta: superclassToRefactor.
-	self assertWasRenamedInClassAndMeta: classToRefactor.
-	self assertWasRenamedInClassAndMeta: subclassToRefactor.
-	self assertWasNotRenamedInClass: anotherClassSendingMessage ! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:04:25'!
-test17ScopeToRenameCanBeCategoryOnly
-	
-	| rename anotherClassSendingMessage  anotherClassToRefactor |
-	
-	classToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: self classToRefactorName subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	anotherClassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #AnotherclassToRenameSelector subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	
-	anotherClassSendingMessage := self createClassNamed: #ClassToAvoidRenameSelector category: self classCategoryOfTestDataToAvoid.
-	anotherClassSendingMessage compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	rename := RenameSelector from: oldSelector to: newSelector inCategoryOf: classToRefactor organizedBy: SystemOrganization.
-	rename apply.
-
-	self assertWasRenamedInClassAndMeta: classToRefactor.
-	self assertWasRenamedInClassAndMeta: anotherClassToRefactor.
-	self assertWasNotRenamedInClass: anotherClassSendingMessage
-		! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:04:47'!
-test18ScopeToRenameCanBeCategoriesAndHierarchyOnly
-	
-	| rename anotherClassSendingMessage superclassToRefactor subclassToRefactor anotherClassToRefactor classInOtherCategoryToRefactor |
-	
-	superclassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #SuperclassToRenameSelector subclassOf: Object categorizedAd: self anotherClassCategoryOfTestData.
-	classToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: self classToRefactorName subclassOf: superclassToRefactor categorizedAd: self classCategoryOfTestData.
-	subclassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #SubclassToRenameSelector subclassOf: classToRefactor categorizedAd: self classCategoryOfTestData.
-	anotherClassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #AnotheclassToRenameSelector subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	classInOtherCategoryToRefactor := self 
-		createClassWithImplementorAndSenderInMetaTooNamed: #OtherCatClassToRenameSelector subclassOf: Object categorizedAd: self anotherClassCategoryOfTestData.
-	
-	anotherClassSendingMessage := self createClassNamed: #ClassToAvoidRenameSelector category: self classCategoryOfTestDataToAvoid.
-	anotherClassSendingMessage compile: senderOfOldSelector asString , ' self ' , oldSelector asString.
-
-	rename := RenameSelector from: oldSelector to: newSelector inCategoriesAndHierarchyOf: classToRefactor organizedBy: SystemOrganization.
-	rename apply.
-
-	self assertWasRenamedInClassAndMeta: superclassToRefactor.
-	self assertWasRenamedInClassAndMeta: classToRefactor.
-	self assertWasRenamedInClassAndMeta: subclassToRefactor.
-	self assertWasRenamedInClassAndMeta: anotherClassToRefactor.
-	self assertWasRenamedInClassAndMeta: classInOtherCategoryToRefactor.
-	self assertWasNotRenamedInClass: anotherClassSendingMessage ! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 12:10:33'!
-test19ScopeToRenameCanBeTheCompleteSystem
-	
-	| rename anotherClassToRefactor |
-	
-	classToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: self classToRefactorName subclassOf: Object categorizedAd: self classCategoryOfTestData.
-	anotherClassToRefactor := self createClassWithImplementorAndSenderInMetaTooNamed: #AnotherclassToRenameSelector subclassOf: Object categorizedAd: self classCategoryOfTestData.
-
-	rename := RenameSelector from: oldSelector to: newSelector inSystem: Smalltalk.
-	"This is just to be sure that no more than the expected methods will be renamed because I'm using Smalltalk as system.
-	I could mock Smalltalk but I want to have a real test using Smalltalk, not a mock, that it is why I have these assertions here - Hernan"
-	self assert: 4 equals: rename implementorsSize.
-	self assert: 4 equals: rename sendersSize.
-	
-	rename apply.
-
-	self assertWasRenamedInClassAndMeta: classToRefactor.
-	self assertWasRenamedInClassAndMeta: anotherClassToRefactor  
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test20CanNotRenameToItSelf
-
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: oldSelector asSymbol implementors: #() senders: #() ]
-		failsWith: [ RenameSelector newSelectorEqualToOldSelectorErrorMessage ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test21NewSelectorCanNotBeImplementedOnAnyClassImplementingOldSelector
-
-	| implementors |
-	
-	oldSelector := #printString.
-	newSelector := #size.
-	implementors := Array with: Object>>oldSelector.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: implementors senders: #() ]
-		failsWith: [ RenameSelector errorMessageForNewSelector: newSelector implementedInAll: (Array with: Object) ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 8/15/2018 11:52:37'!
-test22WarnsWhenOverridesSuperclassImplementation
-
-	| implementors |
-	
-	oldSelector := #negated.
-	newSelector := #size.
-	implementors := Array with: Number>>oldSelector.
-	
-	self 
-		assertCreation: [ RenameSelector from: oldSelector to: newSelector implementors: implementors senders: #() ]
-		warnsWith: [ RenameSelector warningMessageForImplementationOf: newSelector in: Number willOverrideImplementationIn: Object ]
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/29/2018 14:14:49'!
-test23OldSelectorIsRenamedWhenDefinedInLiteralArray
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' ^#(#' , oldSelector asString, ')'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/29/2018 15:20:23'!
-test24OldSelectorIsRenamedWhenDefinedInLiteralArrayMoreThanOnce
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' ^#(#' , oldSelector asString, ' #' , oldSelector asString,')'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/29/2018 15:22:15'!
-test25OldSelectorIsRenamedWhenDefinedInMoreThanOneLiteralArrayMoreThanOnce
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' ^#(#' , oldSelector asString, ' #' , oldSelector asString,'), #(#' , oldSelector asString, ' #' , oldSelector asString,')'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/29/2018 15:24:47'!
-test26DoesNotRenameLiteralsThatBeginsWithOldSelectorInsideLiteralArray
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' ^#(#' , oldSelector asString, ' #' , oldSelector asString,'1)'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector). 
-	self assert: (senderMethod sendsOrRefersTo: (oldSelector,'1') asSymbol) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 11/30/2018 15:04:14'!
-test27DoesNotRenameLiteralsThatBeginsWithOldSelectorAndEndWithColonInsideLiteralArray
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	self createClassToRefactor.
-	classToRefactor compile: oldSelector asString.
-	classToRefactor compile: referencerToOldSelector asString , ' ^#(#' , oldSelector asString, ' #' , oldSelector asString,':)'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector). 
-	self assert: (senderMethod sendsOrRefersTo: (oldSelector,':') asSymbol) 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 12/13/2018 18:46:23'!
-test28CanRenameFromBinaryToKeywordOfOneParameter
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	oldSelector := '&&' asSymbol.
-	newSelector := 'abc:' asSymbol.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, ' aParameter'.
-	classToRefactor compile: referencerToOldSelector asString , ' ^self ' , oldSelector asString,' 1'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	self assert: (classToRefactor includesSelector: newSelector).
-	self deny: (classToRefactor includesSelector: oldSelector).
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector). 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 12/13/2018 18:53:24'!
-test29CanRenameFromKeywordOfOneParameterToBinary
-
-	| rename senderMethod referencerToOldSelector |
-	
-	referencerToOldSelector := #m1.
-	oldSelector := 'abc:' asSymbol.
-	newSelector := '&&' asSymbol.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, ' aParameter'.
-	classToRefactor compile: referencerToOldSelector asString , ' ^self ' , oldSelector asString,' 1'.
-
-	rename := RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: (Array with: classToRefactor>>referencerToOldSelector).
-	rename apply.
-	
-	self assert: (classToRefactor includesSelector: newSelector).
-	self deny: (classToRefactor includesSelector: oldSelector).
-	senderMethod := classToRefactor compiledMethodAt: referencerToOldSelector.
-	self deny: (senderMethod sendsOrRefersTo: oldSelector).
-	self assert: (senderMethod sendsOrRefersTo: newSelector). 
-! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 12/13/2018 19:00:10'!
-test30CanNotRenameFromBinaryToKeywordOfMoreThanOneParameter
-
-	oldSelector := '&&' asSymbol.
-	newSelector := 'abc:def:' asSymbol.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: oldSelector asString, ' aParameter'.
-
-	self 
-		should: [ RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: #() ]
-		raise: Error
-		withMessageText: (RenameSelector errorMessageForNewSelector: newSelector isNotOfSameTypeAs: oldSelector)! !
-
-!RenameSelectorTest methodsFor: 'tests' stamp: 'HAW 12/13/2018 18:59:39'!
-test31CanNotRenameFromKeywordOfOneParameterToBinary
-
-	oldSelector := 'abc:def:' asSymbol.
-	newSelector := '&&' asSymbol.
-	classToRefactor := self createClassNamed: self classToRefactorName.
-	classToRefactor compile: 'abc: p1 def: p2'.
-
-	self 
-		should: [ RenameSelector from: oldSelector to: newSelector implementors: (Array with: classToRefactor>>oldSelector) senders: #() ]
-		raise: Error
-		withMessageText: (RenameSelector errorMessageForNewSelector: newSelector isNotOfSameTypeAs: oldSelector)! !
-
-!RenameTemporaryTest methodsFor: 'class factory' stamp: 'HAW 6/25/2017 21:53:44'!
-classToRefactorName
-
-	^#ClassToRenameTemp! !
-
-!RenameTemporaryTest methodsFor: 'class factory' stamp: 'HAW 6/25/2017 21:53:44'!
-methodNodeOf: aSourceCode
-
-	^self methodNodeOf: aSourceCode in: self class! !
-
-!RenameTemporaryTest methodsFor: 'class factory' stamp: 'HAW 8/9/2018 23:23:12'!
-methodNodeOf: aSourceCode in: aClass
-
-	^aClass methodNodeFor: aSourceCode ! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 10/4/2017 17:04:33'!
-test01VariableToRenameHasToBeDefined
-
-	| newVariable oldVariable methodNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1'.
-	
-	self 
-		assertCreation: [ RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		failsWith: [ RenameTemporary errorMessageForTemporaryVariable: oldVariable notDefinedIn: methodNode ]! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:08'!
-test02NewVariableNameCanNotBeEmpty
-
-	| methodNode newVariable oldVariable |
-	
-	oldVariable := 'old'.
-	newVariable := ' '.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | '.
-	
-	self 
-		assertCreation: [ RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		failsWith: [ RenameTemporary newVariableCanNotBeEmptyErrorMessage ]! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:17'!
-test03NewVariableHasToBeValid
-
-	| methodNode newVariable oldVariable |
-	
-	oldVariable := 'old'.
-	newVariable := 'a b'.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | '.
-	
-	self 
-		assertCreation: [ RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		failsWith: [ RenameTemporary errorMessageForInvalidTemporaryVariable: newVariable ]
+	^Array with: self classCategoryOfTestData ! !
+
+!IfNilChecksFinderTest methodsFor: 'accessing' stamp: 'FGJ 3/27/2019 14:54:16'!
+instVar
+
+	^'randomInstVar'! !
+
+!IfNilChecksFinderTest methodsFor: 'assertions' stamp: 'FGJ 3/29/2019 17:40:26'!
+assertLookUpOnSource: aMethodSource includesMessageAtIndex: anIndex
+
+	| contextClass result |
+
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: self instVar.
+	contextClass compile: aMethodSource.
+
+	result := (IfNilChecksFinder on: contextClass for: self instVar) value.
+
+	self assert: 1 equals: result size.
+	self assert: anIndex equals: result first messageNodeIndex.
+	self assert: #m1 equals: result first methodNode selector.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/26/2019 15:27:56'!
+test01InstanceVariableMustBelongToTheClass
+
+	| contextClass nonExistentInstVar |
+
+	nonExistentInstVar := 'randomInstVar'.
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: ''.
+
+	self
+		should: [IfNilChecksFinder on: contextClass for: nonExistentInstVar]
+		raise: RefactoringError
+		withMessageText: [IfNilChecksFinder instVarMustBelongToClassErrorMessage].! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/26/2019 15:26:59'!
+test02WhenThereAreNoIfNilChecksTheResultIsEmpty
+
+	| contextClass instVar |
+
+	instVar := 'randomInstVar'.
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: instVar.
+
+	self assert: (IfNilChecksFinder on: contextClass for: instVar) value isEmpty.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:52:05'!
+test03ResultIncludesIfNilMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' ifNil: [ 1 + 1 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:50:58'!
+test04ResultIncludesIfNotNilMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' ifNotNil: [ 1 + 1 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:51:37'!
+test05ResultIncludesIfNilIfNotNilMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' ifNil: [ 2 + 2 ] ifNotNil: [ 1 + 1 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:53:00'!
+test06ResultIncludesIfNotNilIfNilMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' ifNotNil: [ 2 + 2 ] ifNil: [ 1 + 1 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:54:10'!
+test07ResultIncludesIsNilIfTrueMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' isNil ifTrue: [ 2 + 2 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:54:29'!
+test08ResultIncludesIsNilIfFalseMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' isNil ifFalse: [ 2 + 2 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:54:56'!
+test09ResultIncludesIsNilIfTrueIfFalseMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' isNil ifTrue: [1 + 1] ifFalse: [ 2 + 2 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/27/2019 15:55:27'!
+test10ResultIncludesIsNilIfFalseIfTrueMessageSending
+
+	| source nilCheckIndex |
+
+	source := 'm1 ', self instVar, ' isNil ifFalse: [1 + 1] ifTrue: [ 2 + 2 ]'.
+	nilCheckIndex := source findString: 'if'.
+	self assertLookUpOnSource: source includesMessageAtIndex: nilCheckIndex.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 20:36:04'!
+test11WhenThereAreMultipleIfNilChecksInTheSameMethodTheResultIncludesAllOfThem
+
+	| contextClass anIfNilCheckStatement methodHeader source result anIfNotNilCheckStatement |
+
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: self instVar.
+
+	methodHeader := 'm1 '.
+	anIfNilCheckStatement := self instVar, ' ifNil: [1 + 1].'.
+	anIfNotNilCheckStatement := self instVar, ' ifNotNil: [1 + 1].'.
+	source := methodHeader, anIfNilCheckStatement, anIfNotNilCheckStatement.
+	contextClass compile: source.
+
+	result := (IfNilChecksFinder on: contextClass for: self instVar) value.
+
+	self assert: 2 equals: result size.
+	self assert: (source findString: 'ifNotNil') equals: result first messageNodeIndex.
+	self assert: #m1 equals: result second methodNode selector.
+	self assert: (source findString: 'ifNil') equals: result second messageNodeIndex.
+	self assert: #m1 equals: result first methodNode selector.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 3/29/2019 17:41:15'!
+test12WhenThereAreIfNilChecksInMultipleMethodsTheResultIncludesAllOfThem
+
+	| contextClass result sourcem1 sourcem2 |
+
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: self instVar.
+
+	sourcem1 := 'm1 ', self instVar, ' ifNil: [1 + 1]'.
+	contextClass compile: sourcem1.
+	sourcem2 := 'm2 ', self instVar, ' ifNil: [2 + 2]'.
+	contextClass compile: sourcem2.
+
+	result := (IfNilChecksFinder on: contextClass for: self instVar) value.
+
+	self assert: 2 equals: result size.
+	self assert: #m1 equals: result first methodNode selector.
+	self assert: #m2 equals: result second methodNode selector.! !
+
+!IfNilChecksFinderTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 20:36:52'!
+test13WhenThereAreMultipleIfNilChecksInTheSameMethodWithTheSameCodeTheResultIncludesAllOfThem
+
+	| contextClass anIfNilCheckStatement methodHeader source result firstIfNilIndex |
+
+	contextClass := self createClassNamed: #ContextClass instanceVariableNames: self instVar.
+
+	methodHeader := 'm1 '.
+	anIfNilCheckStatement := self instVar, ' ifNil: [1 + 1].'.
+	source := methodHeader, anIfNilCheckStatement, anIfNilCheckStatement.
+	contextClass compile: source.
+
+	result := (IfNilChecksFinder on: contextClass for: self instVar) value.
+
+	self assert: 2 equals: result size.
+	firstIfNilIndex := source findString: 'ifNil'.
+	self assert: (source findString: 'ifNil' startingAt: firstIfNilIndex + 1) equals: result first messageNodeIndex.
+	self assert: #m1 equals: result first methodNode selector.
+	self assert: firstIfNilIndex equals: result second messageNodeIndex.
+	self assert: #m1 equals: result second methodNode selector.
 	! !
 
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:22'!
-test04NewVariableNameCanNotBeDefinedInMethod
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:42:29'!
+test01BlocksToExtractMustNotContainReferencesToSuper
 
-	| methodNode oldVariable |
-	
-	oldVariable := 'old'.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | '.
-	
-	self 
-		assertCreation: [RenameTemporary from: oldVariable to: oldVariable in: methodNode ]
-		failsWith: [RenameTemporary  errorMessageForNewTemporaryVariable: oldVariable isAlreadyDefinedIn: methodNode ]! !
+	| aClassToRefactor sourceWithIf ifMessageNode replacementParameters definitions methodNode |
 
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:29'!
-test05WarnsIfNewTemporaryIsEqualToInstanceVariableInClass
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	sourceWithIf := 'm1 ', self defaultInstVarName, ' ifNil: [ super isNil ]'.
+	aClassToRefactor compile: sourceWithIf.
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	ifMessageNode :=  methodNode block statements first.
 
-	| methodNode oldVariable newVariable classToRefactor |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	classToRefactor := self createClassNamed: self classToRefactorName instanceVariableNames: newVariable.
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | ' in: classToRefactor.
-	
-	self 
-		assertCreation: [ RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		warnsWith: [ RenameTemporary warningMessageFor: newVariable willHideInstanceVariableDefinedIn: classToRefactor ]! !
+	definitions :=
+		VariablesToParametrizeKeywordsDefinitions
+			with: {VariableToParametrizeKeywordDefinition forVariable: 'super' useKeyword: #with withParameterName: 'p1'}.
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
 
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:35'!
-test06WarnsIfNewTemporaryIsEqualToInstanceVariableInAnySuperclass
-
-	| methodNode oldVariable newVariable classToRefactor superclassToRefactor |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	superclassToRefactor := self createClassNamed: #ClassToRefactorSuperclass instanceVariableNames: newVariable.
-	classToRefactor := self createClassNamed: self classToRefactorName subclassOf: superclassToRefactor.
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | ' in: classToRefactor.
-	
-	self 
-		assertCreation: [ RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		warnsWith: [ RenameTemporary warningMessageFor: newVariable willHideInstanceVariableDefinedIn: superclassToRefactor ]! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 19:28:36'!
-test07RenameCreatesNewTemporaryVariableAndDeletesOldOne
-
-	| methodNode oldVariable newVariable rename newMethodNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | '.
-	
-	rename := RenameTemporary from: oldVariable to: newVariable in: methodNode.
-	newMethodNode := rename methodNodeAfterApply.
-	
-	self deny: (newMethodNode hasArgumentOrTemporary: oldVariable).
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable)! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 19:28:42'!
-test08RenameChangesReferencesFromOldVariableToNewVariable
-
-	| methodNode oldVariable newVariable rename newMethodNode assigmentNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | ', oldVariable, ' := 1 + ', oldVariable.
-	
-	rename := RenameTemporary from: oldVariable to: newVariable in: methodNode.
-	newMethodNode := rename methodNodeAfterApply.
-	
-	assigmentNode := newMethodNode block statements first.
-	self assert: newVariable equals: assigmentNode variable name.
-	self assert: newVariable equals: assigmentNode value arguments first name.! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 8/9/2018 19:28:47'!
-test09RenamesArguments
-
-	| methodNode oldVariable newVariable rename newMethodNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1: ', oldVariable, ' ^', oldVariable.
-	
-	rename := RenameTemporary from: oldVariable to: newVariable in: methodNode.
-	newMethodNode := rename methodNodeAfterApply.
-	
-	self deny: (newMethodNode hasArgumentOrTemporary: oldVariable).
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable).
-	self assert: newVariable equals: newMethodNode block statements first expr name.! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 6/25/2017 21:55:56'!
-test10NewVariableNameCanNotBeDefinedAsBlockArgument
-
-	| methodNode oldVariable newVariable |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1 | ', oldVariable, ' | [:', newVariable, ' | ^1 ]'.
-	
-	self 
-		assertCreation: [RenameTemporary from: oldVariable to: newVariable in: methodNode ]
-		failsWith: [RenameTemporary  errorMessageForNewTemporaryVariable: newVariable isAlreadyDefinedIn: methodNode ]! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 8/14/2018 11:16:28'!
-test11RenamesBlockArguments
-
-	| methodNode oldVariable newVariable rename newMethodNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1 [:', oldVariable, '| ^', oldVariable, ']'.
-	
-	rename := RenameTemporary from: oldVariable to: newVariable in: methodNode.
-	newMethodNode := rename methodNodeAfterApply.
-	
-	self deny: (newMethodNode hasArgumentOrTemporary: oldVariable).
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable).
-	"asserts it renamed block argument - Hernan"
-	self assert: newVariable equals: newMethodNode block statements first arguments first name.
-	"asserts it renamed reference to block argument - Hernan"
-	self assert: newVariable equals: newMethodNode block statements first block statements first expr name! !
-
-!RenameTemporaryTest methodsFor: 'tests' stamp: 'HAW 8/14/2018 11:18:03'!
-test12RenamesBlockTemporaries
-
-	| methodNode oldVariable newVariable rename newMethodNode |
-	
-	oldVariable := 'old'.
-	newVariable := 'new'.
-	
-	methodNode := self methodNodeOf: 'm1 [ |', oldVariable, '| ^', oldVariable, ']'.
-	
-	rename := RenameTemporary from: oldVariable to: newVariable in: methodNode.
-	newMethodNode := rename methodNodeAfterApply.
-	
-	self deny: (newMethodNode hasArgumentOrTemporary: oldVariable).
-	self assert: (newMethodNode hasArgumentOrTemporary: newVariable).
-	"asserts it renamed block temporary - Hernan"
-	self assert: newVariable equals: newMethodNode block statements first temporaries first name.
-	"asserts it renamed reference to block temporary - Hernan"
-	self assert: newVariable equals: newMethodNode block statements first block statements first expr name! !
-
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:43:08'!
-test02ClassesWithNoReferencesAndNoSubclassesAreSafetelyRemoved
-
-	| classToRemove safeRemove | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	safeRemove := SafelyRemoveClass of: classToRemove.
-	safeRemove apply.
-	
-	self assert: classToRemove isObsolete ! !
-
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:43:11'!
-test03RemovingTheMetaclassRemovesTheClass
-
-	| classToRemove safeRemove | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	safeRemove := SafelyRemoveClass of: classToRemove class.
-	safeRemove apply.
-	
-	self assert: classToRemove isObsolete ! !
-
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 16:40:06'!
-test04CanNotRemoveClassWithReferencesOutsideHierarchy
-
-	| classToRemove classReferencing methodNameReferencingClass | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	classReferencing := self createClassNamed: #ClassReferencingClassToRemove.
-	methodNameReferencingClass := #m1.
-	classReferencing compile: methodNameReferencingClass asString, ' ^', classToRemove name asString.
-	
 	self
-		should: [ SafelyRemoveClass of: classToRemove ]
-		raise: self canNotRefactorDueToReferencesRefactoringError 
-		withExceptionDo: [ :anError | | reference |
-			self 
-				assert: (SafelyRemoveClass errorMessageForCanNotRemove: classToRemove dueToReferencesToAll: (Array with: classToRemove))
-				equals: anError messageText.
-			self assert: 1 equals: anError numberOfReferences.
-			reference := anError anyReference.
-			self assert: classReferencing name equals: reference classSymbol.
-			self assert: methodNameReferencingClass equals: reference methodSymbol ]! !
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: (self createClassNamed: #ConcreteClass)
+				usingAsNullClass: (self createClassNamed: #NullClass)
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [ IntroduceNullObject messageNodesReferenceSuperErrorMessage: {ifMessageNode}].! !
 
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:43:21'!
-test05CanRemoveClassWithReferencesFromItself
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 2/19/2019 22:57:50'!
+test02BlocksToExtractMustNotContainAssignmentsToVariablesThatAreNotTemporals
 
-	| classToRemove methodNameReferencingClass remove | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	methodNameReferencingClass := #m1.
-	classToRemove compile: methodNameReferencingClass asString, ' ^', classToRemove name asString.
-	
-	remove := SafelyRemoveClass of: classToRemove.
-	remove apply.
-	
-	self assert: classToRemove isObsolete ! !
-
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:43:27'!
-test06WarnIfClassToRemoveHasSubclasses
-
-	| classToRemove classToRemoveSubclass | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	classToRemoveSubclass := self createClassNamed: 'ClassToRemoveSubclass' asSymbol subclassOf: classToRemove.
-	
-	self 
-		assertCreation: [ SafelyRemoveClass of: classToRemove ]
-		warnsWith: [ SafelyRemoveClass warningMessageFor: classToRemove hasSubclasses: (Array with: classToRemoveSubclass) ]! !
-
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/17/2018 16:38:44'!
-test07CanNotRemoveClassWhenSubclassesHaveReferencesOutsideTheHierarchy
-
-	| classToRemove classToRemoveSubclass classReferencing methodNameReferencingClass | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	classToRemoveSubclass := self createClassNamed: 'ClassToRemoveSubclass' asSymbol subclassOf: classToRemove.
-	classReferencing := self createClassNamed: #ClassReferencingClassToRemoveSubclass.
-	methodNameReferencingClass := #m1.
-	classReferencing compile: methodNameReferencingClass asString, ' ^', classToRemoveSubclass name asString.
-	
 	self
-		should: [ SafelyRemoveClass of: classToRemove ]
-		raise: self canNotRefactorDueToReferencesRefactoringError 
-		withExceptionDo: [ :anError | | reference |
-			self 
-				assert: (SafelyRemoveClass errorMessageForCanNotRemove: classToRemove dueToReferencesToAll: (Array with: classToRemoveSubclass))
-				equals: anError messageText.
-			self assert: 1 equals: anError numberOfReferences.
-			reference := anError anyReference.
-			self assert: classReferencing name equals: reference classSymbol.
-			self assert: methodNameReferencingClass equals: reference methodSymbol ]	
+		creationFromSourceCode: self defaultInstVarName, ' ifNil: [ ', self defaultInstVarName, ' := 1 ]'
+		failsWithMessageText: [
+			IntroduceNullObject blocksToExtractCannotContainAssignmentsToVariablesThatAreNotBlockTemporalsErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 2/19/2019 23:01:51'!
+test03BlocksToExtractCanAssignToTemporalsOfNestedBlocks
+
+	self
+		creationFromSourceCode: self defaultInstVarName, ' ifNil: [
+			1 = 2 ifFalse: [ |aTemp| aTemp := 3]]'
+		shouldntRaise: RefactoringError.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 2/19/2019 23:05:01'!
+test04BlocksToExtractCanAssignToTemporalsOfBlocks
+
+	self
+		creationFromSourceCode: self defaultInstVarName, ' ifNil: [ |aTemp| aTemp := 2]'
+		shouldntRaise: RefactoringError.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 17:02:44'!
+test07BlocksToExtractMustNotContainReturnStatements
+
+	self
+		creationFromSourceCode:
+			self defaultInstVarName, ' ifNil: [^', self defaultInstVarName , ' is Nil]'
+		failsWithMessageText: [
+			IntroduceNullObject blocksToExtractMustNotContainReturnStatementsErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 17:09:34'!
+test08InstanceVariableMustBelongToTheClassToRefactor
+
+	| aClassToRefactor sourceWithIf replacementParameters aClassToRefactorSuperclass |
+
+	aClassToRefactorSuperclass := self
+		createClassNamed: #AClassToRefactorSuperclass
+		instanceVariableNames: self defaultInstVarName.
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		subclassOf: aClassToRefactorSuperclass.
+	sourceWithIf := self defaultInstVarName, ' ifNil: [', self defaultInstVarName, ' isNil ]'.
+
+	replacementParameters := self
+		replacementParametersFrom: sourceWithIf
+		usingAsClassToRefactor: aClassToRefactor.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: (self createClassNamed: #ConcreteClass)
+				usingAsNullClass: (self createClassNamed: #NullClass)
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [ IntroduceNullObject instVarMustBelongToTheClassToRefactorErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 17:15:16'!
+test09ConcreteClassMustBeDifferentToNullClass
+
+	| aClassToRefactor sourceWithIf replacementParameters concreteAndNullClass |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+
+	sourceWithIf := self defaultInstVarName, ' ifNil: [', self defaultInstVarName, ' isNil ]'.
+	replacementParameters := self
+		replacementParametersFrom: sourceWithIf
+		usingAsClassToRefactor: aClassToRefactor.
+
+	concreteAndNullClass := self createClassNamed: #AClass.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: concreteAndNullClass
+				usingAsNullClass: concreteAndNullClass
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [ IntroduceNullObject concreteClassMustBeDifferentFromNullClassErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 18:31:08'!
+test10MethodsMustBelongToTheHierarchyToRefactor
+
+	| aClassToRefactor sourceWithIf replacementParameters aClasOutsideTheHierarchy |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	aClasOutsideTheHierarchy := self
+		createClassNamed: #AClasOutsideTheHierarchy
+		instanceVariableNames: self defaultInstVarName.
+
+	sourceWithIf := self defaultInstVarName, ' ifNil: [', self defaultInstVarName, ' isNil ]'.
+	replacementParameters := self
+		replacementParametersFrom: sourceWithIf
+		usingAsClassToRefactor: aClasOutsideTheHierarchy.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: self concreteClass
+				usingAsNullClass: self nullClass
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [ IntroduceNullObject methodsMustBelongToTheHierarchyToRefactorErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 18:31:25'!
+test13MessageNodesMustNotBeDuplicated
+
+	| aClassToRefactor replacementParameters replacementParametersWithDuplicatedMessageNode sourceWithIf |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	sourceWithIf := self defaultInstVarName, ' ifNil: [', self defaultInstVarName, ' isNil ]'.
+	replacementParameters := self
+		replacementParametersFrom: sourceWithIf
+		usingAsClassToRefactor: aClassToRefactor.
+	replacementParametersWithDuplicatedMessageNode := replacementParameters copy.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: self concreteClass
+				usingAsNullClass: self nullClass
+				for: {replacementParameters. replacementParametersWithDuplicatedMessageNode}]
+		raise: RefactoringError
+		withMessageText: [
+			IntroduceNullObject messageNodesMustNotBeDuplicatedErrorMessage ].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:24:35'!
+test14MessageNodesReceiverMustBeTheInstVar
+
+	| aClassToRefactor replacementParameters sourceWithIf |
+
+	aClassToRefactor := self defaultClassToRefactor.
+	sourceWithIf := 'self ifNil: [', self defaultInstVarName, ' isNil ]'.
+	replacementParameters := self
+		replacementParametersFrom: sourceWithIf
+		usingAsClassToRefactor: aClassToRefactor.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: self concreteClass
+				usingAsNullClass: self nullClass
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [
+			IntroduceNullObject messageNodeReceiverMustBeTheInstVarErrorMessage].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:34:57'!
+test15ConcreteClassMustNotContainAnyPolymorphicSelector
+
+	| aClassToRefactor sourceWithIf ifMessageNode replacementParameters definitions methodNode concreteClass |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	sourceWithIf := 'm1 ', self defaultInstVarName, ' ifNil: [ 1 + 1 ]'.
+	aClassToRefactor compile: sourceWithIf.
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	ifMessageNode :=  methodNode block statements first.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		withSelector: #unaryPolymorphicSelector.
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
+
+	concreteClass := self createClassNamed: #ConcreteClass.
+	concreteClass compile: 'unaryPolymorphicSelector'.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: concreteClass
+				usingAsNullClass: (self createClassNamed: #NullClass)
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [
+			IntroduceNullObject polymorphicSelectorsMustNotBeDefinedInTheNullObjectClassesErrorMessage].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:35:00'!
+test16NullClassMustNotContainAnyPolymorphicSelector
+
+	| aClassToRefactor sourceWithIf ifMessageNode replacementParameters definitions methodNode nullClass |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	sourceWithIf := 'm1 ', self defaultInstVarName, ' ifNil: [ 1 + 1 ]'.
+	aClassToRefactor compile: sourceWithIf.
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	ifMessageNode :=  methodNode block statements first.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		withSelector: #unaryPolymorphicSelector.
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
+
+	nullClass := self createClassNamed: #NullClass.
+	nullClass compile: 'unaryPolymorphicSelector'.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: (self createClassNamed: #ConcreteClass)
+				usingAsNullClass: nullClass
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: [
+			IntroduceNullObject polymorphicSelectorsMustNotBeDefinedInTheNullObjectClassesErrorMessage].! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:45:19'!
+test17WhenThereAreNoVariablesToParametrizeReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode polymorphicSelector |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ 1 + 1 ]'.
+	polymorphicSelector := #replaceIfNilSelector.
+	definitions := VariablesToParametrizeKeywordsDefinitions withSelector: polymorphicSelector.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ', polymorphicSelector asString.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:51:21'!
+test18WhenThereAreVariablesToParametrizeReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:53:48'!
+test19WhenIfNilCheckHasOneKeywordReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:54:35'!
+test20WhenIfNilCheckHasTwoKeywordsReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ self isNil ] ifNotNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:55:32'!
+test21WhenIfNilCheckHasIsNilReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:56:38'!
+test22PolymorphicMessageIsAddedToTheConcreteClass
+
+	| sourceWithIf definitions |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	self assert: (self concreteClass selectors includes: #with:).! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:59:00'!
+test23PolymorphicMessageIsAddedToTheConcreteClassWithChosenParameterNames
+
+	| sourceWithIf definitions |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	self assert: 'p1' equals: (self concreteClass compiledMethodAt: #with:) methodNode arguments first name.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 13:59:53'!
+test24PolymorphicMessageIsAddedToTheConcreteClassReplacingParametrizedVariables
+
+	| sourceWithIf definitions expectedSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedSourceCode := 'with: p1', String newLineString, String tab, 'p1 isNil'.
+	self assert: expectedSourceCode equals: (self concreteClass compiledMethodAt: #with:) sourceCode.
+	! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:19:14'!
+test25ReplacesIfNilIfNotNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ self isNil ] ifNotNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:19:50'!
+test26ReplacesIfNotNilIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNotNil: [ self isNil ] ifNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:20:31'!
+test27ReplacesIfNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:20:55'!
+test28ReplacesIfNotNilWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNotNil: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:21:34'!
+test29ReplacesIsNilIfTrueWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:21:56'!
+test30ReplacesIsNilIfFalseWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:22:36'!
+test31ReplacesIsNilIfTrueIfFalseWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [self isNil] ifFalse: [self isNil]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:23:19'!
+test32ReplacesIsNilIfFalseIfTrueWithPolymorphicMessageSend
+
+	| sourceWithIf definitions actualRefactoredSourceCode expectedRefactoredSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifFalse: [self isNil] ifTrue: [self isNil]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedRefactoredSourceCode := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' with: self'.
+	actualRefactoredSourceCode := self compiledMethodToRefactor sourceCode.
+	self assert: expectedRefactoredSourceCode equals: actualRefactoredSourceCode.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 14:24:23'!
+test33PolymorphicMessageIsAddedToTheNullClass
+
+	| sourceWithIf definitions |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	self assert: (self nullClass selectors includes: #with:).! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:43:46'!
+test34PolymorphicMessageIsAddedToTheNullClassWithChosenParameterNames
+
+	| sourceWithIf definitions |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	self assert: 'p1' equals: (self nullClass compiledMethodAt: #with:) methodNode arguments first name.! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:44:21'!
+test35PolymorphicMessageIsAddedToTheNullClassReplacingParametrizedVariables
+
+	| sourceWithIf definitions expectedSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [ self isNil ] ifFalse: [ self isNil ]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedSourceCode := 'with: p1', String newLineString, String tab, 'p1 isNil'.
+	self assert: expectedSourceCode equals: (self nullClass compiledMethodAt: #with:) sourceCode.
+	! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:47:42'!
+test36WhenNoNullBlockIsPresentEmptyPolymorphicMessageIsAddedToTheNullClass
+
+	| sourceWithIf definitions expectedSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifFalse: [self isNil]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedSourceCode := 'with: p1'.
+	self assert: expectedSourceCode equals: (self nullClass compiledMethodAt: #with:) sourceCode.
+	! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:53:08'!
+test37WhenNoConcreteBlockIsPresentEmptyPolymorphicMessageIsAddedToTheConcreteClass
+
+	| sourceWithIf definitions expectedSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' isNil ifTrue: [self isNil]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions with: {
+		VariableToParametrizeKeywordDefinition forVariable: 'self' useKeyword: #with withParameterName: 'p1'}.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedSourceCode := 'with: p1'.
+	self assert: expectedSourceCode equals: (self concreteClass compiledMethodAt: #with:) sourceCode.
+	! !
+
+!IntroduceNullObjectTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 20:18:42'!
+test38WhenThereAreMultipleStatementsPolymorphicMessageIsAddedToTheNullClass
+
+	| sourceWithIf definitions expectedSourceCode |
+
+	sourceWithIf := self methodToRefactorSelector asString, ' ', self defaultInstVarName, ' ifNil: [1+1. 2+2]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions withSelector: #unaryPolymorphicSelector.
+
+	self applyRefactoringOn: sourceWithIf using: definitions.
+
+	expectedSourceCode := 'unaryPolymorphicSelector
+	1+1. 2+2'.
+	self assert: expectedSourceCode equals: (self nullClass compiledMethodAt: #unaryPolymorphicSelector) sourceCode.
+	! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 17:16:59'!
+allClassCategoriesOfTestData
+
+	^Array with: self classCategoryOfTestData ! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 14:24:35'!
+applyRefactoringOn: source using: definitions
+
+	| aClassToRefactor ifMessageNode methodNode refactoring replacementParameters |
+
+	aClassToRefactor := self defaultClassToRefactor.
+	aClassToRefactor compile: source.
+	methodNode := (aClassToRefactor compiledMethodAt: self methodToRefactorSelector) methodNode.
+	ifMessageNode :=  methodNode block statements first.
+
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
+
+	refactoring := IntroduceNullObject
+		on: self defaultInstVarName
+		of: aClassToRefactor
+		usingAsConcreteClass: self concreteClass
+		usingAsNullClass: self nullClass
+		for: {replacementParameters}.
+
+	refactoring apply.
 ! !
 
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:47:12'!
-test08HierarchyIsRemovedIfSubclassesWarningIsResumed
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 13:48:58'!
+compiledMethodToRefactor
 
-	| classToRemove classToRemoveSubclass | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	classToRemoveSubclass := self createClassNamed: 'ClassToRemoveSubclass' asSymbol subclassOf: classToRemove.
-	
-	self safelyRemoveHierarchyOf: classToRemove.
-	
-	self assert: classToRemove isObsolete.
-	self assert: classToRemoveSubclass isObsolete
-		
-	
+	^self defaultClassToRefactor compiledMethodAt: self methodToRefactorSelector ! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 18:30:14'!
+concreteClass
+
+	^self findOrCreateEmptyClassNamed: #AConcreteClass! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 2/19/2019 22:57:00'!
+defaultInstVarName
+
+	^'anInstVar'! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 2/20/2019 14:54:30'!
+defaultPolymorphicUnarySelector
+
+	^#polymorphismWins! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 14:26:10'!
+findOrCreateEmptyClassNamed: aName
+
+	(Smalltalk classNamed: aName)
+		ifNotNil: [:aClass | ^aClass]
+		ifNil: [
+			^self
+				createClassNamed: aName].! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 13:45:30'!
+methodToRefactorSelector
+
+	^#m1! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/25/2019 18:31:11'!
+nullClass
+
+	^self findOrCreateEmptyClassNamed: #ANullClass! !
+
+!IntroduceNullObjectTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/20/2019 11:42:53'!
+replacementParametersFrom: aSourceCode usingAsClassToRefactor: aClass
+
+	| messageNode methodNode definitions |
+
+	aClass compile: 'm1 ', aSourceCode.
+	methodNode := (aClass compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+	definitions :=
+		VariablesToParametrizeKeywordsDefinitions
+			with: {VariableToParametrizeKeywordDefinition
+				forVariable: self defaultInstVarName
+				useKeyword: #with
+				withParameterName: 'paramName'}.
+
+	^ReplaceIfNilWithPolymorphismParameters
+		forIfNilMessageSending: messageNode
+		onMethod: methodNode
+		useKeywordsDefinitions: definitions.! !
+
+!IntroduceNullObjectTest methodsFor: 'assertions' stamp: 'FGJ 3/25/2019 13:49:09'!
+creationFromSourceCode: aSourceCodeBody failsWithMessageText: messageTextBlock
+
+	| aClassToRefactor ifMessageNode methodNode replacementParameters definitions |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	aClassToRefactor compile: self methodToRefactorSelector asString, ' ', aSourceCodeBody.
+	methodNode := (aClassToRefactor compiledMethodAt: self methodToRefactorSelector) methodNode.
+	ifMessageNode := methodNode block statements first.
+
+	definitions :=
+		VariablesToParametrizeKeywordsDefinitions
+			with: {VariableToParametrizeKeywordDefinition
+					forVariable: self defaultInstVarName
+					useKeyword:  #with
+					withParameterName: 'paramName'}.
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
+
+	self
+		should: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: (self createClassNamed: #ConcreteClass)
+				usingAsNullClass: (self createClassNamed: #NullClass)
+				for: {replacementParameters}]
+		raise: RefactoringError
+		withMessageText: messageTextBlock.! !
+
+!IntroduceNullObjectTest methodsFor: 'assertions' stamp: 'FGJ 3/20/2019 11:34:54'!
+creationFromSourceCode: aSourceCodeBody shouldntRaise: anException
+
+	| aClassToRefactor ifMessageNode methodNode replacementParameters definitions |
+
+	aClassToRefactor := self
+		createClassNamed: #AClassToRefactor
+		instanceVariableNames: self defaultInstVarName.
+	aClassToRefactor compile: 'm1 ', aSourceCodeBody.
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	ifMessageNode := methodNode block statements first.
+
+	definitions :=
+		VariablesToParametrizeKeywordsDefinitions
+			withSelector: self defaultPolymorphicUnarySelector.
+
+	replacementParameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifMessageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: definitions.
+
+	self
+		shouldnt: [
+			IntroduceNullObject
+				on: self defaultInstVarName
+				of: aClassToRefactor
+				usingAsConcreteClass: (self createClassNamed: #ConcreteClass)
+				usingAsNullClass: (self createClassNamed: #NullClass)
+				for: {replacementParameters}]
+		raise: anException.! !
+
+!IntroduceNullObjectTest methodsFor: 'class factory' stamp: 'FGJ 2/20/2019 14:33:19'!
+defaultClassToRefactor
+
+	| className |
+
+	className := #AClassToRefactor.
+	(Smalltalk classNamed: className)
+		ifNotNil: [:aClass | ^aClass]
+		ifNil: [
+			^self
+				createClassNamed: className
+				instanceVariableNames: self defaultInstVarName].! !
+
+!IntroduceNullObjectTest methodsFor: 'class factory' stamp: 'FGJ 2/18/2019 18:52:13'!
+keyword: aKeyword varName: aVariableName paramName: aParameterName
+
+	^{
+		#keyword -> aKeyword.
+		#variableName -> aVariableName .
+		#parameterName -> aParameterName
+	} asDictionary! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 18:00:00'!
+test01WhenThereAreNoVariablesToExtractFindsNothing
+
+	| messageClass messageNode |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [1 + 1]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	self assert: (MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode) isEmpty.! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 18:01:05'!
+test02WhenThereAreOnlyTemporariesFindsNothing
+
+	| messageClass messageNode |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [| a | a := 2. a + 1]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	self assert: (MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode) isEmpty.! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 18:07:50'!
+test03WhenABlockReferencesNonTemporariesTheyAreFound
+
+	| messageClass messageNode variablesToExtract |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [| a | a := 2. a + self]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	variablesToExtract := MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode.
+	self assert: 1 equals: variablesToExtract size.
+	self assert: (variablesToExtract includes: 'self').! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 18:10:04'!
+test04WhenANestedBlockReferencesNonTemporariesTheyAreFound
+
+	| messageClass messageNode variablesToExtract |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [| a | a := 2. a ifNil: [ self + 2]]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	variablesToExtract := MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode.
+	self assert: 1 equals: variablesToExtract size.
+	self assert: (variablesToExtract includes: 'self').! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 18:10:59'!
+test05NilIsNotFound
+
+	| messageClass messageNode |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [| a | a := nil]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	self assert: (MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode) isEmpty.! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 19:07:28'!
+test06TrueAndFalseAreNotFound
+
+	| messageClass messageNode |
+
+	messageClass := self createClassNamed: #AClass.
+	messageClass compile: 'm1 self ifNil: [false or: [true]]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	self assert: (MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode) isEmpty.! !
+
+!MessageSendingBlocksVariablesToExtractFinderTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/28/2019 19:08:33'!
+test07WhenABlockReferencesInstanceVariablesTheyAreFound
+
+	| messageClass messageNode variablesToExtract |
+
+	messageClass := self createClassNamed: #AClass instanceVariableNames: 'anInstVar'.
+	messageClass compile: 'm1 self ifNil: [| a | a := 2. a + anInstVar]'.
+	messageNode := (messageClass compiledMethodAt: #m1) methodNode block statements first.
+
+	variablesToExtract := MessageSendingBlocksVariablesToExtractFinder valueIn: messageNode.
+	self assert: 1 equals: variablesToExtract size.
+	self assert: (variablesToExtract includes: 'anInstVar').! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:52:30'!
+test01AbstractClassClassNameMustNotBeEmpty
+
+	| emptyClassName |
+
+	emptyClassName := '' asSymbol.
+
+	self
+		creationWithAbstractClassName: emptyClassName
+		failsWithMessageText: [ NewClassPrecondition newClassNameCanNotBeEmptyErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:52:05'!
+test02AbstractClassClassNameMustBeASymbol
+
+	| stringClassName |
+
+	stringClassName := 'AnAbstractClassName'.
+
+	self
+		creationWithAbstractClassName: stringClassName
+		failsWithMessageText: [ NewClassPrecondition newNameMustBeSymbolErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'HAW 10/23/2019 09:53:55'!
+test03AbstractClassClassNameMustStartWithUppercaseLetter
+
+	| classNameNotCapitalized |
+
+	classNameNotCapitalized := #anAbstractClassName.
+
+	self
+		creationWithAbstractClassName: classNameNotCapitalized
+		failsWithMessageText: [ NewClassPrecondition newNameMustStartWithRightLetterErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:51:33'!
+test04AbstractClassClassNameMustNotHaveSeparators
+
+	| classNameWithSeparators |
+
+	classNameWithSeparators := 'An abstract class name' asSymbol.
+
+	self
+		creationWithAbstractClassName: classNameWithSeparators
+		failsWithMessageText: [ NewClassPrecondition newClassNameCanNotHaveSeparatorsErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:54:23'!
+test05AbstractClassClassNameMustNotExist
+
+	| existingClassName |
+
+	existingClassName := #Object.
+
+	self
+		creationWithAbstractClassName: existingClassName
+		failsWithMessageText: [ NewClassPrecondition errorMessageForAlreadyExistClassNamed: existingClassName].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 14:56:43'!
+test06NullObjectClassNameMustNotBeEmpty
+
+	| emptyClassName |
+
+	emptyClassName := '' asSymbol.
+
+	self
+		creationWithNullObjectClassName: emptyClassName
+		failsWithMessageText: [ NewClassPrecondition newClassNameCanNotBeEmptyErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 15:03:16'!
+test07NullObjectClassNameMustBeASymbol
+
+	| stringClassName |
+
+	stringClassName := 'AStringClassName'.
+
+	self
+		creationWithNullObjectClassName: stringClassName
+		failsWithMessageText: [ NewClassPrecondition newNameMustBeSymbolErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'HAW 10/23/2019 09:54:11'!
+test08NullObjectClassNameMustStartWithUppercaseLetter
+
+	| classNameNotCapitalized |
+
+	classNameNotCapitalized := #aNullObjectClassName.
+
+	self
+		creationWithNullObjectClassName: classNameNotCapitalized
+		failsWithMessageText: [ NewClassPrecondition newNameMustStartWithRightLetterErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 15:05:09'!
+test09NullObjectClassNameMustNotHaveSeparators
+
+	| classNameWithSeparators |
+
+	classNameWithSeparators := 'A null object class name' asSymbol.
+
+	self
+		creationWithNullObjectClassName: classNameWithSeparators
+		failsWithMessageText: [ NewClassPrecondition newClassNameCanNotHaveSeparatorsErrorMessage ].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 15:05:35'!
+test10NullObjectClassNameMustNotExist
+
+	| existingClassName |
+
+	existingClassName := #Object.
+
+	self
+		creationWithNullObjectClassName: existingClassName
+		failsWithMessageText: [ NewClassPrecondition errorMessageForAlreadyExistClassNamed: existingClassName].! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 15:48:00'!
+test11CreatesAbstractClass
+
+	| refactor |
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: self concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	self assert: (Smalltalk hasClassNamed: self abstractClassName).! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 15:49:29'!
+test12CreatesAbstractClassInChosenCategory
+
+	| refactor abstractClass |
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: self concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+	self assert: self classCategoryOfTestData equals: abstractClass category.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 17:11:50'!
+test13CreatesAbstractClassAsSubclassOfConcreteClassPreviousSuperclass
+
+	| refactor abstractClass concreteClass concreteClassOldSuperclass |
+
+	concreteClass := self concreteClass.
+	concreteClassOldSuperclass := concreteClass superclass.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+	self assert: concreteClassOldSuperclass equals: abstractClass superclass.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:36:39'!
+test14AbstractClassDefinesAllTheSelectorsOfConcreteClass
+
+	| refactor abstractClass concreteClass |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+	self assert: concreteClass selectors equals: abstractClass selectors.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:41:22'!
+test15AbstractClassMethodParametersNamesArePreservedFromConcreteClass
+
+	| refactor abstractClass concreteClass compiledMethod |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1: anArg'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+	compiledMethod := abstractClass compiledMethodAt: #m1:.
+
+	self assert: 'anArg' equals: compiledMethod methodNode arguments first name.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:44:13'!
+test16AbstractClassMethodsDelegateResponsibility
+
+	| refactor abstractClass concreteClass compiledMethod expectedMethodSourceCode |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1: anArg
+		^1 + 2'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+	compiledMethod := abstractClass compiledMethodAt: #m1:.
+	expectedMethodSourceCode := 'm1: anArg',
+		Character newLineCharacter asString,
+		Character tab asString,
+		'self subclassResponsibility.'.
+
+	self assert: expectedMethodSourceCode equals: compiledMethod sourceCode.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:41:50'!
+test17CreatesNullObjectClass
+
+| refactor |
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: self concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	self assert: (Smalltalk hasClassNamed: self nullObjectClassName).! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:42:02'!
+test18CreatesNullObjectClassInChosenCategory
+
+	| refactor nullObjectClass |
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: self concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	nullObjectClass := Smalltalk classNamed: self nullObjectClassName.
+	self assert: self classCategoryOfTestData equals: nullObjectClass category.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:42:13'!
+test19CreatesNullObjectClassClassAsSubclassOfAbstractClass
+
+	| refactor abstractClass concreteClass nullObjectClass |
+
+	concreteClass := self concreteClass.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	nullObjectClass := Smalltalk classNamed: self nullObjectClassName.
+	abstractClass := Smalltalk classNamed: self abstractClassName .
+
+	self assert: abstractClass equals: nullObjectClass superclass.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:42:33'!
+test20NullObjectClassDefinesAllTheSelectorsOfConcreteClass
+
+	| refactor concreteClass nullObjectClass |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	nullObjectClass := Smalltalk classNamed: self nullObjectClassName.
+
+	self assert: concreteClass selectors equals: nullObjectClass selectors.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:43:12'!
+test21NullObjectClassMethodParametersNamesArePreservedFromConcreteClass
+
+	| refactor concreteClass compiledMethod nullObjectClass |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1: anArg'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	nullObjectClass := Smalltalk classNamed: self nullObjectClassName.
+	compiledMethod := nullObjectClass compiledMethodAt: #m1:.
+
+	self assert: 'anArg' equals: compiledMethod methodNode arguments first name.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:44:54'!
+test22NullObjectClassMethodsAreEmpty
+
+	| refactor concreteClass compiledMethod expectedMethodSourceCode nullObjectClass |
+
+	concreteClass := self concreteClass.
+	concreteClass compile: 'm1: anArg
+		^1 + 2'.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	nullObjectClass := Smalltalk classNamed: self nullObjectClassName.
+	compiledMethod := nullObjectClass compiledMethodAt: #m1:.
+	expectedMethodSourceCode := 'm1: anArg'.
+
+	self assert: expectedMethodSourceCode equals: compiledMethod sourceCode.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 16:46:48'!
+test23ConcreteClassSubclassesTheAbstractClass
+
+	| refactor concreteClass abstractClass |
+
+	concreteClass := self concreteClass.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	abstractClass := Smalltalk classNamed: self abstractClassName.
+
+	self assert: abstractClass equals: concreteClass superclass.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'tests' stamp: 'FGJ 1/23/2019 17:17:38'!
+test24ConcreteClassMethodsArePreserved
+
+	| refactor concreteClass compiledMethod concreteClassName originalMethodSourceCode updatedConcreteClass |
+
+	concreteClass := self concreteClass.
+	originalMethodSourceCode := 'm1: anArg
+		^1 + 2'.
+	concreteClass compile: originalMethodSourceCode.
+
+	refactor :=
+		NullObjectHierarchyCreator
+			from: concreteClass
+			withAbstractClassName: self abstractClassName
+			withNullClassName: self nullObjectClassName
+			inCategory: self classCategoryOfTestData.
+
+	refactor apply.
+
+	concreteClassName := concreteClass name.
+	updatedConcreteClass := Smalltalk classNamed: concreteClassName.
+	compiledMethod := updatedConcreteClass compiledMethodAt: #m1:.
+
+	self assert: originalMethodSourceCode equals: compiledMethod sourceCode.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'factories' stamp: 'FGJ 1/23/2019 15:10:54'!
+abstractClassName
+
+	^#AnAbstractClassName! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'factories' stamp: 'FGJ 3/19/2019 17:18:50'!
+allClassCategoriesOfTestData
+
+	^Array with: self classCategoryOfTestData! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'factories' stamp: 'FGJ 3/25/2019 18:30:24'!
+concreteClass
+
+	^self createClassNamed: #AConcreteClass! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'factories' stamp: 'FGJ 1/23/2019 15:11:08'!
+nullObjectClassName
+
+	^#ANullObjectClassName! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'assertions' stamp: 'FGJ 1/23/2019 15:47:07'!
+creationWithAbstractClassName: anAbstractClassName
+failsWithMessageText: aMessageTextBlock
+
+	self
+		should: [
+			NullObjectHierarchyCreator
+				from: self concreteClass
+				withAbstractClassName: anAbstractClassName
+				withNullClassName: self nullObjectClassName
+				inCategory: self classCategoryOfTestData ]
+		raise: RefactoringError
+		withMessageText: aMessageTextBlock.! !
+
+!NullObjectHierarchyCreatorTest methodsFor: 'assertions' stamp: 'FGJ 1/23/2019 15:47:24'!
+creationWithNullObjectClassName: aNullClassName
+failsWithMessageText: aMessageTextBlock
+
+	self
+		should: [
+			NullObjectHierarchyCreator
+				from: self concreteClass
+				withAbstractClassName: self abstractClassName
+				withNullClassName: aNullClassName
+				inCategory: self classCategoryOfTestData ]
+		raise: RefactoringError
+		withMessageText: aMessageTextBlock.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'accessing' stamp: 'FGJ 3/19/2019 17:18:36'!
+allClassCategoriesOfTestData
+
+	^Array with: self classCategoryOfTestData ! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'assertions' stamp: 'FGJ 3/25/2019 15:36:41'!
+assertMessageSendRangeForSource: aSource equals: anInterval
+
+	| aClassToRefactor messageNode methodNode parameters variablesToParametrizeKeywordsDefinitions |
+
+	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: 'anInstVar'.
+	aClassToRefactor compile: aSource.
+
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+
+	variablesToParametrizeKeywordsDefinitions := VariablesToParametrizeKeywordsDefinitions withSelector: #unarySelector.
+
+	parameters := ReplaceIfNilWithPolymorphismParameters
+		forIfNilMessageSending: messageNode
+		onMethod: methodNode
+		useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions.
+
+	self assert: anInterval equals: parameters rangeOfMessageSend.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'assertions' stamp: 'FGJ 3/25/2019 15:28:02'!
+creationFromSource: aSource failsWithMessageText: aMessageBlock
+
+	| definitions |
+
+	definitions :=
+		VariablesToParametrizeKeywordsDefinitions withSelector: #polymorphicSelector.
+
+	self creationFromSource: aSource withDefinitions: definitions failsWithMessageText: aMessageBlock.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'assertions' stamp: 'FGJ 3/29/2019 15:04:53'!
+creationFromSource: aSource withDefinitions: someDefinitions failsWithMessageText: aMessageBlock
+
+	| aClassToRefactor messageNode methodNode |
+
+	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: 'anInstVar'.
+	aClassToRefactor compile: aSource.
+
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+
+	self
+		should: [
+			ReplaceIfNilWithPolymorphismParameters
+				forIfNilMessageSending: messageNode
+				onMethod: methodNode
+				useKeywordsDefinitions: someDefinitions]
+		raise: RefactoringError
+		withMessageText: aMessageBlock.	! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'initialization' stamp: 'FGJ 3/25/2019 15:51:45'!
+parametersForSourceCode: aSource
+
+	| aClassToRefactor messageNode methodNode variablesToParametrizeKeywordsDefinitions |
+
+	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: 'anInstVar'.
+	aClassToRefactor compile: aSource.
+
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+
+	variablesToParametrizeKeywordsDefinitions := VariablesToParametrizeKeywordsDefinitions withSelector: #unarySelector.
+
+	^ReplaceIfNilWithPolymorphismParameters
+		forIfNilMessageSending: messageNode
+		onMethod: methodNode
+		useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions.
 		! !
 
-!SafelyRemoveClassTest methodsFor: 'tests' stamp: 'HAW 8/1/2018 16:47:17'!
-test09CanRemoveIfReferencesToSubclassesAreInTheHierarchy
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:35:10'!
+test01MessageNodeMustBelongToTheMethodNode
 
-	| classToRemove classToRemoveSubclass | 
-	
-	classToRemove := self createClassNamed: self classToRemoveName.
-	classToRemoveSubclass := self createClassNamed: 'ClassToRemoveSubclass' asSymbol subclassOf: classToRemove.
-	classToRemove compile: 'm1 ^', classToRemoveSubclass name asString.
-	classToRemoveSubclass compile: 'm2 ^', classToRemove name asString.
-	
-	self safelyRemoveHierarchyOf: classToRemove.
-	
-	self assert: classToRemove isObsolete.	
-	self assert: classToRemoveSubclass isObsolete.! !
+	| messageNode methodNode variablesToParametrizeKeywordsDefinitions aClassToRefactor sourceWithIf |
 
-!SafelyRemoveClassTest methodsFor: 'test support' stamp: 'HAW 8/1/2018 15:48:56'!
-assertSubclassesReturnsACopy
+	aClassToRefactor := self createClassNamed: #AClassToRefactor.
+	sourceWithIf := 'm1 self ifNil: [1 + 1].'.
+	aClassToRefactor compile: sourceWithIf.
 
-	"This is a precondition for the remove to work properly with subclasses of the class to remove. 
-	I do not put it in the refactoring to avoid innecesary checks and because tests verify preconditions. 
-	It is not a seprate test because I do not want senders of this precondition to run if it fails - Hernan"
-	self deny: self class superclass subclasses == self class superclass subclasses! !
+	messageNode := (aClassToRefactor compiledMethodAt: #m1) methodNode block statements first.
 
-!SafelyRemoveClassTest methodsFor: 'test support' stamp: 'HAW 8/1/2018 16:47:22'!
-safelyRemoveHierarchyOf: classToRemove
-		
-	| remove |
-	
-	"see comment of #assertSubclassesReturnsACopy - Hernan"
-	self assertSubclassesReturnsACopy.
-	
-	[ remove := SafelyRemoveClass of: classToRemove ]
-		on: self refactoringWarning 
-		do: [ :aWarning | 
-			self assert: (SafelyRemoveClass warningMessageFor: classToRemove hasSubclasses: classToRemove allSubclasses) equals: aWarning messageText.
-			aWarning resume ].
-		
-	remove apply.! !
+	aClassToRefactor compile: 'm2 1 + 1.'.
+	methodNode := (aClassToRefactor compiledMethodAt: #m2) methodNode.
 
-!SafelyRemoveClassTest methodsFor: 'class factory' stamp: 'HAW 7/11/2018 16:56:05'!
-classToRemoveName
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions withSelector: #polymorphicSelector.
 
-	"I can not use the symbol directly because it would be a reference - Hernan"
-	^ 'ClassToRemove' asSymbol.
-	! !
+	self
+		should: [
+			ReplaceIfNilWithPolymorphismParameters
+				forIfNilMessageSending: messageNode
+				onMethod: methodNode
+				useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions]
+		raise: RefactoringError
+		withMessageText: [
+			ReplaceIfNilWithPolymorphismParameters methodNodeMustIncludeMessageNodeErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:22:42'!
+test02MessageNodeMustRepresentASupportedMessageSent
+
+	| sourceWithIf |
+
+	sourceWithIf := 'm1 anInstVar ifTrue: [1 + 1].'.
+	self creationFromSource: sourceWithIf failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters messageNodeMustRepresentSupportedMessageSendingErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:26:04'!
+test03AllVariablesToParametrizeHaveACorrespondingKeyword
+
+	| sourceWithIf definitions |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [self isNil]'.
+	definitions := VariablesToParametrizeKeywordsDefinitions withSelector: #polymorphicSelector.
+
+	self creationFromSource: sourceWithIf withDefinitions: definitions failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters allVariablesToParametrizeMustHaveAKeywordErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:29:26'!
+test04AllKeywordsMustHaveACorrespondingVariableToParametrize
+
+	| variablesToParametrizeKeywordsDefinitions sourceWithIf definitions |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [self isNil].'.
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'pSelf'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'inexistentVar'
+			useKeyword: #with
+			withParameterName: 'pInexistentVar'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+
+	self creationFromSource: sourceWithIf withDefinitions: variablesToParametrizeKeywordsDefinitions failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters allKeywordsMustHaveACorrespondingVariableToParametrizeErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:17'!
+test05CreatesReplaceIfNilWithPolymorphismParameters
+
+	| messageNode methodNode variablesToParametrizeKeywordsDefinitions aClassToRefactor sourceWithIf definitions parameters |
+
+	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: 'anInstVar'.
+	sourceWithIf := 'm1 anInstVar ifNil: [self isNil].'.
+	aClassToRefactor compile: sourceWithIf.
+
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'pSelf'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+
+	parameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: messageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions.
+
+	self assert: messageNode equals: parameters messageNode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:23'!
+test06ReplaceIfNilWithPolymorphismParametersOnBlocksWithBooleanConstants
+
+	| messageNode methodNode variablesToParametrizeKeywordsDefinitions aClassToRefactor sourceWithIf definitions parameters |
+
+	aClassToRefactor := self createClassNamed: #AClassToRefactor instanceVariableNames: 'anInstVar'.
+	sourceWithIf := 'm1 anInstVar ifNil: [self or: [true]].'.
+	aClassToRefactor compile: sourceWithIf.
+
+	methodNode := (aClassToRefactor compiledMethodAt: #m1) methodNode.
+	messageNode := methodNode block statements first.
+
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'pSelf'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+
+	parameters :=
+		ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: messageNode
+			onMethod: methodNode
+			useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions.
+
+	self assert: messageNode equals: parameters messageNode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:30:37'!
+test07ParameterNamesMustNotBeEqualToABlockTemporal
+
+	| variablesToParametrizeKeywordsDefinitions sourceWithIf definitions |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [ | tempVar | tempVar := 1 + 1. self isNil].'.
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'tempVar'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+	self creationFromSource: sourceWithIf withDefinitions: variablesToParametrizeKeywordsDefinitions failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters parameterNameMustNotBeEqualToBlockTemporaryErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:31:27'!
+test08ParameterNamesMustNotBeEqualToANestedBlockTemporal
+
+	| variablesToParametrizeKeywordsDefinitions sourceWithIf definitions |
+
+	sourceWithIf := 'm1
+		anInstVar ifNil: [self ifNil: [ | tempVar | tempVar := 1 + 1]].'.
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'tempVar'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+
+	self creationFromSource: sourceWithIf withDefinitions: variablesToParametrizeKeywordsDefinitions failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters	parameterNameMustNotBeEqualToBlockTemporaryErrorMessage].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:32:12'!
+test09ParameterNamesMustNotBeEqualToNestedBlocksArguments
+
+	| variablesToParametrizeKeywordsDefinitions sourceWithIf definitions |
+
+	sourceWithIf := 'm1
+		anInstVar ifNil: [self allInstVarNames collect: [:arg | arg asSymbol]].'.
+	definitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'self'
+			useKeyword: #with
+			withParameterName: 'arg'}.
+	variablesToParametrizeKeywordsDefinitions :=
+		VariablesToParametrizeKeywordsDefinitions with: definitions.
+
+	self creationFromSource: sourceWithIf withDefinitions: variablesToParametrizeKeywordsDefinitions failsWithMessageText: [
+			ReplaceIfNilWithPolymorphismParameters	parameterNameMustNotBeEqualToBlockTemporaryErrorMessage ].! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:42:36'!
+test10RangeOfMessageSendForIfNilIfNotNil
+
+	| sourceWithIf beforeMessageSend from messageSend |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar ifNil: [1 + 1] ifNotNil: [2 + 2]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:41:30'!
+test11RangeOfMessageSendForIfNotNilIfNil
+
+	| sourceWithIf beforeMessageSend from messageSend |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar ifNotNil: [1 + 1] ifNil: [2 + 2]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:41:49'!
+test12RangeOfMessageSendForIfNotNil
+
+	| sourceWithIf beforeMessageSend from messageSend |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar ifNotNil: [1 + 1]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:39:40'!
+test13RangeOfMessageSendForIfNil
+
+	| sourceWithIf beforeMessageSend from messageSend |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar ifNil: [1 + 1]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:37:19'!
+test14RangeOfMessageSendForIsNilIfTrue
+
+	| sourceWithIf beforeMessageSend messageSend from |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar isNil ifTrue: [1 + 1]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:38:49'!
+test15RangeOfMessageSendForIsNilIfTrueIfFalse
+
+	| sourceWithIf beforeMessageSend from messageSend |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar isNil ifTrue: [1 + 1] ifFalse: [2+2]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:43:39'!
+test16WhenThereAreExtraSpacesRangeOfMessageSendForIfNilIfNotNil
+
+	| sourceWithIf beforeMessageSend messageSend from |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar       ifNil: [1 + 1]          ifNotNil: [2 + 2]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:44:12'!
+test17WhenThereAreExtraSpacesRangeOfMessageSendForIsNilIfTrue
+
+	| sourceWithIf beforeMessageSend messageSend from |
+
+	beforeMessageSend := 'm1 '.
+	messageSend := 'anInstVar    isNil       ifTrue: [1 + 1]'.
+	sourceWithIf := beforeMessageSend, messageSend.
+
+	from := beforeMessageSend size + 1.
+	self assertMessageSendRangeForSource: sourceWithIf equals: (Interval from: from to: from + messageSend size - 1).! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:50:16'!
+test18ConcreteBlockSourceCodeForIfNilIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1 + 1] ifNotNil: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:52:40'!
+test19ConcreteBlockSourceCodeForIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNotNil: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:53:07'!
+test20ConcreteBlockSourceCodeForIfNotNilIfNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNotNil: [2+2] ifNil: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:53:42'!
+test21ConcreteBlockSourceCodeForIsNilIfFalse
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifFalse: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:54:08'!
+test22ConcreteBlockSourceCodeForIsNilIfTrueIfFalse
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifTrue: [1+1] ifFalse: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 15:54:48'!
+test23NullBlockSourceCodeForIfNilIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1+1] ifNotNil: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:39:32'!
+test24NullBlockSourceCodeForIfNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:40:01'!
+test25NullBlockSourceCodeForIfNotNilIfNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNotNil: [2+2] ifNil: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:40:27'!
+test26NullBlockSourceCodeForIsNilIfTrue
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifTrue: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:40:52'!
+test27NullBlockSourceCodeForIsNilIfFalseIfTrue
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifFalse: [2+2] ifTrue: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 3/25/2019 16:41:43'!
+test28NullBlockSourceCodeForIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNotNil: [1+1]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:35:38'!
+test29WhenThereAreMultipleStatementsConcreteBlockSourceCodeForIfNilIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1] ifNotNil: [2+2. 1+1.]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2. 1+1.' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:51:55'!
+test30WhenThereAreMultipleStatementsConcreteBlockSourceCodeForIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNotNil: [2+2. 1+1.]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2. 1+1.' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:52:41'!
+test31WhenThereAreMultipleStatementsConcreteBlockSourceCodeForIsNilIfFalse
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifFalse: [2+2. 1+1.]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '2+2. 1+1.' equals: parameters concreteBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:59:03'!
+test32WhenThereAreMultipleStatementsNullBlockSourceCodeForIfNilIfNotNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1+1. 2+2.] ifNotNil: [2+2]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1. 2+2.' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:59:30'!
+test33WhenThereAreMultipleStatementsNullBlockSourceCodeForIfNil
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar ifNil: [1+1. 2+2.]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1. 2+2.' equals: parameters nullBlockSourceCode.! !
+
+!ReplaceIfNilWithPolymorphismParametersTest methodsFor: 'testing' stamp: 'FGJ 4/16/2019 19:59:55'!
+test34WhenThereAreMultipleStatementsNullBlockSourceCodeForIsNilIfTrue
+
+	| sourceWithIf parameters |
+
+	sourceWithIf := 'm1 anInstVar isNil ifTrue: [1+1. 2+2.]'.
+	parameters := self parametersForSourceCode: sourceWithIf.
+
+	self assert: '1+1. 2+2.' equals: parameters nullBlockSourceCode.! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:31:43'!
+creationWithKeyword: aKeyword failsWithMessageText: anErrorMessageBlock
+
+	self
+		should: [
+			VariableToParametrizeKeywordDefinition
+				forVariable: 'self'
+				useKeyword: aKeyword
+				withParameterName: 'parameterName']
+		raise: RefactoringError
+		withMessageText: anErrorMessageBlock.! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:13:23'!
+creationWithParameterName: aParameterName failsWithMessageText: anErrorMessageBlock
+
+	self
+		should: [
+			VariableToParametrizeKeywordDefinition
+				forVariable: 'self'
+				useKeyword: #with
+				withParameterName: aParameterName]
+		raise: RefactoringError
+		withMessageText: anErrorMessageBlock.! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'accessing' stamp: 'FGJ 3/19/2019 17:18:25'!
+allClassCategoriesOfTestData
+
+	^Array with: self classCategoryOfTestData ! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:14:39'!
+test01ParameterNameMustNotBeEmpty
+
+	| emptyParameterName |
+
+	emptyParameterName := ''.
+
+	self
+		creationWithParameterName: emptyParameterName
+		failsWithMessageText: [VariableToParametrizeKeywordDefinition invalidParameterNameErrorMessage].! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:14:06'!
+test02ParameterNameMustNotContainInvalidCharacters
+
+	| parameterNameWithInvalidCharacters |
+
+	parameterNameWithInvalidCharacters := 'parameterName23With$#$@InvalidCharacters'.
+
+	self
+		creationWithParameterName: parameterNameWithInvalidCharacters
+		failsWithMessageText: [
+			VariableToParametrizeKeywordDefinition invalidParameterNameErrorMessage].! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:12:26'!
+test03ParameterNameMustNotContainSeparators
+
+	| parameterNameWithSeparators |
+
+	parameterNameWithSeparators := 'parameterName With Separators'.
+
+	self
+		creationWithParameterName: parameterNameWithSeparators
+		failsWithMessageText: [
+			VariableToParametrizeKeywordDefinition invalidParameterNameErrorMessage].! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:34:48'!
+test04KeywordMustNotBeEmpty
+
+	| emptyKeyword |
+
+	emptyKeyword := '' asSymbol.
+
+	self
+		creationWithKeyword: emptyKeyword
+		failsWithMessageText: [VariableToParametrizeKeywordDefinition keywordMustNotBeEmptyErrorMessage].! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:36:37'!
+test05KeywordMustNotContainInvalidCharacters
+
+	| keywordWithInvalidCharacters |
+
+	keywordWithInvalidCharacters := 'keywordWith^%%$#@invalidCharacters' asSymbol.
+
+	self
+		creationWithKeyword: keywordWithInvalidCharacters
+		failsWithMessageText: [VariableToParametrizeKeywordDefinition keywordMustNotContainInvalidCharactersErrorMessage].! !
+
+!VariableToParametrizeKeywordDefinitionTest methodsFor: 'testing' stamp: 'FGJ 3/18/2019 12:46:03'!
+test06CreatesADefinition
+
+	| definition keyword parameterName variableName |
+
+	variableName := 'self'.
+	keyword := #with.
+	parameterName := 'selfParameterName'.
+
+	definition := VariableToParametrizeKeywordDefinition forVariable: variableName useKeyword: keyword withParameterName: parameterName.
+
+	self assert: keyword equals: definition keyword.
+	self assert: variableName equals: definition variableName.
+	self assert: parameterName equals: definition parameterName.! !
 
 !VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:42:02'!
 test01WhenTheMethodHasNoVariablesItReturnsAnEmptySet
 
 	| classToAnalize variablesToExtract |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	variablesToExtract := self variablesToExtractIn: 'm1' at: classToAnalize.
-	
+
 	self assert: variablesToExtract isEmpty.! !
 
 !VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:41:54'!
 test02WhenTheMethodHasOnlyTemporaryVariablesItReturnsAnEmptySet
 
 	| classToAnalize variablesToExtract sourceCode |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1
-		| aTempVar | 
-		
+		| aTempVar |
+
 		aTempVar := 2.
-		
+
 		^aTempVar.'.
-		
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: variablesToExtract isEmpty.! !
 
 !VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:43:15'!
 test03WhenTheMethodReferencesSelfPseudoVariableItFindsIt
 
 	| classToAnalize variablesToExtract sourceCode |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1
-	
+
 		self m2.'.
-	
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: 'self').! !
 
@@ -6386,14 +5691,14 @@ test03WhenTheMethodReferencesSelfPseudoVariableItFindsIt
 test04WhenTheMethodHasArgumentsTheyAreIncludedAsVariablesToExtract
 
 	| classToAnalize variablesToExtract sourceCode |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1: anArg
-	
+
 		^anArg + 2'.
 
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: 'anArg').! !
 
@@ -6401,15 +5706,15 @@ test04WhenTheMethodHasArgumentsTheyAreIncludedAsVariablesToExtract
 test05WhenTheMethodReferencesAnInstanceVariableItFindsIt
 
 	| classToAnalize variablesToExtract sourceCode instVarName |
-	
+
 	instVarName := 'anInstVar'.
 	classToAnalize := self createClassNamed: #AClass instanceVariableNames: instVarName.
 	sourceCode := 'm1
-	
+
 		^',instVarName, ' isNil'.
-		
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: instVarName).! !
 
@@ -6417,22 +5722,22 @@ test05WhenTheMethodReferencesAnInstanceVariableItFindsIt
 test06WhenTheMethodReferencesAClassVariableItFindsIt
 
 	| classToAnalize variablesToExtract sourceCode classVarName |
-	
+
 	classVarName := 'AClassVar'.
-	classToAnalize := self 
+	classToAnalize := self
 		createClassNamed: #AClass
 		subclassOf: Object
 		instanceVariableNames: ''
 		classVariableNames: classVarName
 		poolDictionaries: ''
 		category: self classCategoryOfTestData.
-	
+
 	sourceCode := 'm1
-	
+
 		^', classVarName, ' isNil'.
-	
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: classVarName).! !
 
@@ -6440,59 +5745,59 @@ test06WhenTheMethodReferencesAClassVariableItFindsIt
 test07WhenTheMethodReferencesAPoolVariableItFindsIt
 
 	| classToAnalize variablesToExtract sourceCode aSharedPoolName aPoolVariableName |
-	
+
 	aSharedPoolName := #ASharedPool.
 	aPoolVariableName := 'APoolVariable'.
-	self 
+	self
 		createClassNamed: aSharedPoolName
 		subclassOf: SharedPool
 		instanceVariableNames: ''
 		classVariableNames: aPoolVariableName
 		poolDictionaries: ''
 		category: self classCategoryOfTestData.
-	
-	classToAnalize := self 
+
+	classToAnalize := self
 		createClassNamed: #AClass
 		subclassOf: Object
 		instanceVariableNames: ''
 		classVariableNames: ''
 		poolDictionaries: aSharedPoolName asString
 		category: self classCategoryOfTestData.
-	
+
 	sourceCode := 'm1
 		^', aPoolVariableName, ' isNil'.
-	
-	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize. 
-	
+
+	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: aPoolVariableName). ! !
 
-!VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:47:26'!
-test08DoesNotFindPsedoVariablesButSelf
+!VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'FGJ 3/28/2019 18:12:23'!
+test08DoesNotFindPseudoVariablesButSelf
 
 	| classToAnalize variablesToExtract sourceCode |
-	
-	classToAnalize := self createClassNamed: #AClass. 
+
+	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1
-	
+
 		^true not'.
-	
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: variablesToExtract isEmpty! !
 
 !VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:48:04'!
 test09WhenReturnsAnInstVarFindsIt
 
 	| aClass variablesToExtract aMethodReferencingInstVarSourceCode instVarName |
-	
+
 	instVarName := 'anInstVar'.
 	aClass := self createClassNamed: #AClass instanceVariableNames: instVarName.
 	aMethodReferencingInstVarSourceCode := 'm1
 		^', instVarName.
-	
+
 	variablesToExtract := self variablesToExtractIn: aMethodReferencingInstVarSourceCode at: aClass.
-	
+
 	self assert: 1 equals: variablesToExtract size.
 	self assert: (variablesToExtract includes: instVarName).! !
 
@@ -6500,1310 +5805,260 @@ test09WhenReturnsAnInstVarFindsIt
 test10DoesNotFindClasses
 
 	| classToAnalize variablesToExtract sourceCode |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1
 		^Object'.
-	
+
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: variablesToExtract isEmpty! !
 
 !VariablesToExtractFinderTest methodsFor: 'tests' stamp: 'HAW 3/4/2019 14:49:29'!
 test11DoesNotFindGlobals
 
 	| classToAnalize variablesToExtract sourceCode |
-	
+
 	classToAnalize := self createClassNamed: #AClass.
 	sourceCode := 'm1
 		^Smalltalk'.
 
 	variablesToExtract := self variablesToExtractIn: sourceCode at: classToAnalize.
-	
+
 	self assert: variablesToExtract isEmpty! !
 
 !VariablesToExtractFinderTest methodsFor: 'variables to extract' stamp: 'HAW 3/4/2019 14:40:39'!
-variablesToExtractIn: aSourceCode at: aClass 
-	
+variablesToExtractIn: aSourceCode at: aClass
+
 	| selector |
-	
+
 	selector := aClass compile: aSourceCode.
-	
+
 	^VariablesToExtractFinder valueIn: (aClass>>selector)
 ! !
 
-!Refactoring methodsFor: 'applying' stamp: 'HAW 5/24/2017 21:08:11'!
-apply
-
-	self subclassResponsibility ! !
-
-!Refactoring class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 16:34:16'!
-canNotRefactorDueToReferencesError: aMessageText references: references to: referencee 
-	
-	^self canNotRefactorDueToReferencesErrorClass
-		signal: aMessageText 
-		references: references 
-		to: referencee ! !
-
-!Refactoring class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 16:32:42'!
-canNotRefactorDueToReferencesErrorClass
-	
-	^CanNotRefactorDueToReferencesError! !
-
-!Refactoring class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:58:07'!
-refactoringError: aMessage
-
-	self refactoringErrorClass signal: aMessage.! !
-
-!Refactoring class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:58:21'!
-refactoringErrorClass
-
-	^ RefactoringError.! !
-
-!Refactoring class methodsFor: 'warnings' stamp: 'HAW 6/11/2017 18:49:41'!
-refactoringWarning: aMessageText
-
-	^ self refactoringWarningClass signal: aMessageText.! !
-
-!Refactoring class methodsFor: 'warnings' stamp: 'HAW 6/3/2017 12:05:48'!
-refactoringWarningClass
-
-	^ RefactoringWarning.! !
-
-!AddInstanceVariable methodsFor: 'applying' stamp: 'HAW 6/11/2017 18:27:26'!
-apply
-	
-	classToRefactor addInstVarName: newVariable.
-	! !
-
-!AddInstanceVariable methodsFor: 'accessing' stamp: 'HAW 6/11/2017 19:09:54'!
-classToRefactor
-
-	^classToRefactor ! !
-
-!AddInstanceVariable methodsFor: 'accessing' stamp: 'HAW 6/6/2017 10:10:40'!
-newVariable
-	
-	^newVariable ! !
-
-!AddInstanceVariable methodsFor: 'initialization' stamp: 'HAW 6/6/2017 10:10:26'!
-initializeNamed: aNewVariable to: aClassToRefactor 
-	
-	newVariable := aNewVariable.
-	classToRefactor := aClassToRefactor ! !
-
-!AddInstanceVariable class methodsFor: 'instance creation' stamp: 'HAW 3/4/2019 11:43:12'!
-named: aVariable to: aClassToRefactor
-
-	| trimmedVariable |
-	
-	trimmedVariable := aVariable withBlanksTrimmed.
-	NewInstanceVariablePrecondition valueOf: trimmedVariable for: aClassToRefactor.	
-	^self new initializeNamed: trimmedVariable to: aClassToRefactor 
-	! !
-
-!ChangeSelector methodsFor: 'applying' stamp: 'HAW 11/29/2018 15:19:19'!
-apply
-	
-	self 
-		createNewImplementors;
-		renameSenders;
-		removeOldImplementors.
-		
-	^changes
-! !
-
-!ChangeSelector methodsFor: 'remove old implementors - private' stamp: 'HAW 8/18/2018 12:02:34'!
-removeOldImplementor: anImplementor 
-
-	anImplementor methodClass removeSelector: anImplementor selector.
-	changes add: anImplementor methodReference! !
-
-!ChangeSelector methodsFor: 'remove old implementors - private' stamp: 'HAW 8/18/2018 12:01:49'!
-removeOldImplementors
-	
-	implementors do: [:anImplementor | self removeOldImplementor: anImplementor ]! !
-
-!ChangeSelector methodsFor: 'create new implementors - private' stamp: 'HAW 11/8/2018 15:24:06'!
-addToSendersIfOldSelectorIsSentIn: newImplementor
-	
-	(newImplementor sendsOrRefersTo: oldSelector) ifTrue: [ senders add: newImplementor ]. 
-	! !
-
-!ChangeSelector methodsFor: 'create new implementors - private' stamp: 'HAW 9/4/2018 19:05:08'!
-compileNewImplementorOf: anImplementor
-		
-	| implementorClassification newSourceCode |
-	
-	newSourceCode := self implementorNewSourceCodeOf: anImplementor.
-	implementorClassification := anImplementor methodClass organization categoryOfElement: oldSelector.
-	
-	anImplementor methodClass 
-		compile: newSourceCode  
-		classifyUnder: implementorClassification.
-! !
-
-!ChangeSelector methodsFor: 'create new implementors - private' stamp: 'HAW 8/18/2018 12:02:25'!
-createNewImplementorOf: anImplementor
-
-	| newImplementor |
-
-	self compileNewImplementorOf: anImplementor.
-	newImplementor := anImplementor methodClass compiledMethodAt: newSelector.
-	self addToSendersIfOldSelectorIsSentIn: newImplementor.
-	
-	changes add: newImplementor methodReference 
-	
-	! !
-
-!ChangeSelector methodsFor: 'create new implementors - private' stamp: 'HAW 8/18/2018 12:02:52'!
-createNewImplementors
-	
-	implementors do: [:anImplementor | self createNewImplementorOf: anImplementor ]
-	! !
-
-!ChangeSelector methodsFor: 'create new implementors - private' stamp: 'HAW 8/18/2018 12:06:01'!
-implementorNewSourceCodeOf: anImplementor
-
-	self subclassResponsibility ! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 11/29/2018 15:28:39'!
-add: oldSelectorLiteralRanges to: rangesToKeywords
-
-	oldSelectorLiteralRanges do: [ :oldSelectorLiteralRange | 
-		rangesToKeywords add: (oldSelectorLiteralRange first + 1 to: oldSelectorLiteralRange last) -> newSelector ].
-	
-
-	! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 8/18/2018 12:05:39'!
-addMessageSendSelectorKeywordRangesOf: aMethodNode to: rangesToKeywords
-
-	self subclassResponsibility ! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 11/29/2018 15:29:06'!
-addRangesForLiteralInLiteralArrayOf: methodNode to: rangesToKeywords
-
-	| oldSelectorLiteralRanges |
-	
-	oldSelectorLiteralRanges := methodNode positionsInLiteralArrayOf: oldSelector.
-	self add: oldSelectorLiteralRanges to: rangesToKeywords ! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 11/29/2018 15:28:27'!
-addRangesForLiteralOf: methodNode to: rangesToKeywords
-	
-	| oldSelectorLiteralRanges |
-	
-	oldSelectorLiteralRanges := methodNode positionsForLiteralNode: oldSelector ifAbsent: [ ^#() ].
-	self add: oldSelectorLiteralRanges to: rangesToKeywords.
-	! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 11/29/2018 14:16:42'!
-rangesToKeywordsOf: aMethod
-	
-	| methodNode rangesToKeywords |
-	
-	methodNode := aMethod methodNode.
-	rangesToKeywords := SortedCollection sortBlock: [ :left :right | left key first < right key first ].
-	
-	self addMessageSendSelectorKeywordRangesOf: methodNode to: rangesToKeywords.
-	self addRangesForLiteralOf: methodNode to: rangesToKeywords.
-	self addRangesForLiteralInLiteralArrayOf: methodNode to: rangesToKeywords.
-	
-	^rangesToKeywords	! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 8/18/2018 12:03:19'!
-renameSenders
-	
-	senders do: [ :aSender | self renameSendersIn: aSender ].
-	! !
-
-!ChangeSelector methodsFor: 'rename senders - private' stamp: 'HAW 9/4/2018 19:25:20'!
-renameSendersIn: aMethod
-
-	| newSource rangesToNewStrings |
-	
-	rangesToNewStrings := self rangesToKeywordsOf: aMethod.
-	newSource := aMethod sourceCode copyReplacing: rangesToNewStrings.
-	aMethod methodClass compile: newSource.
-	
-	changes add: (MethodReference class: aMethod methodClass selector: aMethod selector)! !
-
-!ChangeSelector methodsFor: 'implementors/senders' stamp: 'HAW 8/18/2018 12:04:37'!
-implementorsSize
-	
-	^implementors size! !
-
-!ChangeSelector methodsFor: 'implementors/senders' stamp: 'HAW 8/18/2018 12:03:31'!
-sendersSize
-	
-	^senders size! !
-
-!ChangeSelector methodsFor: 'initialization' stamp: 'HAW 9/3/2018 17:17:19'!
-initializeFrom: anOldSelector to: aNewSelector implementors: aCollectionOfImplementors senders: aCollectionOfSenders
-	
-	oldSelector := anOldSelector.
-	newSelector := aNewSelector.
-	implementors := aCollectionOfImplementors.
-	"I have to make a copy of senders because it can change with recursive implementors - Hernan"
-	senders := aCollectionOfSenders asOrderedCollection.
-	
-	changes := Set new
-	! !
-
-!ChangeSelector methodsFor: 'selectors' stamp: 'HAW 1/7/2019 13:59:37'!
-newSelector
-	
-	^newSelector ! !
-
-!ChangeSelector class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 12:39:40'!
-assertAllImplementors: implementors haveSame: aSelector
-
-	| invalidImplementors |
-	
-	invalidImplementors := implementors reject: [ :anImplementor | anImplementor selector = aSelector ].
-	invalidImplementors notEmpty ifTrue: [ self signalInvalidImplementors: invalidImplementors ].! !
-
-!ChangeSelector class methodsFor: 'pre-conditions' stamp: 'HAW 11/29/2018 12:04:20'!
-assertAllSenders: senders send: aSelector
-
-	| invalidSenders |
-	
-	invalidSenders := senders reject: [ :aSender | aSender sendsOrRefersTo: aSelector ].
-	invalidSenders notEmpty ifTrue: [ self signalInvalidSenders: invalidSenders of: aSelector ]! !
-
-!ChangeSelector class methodsFor: 'exceptions' stamp: 'HAW 1/7/2019 10:51:35'!
-errorMessageForInvalidImplementors: aCollectionOfInvalidImplementors
-
-	^String streamContents: [ :stream |
-		stream 
-			nextPutAll: (aCollectionOfInvalidImplementors size = 1 ifTrue: [ 'This method' ] ifFalse: [ 'These methods']);
-		 	nextPutAll: ' do not have same the same selector to rename: '.
-		aCollectionOfInvalidImplementors asCommaSeparated: [:anImplementor | anImplementor printClassAndSelectorOn: stream ] on: stream ] ! !
-
-!ChangeSelector class methodsFor: 'exceptions' stamp: 'HAW 1/7/2019 10:51:35'!
-errorMessageForInvalidSenders: aCollectionOfInvalidSenders of: anOldSelector
-
-	^String streamContents: [ :stream |
-		stream 
-			nextPutAll: 'Message #';
-			nextPutAll: anOldSelector;
-			nextPutAll: ' is not send by: '.
-		aCollectionOfInvalidSenders asCommaSeparated: [:aSender | aSender printClassAndSelectorOn: stream ] on: stream ] ! !
-
-!ChangeSelector class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:43:59'!
-signalInvalidImplementors: invalidImplementors
-
-	self refactoringError: (self errorMessageForInvalidImplementors: invalidImplementors).! !
-
-!ChangeSelector class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 15:49:58'!
-signalInvalidSenders: invalidSender of: aSelector
-
-	self refactoringError: (self errorMessageForInvalidSenders: invalidSender of: aSelector).! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:35'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders forClassAndMetaOf: aPotentialClassToRefactor
-	
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders of: aPotentialClassToRefactor theNonMetaClass.
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders of: aPotentialClassToRefactor theMetaClass.
-
-! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:39'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inCategoriesAndHierarchyOf: aClass organizedBy: anOrganization
-
-	| categories |
-	
-	categories := Set new.
-
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inHierarchyOf: aClass doingPerClass: [:aClassInHierarchy | categories add: aClassInHierarchy category ].
-	categories do: [:aCategory | self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inCategory: aCategory organizedBy: anOrganization ].
-! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:42'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inCategory: aCategory organizedBy: anOrganization
-
-	| classesInCategory |
-	
-	classesInCategory := anOrganization classesAt: aCategory.
-	classesInCategory do: [ :aPotentialClassToRefactor | self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders forClassAndMetaOf: aPotentialClassToRefactor ].
-! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:45'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inHierarchyOf: aClass
-
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inHierarchyOf: aClass doingPerClass: [ :aClassInHierarchy | ]
-		
-	! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:49'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inHierarchyOf: aClass doingPerClass: aBlock
-
-	aClass theNonMetaClass withAllSubAndSuperclassesDo: [ :aPotentialClassToRefactor |
-		aPotentialClassToRefactor isMeta ifFalse: [ 
-			self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders forClassAndMetaOf: aPotentialClassToRefactor.
-			aBlock value: aPotentialClassToRefactor ]]
-	! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 8/18/2018 17:19:52'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inSystem: aSystem
-
-	aSystem allBehaviorsDo: [ :aPotentialClassToRefactor | 
-		self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders of: aPotentialClassToRefactor ].
-! !
-
-!ChangeSelector class methodsFor: 'implementors and senders' stamp: 'HAW 10/15/2018 20:53:23'!
-addImplementorsOf: anOldSelector to: implementors andSendersTo: senders of: aPotentialClassToRefactor
-	
-	| potentialImplementor |
-	
-	potentialImplementor := aPotentialClassToRefactor compiledMethodAt: anOldSelector ifAbsent: [ nil ].
-	potentialImplementor ifNotNil: [ implementors add: potentialImplementor ].
-	
-	(aPotentialClassToRefactor whichSelectorsReferTo: anOldSelector) do: [ :aSelector | senders add: (aPotentialClassToRefactor compiledMethodAt: aSelector) ].
-	! !
-
-!AddParameter methodsFor: 'initialization' stamp: 'HAW 9/4/2018 19:00:42'!
-initializedNamed: aNewParameter 
-	at: anIndex
-	addingLast: anIsAddingLast
-	initializedWith: aNewParameterValue 
-	to: anOldSelector 
-	implementing: aNewSelector  
-	addingToImplementors: anImplementorTrailingString 
-	addingToSenders: aSenderTrailingString
-	implementors: implementorsCollection 
-	senders: sendersCollection
-
-	super initializeFrom: anOldSelector to: aNewSelector implementors: implementorsCollection senders: sendersCollection.
-	
-	newParameter := aNewParameter.
-	newParameterValue := aNewParameterValue.
-	implementorTrailingString := anImplementorTrailingString.
-	senderTrailingString := aSenderTrailingString.
-	
-	index := anIndex.
-	isAddingLast := anIsAddingLast ! !
-
-!AddParameter methodsFor: 'rename senders - private' stamp: 'HAW 3/4/2019 10:21:05'!
-addMessageSendSelectorKeywordRangesOf: aMethodNode to: rangesToKeywords
-	
-	| insertionPoints senderSourceCode |
-	
-	senderSourceCode := aMethodNode sourceText.
-	isAddingLast 
-		ifTrue: [ 
-			insertionPoints := aMethodNode messageSendLastPositionsOf: oldSelector ifAbsent: [ #() ].
-			insertionPoints do: [ :aPosition | | newPosition |
-			newPosition := self firstNoSeparatorIndexIn: senderSourceCode startingFrom: aPosition.
-			rangesToKeywords add: ((newPosition+1) to: newPosition) -> senderTrailingString ]]
-		ifFalse: [ 
-			insertionPoints := aMethodNode messageSendKeywordPositionsAt: index of: oldSelector ifAbsent: [ #()].
-			insertionPoints do: [ :aPosition | 
-			rangesToKeywords add: (aPosition to: aPosition-1) -> senderTrailingString ]]
-	! !
-
-!AddParameter methodsFor: 'rename senders - private' stamp: 'HAW 11/11/2018 14:07:23'!
-firstNoLineSeparatorIndexIn: sourceCode startingFrom: aStartingPosition
-	
-	^self firstNot: [ :aChar | aChar isLineSeparator ] indexIn: sourceCode startingFrom: aStartingPosition ! !
-
-!AddParameter methodsFor: 'rename senders - private' stamp: 'HAW 11/11/2018 14:06:46'!
-firstNoSeparatorIndexIn: sourceCode startingFrom: aStartingPosition
-
-	"Looks going back for the first no separator char. See #test24AddingParameterToSendersTakeCaresOfSeparators
-	It assumes that there is always going to be a no separator wich holds due to how aStartPosition is obtained - Hernan"
-	
-	^self firstNot: [ :aChar | aChar isSeparator ] indexIn: sourceCode startingFrom: aStartingPosition ! !
-
-!AddParameter methodsFor: 'rename senders - private' stamp: 'HAW 1/7/2019 13:43:36'!
-firstNot: aBlock indexIn: sourceCode startingFrom: aStartingPosition
-	
-	| noSeparatorIndex |
-	
-	noSeparatorIndex := aStartingPosition.
-	[ noSeparatorIndex > 0 and: [ aBlock value: (sourceCode at: noSeparatorIndex) ]] whileTrue: [ noSeparatorIndex := noSeparatorIndex - 1 ].
-	
-	^noSeparatorIndex 
-		! !
-
-!AddParameter methodsFor: 'create new implementors - private' stamp: 'HAW 11/11/2018 14:07:55'!
-implementorNewSourceCodeOf: anImplementor
-
-	| implementorMethodNode newSource originalSource insertionPoint |
-
-	implementorMethodNode := anImplementor methodNode.
-	insertionPoint := isAddingLast 
-		ifTrue: [ implementorMethodNode selectorLastPosition ]
-		ifFalse: [ (implementorMethodNode selectorKeywordPositionAt: index) first - 1].
-
-	originalSource := anImplementor sourceCode.
-	insertionPoint := self firstNoLineSeparatorIndexIn: originalSource startingFrom: insertionPoint.
-	
-	newSource := String streamContents: [ :newSourceStream |
-		newSourceStream 
-			nextPutAll: (originalSource copyFrom: 1 to: insertionPoint);
-			nextPutAll: implementorTrailingString;
-			nextPutAll: (originalSource copyFrom: insertionPoint+1 to: originalSource size) ].
-		
-	^newSource! !
-
-!AddParameter class methodsFor: 'instance creation' stamp: 'HAW 9/4/2018 19:59:06'!
-named: aNewParameter
-	at: anIndex 
-	initializedWith: aNewParameterValue
-	using: aNewKeyword 
-	toKeywordSelector: anOldSelector  
-	implementors: implementorsCollection 
-	senders: sendersCollection
-
-	| validNewParameterValue isAddingLast numberOfParameters |
-	
-	self assertIsKeyword: anOldSelector.
-	self assertIsValidKeywordForNewParameter: aNewKeyword.
-	validNewParameterValue := self assertNewParameterValueIsValid: aNewParameterValue.
-	numberOfParameters := anOldSelector numArgs.
-	self assert: anIndex isValidIndexFor: numberOfParameters.
-	isAddingLast := anIndex > numberOfParameters.
-	
-	^self 
-		named: aNewParameter 
-		at: anIndex
-		addingLast: isAddingLast 
-		initializedWith: aNewParameterValue 
-		to: anOldSelector 
-		implementing: (self newSelectorAdding: aNewKeyword at: anIndex to: anOldSelector) 
-		addingToImplementors: (self keywordImplementorTrailingFor: aNewKeyword and: aNewParameter addingLast: isAddingLast) 
-		addingToSenders: (self keywordSenderTrailingFor: aNewKeyword and: validNewParameterValue addingLast: isAddingLast)
-		implementors: implementorsCollection 
-		senders: sendersCollection
-! !
-
-!AddParameter class methodsFor: 'instance creation' stamp: 'HAW 9/4/2018 19:32:45'!
-named: aNewParameter 
-	initializedWith: aNewParameterValue 
-	toUnarySelector: anOldSelector  
-	implementors: implementorsCollection 
-	senders: sendersCollection
-
-	| validNewParameterValue |
-	
-	self assertIsUnary: anOldSelector.
-	validNewParameterValue := self assertNewParameterValueIsValid: aNewParameterValue.
-
-	^self 
-		named: aNewParameter 
-		at: 1
-		addingLast: true
-		initializedWith: aNewParameterValue 
-		to: anOldSelector 
-		implementing: (self newSelectorFromUnary: anOldSelector)
-		addingToImplementors: (self unaryImplementorTrailingFor: aNewParameter)
-		addingToSenders: (self unarySenderTrailingFor: validNewParameterValue)
-		implementors: implementorsCollection 
-		senders: sendersCollection
-! !
-
-!AddParameter class methodsFor: 'instance creation' stamp: 'HAW 9/4/2018 17:26:10'!
-named: aNewParameter 
-	initializedWith: aNewParameterValue
-	using: aNewKeyword 
-	toKeywordSelector: anOldSelector  
-	implementors: implementorsCollection 
-	senders: sendersCollection
-
-	^self 
-		named: aNewParameter 
-		at: anOldSelector numArgs + 1
-		initializedWith: aNewParameterValue
-		using: aNewKeyword 
-		toKeywordSelector: anOldSelector  
-		implementors: implementorsCollection 
-		senders: sendersCollection
-! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 19:05:41'!
-keywordImplementorTrailingFor: aNewKeyword and: aNewParameter addingLast: isAddingLast
-
-	^String streamContents: [ :stream |
-		isAddingLast ifTrue: [ stream space ].
-		stream
-			nextPutAll: aNewKeyword;
-			space;
-			nextPutAll: aNewParameter;
-			space ]! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 19:23:31'!
-keywordSenderTrailingFor: aNewKeyword and: aNewParameterValue addingLast: isAddingLast
-
-	^String streamContents: [ :stream |
-		isAddingLast ifTrue: [ stream space ].
-		stream
-			nextPutAll: aNewKeyword;
-			space;
-			nextPutAll: aNewParameterValue.
-		isAddingLast ifFalse: [ stream space ] ]
-
-	! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 19:00:16'!
-named: aNewParameter 
-	at: anIndex
-	addingLast: isAddingLast
-	initializedWith: aNewParameterValue 
-	to: anOldSelector 
-	implementing: aNewSelector
-	addingToImplementors: implementorTrailingString 
-	addingToSenders: senderTrailingString
-	implementors: implementorsCollection 
-	senders: sendersCollection
-
-	| trimmedNewParameter |
-	
-	trimmedNewParameter := aNewParameter withBlanksTrimmed.
-	
-	self assertCanAddParameterTo: anOldSelector.
-	self assertIsValidParameterName: trimmedNewParameter.
-	self assertNewParameter: trimmedNewParameter isNotDefinedAsInstanceVariableInAny: implementorsCollection.
-	self assertNewParameter: trimmedNewParameter isNotDefinedAsLocalInAny: implementorsCollection.
-	self assertAllImplementors: implementorsCollection haveSame: anOldSelector.
-	self assertAllSenders: sendersCollection send: anOldSelector.
-	
-	^ self new 
-		initializedNamed: trimmedNewParameter
-		at: anIndex 
-		addingLast: isAddingLast
-		initializedWith: aNewParameterValue 
-		to: anOldSelector 
-		implementing: aNewSelector
-		addingToImplementors: implementorTrailingString 
-		addingToSenders: senderTrailingString
-		implementors: implementorsCollection 
-		senders: sendersCollection
-! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 21:32:44'!
-newSelectorAdding: aNewKeyword at: anIndex to: anOldSelector
-
-	| keywords |
-	
-	keywords := anOldSelector keywords asOrderedCollection. 
-	keywords add: aNewKeyword beforeIndex: anIndex.
-	
-	^Symbol fromCollectionOfStrings: keywords.
-	
-	! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 8/18/2018 12:14:00'!
-newSelectorFromUnary: anOldSelector
-
-	^(anOldSelector, ':') asSymbol! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 8/18/2018 12:15:49'!
-unaryImplementorTrailingFor: aNewParameter
-
-	^ ': ', aNewParameter! !
-
-!AddParameter class methodsFor: 'instance creation - private' stamp: 'HAW 8/18/2018 12:16:32'!
-unarySenderTrailingFor: aNewParameterValue
-
-	^ ': ', aNewParameterValue! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/25/2018 11:34:59'!
-addParenthesisTo: trimmedNewParameterValue ifNewParameterValueIsKeywordMessage: newParameterValueMethodNode
-
-	| newParameterNode |
-	
-	newParameterNode := newParameterValueMethodNode block statements first expr.
-		
-	^ (self hasToAddParenthesisBasedOn: newParameterNode)
-		ifTrue: [ '(', trimmedNewParameterValue, ')' ]
-		ifFalse: [ trimmedNewParameterValue ]
-	! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/4/2018 20:08:37'!
-assert: anIndex isValidIndexFor: aNumberOfParameters
-
-	(anIndex isInteger and: [ (anIndex between: 1 and: aNumberOfParameters + 1)]) ifFalse: [ self signalInvalidParameterIndex: anIndex for: aNumberOfParameters ]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 16:02:12'!
-assertCanAddParameterTo: aSelector
-
-	aSelector isInfix ifTrue: [ self signalSelectorCanNotBeBinary]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 12:29:54'!
-assertIsKeyword: aSelector
-
-	aSelector isKeyword ifFalse: [ self signalSelectorMustBeKeyword]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 12:23:04'!
-assertIsUnary: aSelector
-
-	aSelector isUnary ifFalse: [ self signalSelectorMustBeUnary]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 16:30:01'!
-assertIsValidKeywordForNewParameter: aNewKeyword
-
-	(aNewKeyword isKeyword and: [aNewKeyword numArgs = 1 ]) ifFalse: [ self signalNotValidKeywordForNewParameter]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/17/2018 12:30:40'!
-assertIsValidParameterName: aName
-
-	| scannedNames |
-
-	scannedNames _ Scanner new scanFieldNames: aName.
-	scannedNames size = 1 ifFalse: [ self signalInvalidParameterName: aName ].
-	scannedNames first = aName ifFalse: [ self signalInvalidParameterName: aName ].
-! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/17/2018 16:59:29'!
-assertNewParameter: aNewParameter isNotDefinedAsInstanceVariableInAny: implementors
-
-	| classesDefiningInsVars |
-	
-	classesDefiningInsVars := self classesDefiningInstanceVariable: aNewParameter inAny: implementors.
-	classesDefiningInsVars notEmpty ifTrue: [ self signalNewParameter: aNewParameter definedAsInstanceVariableIn: classesDefiningInsVars ]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/17/2018 16:59:47'!
-assertNewParameter: aNewParameter isNotDefinedAsLocalInAny: implementors
-
-	| implementorsDefiningNewParameterAsLocal |
-	
-	implementorsDefiningNewParameterAsLocal := implementors select: [ :implementor | implementor methodNode hasLocalNamed: aNewParameter ].
-	implementorsDefiningNewParameterAsLocal notEmpty ifTrue: [ 
-		self signalNewParameter: aNewParameter isDefinedAsLocalIn: implementorsDefiningNewParameterAsLocal ]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/25/2018 11:30:18'!
-assertNewParameterValueCompiles: trimmedNewParameterValue
-
-	^ [ Parser new parse: trimmedNewParameterValue readStream class: self noPattern: true notifying: nil ifFail: [nil] ]
-		on: SyntaxErrorNotification 
-		do: [ :error | self signalNewParameterValueDoesNotCompile ].! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/25/2018 11:31:42'!
-assertNewParameterValueDoesNotHaveMoreThanOneStatement: newParameterValueMethodNode
-
-	newParameterValueMethodNode block statements size = 1 ifFalse: [ self signalNewParameterValueCanNotHaveMoreThanOneStatement ].
-	! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/17/2018 12:21:40'!
-assertNewParameterValueIsNotEmpty: aNewParameterValue
-
-	aNewParameterValue withBlanksTrimmed isEmpty ifTrue: [ self signalNewParameterValueCanNotBeEmpty]! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/25/2018 11:33:38'!
-assertNewParameterValueIsValid: aNewParameterValue
-
-	| newParameterValueMethodNode trimmedNewParameterValue |
-	
-	trimmedNewParameterValue := aNewParameterValue withBlanksTrimmed.
-	self assertNewParameterValueIsNotEmpty: trimmedNewParameterValue.
-
-	newParameterValueMethodNode := self assertNewParameterValueCompiles: trimmedNewParameterValue.
-	self assertNewParameterValueDoesNotHaveMoreThanOneStatement: newParameterValueMethodNode.
-	
-	^self addParenthesisTo: trimmedNewParameterValue ifNewParameterValueIsKeywordMessage: newParameterValueMethodNode.
-	! !
-
-!AddParameter class methodsFor: 'pre-conditions' stamp: 'HAW 8/25/2018 11:35:10'!
-hasToAddParenthesisBasedOn: newParameterNode
-	
-	^ newParameterNode isMessageNode and: [  newParameterNode selector key isKeyword ]! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 15:05:29'!
-classesDefiningInstanceVariable: aName inAny: implementors
- 
-	^ implementors 
-		inject: Set new
-		into: [ :classesDefiningInstVar :implementor | 
-			(implementor methodClass whichClassDefinesInstanceVariable: aName ifNone: [ nil ]) ifNotNil: [ :classDefiningInstVar |
-				classesDefiningInstVar add: classDefiningInstVar ].
-			classesDefiningInstVar ]
-! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 9/4/2018 20:03:25'!
-errorMessageForInvalidParameterIndex: anIndex for: aNumberOfParameters
-
-	^anIndex printString, ' is an invalid insertion index. It has to be between 1 and ', (aNumberOfParameters + 1) printString! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:31:35'!
-errorMessageForInvalidParameterName: aName
-
-	^ '''' , aName , ''' is not a valid parameter name'.! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 15:18:46'!
-errorMessageForNewParameter: aNewParameter definedAsInstanceVariableIn: definingClasses
-
-	^ String streamContents: [ :messageStream |
-		messageStream 
-			nextPutAll: definingClasses asCommaStringAnd;
-			space;
-			nextPutAll: (definingClasses size = 1 ifTrue: [ 'defines' ] ifFalse: [ 'define' ]);
-			space;
-			nextPutAll: aNewParameter;
-			nextPutAll: ' as instance variable' ]! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 9/2/2018 19:59:27'!
-errorMessageForNewParameterDefinedAsLocal: aNewParameter
-
-	^ aNewParameter, ' is already defined as parameter or temporary'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:22:31'!
-newParameterValueCanNotBeEmptyErrorMessage
-	
-	^'New parameter value can not be empty'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/25/2018 11:26:54'!
-newParameterValueCanNotHaveMoreThanOneStatementErrorMessage
-	
-	^'New parameter value can not have more than one statement'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:24:53'!
-newParameterValueDoesNotCompileErrorMessage
-	
-	^'New parameter value code does not compile'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 16:31:03'!
-notValidKeywordForNewParameterErrorMessage
-	
-	^'New keyword must be of keyword type with one parameter'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 12/13/2018 17:46:33'!
-selectorCanNotBeBinaryErrorMessage
-	
-	^'Can not add parameter to a binary selector.
-Rename it to a keyword message first.'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:26:46'!
-selectorMustBeKeywordErrorMessage
-	
-	^'Selector must be of keyword type'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:23:47'!
-selectorMustBeUnaryErrorMessage
-	
-	^'Selector must be unary'! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 9/4/2018 20:02:24'!
-signalInvalidParameterIndex: anIndex for: aNumberOfParameters
-
-	self refactoringError: (self errorMessageForInvalidParameterIndex: anIndex for: aNumberOfParameters)! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:31:15'!
-signalInvalidParameterName: aName
-
-	self refactoringError: (self errorMessageForInvalidParameterName: aName)
-
-! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 15:11:03'!
-signalNewParameter: aNewParameter definedAsInstanceVariableIn: definingClasses
-
-	self refactoringError: (self errorMessageForNewParameter: aNewParameter definedAsInstanceVariableIn: definingClasses)! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 9/2/2018 19:59:27'!
-signalNewParameter: aNewParameter isDefinedAsLocalIn: implementors
-
-	self 
-		canNotRefactorDueToReferencesError: (self errorMessageForNewParameterDefinedAsLocal: aNewParameter)
-		references: (implementors collect: [ :implementor | MethodReference method: implementor ])
-		to: aNewParameter 
-	 ! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:22:07'!
-signalNewParameterValueCanNotBeEmpty
-	
-	self refactoringError: self newParameterValueCanNotBeEmptyErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/25/2018 11:27:05'!
-signalNewParameterValueCanNotHaveMoreThanOneStatement
-	
-	self refactoringError: self newParameterValueCanNotHaveMoreThanOneStatementErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 12:24:53'!
-signalNewParameterValueDoesNotCompile
-	
-	self refactoringError: self newParameterValueDoesNotCompileErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 16:25:55'!
-signalNotValidKeywordForNewParameter
-	
-	self refactoringError: self notValidKeywordForNewParameterErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:35:05'!
-signalSelectorCanNotBeBinary
-	
-	self refactoringError: self selectorCanNotBeBinaryErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:29:54'!
-signalSelectorMustBeKeyword
-	
-	self refactoringError: self selectorMustBeKeywordErrorMessage! !
-
-!AddParameter class methodsFor: 'exceptions' stamp: 'HAW 8/18/2018 12:23:26'!
-signalSelectorMustBeUnary
-	
-	self refactoringError: self selectorMustBeUnaryErrorMessage! !
-
-!RemoveParameter methodsFor: 'initialization' stamp: 'HAW 9/4/2018 14:31:23'!
-initializeNamed: aParameterToRemove
-	ofKeywordAtIndex: aParameterIndex
-	from: anOldSelector 
-	creating: aNewSelector 
-	implementors: implementorsCollection 
-	senders: sendersCollection
-	
-	super initializeFrom: anOldSelector to: aNewSelector implementors: implementorsCollection senders: sendersCollection.
-
-	parameterToRemove := aParameterToRemove.
-	parameterIndex := aParameterIndex.
-	senderReplacementString := newSelector isUnary ifTrue: [ newSelector asString ] ifFalse: [ '' ].
-	isLastParameter := oldSelector numArgs = parameterIndex 
-	! !
-
-!RemoveParameter methodsFor: 'create new implementors - private' stamp: 'HAW 9/4/2018 14:42:51'!
-implementorNewSourceCodeOf: anImplementor
-
-	| implementorMethodNode newSource originalSource parameterToRemovePosition selectorToRemovePosition |
-	
-	implementorMethodNode := anImplementor methodNode.
-	selectorToRemovePosition := implementorMethodNode selectorKeywordPositionAt: parameterIndex.
-	parameterToRemovePosition := implementorMethodNode parameterDefinitionPositionAt: parameterIndex.
-
-	originalSource := anImplementor sourceCode.
-	newSource := String streamContents: [ :newSourceStream | 
-		self writeBeforeKeywordIn: newSourceStream from: originalSource removing: selectorToRemovePosition.
-		self writeAfterParameterIn: newSourceStream from: originalSource removing: parameterToRemovePosition ].
-		
-	^newSource! !
-
-!RemoveParameter methodsFor: 'create new implementors - private' stamp: 'HAW 9/4/2018 14:42:51'!
-writeAfterParameterIn: newSourceStream from: originalSource removing: parameterToRemovePosition
-	
-	| afterParameterPosition |
-	
-	afterParameterPosition := parameterToRemovePosition last.
-	isLastParameter ifFalse: [ afterParameterPosition := self lastSeparatorIndexIn: originalSource startingFrom: afterParameterPosition ].
-	
-	newSourceStream nextPutAll: (originalSource copyFrom: afterParameterPosition + 1 to: originalSource size) 	! !
-
-!RemoveParameter methodsFor: 'create new implementors - private' stamp: 'HAW 9/4/2018 14:35:27'!
-writeBeforeKeywordIn: newSourceStream from: originalSource removing: selectorToRemovePosition
-
-	newSelector isUnary 
-		ifTrue: [ newSourceStream nextPutAll: newSelector ]
-		ifFalse: [ newSourceStream nextPutAll: (originalSource copyFrom: 1 to: selectorToRemovePosition first - 1) ].
-! !
-
-!RemoveParameter methodsFor: 'rename senders - private' stamp: 'HAW 9/4/2018 17:42:53'!
-addMessageSendSelectorKeywordRangesOf: aMethodNode to: rangesToKeywords
-	
-	| keywordAndParameterPositions senderSourceCode |
-	
-	senderSourceCode := aMethodNode sourceText.
-	keywordAndParameterPositions := aMethodNode messageSendKeywordAndParameterPositionsAt: parameterIndex of: oldSelector ifAbsent: [ #() ].
-	keywordAndParameterPositions do: [ :aKeywordAndParameterPosition | | lastPosition |
-		lastPosition := self lastSeparatorIndexIn: senderSourceCode startingFrom: aKeywordAndParameterPosition last.
-		rangesToKeywords add: (aKeywordAndParameterPosition first to: lastPosition) -> senderReplacementString ]
-	! !
-
-!RemoveParameter methodsFor: 'rename senders - private' stamp: 'HAW 9/4/2018 12:10:34'!
-lastSeparatorIndexIn: senderSourceCode startingFrom: aPosition
-
-	| lastPosition senderSourceCodeSize |
-	
-	lastPosition := aPosition.
-	senderSourceCodeSize := senderSourceCode size.
-	[ lastPosition := lastPosition + 1.
-	lastPosition <= senderSourceCodeSize and: [ (senderSourceCode at: lastPosition) isSeparator ]] whileTrue. 
-
-	^lastPosition - 1! !
-
-!RemoveParameter class methodsFor: 'instance creation' stamp: 'HAW 9/4/2018 15:17:51'!
-named: aParameterToRemove from: aMethod implementors: implementorsCollection senders: sendersCollection
-	
-	| oldSelector methodNode parameterIndex newSelector |
-	
-	oldSelector := aMethod selector.
-	self assertCanRemoveParameterFrom: oldSelector.
-	
-	methodNode := aMethod methodNode.
-	parameterIndex := self assert: aParameterToRemove isDefinedIn: methodNode.
-	self assertAllImplementors: implementorsCollection haveSame: oldSelector.
-	self assertAllSenders: sendersCollection send: oldSelector.
-	self assertNoImplementorFrom: implementorsCollection reference: aParameterToRemove definedAt: parameterIndex.
-	
-	newSelector := self newSelectorFrom: oldSelector removingParameterAt: parameterIndex.
-	
-	^self new 
-		initializeNamed: aParameterToRemove
-		ofKeywordAtIndex: parameterIndex
-		from: oldSelector 
-		creating: newSelector 
-		implementors: implementorsCollection 
-		senders: sendersCollection
-! !
-
-!RemoveParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/2/2018 20:07:30'!
-assert: aParamerterToRemove isDefinedIn: methodNode
-
-	| parameterIndex |
-	
-	parameterIndex := methodNode arguments findFirst: [ :aParameterNode | aParameterNode name = aParamerterToRemove ].
-	parameterIndex = 0 ifTrue: [ self signalParameterNotInMessage: aParamerterToRemove ].
-	
-	^parameterIndex 
-		! !
-
-!RemoveParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/4/2018 15:18:13'!
-assertCanRemoveParameterFrom: oldSelector
-
-	self assertIsNotUnary: oldSelector.
-	self assertIsNotBinary: oldSelector.! !
-
-!RemoveParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/1/2018 12:34:26'!
-assertIsNotBinary: aSelector
-
-	aSelector isInfix ifTrue: [ self signalCanNotRemoveParameterFromBinaryMessages]! !
-
-!RemoveParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/1/2018 12:37:00'!
-assertIsNotUnary: aSelector
-
-	aSelector isUnary ifTrue: [ self signalCanNotRemoveParameterFromUnaryMessages]! !
-
-!RemoveParameter class methodsFor: 'pre-conditions' stamp: 'HAW 9/4/2018 15:41:24'!
-assertNoImplementorFrom: implementorsCollection reference: aParamerterToRemove definedAt: parameterIndex
-
-	| implementorsReferencingParameter |
-	
-	implementorsReferencingParameter := implementorsCollection select: [:anImplementor | anImplementor referencesParameterAt: parameterIndex ].
-	
-	implementorsReferencingParameter isEmpty ifFalse: [ self signalCanNotRemove: aParamerterToRemove dueToReferencesIn: implementorsReferencingParameter ].! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 1/7/2019 15:31:35'!
-canNotRemoveParameterFromBinaryMessagesErrorMessage
-	
-	^'Can not remove parameter from binary messages.
-Rename message to a keyword one first'! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/1/2018 12:36:43'!
-canNotRemoveParameterFromUnaryMessagesErrorMessage
-	
-	^'There is no parameter to remove in unary messages'! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/2/2018 19:40:52'!
-errorMessageForParameterNotInMessage: aParameterToRemove
-
-	^aParameterToRemove, ' is not define as parameter'! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/3/2018 16:27:21'!
-errorMessageForParameterToRemoveIsReferenced: aParameterToRemove
-
-	^aParameterToRemove, ' is being referenced in implementors'! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/2/2018 20:21:43'!
-signalCanNotRemove: aParameterToRemove dueToReferencesIn: implementorsReferencingParameterToRemove
-
-	self 
-		canNotRefactorDueToReferencesError: (self errorMessageForParameterToRemoveIsReferenced: aParameterToRemove)
-		references: (implementorsReferencingParameterToRemove collect: [ :implementor | MethodReference method: implementor ])
-		to: aParameterToRemove 
-	 ! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/1/2018 12:34:45'!
-signalCanNotRemoveParameterFromBinaryMessages
-	
-	self refactoringError: self canNotRemoveParameterFromBinaryMessagesErrorMessage! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/1/2018 12:37:00'!
-signalCanNotRemoveParameterFromUnaryMessages
-	
-	self refactoringError: self canNotRemoveParameterFromUnaryMessagesErrorMessage! !
-
-!RemoveParameter class methodsFor: 'exceptions' stamp: 'HAW 9/2/2018 19:40:22'!
-signalParameterNotInMessage: aParameterToRemove
-
-	self refactoringError: (self errorMessageForParameterNotInMessage: aParameterToRemove)! !
-
-!RemoveParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 21:22:36'!
-newSelectorConcatenating: oldSelectorKeywords removingAt: anIndex
-	
-	| keywords |
-	
-	keywords := oldSelectorKeywords asOrderedCollection.
-	keywords removeIndex: anIndex.
-	
-	^Symbol fromCollectionOfStrings: keywords.! !
-
-!RemoveParameter class methodsFor: 'instance creation - private' stamp: 'HAW 9/4/2018 21:30:47'!
-newSelectorFrom: oldSelector removingParameterAt: parameterIndex
-
-	| oldSelectorKeywords newSelector |
-	
-	oldSelectorKeywords := oldSelector keywords.
-	
-	newSelector := oldSelectorKeywords size = 1 
-		ifTrue: [ oldSelector allButLast asSymbol ]
-		ifFalse: [ self newSelectorConcatenating: oldSelectorKeywords removingAt: parameterIndex ].
-	
-	^newSelector! !
-
-!RenameSelector methodsFor: 'create new implementors - private' stamp: 'HAW 9/3/2018 19:49:44'!
-implementorNewSourceCodeOf: anImplementor
-
-	|  newSource rangesToNewKeywords |
-	
-	rangesToNewKeywords := OrderedCollection new.
-	anImplementor methodNode selectorKeywordsPositions withIndexDo: [ :aKeywordRange :index | 
-		rangesToNewKeywords add: aKeywordRange -> (newSelectorKeywords at: index) ].
-		
-	newSource := anImplementor sourceCode copyReplacing: rangesToNewKeywords.	
-	^newSource! !
-
-!RenameSelector methodsFor: 'rename senders - private' stamp: 'HAW 9/3/2018 19:47:38'!
-addMessageSendSelectorKeywordRangesOf: aMethodNode to: rangesToKeywords
-	
-	| oldSelectorKeywordsRanges |
-	
-	oldSelectorKeywordsRanges := aMethodNode messageSendSelectorKeywordPositionsOf: oldSelector ifAbsent: [ #() ].
-	oldSelectorKeywordsRanges do: [ :aMessageSendSelectorRanges | 
-		aMessageSendSelectorRanges withIndexDo: [ :aRange :index | rangesToKeywords add: aRange -> (newSelectorKeywords at: index) ]].
-	! !
-
-!RenameSelector methodsFor: 'initialization' stamp: 'HAW 9/3/2018 17:14:47'!
-initializeFrom: anOldSelector to: aNewSelector implementors: aCollectionOfImplementors senders: aCollectionOfSenders
-	
-	super initializeFrom: anOldSelector to: aNewSelector implementors: aCollectionOfImplementors senders: aCollectionOfSenders.
-	
-	newSelectorKeywords := newSelector keywords.	
-	! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 5/25/2017 20:02:05'!
-assert: aNewSelector hasTheSameNumberOfArgumentsAs: anOldSelector
-
-	aNewSelector numArgs ~= anOldSelector numArgs ifTrue: [ self signalNewSelector: aNewSelector doesNotHaveSameNumberOfArgumentsAs: anOldSelector ]! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 5/26/2017 00:41:25'!
-assert: aNewSelector isNotEqualTo: anOldSelector
-
-	 aNewSelector = anOldSelector ifTrue: [ self signalNewSelectorEqualToOldSelector]! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 12/13/2018 18:53:51'!
-assert: aNewSelector isOfSameTypeAs: anOldSelector
-
-	(self isRenamigBetweenBinary: anOldSelector andKeywordOfOneParameter: aNewSelector) ifTrue: [ ^self ].
-	(self isRenamigBetweenBinary: aNewSelector andKeywordOfOneParameter: anOldSelector) ifTrue: [ ^self ].
-
-	aNewSelector precedence ~= anOldSelector precedence ifTrue: [ 
-		self signalNewSelector: aNewSelector isNotOfSameTypeAs: anOldSelector ]! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 6/3/2017 11:54:48'!
-assertIsNotEmpty: aCollection signalMessageText: errorMessageText
-
-	aCollection isEmpty ifTrue: [ self refactoringError: errorMessageText ].! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 5/26/2017 00:44:37'!
-assertIsValidToRenameFrom: anOldSelector to: aNewSelector
-	
-	self assertIsNotEmpty: anOldSelector signalMessageText: self oldSelectorCanNotBeEmptyErrorMessage.
-	self assertIsNotEmpty: aNewSelector signalMessageText: self newSelectorCanNotBeEmptyErrorMessage.
-	self assert: aNewSelector isNotEqualTo: anOldSelector.
-	self assert: aNewSelector isOfSameTypeAs: anOldSelector.
-	self assert: aNewSelector hasTheSameNumberOfArgumentsAs: anOldSelector.
-	! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 5/31/2017 19:38:12'!
-assertNoImplementorClassIn: implementorsCollection implements: aNewSelector
-
-	| classesImplementingNewSelector |
-	
-	classesImplementingNewSelector := implementorsCollection 
-		select: [ :anImplementor | anImplementor methodClass includesSelector: aNewSelector ]
-		thenCollect: [ :anImplementor | anImplementor methodClass ].
-		
-	classesImplementingNewSelector notEmpty ifTrue: [ self signalNewSelector: aNewSelector implementedInAll: classesImplementingNewSelector ]! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 12/13/2018 18:52:19'!
-isRenamigBetweenBinary: aPotentiallyBinarySelector andKeywordOfOneParameter: aPotentiallyKeywordSelector
-
-	^aPotentiallyBinarySelector isInfix 
-		and: [ aPotentiallyKeywordSelector isKeyword
-		and: [ aPotentiallyKeywordSelector numArgs = 1 ]]
-! !
-
-!RenameSelector class methodsFor: 'pre-conditions' stamp: 'HAW 5/31/2017 20:56:22'!
-warnIfImplementionsOf: aNewSelector overridesImplementationInSuperclassesOf: implementorsCollection
-
-	implementorsCollection do: [:anImplementor |
-		anImplementor methodClass 
-			withSuperclassThatIncludesSelector: aNewSelector 
-			do: [ :aSuperclass | self warnImplementionOf: aNewSelector in: anImplementor methodClass willOverrideImplementationIn: aSuperclass ]
-			ifNone: []]! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/25/2017 19:59:44'!
-errorMessageForNewSelector: aNewSelector doesNotHaveSameNumberOfArgumentsAs: anOldSelector
-
-	^'New selector #', aNewSelector, ' does not have the same number of arguments as #', anOldSelector ! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/31/2017 19:41:36'!
-errorMessageForNewSelector: aNewSelector implementedInAll: classesImplementingNewSelector
-
-	^'Can not rename because #', aNewSelector, ' is implemented in: ', classesImplementingNewSelector asCommaStringAnd ! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/25/2017 19:54:05'!
-errorMessageForNewSelector: aNewSelector isNotOfSameTypeAs: anOldSelector
-
-	^'New selector #', aNewSelector, ' is not of same type as #', anOldSelector ! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/25/2017 18:51:46'!
-implementorsCanNotBeEmptyErrorMessage
-	
-	^'There are no methods to rename'! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/25/2017 18:49:15'!
-newSelectorCanNotBeEmptyErrorMessage
-	
-	^'New selector can not be empty'! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/26/2017 00:40:01'!
-newSelectorEqualToOldSelectorErrorMessage
-	
-	^'There is nothing to rename when new selector is equals to old selector'! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 5/25/2017 18:49:07'!
-oldSelectorCanNotBeEmptyErrorMessage
-	
-	^'Old selector can not be empty'! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:55:23'!
-signalNewSelector: aNewSelector doesNotHaveSameNumberOfArgumentsAs: anOldSelector
-	
-	self refactoringError: (self errorMessageForNewSelector: aNewSelector doesNotHaveSameNumberOfArgumentsAs: anOldSelector).! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:55:38'!
-signalNewSelector: aNewSelector implementedInAll: classesImplementingNewSelector
-	
-	self refactoringError: (self errorMessageForNewSelector: aNewSelector implementedInAll: classesImplementingNewSelector).! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:55:54'!
-signalNewSelector: aNewSelector isNotOfSameTypeAs: anOldSelector
-
-	self refactoringError: (self errorMessageForNewSelector: aNewSelector isNotOfSameTypeAs: anOldSelector).! !
-
-!RenameSelector class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:55:58'!
-signalNewSelectorEqualToOldSelector
-
-	self refactoringError: self newSelectorEqualToOldSelectorErrorMessage.! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/31/2017 19:58:50'!
-from: anOldSelector to: aNewSelector implementors: aCollectionOfImplementors senders: aCollectionOfSenders
-
-	self assertIsValidToRenameFrom: anOldSelector to: aNewSelector.
-	self assertIsNotEmpty: aCollectionOfImplementors signalMessageText: self implementorsCanNotBeEmptyErrorMessage.
-	self assertAllImplementors: aCollectionOfImplementors haveSame: anOldSelector.
-	self assertNoImplementorClassIn: aCollectionOfImplementors implements: aNewSelector.
-	self assertAllSenders: aCollectionOfSenders send: anOldSelector.
-	
-	self warnIfImplementionsOf: aNewSelector overridesImplementationInSuperclassesOf: aCollectionOfImplementors.
-	
-	^self new initializeFrom: anOldSelector to: aNewSelector implementors: aCollectionOfImplementors senders: aCollectionOfSenders
-	! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/26/2017 00:04:36'!
-from: anOldSelector to: aNewSelector in: aClassToRefactor
-
-	| implementors senders |
-	
-	implementors := OrderedCollection new.
-	senders := OrderedCollection new.
-	
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders forClassAndMetaOf: aClassToRefactor theNonMetaClass.
-	
-	^self from: anOldSelector to: aNewSelector implementors: implementors senders: senders ! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/30/2017 17:45:16'!
-from: anOldSelector to: aNewSelector inCategoriesAndHierarchyOf: aClass organizedBy: anOrganization
-
-	| implementors senders |
-	
-	implementors := IdentitySet new.
-	senders := IdentitySet new.
-
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inCategoriesAndHierarchyOf: aClass organizedBy: anOrganization.
-	
-	^self from: anOldSelector to: aNewSelector implementors: implementors senders: senders 
-! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/25/2017 23:59:19'!
-from: anOldSelector to: aNewSelector inCategoryOf: aClass organizedBy: anOrganization
-
-	| implementors senders |
-	
-	implementors := OrderedCollection new.
-	senders := OrderedCollection new.
-
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inCategory: aClass category organizedBy: anOrganization.
-	
-	^self from: anOldSelector to: aNewSelector implementors: implementors senders: senders 
-! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/25/2017 23:53:57'!
-from: anOldSelector to: aNewSelector inHierarchyOf: aClass 
-	
-	| implementors senders |
-	
-	implementors := OrderedCollection new.
-	senders := OrderedCollection new.
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inHierarchyOf: aClass.
-	
-	^self from: anOldSelector to: aNewSelector implementors: implementors senders: senders 
-	
-	! !
-
-!RenameSelector class methodsFor: 'instance creation' stamp: 'HAW 5/30/2017 17:47:27'!
-from: anOldSelector to: aNewSelector inSystem: aSystem
-
-	| implementors senders |
-	
-	implementors := OrderedCollection new.
-	senders := OrderedCollection new.
-	
-	self addImplementorsOf: anOldSelector to: implementors andSendersTo: senders inSystem: aSystem.
-		
-	^self from: anOldSelector to: aNewSelector implementors: implementors senders: senders 
-	! !
-
-!RenameSelector class methodsFor: 'warnings' stamp: 'HAW 6/3/2017 12:01:34'!
-warnImplementionOf: aNewSelector in: aClass willOverrideImplementationIn: aSuperclass
-	
-	self refactoringWarning: (self warningMessageForImplementationOf: aNewSelector in: aClass willOverrideImplementationIn: aSuperclass).! !
-
-!RenameSelector class methodsFor: 'warnings' stamp: 'HAW 8/1/2018 18:15:01'!
-warningMessageForImplementationOf: aNewSelector in: aClass willOverrideImplementationIn: aSuperclass
-
-	^'Implemention of #', aNewSelector, ' in ', aClass name, ' will override implementation in ', aSuperclass name! !
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:35:24'!
+creationWithSelector: aSelector failsWithMessageText: anErrorMessageBlock
+
+	self
+		should: [VariablesToParametrizeKeywordsDefinitions withSelector: aSelector]
+		raise: RefactoringError
+		withMessageText: anErrorMessageBlock.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/13/2019 14:16:54'!
+test01SelectorMustNotBeEmpty
+
+	self
+		creationWithSelector: '' asSymbol
+		failsWithMessageText: [
+			VariablesToParametrizeKeywordsDefinitions selectorMustNotBeEmptyErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/13/2019 14:14:45'!
+test02SelectorMustNotContainInvalidCharacters
+
+	self
+		creationWithSelector: 'abc@#$' asSymbol
+		failsWithMessageText: [
+			VariablesToParametrizeKeywordsDefinitions selectorMustNotContainInvalidCharactersErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/13/2019 14:19:07'!
+test03SelectorMustNotStartWithInvalidStartOfSelector
+
+	self
+		creationWithSelector: '1sadkljfh' asSymbol
+		failsWithMessageText: [
+			VariablesToParametrizeKeywordsDefinitions selectorMustNotStartWithInvalidStartOfSelectorErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:35:28'!
+test04CreatesVariablesToParametrizeKeywordsDefinitionsWithSelector
+
+	| variablesToParametrizeKeywordsDefinitions |
+
+	variablesToParametrizeKeywordsDefinitions := VariablesToParametrizeKeywordsDefinitions withSelector: #polymorphicSelector.
+
+	self assert: #polymorphicSelector asString equals: variablesToParametrizeKeywordsDefinitions messageSending.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:48'!
+test05FirstKeywordMustNotStartWithAnInvalidStartOfSelector
+
+	| orderedDefinitions |
+
+	orderedDefinitions := {VariableToParametrizeKeywordDefinition
+		forVariable: 'variableName'
+		useKeyword: '1aKeyword' asSymbol
+		withParameterName: 'parameterName'}.
+
+	self
+		should: [VariablesToParametrizeKeywordsDefinitions with: orderedDefinitions]
+		raise: RefactoringError
+		withMessageText: [VariablesToParametrizeKeywordsDefinitions firstKeywordMustNoStartWithInvalidStartOfSelectorErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:52'!
+test06ParameterNamesMustNotBeRepeated
+
+	| orderedDefinitionsWithRepeatedParameterNames |
+
+	orderedDefinitionsWithRepeatedParameterNames := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'variableName1'
+			useKeyword: #with
+			withParameterName: 'parameterName'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'variableName2'
+			useKeyword: #with
+			withParameterName: 'parameterName'}.
+
+	self
+		should: [VariablesToParametrizeKeywordsDefinitions with: orderedDefinitionsWithRepeatedParameterNames]
+		raise: RefactoringError
+		withMessageText: [VariablesToParametrizeKeywordsDefinitions parameterNamesMustNotBeRepeatedErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:55'!
+test07VariablesToParametrizeMustNotBeRepeated
+
+	| orderedDefinitionsWithRepeatedVariableNames |
+
+	orderedDefinitionsWithRepeatedVariableNames := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'variableName'
+			useKeyword: #with
+			withParameterName: 'p1'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'variableName'
+			useKeyword: #with
+			withParameterName: 'p2'}.
+
+	self
+		should: [VariablesToParametrizeKeywordsDefinitions with: orderedDefinitionsWithRepeatedVariableNames]
+		raise: RefactoringError
+		withMessageText: [VariablesToParametrizeKeywordsDefinitions variableNamesMustNotBeRepeatedErrorMessage].! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:32:58'!
+test08CreatesVariablesToParametrizeKeywordsDefinitionsWithDefinitions
+
+	| definitions orderedDefinitions |
+
+	orderedDefinitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v1'
+			useKeyword: #k1
+			withParameterName: 'p1'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v2'
+			useKeyword: #k2
+			withParameterName: 'p2'}.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions with: orderedDefinitions.
+
+	self assert: 2 equals: definitions variablesToParametrize size.
+	self assert: (definitions variablesToParametrize includesAllOf: #('v1' 'v2')).! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:35:31'!
+test09WhenNoVariablesToParametrizeBuildsSelector
+
+	| definitions |
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		withSelector: #theSelector.
+
+	self assert: #theSelector equals: definitions selector.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:33:02'!
+test10WhenVariablesToParametrizeBuildsSelectorFromKeywordsInOrder
+
+	| definitions orderedDefinitions |
+
+	orderedDefinitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v1'
+			useKeyword: #k1
+			withParameterName: 'p1'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v2'
+			useKeyword: #k2
+			withParameterName: 'p2'}.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		with: orderedDefinitions.
+
+	self assert: #k1:k2: equals: definitions selector.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 11:39:50'!
+test11WhenVariablesToParametrizeBuildsMessageSending
+
+	| definitions orderedDefinitions |
+
+	orderedDefinitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v1'
+			useKeyword: #k1
+			withParameterName: 'p1'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v2'
+			useKeyword: #k2
+			withParameterName: 'p2'}.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		with: orderedDefinitions.
+
+	self assert: 'k1: v1 k2: v2' equals: definitions messageSending.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 15:56:46'!
+test12WhenNoVariablesToParametrizeBuildsMessageHeader
+
+	| definitions |
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		withSelector: #aRandomSelector.
+
+	self assert: 'aRandomSelector' equals: definitions messageHeader.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'testing' stamp: 'FGJ 3/20/2019 15:56:07'!
+test13WhenVariablesToParametrizeBuildsMessageHeader
+
+	| definitions orderedDefinitions |
+
+	orderedDefinitions := {
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v1'
+			useKeyword: #k1
+			withParameterName: 'p1'.
+		VariableToParametrizeKeywordDefinition
+			forVariable: 'v2'
+			useKeyword: #k2
+			withParameterName: 'p2'}.
+
+	definitions := VariablesToParametrizeKeywordsDefinitions
+		with: orderedDefinitions.
+
+	self assert: 'k1: p1 k2: p2' equals: definitions messageHeader.! !
+
+!VariablesToParametrizeKeywordsDefinitionsTest methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 17:16:19'!
+allClassCategoriesOfTestData
+
+	^Array with: self classCategoryOfTestData ! !
 
 !ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 1/9/2019 15:46:56'!
 apply
 
 	| methodObjectClass |
-	
+
 	methodObjectClass := methodObjectSuperclass
 		subclass: methodObjectClassName
 		instanceVariableNames: (' ' join: methodObjectInstanceVariables )
 		classVariableNames: ''
 		poolDictionaries: ''
 		category: methodObjectCategory.
-	
+
 	self compileInstanceCreationMethodInto: methodObjectClass.
 	self compileExtractedMethodAsEvaluationMethodOn: methodObjectClass.
 	self replaceExtractedMethodWithMethodObjectEvaluation.! !
 
-!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 1/14/2019 15:07:33'!
+!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 16:36:33'!
 compileExtractedMethodAsEvaluationMethodOn: aClass
 
 	| methodNode originalSourceCode endHeaderIndex sourceCodeWithSelectorReplaced disregardType sourceCodeWithVariablesReplaced rangesToNewStrings rangesToNewStringsWithArgsFiltered |
-	
+
 	methodNode :=  methodToExtract methodNode.
 	rangesToNewStrings := SortedCollection sortBlock: [:rangeToStringA :rangeToStringB | rangeToStringA key first < rangeToStringB key first].
 	disregardType := [:aNode | true].
@@ -7811,60 +6066,67 @@ compileExtractedMethodAsEvaluationMethodOn: aClass
 		do: [
 			:aVariableName |
 			| rangesOfVariable |
-			rangesOfVariable := methodNode encoder 
-				rangesForVariable: aVariableName 
-				checkingType: disregardType 
+			rangesOfVariable := methodNode encoder
+				rangesForVariable: aVariableName
+				checkingType: disregardType
 				ifAbsent: [Set new].
-			
-			rangesOfVariable addAll: (methodNode encoder 
-				rangesForLiteralVariableNode: aVariableName 
+
+			rangesOfVariable addAll: (methodNode encoder
+				rangesForLiteralVariableNode: aVariableName
 				ifAbsent: [Set new]).
-					
+
 			rangesOfVariable do: [
 				:aRange |
 				| rangeToNewString instVarForVar |
 				instVarForVar := methodVariableNamesToInstanceVariableNames at: aVariableName.
 				rangeToNewString := Association key: aRange value: instVarForVar.
 				rangesToNewStrings add: rangeToNewString]].
-	
+
 	rangesToNewStringsWithArgsFiltered := self filter: rangesToNewStrings ofArgRangesOf: methodNode.
-	
+
 	originalSourceCode := methodNode sourceText.
 	sourceCodeWithVariablesReplaced := originalSourceCode copyReplacing: rangesToNewStringsWithArgsFiltered.
-	
-	endHeaderIndex := Parser methodHeaderLengthFrom: methodNode sourceText.
-	sourceCodeWithSelectorReplaced := sourceCodeWithVariablesReplaced copyReplacing: { Interval from: 1 to: endHeaderIndex. } with: methodObjectInvocationSelector asString. 
-	aClass compile: sourceCodeWithSelectorReplaced.! !
 
-!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 2/17/2019 15:10:57'!
+	endHeaderIndex := Parser methodHeaderLengthFrom: methodNode sourceText.
+	sourceCodeWithSelectorReplaced := sourceCodeWithVariablesReplaced copyReplacing: { Interval from: 1 to: endHeaderIndex. } with: methodObjectEvaluationSelector asString.
+	aClass compile: sourceCodeWithSelectorReplaced.
+	aClass organization classify: methodObjectEvaluationSelector asSymbol under: #evaluating! !
+
+!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 16:12:49'!
 compileInstanceCreationMethodInto: aClass
 
-	| methodTitle methodBody keywordsWithParam instVarAssignments |
-	
+	| methodTitle methodBody keywordsWithParam instVarAssignments instanceInitializationSelector instanceCreationSelector keywords |
+
 	methodObjectInstanceVariables isEmpty ifTrue: [^true].
-	
+
 	keywordsWithParam := keywordsDefinitions collect: [
-		:keywordDefinition | 
+		:keywordDefinition |
 		(keywordDefinition at: #keyword), ': ', (keywordDefinition at: #parameterName)].
 	methodTitle := ' ' join: keywordsWithParam.
-	
+
 	instVarAssignments := methodObjectInstanceVariables collect: [
 		:instVarName |
 		String tab, instVarName, ' := ', (self parameterNameForInstVarName: instVarName), '.'].
 	methodBody := String newLineString join: instVarAssignments.
-	
-	aClass compile: methodTitle, String newLineString, String tab, methodBody.
-	aClass class compile: methodTitle, String newLineString, String tab, '^self new ', methodTitle.
-	
+
+	aClass class compile: methodTitle, String newLineString, String tab, '^self new initialize', methodTitle capitalized.
+	keywords := keywordsDefinitions collect: [:kd | (kd at: #keyword), ':'].
+	instanceCreationSelector := ('' join: keywords) asSymbol.
+	aClass class organization classify: instanceCreationSelector under: #'instance creation'.
+
+	aClass compile: 'initialize', methodTitle capitalized, String newLineString, methodBody.
+	instanceInitializationSelector := ('initialize', instanceCreationSelector asString capitalized) asSymbol.
+	aClass organization classify: instanceInitializationSelector under: #initialization.
+
 	^true.! !
 
 !ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 12/12/2018 15:07:36'!
 filter: rangesToStrings ofArgRangesOf: aMethodNode
-	
-	| endHeaderIndex 
+
+	| endHeaderIndex
 	|
 	endHeaderIndex := Parser methodHeaderLengthFrom: aMethodNode sourceText.
-	
+
 	^rangesToStrings select: [
 		:rangeToString |
 		rangeToString key first > endHeaderIndex].! !
@@ -7873,43 +6135,43 @@ filter: rangesToStrings ofArgRangesOf: aMethodNode
 methodHeaderFrom: aCompiledMethod
 
 	| headerLength methodToExtractSourceCode |
-	
+
 	methodToExtractSourceCode := methodToExtract methodNode sourceText.
 	headerLength := Parser methodHeaderLengthFrom: methodToExtractSourceCode.
-	
+
 	^methodToExtractSourceCode first: headerLength.
 	! !
 
-!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 11/30/2018 14:58:42'!
+!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 17:12:26'!
 methodToExtractBodySourceCode
 
 	| aStream methodBodyAsBlock |
-	
-	aStream := RWBinaryOrTextStream with: ''.
+
+	aStream := RWBinaryOrTextStream initializeWith: ''.
 	methodBodyAsBlock := methodToExtract methodNode block.
 	methodBodyAsBlock printOn: aStream indent: 0.
 	^self removeBlockEnclosingCharacters: aStream contents.! !
 
 !ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 1/31/2019 13:28:42'!
 onlyReturnsSelf: aMethodNode
-	
-	aMethodNode 
-		accept: (ParseNodeEnumerator 
+
+	aMethodNode
+		accept: (ParseNodeEnumerator
 			ofBlock: [:aNode | (aNode isReturn and: [aNode isReturnSelf not]) ifTrue: [^false]]).
-	
+
 	^true.! !
 
 !ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 2/17/2019 15:26:45'!
 parameterNameForInstVarName: instVarName
 
 	| variableName keywordDefinitionForVariableName |
-	
+
 	variableName := methodVariableNamesToInstanceVariableNames keyAtValue: instVarName.
-	
+
 	keywordDefinitionForVariableName := keywordsDefinitions detect: [
 		:keywordDefinition |
 		(keywordDefinition at: #variableName) = variableName].
-	
+
 	^keywordDefinitionForVariableName at: #parameterName! !
 
 !ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 11/30/2018 14:56:23'!
@@ -7917,11 +6179,11 @@ removeBlockEnclosingCharacters: aBlockSourceCode
 
 	^(aBlockSourceCode withoutPrefix: '[') withoutSuffix: ']'.! !
 
-!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 15:12:45'!
+!ExtractToMethodObject methodsFor: 'as yet unclassified' stamp: 'FGJ 4/10/2019 16:20:27'!
 replaceExtractedMethodWithMethodObjectEvaluation
 
 	| classToRefactor constructorMessage methodToExtractHeader refactoredSourceCode optionalReturn |
-	
+
 	classToRefactor := methodToExtract methodClass.
 	constructorMessage := 'new'.
 	methodObjectInstanceVariables isEmpty ifFalse: [
@@ -7930,20 +6192,20 @@ replaceExtractedMethodWithMethodObjectEvaluation
 			:keywordDefinition |
 			(keywordDefinition at: #keyword), ': ', (keywordDefinition at: #variableName)].
 		constructorMessage := ' ' join: keywordsWithVarNames.].
-	
+
 	methodToExtractHeader := self methodHeaderFrom: methodToExtract.
 	optionalReturn := (self onlyReturnsSelf: methodToExtract methodNode)
 		ifTrue: ['']
 		ifFalse: ['^'].
-	refactoredSourceCode := methodToExtractHeader, 
+	refactoredSourceCode := methodToExtractHeader,
 		String newLineString,
 		String tab,
-		optionalReturn, 
-		'(',methodObjectClassName, ' ', constructorMessage, ') ', methodObjectInvocationSelector asString.
-		
+		optionalReturn,
+		'(',methodObjectClassName, ' ', constructorMessage, ') ', methodObjectEvaluationSelector asString.
+
 	classToRefactor compile: refactoredSourceCode.! !
 
-!ExtractToMethodObject methodsFor: 'initialization' stamp: 'FGJ 2/16/2019 15:10:03'!
+!ExtractToMethodObject methodsFor: 'initialization' stamp: 'FGJ 4/10/2019 16:20:27'!
 from: aCompiledMethod
 toMethodObjectClassNamed: aClassName
 subclassing: aClass
@@ -7959,7 +6221,7 @@ evaluatedWith: anInvocationSelector
 	methodVariableNamesToInstanceVariableNames := variablesToInstanceVariables.
 	keywordsDefinitions := keywordsToVariables.
 	methodObjectInstanceVariables := variablesToInstanceVariables values.
-	methodObjectInvocationSelector := anInvocationSelector.
+	methodObjectEvaluationSelector := anInvocationSelector.
 ! !
 
 !ExtractToMethodObject class methodsFor: 'instance creation' stamp: 'FGJ 12/19/2018 10:08:21'!
@@ -7968,8 +6230,8 @@ toMethodObjectClassNamed: aClassName
 subclassing: aClass
 onCategory: aCategory
 evaluatedWith: anEvaluationSelector
-		
-	^self 
+
+	^self
 		from: aCompiledMethod
 		toMethodObjectClassNamed: aClassName
 		subclassing: aClass
@@ -7979,83 +6241,105 @@ evaluatedWith: anEvaluationSelector
 		evaluatedWith: anEvaluationSelector
 ! !
 
-!ExtractToMethodObject class methodsFor: 'instance creation' stamp: 'HAW 3/4/2019 11:44:45'!
+!ExtractToMethodObject class methodsFor: 'instance creation' stamp: 'FGJ 4/11/2019 11:52:37'!
 from: aCompiledMethod
-	toMethodObjectClassNamed: aClassName
-	subclassing: aClass
-	onCategory: aCategory
-	withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
-	withInstanceCreationMessageFrom: keywordsDefinitions
-	evaluatedWith: anInvocationSelector
-	
+toMethodObjectClassNamed: aClassName
+subclassing: aClass
+onCategory: aCategory
+withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
+withInstanceCreationMessageFrom: keywordsDefinitions
+evaluatedWith: anEvaluationSelector
+
 	| instanceVariableNames instanceCreationMessageKeywords parameterNames |
-	
+
+	self assertMethodToExtractDoesNotReferenceSuper: aCompiledMethod.
+
+	"Method Object classes assertions"
 	self assertMethodObjectSuperclassIsNotMeta: aClass.
 	self newClassPreconditionClass valueFor: aClassName in: Smalltalk  undeclared: Undeclared.
-	
-	self assertMethodToExtractDoesNotReferenceSuper: aCompiledMethod.
-	
+
+	"Assignment assertions"
 	self assertMethodDoesNotContainInstVarAssignments: aCompiledMethod.
-     self assertMethodDoesNotContainClassVarAssignments: aCompiledMethod.
+      self assertMethodDoesNotContainClassVarAssignments: aCompiledMethod.
 	self assertMethodDoesNotContainPoolVarAssignments: aCompiledMethod.
-	
+
+	"Evaluation message selector assertions"
+	self assertEvaluationSelectorMustNotBeEmpty: anEvaluationSelector.
+	self assertEvaluationSelectorMustNotContainInvalidCharacters: anEvaluationSelector.
+	self assertEvaluationSelectorMustNotStartWithAnInvalidStartOfSelector: anEvaluationSelector.
+
 	"Instance variable names assertions"
-	self 
+	self
 		assertAllVariablesToParametrizeFrom: aCompiledMethod
 		haveAnInstanceVariableNameIn: variablesToParametrizeToInstanceVariables.
-	self 
+	self
 		assertAllInstanceVariableNamesIn: variablesToParametrizeToInstanceVariables
 		haveACorrespondingVariableToParametrizeFrom: aCompiledMethod.
-	
+
 	instanceVariableNames := variablesToParametrizeToInstanceVariables values.
-	self 
+	self
 		assertAllInstanceVariableNamesAreValid: instanceVariableNames
 		for: aClass.
 	self assertNoDuplicatedInstanceVariableNames: instanceVariableNames.
-	self 
+	self
 		assertInstanceVariableNames: instanceVariableNames
 		areNotNamedAsMethodTemporariesOf: aCompiledMethod.
 	self
 		assertInstanceVariableNamesFrom: variablesToParametrizeToInstanceVariables
 		areNotShadowedByBlockArgumentsOrTemporariesOf: aCompiledMethod.
-	
+
 	"Keywords assertions"
-	self 
+	self
 		assertAllVariablesToParametrize: variablesToParametrizeToInstanceVariables keys
 		haveOneCorrespondingKeyword: keywordsDefinitions.
 	self
-		assertAllKeywords: keywordsDefinitions 
+		assertAllKeywords: keywordsDefinitions
 		correspondToAVariableToParametrize: variablesToParametrizeToInstanceVariables keys.
-	
+
 	instanceCreationMessageKeywords := keywordsDefinitions collect: [
 		:keywordDefinition |
 		keywordDefinition at: #keyword].
 	self assertKeywordsHaveNoInvalidCharacters: instanceCreationMessageKeywords.
 	self assertKeywordsAreNotEmpty: instanceCreationMessageKeywords.
 	self assertSelectorFromKeywordsStartsWithValidStartOfSelector: instanceCreationMessageKeywords.
-	
+
 	"Instance creation message parameters assertions"
 	parameterNames := keywordsDefinitions collect: [
 		:aKeywordDefinition |
 		aKeywordDefinition at: #parameterName].
 	self assertParameterNamesAreNotDuplicated: parameterNames.
 	self assertParameterNamesAreValid: parameterNames.
-	self assertParameterNames: parameterNames doNotOverlapWithMethodObjectInstanceVariableNames: instanceVariableNames. 
-	
-	^self new 
+	self assertParameterNames: parameterNames doNotOverlapWithMethodObjectInstanceVariableNames: instanceVariableNames.
+
+	^self new
 		from: aCompiledMethod
 		toMethodObjectClassNamed: aClassName
 		subclassing: aClass
 		onCategory: aCategory
 		withExtractedVariablesToInstanceVariables: variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: keywordsDefinitions
-		evaluatedWith: anInvocationSelector
+		evaluatedWith: anEvaluationSelector
 ! !
 
 !ExtractToMethodObject class methodsFor: 'error messages' stamp: 'FGJ 12/17/2018 19:18:12'!
 duplicatedInstanceVariablesErrorMessageFor: duplicateNames
 
 	^'The following instance variables are duplicated: ', ', ' join: duplicateNames, '.'.! !
+
+!ExtractToMethodObject class methodsFor: 'error messages' stamp: 'FGJ 4/11/2019 11:46:31'!
+evaluationSelectorMustNotBeEmptyErrorMessage
+
+	^'The evaluation selector must no be empty.'! !
+
+!ExtractToMethodObject class methodsFor: 'error messages' stamp: 'FGJ 4/11/2019 11:50:20'!
+evaluationSelectorMustNotInvalidCharactersErrorMessage
+
+	^'The evaluation selector must not contain invalid characters.'! !
+
+!ExtractToMethodObject class methodsFor: 'error messages' stamp: 'FGJ 4/11/2019 11:54:01'!
+evaluationSelectorMustNotStartWithAnInvalidStartOfSelectorErrorMessage
+
+	^'The evaluation selector must not start with an invalid start of selector.'! !
 
 !ExtractToMethodObject class methodsFor: 'error messages' stamp: 'FGJ 12/21/2018 15:34:17'!
 instanceCreationMessageKeywordsCannotBeEmptyErrorMessage
@@ -8168,6 +6452,21 @@ signalDuplicateParameterNames: duplicateParameterNames
 
 	self refactoringError: (self instanceCreationMessageParameterNamesAreDuplicated: duplicateParameterNames).! !
 
+!ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 4/11/2019 11:46:15'!
+signalEvaluationSelectorMustNotBeEmpty
+
+	self refactoringError: self evaluationSelectorMustNotBeEmptyErrorMessage.! !
+
+!ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 4/11/2019 11:49:50'!
+signalEvaluationSelectorMustNotContainInvalidCharacters
+
+	self refactoringError: self evaluationSelectorMustNotInvalidCharactersErrorMessage.! !
+
+!ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 4/11/2019 11:53:38'!
+signalEvaluationSelectorMustNotStartWithAnInvalidStartOfSelector
+
+	self refactoringError: self evaluationSelectorMustNotStartWithAnInvalidStartOfSelectorErrorMessage.! !
+
 !ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 12/21/2018 15:33:46'!
 signalInstanceCreationMessageKeywordsCannotBeEmpty
 
@@ -8220,7 +6519,7 @@ signalMethodObjectSuperclassCannotBeMeta
 
 !ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 12/11/2018 14:51:12'!
 signalMethodReferencesSuper
-	
+
 	self refactoringError: self methodCanNotReferenceSuperErrorMessage.! !
 
 !ExtractToMethodObject class methodsFor: 'exceptions' stamp: 'FGJ 2/17/2019 14:46:24'!
@@ -8260,10 +6559,10 @@ assertAllInstanceVariableNamesIn: variablesToParametrizeToInstanceVariableNames
 haveACorrespondingVariableToParametrizeFrom: aCompiledMethod
 
 	| variablesToParametrize variablesWithNames |
-	
+
 	variablesToParametrize := VariablesToExtractFinder valueIn: aCompiledMethod.
 	variablesWithNames := variablesToParametrizeToInstanceVariableNames keys asSet.
-	
+
 	(variablesToParametrize includesAllOf: variablesWithNames)
 		ifFalse: [
 			| unknownVariableToParametrize |
@@ -8272,13 +6571,13 @@ haveACorrespondingVariableToParametrizeFrom: aCompiledMethod
 	! !
 
 !ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 2/16/2019 14:59:07'!
-assertAllKeywords: keywordsDefinitions 
+assertAllKeywords: keywordsDefinitions
 correspondToAVariableToParametrize: variablesToParametrize
 
 	| unknownVariablesWithKeyword variablesWithKeyword |
 	variablesWithKeyword := keywordsDefinitions collect: [:keywordDefinition | keywordDefinition at: #variableName].
 	unknownVariablesWithKeyword := variablesWithKeyword difference: variablesToParametrize.
-	
+
 	unknownVariablesWithKeyword
 		isEmpty
 		ifFalse: [
@@ -8289,19 +6588,19 @@ assertAllVariablesToParametrize: variablesToParametrize
 haveOneCorrespondingKeyword: keywordsDefinitions
 
 	| variablesToParametrizeWithKeyword variablesToParametrizeWithoutKeyword variablesWithMultipleKeywords |
-	
+
 	variablesToParametrizeWithKeyword := keywordsDefinitions collect: [:keywordDefinition | keywordDefinition at: #variableName].
 	variablesToParametrizeWithoutKeyword := variablesToParametrize difference: variablesToParametrizeWithKeyword.
-	
+
 	variablesToParametrizeWithoutKeyword
 		isEmpty
 		ifFalse: [
 			self signalVariablesToParametrizeWithoutKeywordAssigned: variablesToParametrizeWithoutKeyword].
-	
+
 	variablesWithMultipleKeywords := variablesToParametrizeWithKeyword select: [
 		:aVar |
 		(variablesToParametrizeWithKeyword occurrencesOf: aVar) > 1].
-	
+
 	variablesWithMultipleKeywords
 		isEmpty
 		ifFalse: [
@@ -8312,15 +6611,30 @@ assertAllVariablesToParametrizeFrom: aCompiledMethod
 haveAnInstanceVariableNameIn: variablesToParametrizeToInstanceVariableNames
 
 	| variablesToParametrize variablesWithNames |
-	
+
 	variablesToParametrize := VariablesToExtractFinder valueIn: aCompiledMethod.
 	variablesWithNames := variablesToParametrizeToInstanceVariableNames keys asSet.
-	
+
 	(variablesWithNames includesAllOf: variablesToParametrize)
 		ifFalse: [
 			| variablesWithoutNames |
 			variablesWithoutNames := variablesToParametrize copyWithoutAll: variablesWithNames.
 			self signalVariablesToParametrizeWithoutInstanceVariableName: variablesWithoutNames.]! !
+
+!ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 4/11/2019 11:45:50'!
+assertEvaluationSelectorMustNotBeEmpty: anEvaluationSelector
+
+	anEvaluationSelector isEmpty ifTrue: [self signalEvaluationSelectorMustNotBeEmpty].! !
+
+!ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 4/11/2019 11:49:29'!
+assertEvaluationSelectorMustNotContainInvalidCharacters: anEvaluationSelector
+
+	(self keywordHasInvalidCharacters: anEvaluationSelector) ifTrue: [self signalEvaluationSelectorMustNotContainInvalidCharacters].! !
+
+!ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 4/11/2019 11:53:16'!
+assertEvaluationSelectorMustNotStartWithAnInvalidStartOfSelector: anEvaluationSelector
+
+	anEvaluationSelector first isValidStartOfIdentifiers ifFalse: [self signalEvaluationSelectorMustNotStartWithAnInvalidStartOfSelector].! !
 
 !ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 12/19/2018 10:26:20'!
 assertInstanceVariableNames: variableNames
@@ -8330,9 +6644,9 @@ areNotNamedAsMethodTemporariesOf: aCompiledMethod
 
 	temporariesNodes := aCompiledMethod methodNode temporaries.
 	temporariesNames := temporariesNodes collect: [:tempNode | tempNode name].
-	
+
 	overlappingNames := temporariesNames intersection: variableNames.
-	
+
 	overlappingNames
 		isEmpty
 		ifFalse: [self signalInstanceVariableNamesSameAsTemporals: overlappingNames].! !
@@ -8340,13 +6654,13 @@ areNotNamedAsMethodTemporariesOf: aCompiledMethod
 !ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 12/18/2018 16:45:33'!
 assertInstanceVariableNamesFrom: methodVariableNamesToInstanceVariableNames
 areNotShadowedByBlockArgumentsOrTemporariesOf: aCompiledMethod
-		
+
 	| shadowedInstanceVariables |
-	
-	shadowedInstanceVariables := self 
+
+	shadowedInstanceVariables := self
 		shadowedInstanceVariablesByArgumentsOrTemporariesOfBlockNodesOf: aCompiledMethod
 		whenReplacingWith: methodVariableNamesToInstanceVariableNames.
-	
+
 	shadowedInstanceVariables
 		isEmpty
 		ifFalse: [self signalInstanceVariableNamesShadowedByBlockTemporals: shadowedInstanceVariables].! !
@@ -8361,10 +6675,10 @@ assertKeywordsAreNotEmpty: instanceCreationMessageKeywords
 assertKeywordsHaveNoInvalidCharacters: keywords
 
 	| keywordsWithInvalidCharacters |
-	
+
 	keywordsWithInvalidCharacters := keywords select: [:keyword | self keywordHasInvalidCharacters: keyword].
-	
-	keywordsWithInvalidCharacters 
+
+	keywordsWithInvalidCharacters
 		isEmpty
 		ifFalse: [self signalKeywordsContainInvalidCharacters: keywordsWithInvalidCharacters].! !
 
@@ -8390,7 +6704,7 @@ assertMethodDoesNotContainPoolVarAssignments: aCompiledMethod
 assertMethodObjectSuperclassIsNotMeta: aClass
 
 	aClass
-		isMeta 
+		isMeta
 		ifTrue: [self signalMethodObjectSuperclassCannotBeMeta].! !
 
 !ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 1/4/2019 12:40:32'!
@@ -8404,8 +6718,8 @@ assertNoDuplicatedInstanceVariableNames: names
 
 	| duplicateNames |
 	duplicateNames := names select: [:aName | (names occurrencesOf: aName) > 1].
-	
-	duplicateNames 
+
+	duplicateNames
 		isEmpty
 		ifFalse: [ self signalDuplicateInstanceVariableNames: duplicateNames asSet ].! !
 
@@ -8414,9 +6728,9 @@ assertParameterNames: parameterNames
 doNotOverlapWithMethodObjectInstanceVariableNames: instanceVariableNames
 
 	| overlappingParameterNames |
-	
+
 	overlappingParameterNames := parameterNames intersection: instanceVariableNames.
-	
+
 	overlappingParameterNames ifNotEmpty: [
 		self signalParameterNamesOverlapWithInstanceVariableNames: overlappingParameterNames].! !
 
@@ -8428,7 +6742,7 @@ assertParameterNamesAreNotDuplicated: parameterNames
 	duplicatedParameterNames := parameterNames select: [
 		:aName |
 		(parameterNames occurrencesOf: aName) > 1].
-	
+
 	duplicatedParameterNames ifNotEmpty: [
 		self signalDuplicateParameterNames: duplicatedParameterNames asSet ].! !
 
@@ -8436,22 +6750,22 @@ assertParameterNamesAreNotDuplicated: parameterNames
 assertParameterNamesAreValid: parameterNames
 
 	| invalidParameterNames |
-	
+
 	invalidParameterNames := parameterNames select: [
 		:aParameterName |
 		self isInvalidParameterName: aParameterName].
-		
+
 	invalidParameterNames size > 0 ifTrue: [self signalInvalidParameterNames: invalidParameterNames].! !
 
 !ExtractToMethodObject class methodsFor: 'assertions' stamp: 'FGJ 12/21/2018 16:01:40'!
 assertSelectorFromKeywordsStartsWithValidStartOfSelector: instanceCreationMessageKeywords
 
 	| firstKeyword |
-	
+
 	instanceCreationMessageKeywords isEmpty ifTrue: [^true].
-	
+
 	firstKeyword := instanceCreationMessageKeywords first.
-	
+
 	firstKeyword
 		first
 		isValidStartOfIdentifiers
@@ -8461,30 +6775,30 @@ assertSelectorFromKeywordsStartsWithValidStartOfSelector: instanceCreationMessag
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 12/18/2018 15:13:34'!
 blockNodesFrom: aMethodNode
-		
+
 	| blockNodes |
-	
+
 	blockNodes := Set new.
 	aMethodNode
 		accept: (ParseNodeEnumerator
 			ofBlock: [
 				:aNode |
-				aNode 
+				aNode
 					isBlockNode
-					ifTrue: [blockNodes add: aNode.]]). 					
-	
+					ifTrue: [blockNodes add: aNode.]]).
+
 	^blockNodes! !
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 1/31/2019 20:35:33'!
 doesMethodContainsClassVarAssignments: aCompiledMethod
 
 	| methodClass |
-	
+
 	methodClass := aCompiledMethod methodNode methodClass.
 	aCompiledMethod methodNode
 		accept: (ParseNodeEnumerator
 			ofBlock: [:aNode | (self isNode: aNode anAssignmentToAClassVarFrom: methodClass) ifTrue: [^true]]).
-		
+
 	^false.
 ! !
 
@@ -8494,7 +6808,7 @@ doesMethodContainsInstVarAssignments: aCompiledMethod
 	aCompiledMethod methodNode
 		accept: (ParseNodeEnumerator
 			ofBlock: [:aNode | (self isAssignmentToInstVarNode: aNode) ifTrue: [^true]]).
-		
+
 	^false.
 ! !
 
@@ -8502,18 +6816,18 @@ doesMethodContainsInstVarAssignments: aCompiledMethod
 doesMethodContainsPoolVarAssignments: aCompiledMethod
 
 	| poolVariablesNames methodNode |
-	
+
 	methodNode := aCompiledMethod methodNode.
 	poolVariablesNames := methodNode methodClass allSharedPools
 		inject: Set new
 		into: [:varNames :aPool | varNames addAll: aPool allClassVarNames. varNames ].
-	
+
 	methodNode
 		accept: (ParseNodeEnumerator
 			ofBlock: [:aNode |
 				(aNode isAssignmentNode and: [poolVariablesNames includes: aNode variable name])
 					ifTrue: [^true]]).
-		
+
 	^false.
 ! !
 
@@ -8526,11 +6840,11 @@ isAssignmentToInstVarNode: aNode
 isInvalidParameterName: aParameterName
 
 	| scannedNames |
-	
+
 	scannedNames _ Scanner new scanFieldNames: aParameterName.
 	scannedNames size = 1 ifFalse: [^true].
 	scannedNames first = aParameterName ifFalse: [^true].
-	
+
 	^false
 ! !
 
@@ -8546,28 +6860,28 @@ keywordHasInvalidCharacters: keyword
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 11/27/2018 15:46:47'!
 newClassPreconditionClass
-	
-	^NewClassPrecondition.	
+
+	^NewClassPrecondition.
 	! !
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 12/18/2018 16:42:39'!
 shadowedInstanceVariablesByArgumentsOrTemporariesOfBlockNodesOf: aCompiledMethod
-whenReplacingWith: methodVariableNamesToInstanceVariableNames		
+whenReplacingWith: methodVariableNamesToInstanceVariableNames
 
 	| shadowedInstanceVariables blockNodes |
-	
+
 	blockNodes := self blockNodesFrom: aCompiledMethod methodNode.
 	shadowedInstanceVariables := Set new.
-	
+
 	blockNodes do: [
 		:aBlockNode |
 		|  aBlockNodeShadowedInstanceVaribles |
 			aBlockNodeShadowedInstanceVaribles := self
 				shadowedInstanceVariablesIn: aBlockNode
 				whenReplacingWith: methodVariableNamesToInstanceVariableNames.
-			
+
 			shadowedInstanceVariables addAll: aBlockNodeShadowedInstanceVaribles].
-	
+
 	^shadowedInstanceVariables! !
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 12/18/2018 16:44:54'!
@@ -8575,1639 +6889,492 @@ shadowedInstanceVariablesIn: aBlockNode
 whenReplacingWith: methodVariableNamesToInstanceVariableNames
 
 	| aBlockTemporariesNames aBlockVariablesNames blockVariablesToExtract variablesToExtract blockVariablesToExtractInstVarNames aBlockArgumentsNames |
-	
+
 	aBlockVariablesNames := (self variableNodesFrom: aBlockNode) collect: [:aNode | aNode name].
 	variablesToExtract := methodVariableNamesToInstanceVariableNames keys asSet.
 	blockVariablesToExtract := aBlockVariablesNames intersection: variablesToExtract.
-	
+
 	blockVariablesToExtractInstVarNames := blockVariablesToExtract collect: [
 		:aBlockVariableToExtract |
 		methodVariableNamesToInstanceVariableNames at: aBlockVariableToExtract].
-	
+
 	aBlockTemporariesNames := aBlockNode temporaries collect: [:aNode | aNode name].
 	aBlockArgumentsNames := aBlockNode arguments collect: [:anArgument | anArgument name].
-	
+
 	^(aBlockTemporariesNames union: aBlockArgumentsNames)
 		intersection: blockVariablesToExtractInstVarNames! !
 
 !ExtractToMethodObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 12/18/2018 15:57:30'!
-variableNodesFrom: aBlockNode 
-		
+variableNodesFrom: aBlockNode
+
 	| variableNodes |
-	
+
 	variableNodes := Set new.
 	aBlockNode
 		accept: (ParseNodeEnumerator
 			ofBlock: [
 				:aNode |
-				aNode 
-					isVariableNode 
-					ifTrue: [variableNodes add: aNode.]]). 					
-	
+				aNode
+					isVariableNode
+					ifTrue: [variableNodes add: aNode.]]).
+
 	^variableNodes! !
 
-!ExtractToTemporary methodsFor: 'applying' stamp: 'HAW 10/18/2017 18:39:22'!
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 3/19/2019 17:54:43'!
 apply
-	
-	| temporaries finder rewriter |
-	
-	newTemporary := methodNodeToRefactor encoder bindTemp: newVariable.
-	temporaries := methodNodeToRefactor temporaries asOrderedCollection.
-	temporaries add: newTemporary.
-	
-	methodNodeToRefactor temporaries: temporaries.
-	finder := ParseNodeToReplaceFinder of: self.
-	methodNodeToRefactor accept: finder.
-	rewriter := ExtractToTemporaryRewriter of: self on: finder.
-	methodNodeToRefactor accept: rewriter.
-	finder blockContainingFirstNodeToReplace statements 
-		add: (AssignmentNode new variable: newTemporary value: parseNodeToExtract) 
-		beforeIndex: finder firstNodeToReplaceIndex. 
-	
-	^methodNodeToRefactor ! !
 
-!ExtractToTemporary methodsFor: 'initialization' stamp: 'HAW 10/4/2017 17:43:11'!
-initializeNamed: aNewVariable with: aParseNodeToExtract in: aMethodNodeToRefactor
- 
-	newVariable := aNewVariable.
-	parseNodeToExtract := aParseNodeToExtract.
-	methodNodeToRefactor := aMethodNodeToRefactor ! !
+	replacementParameters do: [:parameter | self applyWith: parameter].! !
 
-!ExtractToTemporary methodsFor: 'accessing' stamp: 'HAW 10/4/2017 18:45:19'!
-newTemporary
-	
-	^newTemporary ! !
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 4/16/2019 15:37:36'!
+applyWith: replacementParameter
 
-!ExtractToTemporary methodsFor: 'accessing' stamp: 'HAW 10/4/2017 18:38:13'!
-parseNodeToExtract
-	
-	^parseNodeToExtract! !
+	self
+		compile: replacementParameter concreteBlockSourceCode
+		in: replacementParameter concreteBlockRange
+		asPolymorphicMessageOnClass: concreteClass
+		using: replacementParameter.
+	self
+		compile: replacementParameter nullBlockSourceCode
+		in: replacementParameter nullBlockRange
+		asPolymorphicMessageOnClass: nullClass
+		using: replacementParameter.
 
-!ExtractToTemporary methodsFor: 'testing' stamp: 'HAW 10/18/2017 18:08:31'!
-shouldExtract: aParseNode
+	self replaceNilCheckWithPolymorphicMessageSendUsing: replacementParameter.
+	! !
 
-	^parseNodeToExtract = aParseNode ! !
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 4/16/2019 20:31:13'!
+compile: aBlockSourceCode in: aBlockRange asPolymorphicMessageOnClass: aClass using: replacementParameter
 
-!ExtractToTemporary methodsFor: 'as yet unclassified' stamp: 'HAW 9/11/2018 15:52:26'!
-research
+	| polymorphicMessageSourceCode refactoredBlockSourceCode rangesToReplacingParameter |
 
-"
-TextEditor>>selectionInterval
-hasSelection
-selection
-"! !
+	aBlockRange ifEmpty: [^aClass compile: replacementParameter polymorphicMessageHeader].
 
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/30/2017 06:25:21'!
-assert: aSourceCodeToExtract isIncludedIn: aMethodNodeToRefactor
+	rangesToReplacingParameter := self rangesIn: aBlockRange toReplacementParametersFrom: replacementParameter.
+	refactoredBlockSourceCode := (aBlockSourceCode copyReplacing: rangesToReplacingParameter) withBlanksTrimmed.
+	polymorphicMessageSourceCode  := replacementParameter polymorphicMessageHeader.
+	refactoredBlockSourceCode ifNotEmpty: [
+		polymorphicMessageSourceCode  := polymorphicMessageSourceCode, String newLineString, String tab, refactoredBlockSourceCode].
 
-	(aMethodNodeToRefactor sourceText includesSubString: aSourceCodeToExtract) ifFalse:  [
-		self signalMethodNodeToRefactorDoesNotInclude: aSourceCodeToExtract ]
-	
+	aClass compile: polymorphicMessageSourceCode.! !
+
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 3/19/2019 17:52:48'!
+initializeOn: anInstVarName
+of: aClassToRefactor
+usingAsConcreteClass: aConcreteClass
+usingAsNullClass: aNullClass
+for: someReplacementParameters
+
+	instVar := anInstVarName.
+	classToRefactor := aClassToRefactor.
+	concreteClass := aConcreteClass.
+	nullClass := aNullClass.
+	replacementParameters := someReplacementParameters.! !
+
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 4/16/2019 20:29:06'!
+rangesIn: aBlockRange toReplacementParametersFrom: replacementParameter
+
+	| rangesInsideBlockRange rangesOffsetToBlock variableToParametrizeRangeToReplacingParameter offset |
+
+	variableToParametrizeRangeToReplacingParameter := replacementParameter rangesOfVariablesToParametrizeToReplacingParameter.
+	rangesInsideBlockRange := variableToParametrizeRangeToReplacingParameter select: [:rangeToReplacement |
+		aBlockRange includes: rangeToReplacement key first].
+	offset := aBlockRange first - 1.
+	rangesOffsetToBlock := rangesInsideBlockRange collect: [:rangeToReplacement |
+		Association key: rangeToReplacement key - offset value: rangeToReplacement value].
+
+	^rangesOffsetToBlock! !
+
+!IntroduceNullObject methodsFor: 'initialization' stamp: 'FGJ 3/20/2019 15:47:21'!
+replaceNilCheckWithPolymorphicMessageSendUsing: replacementParameter
+
+	| originalSourceCode refactoredSourceCode |
+
+	originalSourceCode := replacementParameter methodSourceCode.
+	refactoredSourceCode := originalSourceCode copyReplacing: {
+		Association
+			key: replacementParameter rangeOfMessageSend
+			value: instVar, Character space asString, replacementParameter polymorphicMessageSend}.
+
+	classToRefactor compile: refactoredSourceCode.! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/20/2019 11:01:56'!
+assert: methodNodes belongToTheHierarchyToRefactorRootedOn: aClass
+
+	methodNodes do: [
+		:methodNode |
+		(aClass withAllSubclasses includes: methodNode methodClass)
+			ifFalse: [ self signalMethodNodesMustBelongToHierarchyToRefactor ]].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/19/2019 21:52:26'!
+assert: anInstVarName belongsTo: aClass
+
+	(aClass instVarNames includes: anInstVarName) ifFalse: [
+		self signalInstVarMustBelongToClassToRefactor].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/19/2019 23:23:53'!
+assert: aConcreteClass isDifferentFrom: aNullClass
+
+	aConcreteClass = aNullClass ifTrue: [
+		self signalConcreteClassMustBeDifferentFromNullClass].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/19/2019 18:33:21'!
+assertBlocksDoNotContainAssignmentsToVariablesThatAreNotBlockTemporals: messageNodes
+
+	(messageNodes anySatisfy: [
+		:messageNode | self containsAssignmentToNotBlockTemporal: messageNode])
+		ifTrue: [ self signalBlocksCannotContainAssignmentsToVariablesThatAreNotBlockTemporals].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 4/11/2019 11:33:57'!
+assertBlocksDoNotContainReferencesToSuper: messageNodes
+
+	| nodesWithReferenceToSuper |
+
+	nodesWithReferenceToSuper := messageNodes select: [:aMessageNode | self referencesSuper: aMessageNode].
+
+	nodesWithReferenceToSuper ifNotEmpty: [
+		self signalMessageNodesReferenceSuper: nodesWithReferenceToSuper].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/19/2019 19:26:36'!
+assertBlocksDoNotContainReturnStatements: messageNodes
+
+	messageNodes do: [
+		:messageNode |
+		(self containsReturnStatement: messageNode) ifTrue: [self signalBlockMustNotContainReturnStatements]].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 17:27:33'!
+assertMessageNode: messageNode receiverIs: anInstVarName
+
+	| variableReceiver |
+
+	variableReceiver := messageNode receiver.
+	messageNode receiver isVariableNode ifFalse: [variableReceiver := variableReceiver receiver].
+
+	variableReceiver name = anInstVarName ifFalse: [self signalMessageNodeReceiverMustBeTheInstVar].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 17:24:56'!
+assertMessageNodes: messageNodes receiverIs: anInstVarName
+
+	messageNodes do: [:messageNode | self assertMessageNode: messageNode receiverIs: anInstVarName].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 2/20/2019 14:13:44'!
+assertMessageNodesAreNotDuplicated: messageNodes
+
+	messageNodes do: [
+		:messageNode |
+		(messageNodes occurrencesOf: messageNode) > 1 ifTrue: [
+			self signalMessageNodesMustNotBeDuplicated ]].! !
+
+!IntroduceNullObject class methodsFor: 'assertions' stamp: 'FGJ 3/19/2019 17:06:00'!
+assertPolymorphicSelectorsFrom: replacementParameters areNotDefinedIn: aClass
+
+	| anySelectorAlreadyDefined |
+	anySelectorAlreadyDefined := replacementParameters anySatisfy: [:parameter |
+		aClass selectors includes: parameter polymorphicSelector].
+
+	anySelectorAlreadyDefined ifTrue: [self signalPolymorphicSelectorsMustNotBeDefinedInTheNullObjectClasses].
+	! !
+
+!IntroduceNullObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/19/2019 18:44:32'!
+containsAssignmentToNotBlockTemporal: messageNode
+
+	| assignableTemporals assignmentToNotBlockTemporalDetector |
+
+	assignableTemporals := Bag new.
+
+	assignmentToNotBlockTemporalDetector := EntranceExitBlockEnumerator
+		atEntranceBlock: [
+			:aNode |
+
+			(aNode isAssignmentNode and: [
+				(assignableTemporals includes: aNode variable name) not])
+			ifTrue: [^true].
+
+			aNode isBlockNode ifTrue: [
+				assignableTemporals addAll: (aNode temporaries collect: [:variable | variable name]).] ]
+		atExitBlock: [
+			:aNode |
+
+			aNode isBlockNode ifTrue: [
+				assignableTemporals removeAll: (aNode temporaries collect: [:variable | variable name])]].
+
+	messageNode accept: assignmentToNotBlockTemporalDetector.
+
+	^false! !
+
+!IntroduceNullObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/19/2019 19:33:04'!
+containsReturnStatement: aMessageNode
+
+	aMessageNode accept: (ParseNodeEnumerator ofBlock: [
+		:aNode |
+		(aNode isBlockNode and: [aNode returns]) ifTrue: [^true]]).
+
+	^false! !
+
+!IntroduceNullObject class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/18/2019 18:56:41'!
+referencesSuper: aParseNode
+
+	aParseNode accept: (ParseNodeEnumerator ofBlock: [
+		:aNode |
+		(aNode isVariableNode and: [aNode name = 'super']) ifTrue: [^true]]).
+
+	^false! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/19/2019 21:35:28'!
+signalBlockMustNotContainReturnStatements
+
+	self refactoringError: self blocksToExtractMustNotContainReturnStatementsErrorMessage! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/19/2019 18:17:17'!
+signalBlocksCannotContainAssignmentsToVariablesThatAreNotBlockTemporals
+
+	self refactoringError: self blocksToExtractCannotContainAssignmentsToVariablesThatAreNotBlockTemporalsErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/19/2019 23:24:12'!
+signalConcreteClassMustBeDifferentFromNullClass
+
+	self refactoringError: self concreteClassMustBeDifferentFromNullClassErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/19/2019 21:52:50'!
+signalInstVarMustBelongToClassToRefactor
+
+	self refactoringError: self instVarMustBelongToTheClassToRefactorErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 17:27:58'!
+signalMessageNodeReceiverMustBeTheInstVar
+
+	self refactoringError: self messageNodeReceiverMustBeTheInstVarErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/20/2019 14:11:26'!
+signalMessageNodesMustNotBeDuplicated
+
+	self refactoringError: self messageNodesMustNotBeDuplicatedErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/17/2019 19:01:08'!
+signalMessageNodesReferenceSuper: nodesWithReferenceToSuper
+
+	self refactoringError: (self messageNodesReferenceSuperErrorMessage: nodesWithReferenceToSuper).! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 2/20/2019 11:02:19'!
+signalMethodNodesMustBelongToHierarchyToRefactor
+
+	self refactoringError: self methodsMustBelongToTheHierarchyToRefactorErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'exceptions' stamp: 'FGJ 3/19/2019 17:06:18'!
+signalPolymorphicSelectorsMustNotBeDefinedInTheNullObjectClasses
+
+	self refactoringError: self polymorphicSelectorsMustNotBeDefinedInTheNullObjectClassesErrorMessage.! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/19/2019 18:18:10'!
+blocksToExtractCannotContainAssignmentsToVariablesThatAreNotBlockTemporalsErrorMessage
+
+	^'Blocks to extract cannot contain assignments to variables that are not temporals of a block'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/19/2019 21:35:51'!
+blocksToExtractMustNotContainReturnStatementsErrorMessage
+
+	^'Blocks to extract must not contain return statements.'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/19/2019 23:24:36'!
+concreteClassMustBeDifferentFromNullClassErrorMessage
+
+	^'The concrete class must be different from the null class.'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/19/2019 21:53:29'!
+instVarMustBelongToTheClassToRefactorErrorMessage
+
+	^'The instance variable on which the Null Object will be introduced must belong to the class to refactor'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 17:28:29'!
+messageNodeReceiverMustBeTheInstVarErrorMessage
+
+	^'The receiver of the message must be the instance variable'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/20/2019 14:11:44'!
+messageNodesMustNotBeDuplicatedErrorMessage
+
+	^'Message nodes must not be duplicated'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/17/2019 19:01:50'!
+messageNodesReferenceSuperErrorMessage: nodesWithReferenceToSuper
+
+	^'Blocks to extract cannot contain references to super.'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 2/20/2019 11:02:40'!
+methodsMustBelongToTheHierarchyToRefactorErrorMessage
+
+	^'Methods must belong to the hierarchy to refactor'! !
+
+!IntroduceNullObject class methodsFor: 'error messages' stamp: 'FGJ 3/19/2019 17:07:07'!
+polymorphicSelectorsMustNotBeDefinedInTheNullObjectClassesErrorMessage
+
+	^'Polymorphic selectors must not be defined neither in the concrete nor the null class.' ! !
+
+!IntroduceNullObject class methodsFor: 'instance creation' stamp: 'FGJ 3/19/2019 17:46:08'!
+on: anInstVarName
+of: aClassToRefactor
+usingAsConcreteClass: aConcreteClass
+usingAsNullClass: aNullClass
+for: replacementParameters
+
+	| messageNodes methodNodes |
+
+	messageNodes := replacementParameters collect: [:parameter | parameter messageNode].
+	self assertBlocksDoNotContainReferencesToSuper: messageNodes.
+	self assertBlocksDoNotContainAssignmentsToVariablesThatAreNotBlockTemporals: messageNodes.
+	self assertBlocksDoNotContainReturnStatements: messageNodes.
+
+	self assert: anInstVarName belongsTo: aClassToRefactor.
+
+	self assert: aConcreteClass isDifferentFrom: aNullClass.
+
+	methodNodes := replacementParameters collect: [:parameter | parameter methodNode].
+	self assert: methodNodes belongToTheHierarchyToRefactorRootedOn: aClassToRefactor.
+	self assertMessageNodesAreNotDuplicated: messageNodes.
+	self assertMessageNodes: messageNodes receiverIs: anInstVarName.
+
+	self assertPolymorphicSelectorsFrom: replacementParameters areNotDefinedIn: aConcreteClass.
+	self assertPolymorphicSelectorsFrom: replacementParameters areNotDefinedIn: aNullClass.
+
+	^self new
+		initializeOn: anInstVarName
+		of: aClassToRefactor
+		usingAsConcreteClass: aConcreteClass
+		usingAsNullClass: aNullClass
+		for: replacementParameters
 ! !
 
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/26/2017 16:30:52'!
-assert: aNewVariable isNotDefinedIn: aMethodNode 
-	
-	(aMethodNode tempNames includes: aNewVariable) ifTrue: [ self signalNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode ]
-	! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/26/2017 16:23:25'!
-assertIsNotEmpty: aNewVariable
-
-	aNewVariable isEmpty ifTrue: [ self signalNewVariableCanNotBeEmpty ]! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 3/6/2018 16:01:34'!
-assertIsNotReturn: aSourceCodeToExtract
-
-	"I have to use the source code to check this because parsing it returns the same methodNode for
-	1 and ^1, that is, using methodNode does not help to distigished if there was or not a return - Hernan"
-	
-	aSourceCodeToExtract withBlanksTrimmed first = $^ ifTrue: [ self signalSourceCodeToExtractCanNotIncludeReturn ]! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/27/2017 17:52:29'!
-assertIsOneStatement: aMethodNodeToExtract
-
-	aMethodNodeToExtract block statements size ~= 1 ifTrue: [ self signalColaborationToExtractHasToBeOneStatement]! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/26/2017 16:27:32'!
-assertIsValidVariableName: aName
-
-	| scannedNames |
-
-	scannedNames _ Scanner new scanFieldNames: aName.
-	scannedNames size = 1 ifFalse: [ self signalInvalidTemporaryVariable: aName ].
-	scannedNames first = aName ifFalse: [ self signalInvalidTemporaryVariable: aName ].! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/30/2017 06:21:22'!
-assertSourceCodeIsNotEmpty: aSourceCodeToExtract
-
-	aSourceCodeToExtract isEmpty ifTrue: [ self signalSourceCodeToExtractCanNotBeEmpty]! !
-
-!ExtractToTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/26/2017 16:33:25'!
-warnIf: aNewVariable isDefinedAsInstanceVariableInHierarchyOf: aClass 
-	
-	| classDefiningNewVariable |
-	
-	classDefiningNewVariable := aClass whichClassDefinesInstanceVariable: aNewVariable ifNone: [ ^self ].
-	self warn: aNewVariable willHideInstanceVariableDefinedIn: classDefiningNewVariable ! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:28:07'!
-errorMessageForInvalidTemporaryVariable: aName
-
-	^ '''' , aName , ''' is not a valid temporary variable name'.! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:31:23'!
-errorMessageForNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode
-
-	^aNewVariable, ' is already defined in ', aMethodNode classAndSelector ! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:34:01'!
-errorMessageForSourceCodeToExtractHasSyntaxError: anErrorDescription
-
-	^'Can not extract a source code with syntax error: ', anErrorDescription ! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:26:23'!
-errorMessageMethodNodeToRefactorDoesNotInclude: aSourceCodeToExtract
-
-	^'The source code {', aSourceCodeToExtract, '} is not included in the method to refactor'! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:24:10'!
-newVariableCanNotBeEmptyErrorMessage
-	
-	^'New variable can not be empty'! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:34:15'!
-signalColaborationToExtractHasSyntaxError: aSyntaxErrorNotification 
-	
-	self refactoringError: (self errorMessageForSourceCodeToExtractHasSyntaxError: aSyntaxErrorNotification messageText)! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:32:50'!
-signalColaborationToExtractHasToBeOneStatement
-	
-	self refactoringError: self sourceCodeToExtractHasToBeOneStatementErrorMessage ! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:27:51'!
-signalInvalidTemporaryVariable: aName
-
-	^ self refactoringError: (self errorMessageForInvalidTemporaryVariable: aName).! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/27/2017 17:23:04'!
-signalMethodNodeToRefactorDoesNotInclude: aColaborationToExtract
-
-	^self refactoringError: (self errorMessageMethodNodeToRefactorDoesNotInclude: aColaborationToExtract)! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:31:08'!
-signalNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode
-
-	self refactoringError: (self errorMessageForNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode )! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/26/2017 16:23:49'!
-signalNewVariableCanNotBeEmpty
-	
-	self refactoringError: self newVariableCanNotBeEmptyErrorMessage! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:20:49'!
-signalSourceCodeToExtractCanNotBeEmpty
-	
-	self refactoringError: self sourceCodeToExtractCanNotBeEmptyErrorMessage! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:24:37'!
-signalSourceCodeToExtractCanNotIncludeReturn
-	
-	self refactoringError: self sourceCodeToExtractCanNotIncludeReturnErrorMessage ! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:20:21'!
-sourceCodeToExtractCanNotBeEmptyErrorMessage
-	
-	^'Source code to extract can not be empty'! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:24:02'!
-sourceCodeToExtractCanNotIncludeReturnErrorMessage
-	
-	^'A return can not be extracted'! !
-
-!ExtractToTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/30/2017 06:32:22'!
-sourceCodeToExtractHasToBeOneStatementErrorMessage
-	
-	^'Can not extract more than one statement'! !
-
-!ExtractToTemporary class methodsFor: 'instance creation' stamp: 'HAW 9/11/2018 16:13:23'!
-named: aNewVariable at: anIntervalToExtract from: aMethodSourceCode in: aClass
-
-	|  trimmedNewVariable parseNodeToExtract trimmedSourceCodeToExtract methodNodeToExtract methodNodeToRefactor sourceCodeToExtract |
-	
-	trimmedNewVariable := aNewVariable withBlanksTrimmed.
-	methodNodeToRefactor := aClass methodNodeFor: aMethodSourceCode.
-	
-	self assertIsNotEmpty: trimmedNewVariable.
-	self assertIsValidVariableName: trimmedNewVariable.
-	self assert: trimmedNewVariable isNotDefinedIn: methodNodeToRefactor.
-	
-	sourceCodeToExtract := aMethodSourceCode copyFrom: anIntervalToExtract first to: anIntervalToExtract last.
-	trimmedSourceCodeToExtract := sourceCodeToExtract withBlanksTrimmed.
-	self assertSourceCodeIsNotEmpty: trimmedSourceCodeToExtract.
-	self assertIsNotReturn: trimmedSourceCodeToExtract. 
-	self assert: trimmedSourceCodeToExtract isIncludedIn: methodNodeToRefactor.
-
-	[ methodNodeToExtract := Parser parse: trimmedSourceCodeToExtract class: methodNodeToRefactor methodClass noPattern: true ]
-		on: SyntaxErrorNotification 
-		do: [ :anError | self signalColaborationToExtractHasSyntaxError: anError ].
-	
-	parseNodeToExtract := self paseNodeToExtractFrom: methodNodeToExtract. 
-
-	self warnIf: trimmedNewVariable isDefinedAsInstanceVariableInHierarchyOf: methodNodeToRefactor methodClass.
-
-	^self new initializeNamed: trimmedNewVariable with: parseNodeToExtract in: methodNodeToRefactor
- 
-	! !
-
-!ExtractToTemporary class methodsFor: 'instance creation' stamp: 'HAW 10/4/2017 17:41:59'!
-named: aNewVariable with: aSourceCodeToExtract in: aMethodNodeToRefactor
-
-	|  trimmedNewVariable parseNodeToExtract trimmedSourceCodeToExtract methodNodeToExtract |
-	
-	trimmedNewVariable := aNewVariable withBlanksTrimmed.
-	
-	self assertIsNotEmpty: trimmedNewVariable.
-	self assertIsValidVariableName: trimmedNewVariable.
-	self assert: trimmedNewVariable isNotDefinedIn: aMethodNodeToRefactor.
-	
-	trimmedSourceCodeToExtract := aSourceCodeToExtract withBlanksTrimmed.
-	self assertSourceCodeIsNotEmpty: trimmedSourceCodeToExtract.
-	self assertIsNotReturn: trimmedSourceCodeToExtract. 
-	self assert: trimmedSourceCodeToExtract isIncludedIn: aMethodNodeToRefactor.
-
-	[ methodNodeToExtract := Parser parse: trimmedSourceCodeToExtract class: aMethodNodeToRefactor methodClass noPattern: true ]
-		on: SyntaxErrorNotification 
-		do: [ :anError | self signalColaborationToExtractHasSyntaxError: anError ].
-	
-	parseNodeToExtract := self paseNodeToExtractFrom: methodNodeToExtract. 
-
-	self warnIf: trimmedNewVariable isDefinedAsInstanceVariableInHierarchyOf: aMethodNodeToRefactor methodClass.
-
-	^self new initializeNamed: trimmedNewVariable with: parseNodeToExtract in: aMethodNodeToRefactor
- 
-	! !
-
-!ExtractToTemporary class methodsFor: 'method node to extract' stamp: 'HAW 6/27/2017 17:58:04'!
-paseNodeToExtractFrom: aMethodNodeToExtract
-
-	self assertIsOneStatement: aMethodNodeToExtract. 
-	
-	^aMethodNodeToExtract block statements first expr.
-	! !
-
-!ExtractToTemporary class methodsFor: 'warnings' stamp: 'HAW 6/26/2017 16:34:44'!
-warn: aNewVariable willHideInstanceVariableDefinedIn: aClass 
-
-	self refactoringWarning: (self warningMessageFor: aNewVariable willHideInstanceVariableDefinedIn: aClass)! !
-
-!ExtractToTemporary class methodsFor: 'warnings' stamp: 'HAW 6/26/2017 16:35:04'!
-warningMessageFor: aNewVariable willHideInstanceVariableDefinedIn: aClass
-
-	^aNewVariable, ' will hide instance variable defined in ', aClass name! !
-
-!InsertSuperclass methodsFor: 'applying' stamp: 'HAW 8/13/2018 18:31:33'!
+!NullObjectHierarchyCreator methodsFor: 'evaluating' stamp: 'FGJ 1/23/2019 17:10:26'!
 apply
 
-	| newSuperclass |
-	
-	newSuperclass := self createSuperclass.
-	self changeSuperclassOf: classToRefactor to: newSuperclass.
+	| concreteClassSuperclass abstractClass nullObjectClass |
 
-	^newSuperclass ! !
+	concreteClassSuperclass := concreteClass superclass.
 
-!InsertSuperclass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 18:31:43'!
-changeSuperclassOf: classToRefactor to: newSuperclass
-	
-	newSuperclass subclass: classToRefactor name
-		instanceVariableNames: classToRefactor instanceVariablesString 
-		classVariableNames: classToRefactor classVariablesString 
-		poolDictionaries: classToRefactor sharedPoolsString
-		category: classToRefactor category.! !
-
-!InsertSuperclass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 18:31:06'!
-createSuperclass
-	
-	^classToRefactor superclass subclass: superclassName
+	abstractClass := concreteClassSuperclass
+		subclass: abstractClassName
 		instanceVariableNames: ''
 		classVariableNames: ''
 		poolDictionaries: ''
-		category: classToRefactor category.! !
+		category: category.
 
-!InsertSuperclass methodsFor: 'initialization' stamp: 'HAW 8/13/2018 17:36:34'!
-initializeTo: aClass named: aSuperclassName 
+	nullObjectClass := abstractClass
+		subclass: nullObjectClassName
+		instanceVariableNames: ''
+		classVariableNames: ''
+		poolDictionaries: ''
+		category: category.
 
-	classToRefactor := aClass.
-	superclassName := aSuperclassName.! !
+	concreteClass selectorsDo: [:aSelector |
+		| methodHeader |
 
-!InsertSuperclass class methodsFor: 'instance creation' stamp: 'HAW 3/3/2019 09:11:36'!
+		methodHeader := concreteClass methodHeaderFor: aSelector.
+
+		abstractClass compile:
+			methodHeader,
+			Character newLineCharacter asString,
+			Character tab asString,
+			'self subclassResponsibility.'.
+		nullObjectClass compile: methodHeader].
+
+	concreteClass superclass: abstractClass.! !
+
+!NullObjectHierarchyCreator methodsFor: 'initialization' stamp: 'FGJ 1/23/2019 15:45:22'!
+from: aConcreteClass
+withAbstractClassName: anAbstractClassName
+withNullClassName: aNullObjectClassName
+inCategory: aCategory
+
+	concreteClass := aConcreteClass.
+	abstractClassName := anAbstractClassName.
+	nullObjectClassName := aNullObjectClassName.
+	category := aCategory.! !
+
+!NullObjectHierarchyCreator class methodsFor: 'instance creation' stamp: 'FGJ 1/23/2019 15:45:55'!
+from: aConcreteClass
+withAbstractClassName: anAbstractClassName
+withNullClassName: aNullClassName
+inCategory: aCategory
+
+	self newClassPreconditionClass valueFor: anAbstractClassName in: Smalltalk undeclared: Undeclared.
+	self newClassPreconditionClass valueFor: aNullClassName in: Smalltalk undeclared: Undeclared.
+
+	^self new
+		from: aConcreteClass
+		withAbstractClassName: anAbstractClassName
+		withNullClassName: aNullClassName
+		inCategory: aCategory! !
+
+!NullObjectHierarchyCreator class methodsFor: 'instance creation' stamp: 'FGJ 1/23/2019 14:34:12'!
 newClassPreconditionClass
 
-	^NewClassPrecondition ! !
+	^NewClassPrecondition! !
 
-!InsertSuperclass class methodsFor: 'instance creation' stamp: 'HAW 8/13/2018 17:34:37'!
-to: aClass named: aSuperclassName
-	
-	^self to: aClass named: aSuperclassName in: Smalltalk undeclared: Undeclared! !
-
-!InsertSuperclass class methodsFor: 'instance creation' stamp: 'HAW 3/3/2019 09:11:31'!
-to: aClass named: aSuperclassName in: aSystem undeclared: anUndeclared
-
-	self newClassPreconditionClass valueFor: aSuperclassName in: aSystem undeclared: anUndeclared.
-	
-	^self new initializeTo: aClass theNonMetaClass named: aSuperclassName ! !
-
-!PushUpMethod methodsFor: 'initialization' stamp: 'HAW 8/18/2018 11:44:09'!
-initializeFor: aMethodToPushup
-
-	method := aMethodToPushup ! !
-
-!PushUpMethod methodsFor: 'applying' stamp: 'HAW 8/18/2018 11:46:09'!
-apply
-
-	| methodCategory |
-	
-	methodCategory := method methodClass organization categoryOfElement: method selector.
-	method methodClass superclass
-		compile: method sourceCode 
-		classifyUnder: methodCategory.
-		
-	method methodClass removeSelector: method selector.
- ! !
-
-!PushUpMethod class methodsFor: 'instance creation' stamp: 'HAW 8/18/2018 11:43:53'!
-for: aMethodToPushUp
-
-	^self new initializeFor: aMethodToPushUp ! !
-
-!RemoveAllUnreferencedInstanceVariables methodsFor: 'initialization' stamp: 'HAW 8/2/2018 16:14:57'!
-initializeFrom: aClassToRefactor
-
-	classToRefactor := aClassToRefactor ! !
-
-!RemoveAllUnreferencedInstanceVariables methodsFor: 'applying' stamp: 'HAW 8/2/2018 16:05:05'!
-apply
-	
-	| variableNamesToRemove |
-	
-	variableNamesToRemove := classToRefactor unreferencedInstanceVariables.
-	variableNamesToRemove do: [ :aVariableName | classToRefactor removeInstVarName: aVariableName ].
-	
-	^variableNamesToRemove! !
-
-!RemoveAllUnreferencedInstanceVariables class methodsFor: 'instance creation' stamp: 'HAW 8/2/2018 16:14:45'!
-from: aClassToRefactor
-
-	^self new initializeFrom: aClassToRefactor ! !
-
-!RemoveInstanceVariable methodsFor: 'applying' stamp: 'HAW 6/17/2017 19:46:45'!
-apply
-	
-	classToRefactor removeInstVarName: variableToRemove ! !
-
-!RemoveInstanceVariable methodsFor: 'initialization' stamp: 'HAW 6/17/2017 19:45:18'!
-initializeNamed: aVariable from: aClassToRefactor 
-
-	variableToRemove := aVariable.
-	classToRefactor := aClassToRefactor ! !
-
-!RemoveInstanceVariable class methodsFor: 'pre-conditions' stamp: 'HAW 6/12/2017 19:11:50'!
-assert: aClass defines: anInstanceVariable
-
-	(aClass definesInstanceVariableNamed: anInstanceVariable) ifFalse: [ self signalInstanceVariable: anInstanceVariable notDefinedIn: aClass ].! !
-
-!RemoveInstanceVariable class methodsFor: 'pre-conditions' stamp: 'HAW 8/1/2018 19:36:10'!
-assert: aVaraible isNotReferencedInHierarchyOf: aClassToRefactor
-
-	| references |
-	
-	references := OrderedCollection new.
-	aClassToRefactor withAllSubclassesDo: [ :aClass | 
-		(aClass whichSelectorsAccess: aVaraible) do: [ :aSelector | references add: (MethodReference class: aClass selector: aSelector) ]].
-	
-	references notEmpty ifTrue: [ self signalInstanceVariable: aVaraible isReferencedInAll: references ]! !
-
-!RemoveInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 8/1/2018 19:38:57'!
-errorMessageForInstanceVariable: aVariable isReferencedInAll: methods
-
-	^aVariable, ' can not be removed because it has references'.
-		! !
-
-!RemoveInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 6/12/2017 19:12:41'!
-errorMessageForInstanceVariable: aName notDefinedIn: aClass
-
-	^ 'Instance variable ''' , aName , ''' is not defined in ' , aClass name.! !
-
-!RemoveInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 16:34:16'!
-signalInstanceVariable: aVariable isReferencedInAll: methods
-
-	self 
-		canNotRefactorDueToReferencesError: (self errorMessageForInstanceVariable: aVariable isReferencedInAll: methods)
-		 references: methods
-		 to: aVariable! !
-
-!RemoveInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 6/12/2017 19:12:12'!
-signalInstanceVariable: aName notDefinedIn: aClass
-
-	^ self refactoringError: (self errorMessageForInstanceVariable: aName notDefinedIn: aClass).! !
-
-!RemoveInstanceVariable class methodsFor: 'instance creation' stamp: 'HAW 6/17/2017 19:44:39'!
-named: aVariable from: aClassToRefactor 
-	
-	self assert: aClassToRefactor defines: aVariable.
-	self assert: aVariable isNotReferencedInHierarchyOf: aClassToRefactor.
-	
-	^self new initializeNamed: aVariable from: aClassToRefactor 
-! !
-
-!RenameClass methodsFor: 'applying' stamp: 'HAW 6/4/2017 18:09:21'!
-apply
-	
-	classToRename safeRenameTo: newClassName.
-	^self renameReferences.
-	
-	! !
-
-!RenameClass methodsFor: 'initialization' stamp: 'HAW 8/9/2018 15:40:00'!
-initializeFrom: aClass to: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-
-	classToRename := aClass.
-	classToRenameOriginalName := aClass name.
-	newClassName := aNewClassName.
-	system := aSystem.
-	undeclared := anUndeclaredDictionary.
-	
-	! !
-
-!RenameClass methodsFor: 'accessing' stamp: 'HAW 6/4/2017 18:16:33'!
-newClassName
-	
-	^newClassName ! !
-
-!RenameClass methodsFor: 'accessing' stamp: 'HAW 6/4/2017 18:24:56'!
-referencesToOldClass
-	
-	^system allCallsOn: newClassName! !
-
-!RenameClass methodsFor: 'accessing' stamp: 'HAW 6/4/2017 18:25:56'!
-referencesToOldClassName
-	
-	^system allCallsOn: classToRenameOriginalName! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 15:27:46'!
-newSourceCodeOf: aCompiledMethod 
-	
-	| newSource |
-	
-	newSource := aCompiledMethod sourceCode copyReplacing: (self rangesToReplaceOf: aCompiledMethod) with: newClassName.
-
-	^newSource! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 9/3/2018 19:48:30'!
-rangesForLiteralOf: methodNode
-	
-	| literalRanges |
-	
-	literalRanges := methodNode positionsForLiteralNode: classToRenameOriginalName ifAbsent: [ #() ].
-	literalRanges := literalRanges collect: [ :aRange | aRange first + 1 to: aRange last ].
-	
-	^literalRanges ! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 9/3/2018 19:48:49'!
-rangesForLiteralVariableOf: methodNode
-	
-	^methodNode positionsForLiteralVariableNode: classToRenameOriginalName ifAbsent: [ #() ]
-	! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 15:20:40'!
-rangesToReplaceOf: aCompiledMethod 
-	
-	| methodNode ranges |
-	
-	methodNode := aCompiledMethod methodNode.
-	ranges := SortedCollection sortBlock: [ :leftRange :rightRange | leftRange first < rightRange first ].
-	
-	ranges addAll: (self rangesForLiteralVariableOf: methodNode).
-	ranges addAll: (self rangesForLiteralOf: methodNode).
-	
-	^ranges ! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/9/2018 14:50:34'!
-references: aMethodReference classVarNamed: aName
-
-	^aMethodReference actualClass definesClassVariableNamedInHierarchy: aName ! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/9/2018 14:50:52'!
-referencesNewClassName: aMethodReference
-
-	^self references: aMethodReference classVarNamed: newClassName ! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/9/2018 14:51:07'!
-referencesOldClassName: aMethodReference
-
-	^self references: aMethodReference classVarNamed: classToRenameOriginalName! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/9/2018 14:49:43'!
-rejectReferencesToClassVariablesFrom: references
-	
-	^references reject: [ :aMethodReference | (self referencesOldClassName: aMethodReference) or: [ self referencesNewClassName: aMethodReference ] ].! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 15:18:43'!
-renameReference: aReferencingMethod 
-	
-	| newSource |
-	
-	newSource := self newSourceCodeOf: aReferencingMethod.
-	aReferencingMethod methodClass compile: newSource ! !
-
-!RenameClass methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 15:17:56'!
-renameReferences
-	
-	| references |
-	
-	references := (self referencesToOldClass asSet, self referencesToOldClassName asSet) asOrderedCollection.
-	references := self rejectReferencesToClassVariablesFrom: references.
-	references do: [ :aReference | self renameReference: aReference compiledMethod ].
-	
-	^references! !
-
-!RenameClass class methodsFor: 'pre-conditions' stamp: 'HAW 6/1/2017 19:06:21'!
-assert: aClass isNotNamed: aNewName
-
-	aClass name = aNewName ifTrue: [ self signalNewNameEqualsOldName]! !
-
-!RenameClass class methodsFor: 'pre-conditions' stamp: 'HAW 6/4/2017 18:49:54'!
-assertIsNotMeta: aBehavior
-
-	aBehavior isMeta ifTrue: [ self signalClassToRenameCanNotBeMetaclass]! !
-
-!RenameClass class methodsFor: 'pre-conditions' stamp: 'HAW 8/13/2018 18:45:26'!
-newClassPreconditionClass
-
-	^NewClassPrecondition ! !
-
-!RenameClass class methodsFor: 'exceptions' stamp: 'HAW 6/4/2017 18:50:36'!
-classToRenameCanNotBeMetaclassErrorMessage
-	
-	^'Class to rename can not be a metaclass'! !
-
-!RenameClass class methodsFor: 'exceptions' stamp: 'HAW 6/1/2017 19:07:08'!
-newNameEqualsOldNameErrorMessage
-	
-	^'New class name equals old one'! !
-
-!RenameClass class methodsFor: 'exceptions' stamp: 'HAW 6/4/2017 18:50:56'!
-signalClassToRenameCanNotBeMetaclass
-	
-	self refactoringError: self classToRenameCanNotBeMetaclassErrorMessage! !
-
-!RenameClass class methodsFor: 'exceptions' stamp: 'HAW 8/13/2018 18:39:00'!
-signalNewNameEqualsOldName
-
-	self refactoringError: self newNameEqualsOldNameErrorMessage.! !
-
-!RenameClass class methodsFor: 'instance creation' stamp: 'HAW 6/2/2017 11:43:48'!
-from: aClass to: aNewClassName
-
-	^self from: aClass to: aNewClassName in: Smalltalk
-	! !
-
-!RenameClass class methodsFor: 'instance creation' stamp: 'HAW 6/2/2017 11:55:32'!
-from: aClass to: aNewClassName in: aSystem
-
-	^self from: aClass to: aNewClassName in: aSystem undeclared: Undeclared 
-	
-	! !
-
-!RenameClass class methodsFor: 'instance creation' stamp: 'HAW 8/13/2018 18:45:15'!
-from: aClass to: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-
-	self assertIsNotMeta: aClass.
-	self assert: aClass isNotNamed: aNewClassName.
-	self newClassPreconditionClass valueFor: aNewClassName in: aSystem undeclared: anUndeclaredDictionary.
-	
-	^self new initializeFrom: aClass to: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 6/11/2017 19:06:35'!
-addNewInstanceVariable
-
-	addInstanceVariable apply! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 6/11/2017 19:07:49'!
-copyOldInstanceVariableToNewOne
-
-	| oldVariableIndex newVariableIndex |
-	
-	oldVariableIndex := self classToRefactor indexOfInstanceVariable: oldVariable.	
-	newVariableIndex := self classToRefactor indexOfInstanceVariable: self newVariable.
-	self classToRefactor allSubInstancesDo: [ :anInstance | anInstance instVarAt: newVariableIndex put: (anInstance instVarAt: oldVariableIndex) ].
-	
-! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 9/3/2018 19:48:09'!
-newSourceOf: aCompiledMethod 
-	
-	| newSource ranges |
-	
-	ranges := aCompiledMethod methodNode positionsForInstanceVariable: oldVariable ifAbsent: [ #() ].
-	newSource := aCompiledMethod sourceCode copyReplacing: ranges with: self newVariable.
-	
-	^newSource
-	! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 6/11/2017 19:07:20'!
-removeOldInstanceVariable
-
-	self classToRefactor removeInstVarName: oldVariable.! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 6/11/2017 19:07:10'!
-renameReferencesToOldVariable
-	
-	renamedReferences := OrderedCollection new.
-	self classToRefactor withAllSubclassesDo: [ :aClass | self renameReferencesToOldVariableInClass: aClass ]! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 6/17/2017 19:17:33'!
-renameReferencesToOldVariableInClass: aClass 
-
-	| referencingMethodNames |
-	
-	referencingMethodNames := aClass whichSelectorsAccess: oldVariable.
-	referencingMethodNames do: [ :referencingMethodName | self renameReferencesToOldVariableInMethod: (aClass compiledMethodAt: referencingMethodName) ]
-	! !
-
-!RenameInstanceVariable methodsFor: 'applying - private' stamp: 'HAW 8/13/2018 14:53:56'!
-renameReferencesToOldVariableInMethod: aCompiledMethod 
-	
-	aCompiledMethod methodClass compile: (self newSourceOf: aCompiledMethod).
-	renamedReferences add: aCompiledMethod methodReference ! !
-
-!RenameInstanceVariable methodsFor: 'applying' stamp: 'HAW 6/5/2017 16:53:57'!
-apply
-
-	self 
-		addNewInstanceVariable;
-		copyOldInstanceVariableToNewOne;
-		renameReferencesToOldVariable;
-		removeOldInstanceVariable.
-		
-	^renamedReferences 
-		! !
-
-!RenameInstanceVariable methodsFor: 'accessing' stamp: 'HAW 6/11/2017 19:09:35'!
-classToRefactor
-
-	^addInstanceVariable classToRefactor! !
-
-!RenameInstanceVariable methodsFor: 'accessing' stamp: 'HAW 6/11/2017 19:07:37'!
-newVariable
-
-	^ addInstanceVariable newVariable! !
-
-!RenameInstanceVariable methodsFor: 'initialization' stamp: 'HAW 8/9/2018 17:20:55'!
-initializeFrom: anOldvariable addingWith: anAddInstanceVariable 
-
-	oldVariable := anOldvariable.
-	addInstanceVariable := anAddInstanceVariable.
-! !
-
-!RenameInstanceVariable class methodsFor: 'pre-conditions' stamp: 'HAW 5/24/2017 21:49:18'!
-assert: aClass defines: anInstanceVariable
-
-	(aClass definesInstanceVariableNamed: anInstanceVariable) ifFalse: [ self signalInstanceVariable: anInstanceVariable notDefinedIn: aClass ].! !
-
-!RenameInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 5/24/2017 21:56:02'!
-errorMessageForInstanceVariable: aName notDefinedIn: aClass
-
-	^ 'Instance variable ''' , aName , ''' is not defined in ' , aClass name.! !
-
-!RenameInstanceVariable class methodsFor: 'exceptions' stamp: 'HAW 6/3/2017 11:54:22'!
-signalInstanceVariable: aName notDefinedIn: aClass
-
-	^ self refactoringError: (self errorMessageForInstanceVariable: aName notDefinedIn: aClass).! !
-
-!RenameInstanceVariable class methodsFor: 'instance creation' stamp: 'HAW 6/11/2017 19:04:59'!
-from: anOldvariable to: aNewVariable in: aClassToRefactor 
-	
-	| addInstanceVariable |
-	
-	self assert: aClassToRefactor defines: anOldvariable.
-	addInstanceVariable := AddInstanceVariable named: aNewVariable to: aClassToRefactor.
-	
-	^self new initializeFrom: anOldvariable addingWith: addInstanceVariable ! !
-
-!RenameTemporary methodsFor: 'applying' stamp: 'HAW 9/3/2018 19:49:06'!
-apply
-	
-	| newSource ranges |
-	
-	ranges := methodNode positionsForTemporaryVariable: oldVariable ifAbsent: [ #() ].
-	newSource := methodNode sourceText copyReplacing: ranges with: newVariable.
-	
-	^ newSource! !
-
-!RenameTemporary methodsFor: 'applying' stamp: 'HAW 8/9/2018 19:34:51'!
-methodNodeAfterApply
-	
-	^methodNode methodClass methodNodeFor: self apply.
-	
-	! !
-
-!RenameTemporary methodsFor: 'initialization' stamp: 'HAW 6/25/2017 21:53:31'!
-initializeFrom: anOldVariable to: aNewVariable in: aMethodNode 
-	
-	oldVariable := anOldVariable.
-	newVariable := aNewVariable.
-	methodNode := aMethodNode ! !
-
-!RenameTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/25/2017 21:53:31'!
-assert: aVariable isDefinedIn: aMethodNode 
-	
-	(aMethodNode tempNames includes: aVariable) ifFalse: [ self signalTemporaryVariable: aVariable notDefinedIn: aMethodNode ]! !
-
-!RenameTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/25/2017 21:53:31'!
-assert: aNewVariable isNotDefinedIn: aMethodNode 
-	
-	(aMethodNode tempNames includes: aNewVariable) ifTrue: [ self signalNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode ]
-	! !
-
-!RenameTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/25/2017 21:53:31'!
-assertIsNotEmpty: aNewVariable
-
-	aNewVariable isEmpty ifTrue: [ self signalNewVariableCanNotBeEmpty ]! !
-
-!RenameTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/25/2017 21:53:31'!
-assertIsValidVariableName: aName
-
-	| scannedNames |
-
-	scannedNames _ Scanner new scanFieldNames: aName.
-	scannedNames size = 1 ifFalse: [ self signalInvalidTemporaryVariable: aName ].
-	scannedNames first = aName ifFalse: [ self signalInvalidTemporaryVariable: aName ].! !
-
-!RenameTemporary class methodsFor: 'pre-conditions' stamp: 'HAW 6/25/2017 21:53:31'!
-warnIf: aNewVariable isDefinedAsInstanceVariableInHierarchyOf: aClass 
-	
-	| classDefiningNewVariable |
-	
-	classDefiningNewVariable := aClass whichClassDefinesInstanceVariable: aNewVariable ifNone: [ ^self ].
-	self warn: aNewVariable willHideInstanceVariableDefinedIn: classDefiningNewVariable ! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-errorMessageForInvalidTemporaryVariable: aName
-
-	^ '''' , aName , ''' is not a valid temporary variable name'.! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-errorMessageForNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode
-
-	^aNewVariable, ' is already defined in ', aMethodNode classAndSelector ! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 10/4/2017 17:04:37'!
-errorMessageForTemporaryVariable: aVariable notDefinedIn: aMethodNode
-
-	^'Temporary variable ', aVariable, ' is not defined in ', aMethodNode classAndSelector ! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-newVariableCanNotBeEmptyErrorMessage
-	
-	^'New variable can not be empty'! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-signalInvalidTemporaryVariable: aName
-
-	^ self refactoringError: (self errorMessageForInvalidTemporaryVariable: aName).! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-signalNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode
-
-	self refactoringError: (self errorMessageForNewTemporaryVariable: aNewVariable isAlreadyDefinedIn: aMethodNode )! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 6/25/2017 21:53:31'!
-signalNewVariableCanNotBeEmpty
-	
-	self refactoringError: self newVariableCanNotBeEmptyErrorMessage! !
-
-!RenameTemporary class methodsFor: 'exceptions' stamp: 'HAW 10/4/2017 17:04:27'!
-signalTemporaryVariable: aVariable notDefinedIn: aMethodNode
-
-	self refactoringError: (self errorMessageForTemporaryVariable: aVariable notDefinedIn: aMethodNode)! !
-
-!RenameTemporary class methodsFor: 'instance creation' stamp: 'HAW 6/25/2017 21:53:31'!
-from: anOldVariable to: aNewVariable in: aMethodNode
-
-	|  trimmedNewVariable |
-	
-	trimmedNewVariable := aNewVariable withBlanksTrimmed.
-	
-	self assert: anOldVariable isDefinedIn: aMethodNode.
-	self assertIsNotEmpty: trimmedNewVariable.
-	self assertIsValidVariableName: trimmedNewVariable.
-	self assert: trimmedNewVariable isNotDefinedIn: aMethodNode.
-	
-	self warnIf: trimmedNewVariable isDefinedAsInstanceVariableInHierarchyOf: aMethodNode methodClass.
-	
-	^self new initializeFrom: anOldVariable to: trimmedNewVariable in: aMethodNode
-! !
-
-!RenameTemporary class methodsFor: 'warnings' stamp: 'HAW 6/25/2017 21:53:31'!
-warn: aNewVariable willHideInstanceVariableDefinedIn: aClass 
-
-	self refactoringWarning: (self warningMessageFor: aNewVariable willHideInstanceVariableDefinedIn: aClass)! !
-
-!RenameTemporary class methodsFor: 'warnings' stamp: 'HAW 6/25/2017 21:53:31'!
-warningMessageFor: aNewVariable willHideInstanceVariableDefinedIn: aClass
-
-	^aNewVariable, ' will hide instance variable defined in ', aClass name! !
-
-!SafelyRemoveClass methodsFor: 'applying' stamp: 'HAW 8/1/2018 16:42:17'!
-apply
-	
-	self removeWithAllSubclasses: classToRemove.
-	! !
-
-!SafelyRemoveClass methodsFor: 'applying - private' stamp: 'HAW 8/1/2018 16:42:17'!
-removeWithAllSubclasses: aClassToRemove
-
-	"I have to do 'subclasses do:' and not 'subclassesDo:' because removing a class modifies parent's subclasses collection.
-	#subclasses returns a copy of superclass' subclasses collection -Hernan"
-	aClassToRemove subclasses do: [ :aSubclassToRemove | self removeWithAllSubclasses: aSubclassToRemove ].
-	aClassToRemove removeFromSystem.
-	! !
-
-!SafelyRemoveClass methodsFor: 'initialization' stamp: 'HAW 8/1/2018 16:42:17'!
-initializeOf: aClassToSafetelyRemove 
-	
-	classToRemove := aClassToSafetelyRemove ! !
-
-!SafelyRemoveClass class methodsFor: 'instance creation' stamp: 'HAW 8/1/2018 16:42:17'!
-of: aClassToSafelyRemove
-
-	| theNonMetaclassToRemove |
-	
-	theNonMetaclassToRemove := aClassToSafelyRemove theNonMetaClass.	
-	self assertNoReferencesTo: theNonMetaclassToRemove.	
-	self warnIfHasSubclasses: theNonMetaclassToRemove.
-	
-	^self new initializeOf: theNonMetaclassToRemove ! !
-
-!SafelyRemoveClass class methodsFor: 'pre-conditions' stamp: 'HAW 8/1/2018 16:42:17'!
-assertNoReferencesTo: aClassToSafelyRemove
-
-	| references withAllSubclasses withAllSubclassesNames referenced |
-	
-	withAllSubclasses := aClassToSafelyRemove withAllSubclasses.
-	withAllSubclassesNames := withAllSubclasses collect: [:aClass | aClass name ].
-	references :=OrderedCollection new.
-	referenced := OrderedCollection new.
-	
-	withAllSubclasses do: [ :aClass | | allReferences referencesOutsideHierarchy |
-		allReferences := aClass allCallsOn.
-		referencesOutsideHierarchy := allReferences reject: [ :aReference | withAllSubclassesNames includes: aReference classSymbol ].
-		referencesOutsideHierarchy notEmpty ifTrue: [
-			referenced add: aClass.
-			references addAll: referencesOutsideHierarchy ]].
-		
-	references notEmpty ifTrue: [ self signalCanNotRemove: aClassToSafelyRemove dueToReferences: references toAll: referenced ]! !
-
-!SafelyRemoveClass class methodsFor: 'pre-conditions' stamp: 'HAW 8/1/2018 16:42:17'!
-warnIfHasSubclasses: aClassToSafelyRemove
-
-	| allSubclasses |
-	
-	allSubclasses := aClassToSafelyRemove allSubclasses.
-	allSubclasses isEmpty ifFalse: [ self warn: aClassToSafelyRemove hasSubclasses: allSubclasses ]! !
-
-!SafelyRemoveClass class methodsFor: 'exceptions' stamp: 'HAW 8/1/2018 18:10:36'!
-errorMessageForCanNotRemove: aClassToSafelyRemove dueToReferencesToAll: referenced
-
-	^String streamContents: [ :stream |
-		stream 
-			nextPutAll: aClassToSafelyRemove name asString;
-			nextPutAll: ' can not be removed '.
-	
-		referenced size = 1 
-			ifTrue: [ (referenced includes: aClassToSafelyRemove) 
-				ifTrue: [ stream nextPutAll: 'because it has references' ]
-				ifFalse: [ stream 
-					nextPutAll: 'because it subclass, ';
-					nextPutAll: referenced anyOne name asString;
-					nextPutAll: ', has references' ]]
-			ifFalse: [ (referenced includes: aClassToSafelyRemove)
-				ifTrue: [ stream 
-					nextPutAll: 'due to references to: ';
-					nextPutAll: referenced asCommaStringAnd ]
-				ifFalse: [ stream
-					nextPutAll: 'due to references to its subclasses: ';
-					nextPutAll: referenced asCommaStringAnd ]]]! !
-
-!SafelyRemoveClass class methodsFor: 'exceptions' stamp: 'HAW 8/17/2018 16:34:16'!
-signalCanNotRemove: aClassToSafelyRemove dueToReferences: references toAll: allReferenced
-
-	self 
-		canNotRefactorDueToReferencesError: (self errorMessageForCanNotRemove: aClassToSafelyRemove dueToReferencesToAll: allReferenced)
-		references: references 
-		to: aClassToSafelyRemove 
-	! !
-
-!SafelyRemoveClass class methodsFor: 'warnings' stamp: 'HAW 8/1/2018 16:42:17'!
-warn: aClassToSafelyRemove hasSubclasses: allSubclasses
-
-	self refactoringWarning: (self warningMessageFor: aClassToSafelyRemove hasSubclasses: allSubclasses)! !
-
-!SafelyRemoveClass class methodsFor: 'warnings' stamp: 'HAW 8/1/2018 18:24:31'!
-warningMessageFor: aClassToSafelyRemove hasSubclasses: allSubclasses
-
-	^String streamContents: [ :stream |
-		stream nextPutAll: aClassToSafelyRemove name asString.
-		allSubclasses size = 1
-			ifTrue: [ stream nextPutAll: ' has a subclass' ]
-			ifFalse: [ stream 
-					nextPutAll: ' has ';
-					print:  allSubclasses size;
-					nextPutAll: ' subclasses' ].
-		stream nextPutAll: ' that will be removed'].
-		
-	! !
-
-!RefactoringApplier methodsFor: 'refactoring - applying' stamp: 'HAW 6/5/2017 18:06:39'!
-applyRefactoring
-
-	changes := refactoring apply! !
-
-!RefactoringApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/5/2017 18:05:46'!
+!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 17:56:19'!
 createRefactoring
 
-	self subclassResponsibility ! !
-
-!RefactoringApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/5/2017 18:05:20'!
-createRefactoringHandlingRefactoringExceptions
-
-	self valueHandlingRefactoringExceptions: [ refactoring := self createRefactoring ]
-	! !
-
-!RefactoringApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 14:24:04'!
-endRequest
-
-	^requestExitBlock value! !
-
-!RefactoringApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 19:04:16'!
-requestRefactoringParameters
-
-	self subclassResponsibility ! !
-
-!RefactoringApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 19:05:35'!
-requestRefactoringParametersHandlingRefactoringExceptions
-
-	self valueHandlingRefactoringExceptions: [ self requestRefactoringParameters ]
-	! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 8/17/2018 16:37:38'!
-browseReferencesOn: aCanNotRefactorDueToReferencesError
-	
-	Smalltalk 
-		browseMessageList: aCanNotRefactorDueToReferencesError references 
-		name: (self referencesBrowserTitleOn: aCanNotRefactorDueToReferencesError)
-		autoSelect: true
-! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 8/17/2018 16:37:55'!
-handleCanNotRefactorDueToReferencesError: aCanNotRefactorDueToReferencesError
-	
-	| options answer question |
-	
-	options := 
-'Browse references
-Cancel'.
-
-	question := PopUpMenu labels: options icons: #(mailForwardIcon cancelIcon).
-	answer := question startUpWithCaption: aCanNotRefactorDueToReferencesError messageText.
-	
-	answer = 1 ifTrue: [ self browseReferencesOn: aCanNotRefactorDueToReferencesError ].
-	self endRequest.! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 6/5/2017 18:47:40'!
-handleRefactoringError: aRefactoringError 
-
-	self inform: aRefactoringError messageText.
-	self endRequest ! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 8/1/2018 18:15:21'!
-handleRefactoringWarning: aRefactoringWarning
-	
-	(self confirm: aRefactoringWarning messageText, '. Continue?')
-		ifTrue: [ aRefactoringWarning resume ]
-		ifFalse: [ self endRequest]! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 8/17/2018 16:38:07'!
-referencesBrowserTitleOn: aCanNotRefactorDueToReferencesError
-
-	^'References to ', aCanNotRefactorDueToReferencesError referencee asString! !
-
-!RefactoringApplier methodsFor: 'exception handling' stamp: 'HAW 8/17/2018 16:35:47'!
-valueHandlingRefactoringExceptions: aBlock
-
-	^[[aBlock
-		on: Refactoring refactoringWarningClass 
-		do: [ :aRefactoringWarning | self handleRefactoringWarning: aRefactoringWarning ]]
-		on: Refactoring canNotRefactorDueToReferencesErrorClass
-		do: [ :aCanNotRefactorDueToReferencesError | self handleCanNotRefactorDueToReferencesError: aCanNotRefactorDueToReferencesError ]]
-		on: Refactoring refactoringErrorClass 
-		do: [ :aRefactoringError | self handleRefactoringError: aRefactoringError ]
-	! !
-
-!RefactoringApplier methodsFor: 'request information' stamp: 'HAW 6/11/2017 19:22:50'!
-request: aLabel
- 
-	^self request: aLabel initialAnswer: ''
-! !
-
-!RefactoringApplier methodsFor: 'request information' stamp: 'HAW 6/5/2017 16:03:04'!
-request: aLabel initialAnswer: anAnswer
-
-	^self request: aLabel initialAnswer: anAnswer onCancel: requestExitBlock ! !
-
-!RefactoringApplier methodsFor: 'request information' stamp: 'HAW 6/5/2017 16:03:30'!
-request: aLabel initialAnswer: anAnswer onCancel: cancelBlock
-
-	^FillInTheBlankMorph request: aLabel initialAnswer: anAnswer onCancel: cancelBlock ! !
-
-!RefactoringApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/5/2017 18:06:53'!
-showChanges
-
-	self subclassResponsibility 	
-	! !
-
-!RefactoringApplier methodsFor: 'evaluating' stamp: 'HAW 6/5/2017 19:05:50'!
-value
-
-	requestExitBlock := [ ^self ].
-	
-	self 
-		requestRefactoringParametersHandlingRefactoringExceptions;
-		createRefactoringHandlingRefactoringExceptions;
-		applyRefactoring;
-		showChanges
-	
-	! !
-
-!RefactoringApplier class methodsFor: 'value handling exceptions' stamp: 'HAW 1/7/2019 15:28:18'!
-createAndValueHandlingExceptions: creationBlock
-
-	| refactoring |
-	
-	refactoring := creationBlock 
-		on: Refactoring refactoringErrorClass 
-		do: [ :refactoringError | ^self inform: refactoringError messageText ].
-
-	refactoring value ! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/30/2017 18:12:33'!
-askNewVariableName
-		
-	newInstanceVariable := self request: self newVariableNameLabel. 
-	newInstanceVariable := newInstanceVariable withBlanksTrimmed ! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/30/2017 18:12:47'!
-newVariableNameLabel
-	
-	^'Enter new variable name:'! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/11/2017 19:18:00'!
-requestRefactoringParameters
-
-	self askNewVariableName! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/11/2017 19:19:25'!
-createRefactoring
-		
-	^AddInstanceVariable named: newInstanceVariable to: classToRefactor.
-	! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 1/7/2019 14:41:01'!
-informChangesToBrowser
-		
-	browser acceptedContentsChanged! !
-
-!AddInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/11/2017 19:20:03'!
-showChanges
-
-	self informChangesToBrowser! !
-
-!AddInstanceVariableApplier methodsFor: 'initialization' stamp: 'HAW 1/7/2019 14:40:44'!
-initializeOn: aBrowser for: aClassToRefactor 
-	
-	browser := aBrowser.
-	classToRefactor := aClassToRefactor ! !
-
-!AddInstanceVariableApplier class methodsFor: 'instance creation' stamp: 'HAW 1/7/2019 14:40:37'!
-on: aBrowser for: aClassToRefactor
-	
-	^self new initializeOn: aBrowser for: aClassToRefactor 
-! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 1/3/2019 07:57:24'!
-askForImplementosAndSenders
-
-	self 
-		askScope;
-		calculateImplementorsAndSenders;
-		startWizard ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:21:12'!
-askScope
-
-	| scopeMenu |
-	
-	scopeMenu := PopUpMenu labelArray: self scopeOptionLabels.
-	scopeChoice := scopeMenu startUpWithCaption: 'Select Refactoring Scope'.
-	scopeChoice = 0 ifTrue: [ self endRequest ].
-	! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 12/13/2018 17:41:06'!
-calculateImplementorsAndSenders
-		
-	implementors := IdentitySet new.
-	senders := IdentitySet new.
-	
-	scopeChoice = 1 ifTrue: [ ^self implementorsAndSendersForClass ].
-	scopeChoice = 2 ifTrue: [ ^self implementorsAndSendersForHierarchy ].
-	scopeChoice = 3 ifTrue: [ ^self implementorsAndSendersInCategory ].
-	scopeChoice = 4 ifTrue: [ ^self implementorsAndSendersInCategoryAndHierarchy ].
-	scopeChoice = 5 ifTrue: [ ^self implementorsAndSendersInSystem ].
-	
-	self error: 'Unknown scope option' 
-		
-		! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:00:51'!
-implementorsAndSendersForClass
-
-	^self refactoringClass addImplementorsOf: oldSelector to: implementors andSendersTo: senders forClassAndMetaOf: implementingClass! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:00:56'!
-implementorsAndSendersForHierarchy 
-		
-	^self refactoringClass addImplementorsOf: oldSelector to: implementors andSendersTo: senders inHierarchyOf: implementingClass! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:01:01'!
-implementorsAndSendersInCategory 
-
-	^self refactoringClass 
-		addImplementorsOf: oldSelector 
-		to: implementors 
-		andSendersTo: senders 
-		inCategory: implementingClass category 
-		organizedBy: SystemOrganization! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:01:05'!
-implementorsAndSendersInCategoryAndHierarchy 
-
-	^self refactoringClass 
-		addImplementorsOf: oldSelector 
-		to: implementors 
-		andSendersTo: senders 
-		inCategoriesAndHierarchyOf: implementingClass 
-		organizedBy: SystemOrganization ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:01:15'!
-implementorsAndSendersInSystem
-		
-	^self refactoringClass addImplementorsOf: oldSelector to: implementors andSendersTo: senders inSystem: Smalltalk ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 12/13/2018 17:41:33'!
-scopeOptionLabels
-	
-	^{'In Class'. 'In Hierarchy'. 'In Category'. 'In Hierarchy and its Categories'. 'In System'}.! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 1/7/2019 11:17:34'!
-startWizard
-		
-	ChangeSelectorImplementorsStepWindow openFrom: self! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 8/18/2018 17:02:26'!
-implementors
-	
-	^implementors ! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 8/18/2018 17:02:29'!
-implementors: implementorsCollection
-
-	implementors := implementorsCollection ! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 8/18/2018 17:02:33'!
-oldSelector
-	
-	^oldSelector ! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 8/18/2018 17:02:37'!
-senders
-	
-	^senders ! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 8/18/2018 17:02:41'!
-senders: sendersCollection
- 
-	senders := sendersCollection ! !
-
-!ChangeSelectorApplier methodsFor: 'accessing' stamp: 'HAW 1/7/2019 11:16:36'!
-wizardStepWindow: aWizarStepWindow 
-	
-	wizardStepWindow := aWizarStepWindow ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 1/7/2019 11:08:33'!
-closeBrowser
-	
-	wizardStepWindow delete.
-	! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 10/10/2018 19:50:39'!
-doNotShowChanges
-
-	shouldShowChanges := false! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 1/7/2019 14:09:10'!
-informChangesToBrowser
-
-	"If the selected message is not the same as the oldSelector, that is the selector being renamed, 
-	then it implies that we are renaming a selector sent in the source code of the selected message then
-	I don't have to change the selected message in the browser - Hernan"
-	browser selectedMessageName = oldSelector ifTrue: [ 
-		browser setSelector: refactoring newSelector ]! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/18/2018 17:02:52'!
-messageSetWindowClass
-		
-	^MessageSetWindow 
-	! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 10/10/2018 19:52:08'!
-showChanges
-		
-	self showChangesInMessageSetWindow! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/18/2018 17:28:30'!
-showChangesInMessageSetWindow
-
-	self messageSetWindowClass openMessageList: changes asSortedCollection label: 'Changed methods' ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - creation' stamp: 'HAW 1/7/2019 13:51:04'!
-createAndApplyRefactoring
-
-	self 
-		createRefactoringHandlingRefactoringExceptions;
-		applyRefactoring;
-		informChangesToBrowser.
-			
-	shouldShowChanges ifTrue: [ self showChanges ]
-	
-			! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - creation' stamp: 'HAW 1/3/2019 08:46:41'!
-createAndApplyRefactoringWhenNoSendersAndOneImplementor: anImplementor 
-		
-	implementors := Array with: anImplementor.
-	senders := #().
-	shouldShowChanges := false.
-	
-	self createAndApplyRefactoring ! !
-
-!ChangeSelectorApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 17:03:58'!
-refactoringClass
-
-	self subclassResponsibility ! !
-
-!ChangeSelectorApplier methodsFor: 'initialization' stamp: 'HAW 1/7/2019 13:47:34'!
-initializeOn: aBrowser for: aSelector in: aClass
-	
-	oldSelector := aSelector.
-	implementingClass := aClass.
-	browser := aBrowser.
-	shouldShowChanges := true.! !
-
-!ChangeSelectorApplier methodsFor: 'evaluation' stamp: 'HAW 1/7/2019 14:59:52'!
-ifHasNoSendersAndOneImplementor: trueBlock ifNot: falseBlock
-
-	| allImplementors |
-	
-	allImplementors := Smalltalk allImplementorsOf: oldSelector.
-	
-	"I could try to see if there is one sender and that that sender is in the same method beeing renamed. That could
-	mean that it is a recursive call but I should also see if the receiver is self to be sure because if it is other 'type' of 
-	object the rename could not be safe. To complex for a small posibility - Hernan"
-	(allImplementors size = 1 and: [ (Smalltalk allCallsOn: oldSelector) isEmpty ]) 
-		ifTrue: [ trueBlock value: allImplementors anyOne compiledMethod ]
-		ifFalse: falseBlock! !
-
-!ChangeSelectorApplier methodsFor: 'evaluation' stamp: 'HAW 1/3/2019 08:41:27'!
-value
-
-	requestExitBlock := [ ^self ].
-		
-	self requestRefactoringParametersHandlingRefactoringExceptions.
-	
-	self 
-		ifHasNoSendersAndOneImplementor: [ :anImplementor | self createAndApplyRefactoringWhenNoSendersAndOneImplementor: anImplementor ]
-		ifNot: [ self askForImplementosAndSenders ]! !
-
-!ChangeSelectorApplier methodsFor: 'evaluation' stamp: 'HAW 1/3/2019 08:46:11'!
-wizardEnded
-
-	requestExitBlock := [ ^self ].
-	
-	self 
-		closeBrowser;
-		createAndApplyRefactoring.! !
-
-!ChangeSelectorApplier class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 17:17:52'!
-assertCanApplyRefactoringFor: aSelector in: aClass
-
-	self subclassResponsibility ! !
-
-!ChangeSelectorApplier class methodsFor: 'instance creation' stamp: 'HAW 1/7/2019 13:47:54'!
-on: aBrowser for: aSelector in: aClass 
-	
-	self assertCanApplyRefactoringFor: aSelector in: aClass.
-	
-	^self new initializeOn: aBrowser for: aSelector in: aClass
-	! !
-
-!AddParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 16:46:49'!
-createRefactoring
-	
-	oldSelector isUnary ifTrue: [ ^self createRefactoringForUnarySelector].
-	oldSelector isKeyword ifTrue: [ ^self createRefactoringForKeywordSelector ].
-	
-	self error: 'oldSelector should be unary or keyword!!'! !
-
-!AddParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 9/4/2018 20:24:53'!
-createRefactoringForKeywordSelector
-	
-	^self refactoringClass 
-		named: newParameter
-		at: parameterIndex 
-		initializedWith: newParameterValue 
-		using: newKeyword 
-		toKeywordSelector: oldSelector 
-		implementors: implementors 
-		senders: senders ! !
-
-!AddParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 16:56:55'!
-createRefactoringForUnarySelector
-	
-	^self refactoringClass 
-		named: newParameter
-		initializedWith: newParameterValue 
-		toUnarySelector: oldSelector 
-		implementors: implementors 
-		senders: senders ! !
-
-!AddParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 16:56:55'!
-refactoringClass
-
-	^AddParameter! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 9/4/2018 20:33:41'!
-askInsertionIndex
-
-	| methodNode originalMethod parameterNames |
-	
-	originalMethod := implementingClass compiledMethodAt: oldSelector.
-	methodNode := originalMethod methodNode.
-	parameterNames := methodNode argumentNames.
-	parameterNames add: 'Add as last parameter'.
-
-	parameterIndex := (PopUpMenu labelArray: parameterNames) startUpWithCaption: 'Add Before?'.
-	parameterIndex = 0 ifTrue: [self endRequest ].
-	
-	! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 9/4/2018 20:33:37'!
-askInsertionIndexIfNecessary
-
-	oldSelector isKeyword ifTrue: [ self askInsertionIndex ].
-	! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:06:28'!
-askNewKeyword
-
- 	| enteredString |
-	
-	enteredString := self request: 'Enter keyword for new parameter'.
-	newKeyword := enteredString withBlanksTrimmed asSymbol.
-	self refactoringClass assertIsValidKeywordForNewParameter: newKeyword! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 17:06:28'!
-askNewKeywordIfNecessary
-		
-	oldSelector isKeyword ifTrue: [self askNewKeyword]! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 16:56:55'!
-askNewParameter
-		
-	| enteredString |
-	
-	enteredString := self request: 'Enter new parameter name'.
-	newParameter := enteredString withBlanksTrimmed.
-	self refactoringClass assertIsValidParameterName: newParameter
-! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/25/2018 11:28:58'!
-askNewParameterValue
-		
-	| enteredString |
-	
-	enteredString := self request: 'Enter parameter value for senders'.
-	newParameterValue := enteredString withBlanksTrimmed.
-	self refactoringClass assertNewParameterValueIsNotEmpty: newParameterValue.
-	self refactoringClass assertNewParameterValueIsValid: newParameterValue.
-! !
-
-!AddParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 1/3/2019 08:01:40'!
-requestRefactoringParameters
-
-	self
-		askNewParameter;
-		askNewParameterValue;
-		askInsertionIndexIfNecessary;
-		askNewKeywordIfNecessary
-		! !
-
-!AddParameterApplier class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 17:18:06'!
-assertCanApplyRefactoringFor: aSelector in: aClass
-
-	AddParameter assertCanAddParameterTo: aSelector.
-	
-
-	! !
-
-!RemoveParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 9/4/2018 15:15:48'!
-createRefactoring
-	
-	^self refactoringClass named: parameterToRemove from: originalMethod implementors: implementors senders: senders ! !
-
-!RemoveParameterApplier methodsFor: 'refactoring - creation' stamp: 'HAW 9/4/2018 15:15:00'!
-refactoringClass
-
-	^RemoveParameter! !
-
-!RemoveParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 9/4/2018 15:30:50'!
-askParameterToRemove
-		
-	| methodNode parameterNames |
-	
-	originalMethod := implementingClass compiledMethodAt: oldSelector.
-	methodNode := originalMethod methodNode.
-	parameterNames := methodNode argumentNames.
-	
-	parameterNames size = 1 
-		ifTrue: [ parameterToRemove := parameterNames first ]
-		ifFalse: [ parameterToRemove := self selectParameterToRemoveForm: parameterNames ].
-	
-	! !
-
-!RemoveParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 1/3/2019 08:01:51'!
-requestRefactoringParameters
-
-	self askParameterToRemove
-		
-		! !
-
-!RemoveParameterApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 9/4/2018 15:36:30'!
-selectParameterToRemoveForm: parameterNames
-	
-	| parameterIndex |
-	
-	parameterIndex := (PopUpMenu labelArray: parameterNames) startUpWithCaption: 'Select parameter to remove'.
-	parameterIndex = 0 ifTrue: [self endRequest ].
-	
-	^parameterNames at: parameterIndex.! !
-
-!RemoveParameterApplier class methodsFor: 'pre-conditions' stamp: 'HAW 9/4/2018 15:17:09'!
-assertCanApplyRefactoringFor: aSelector in: aClass
-
-	RemoveParameter assertCanRemoveParameterFrom: aSelector.
-	
-
-	! !
-
-!RenameSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 17:02:06'!
-askNewSelector
-
-	| enteredString |
-	
-	enteredString := self request: 'Enter new selector:' initialAnswer: oldSelector.
-	newSelector := enteredString withBlanksTrimmed asSymbol.
-		
-! !
-
-!RenameSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/18/2018 16:56:24'!
-assertCanRenameSelector
-		
-	self refactoringClass assertIsValidToRenameFrom: oldSelector to: newSelector.
-	! !
-
-!RenameSelectorApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 1/3/2019 08:02:00'!
-requestRefactoringParameters
-
-	self
-		askNewSelector;
-		assertCanRenameSelector
-		! !
-
-!RenameSelectorApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 16:56:24'!
-createRefactoring
-	
-	^self refactoringClass from: oldSelector to: newSelector implementors: implementors senders: senders.
-	! !
-
-!RenameSelectorApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/18/2018 17:04:02'!
-refactoringClass
-
-	^RenameSelector ! !
-
-!RenameSelectorApplier class methodsFor: 'pre-conditions' stamp: 'HAW 8/18/2018 17:24:18'!
-assertCanApplyRefactoringFor: aSelector in: aClass 
-	
-	! !
-
-!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 2/17/2019 16:10:17'!
-createRefactoring
-	
-	^ExtractToMethodObject 
-		from: compiledMethodToExtract 
+	^ExtractToMethodObject
+		from: compiledMethodToExtract
 		toMethodObjectClassNamed: extractToMethodObjectRequest methodObjectClassName
-		subclassing: (Smalltalk classNamed: extractToMethodObjectRequest methodObjectSuperclassName)
+		subclassing: extractToMethodObjectRequest methodObjectSuperclass
 		onCategory: extractToMethodObjectRequest methodObjectCategory
 		withExtractedVariablesToInstanceVariables: extractToMethodObjectRequest variablesToParametrizeToInstanceVariables
 		withInstanceCreationMessageFrom: extractToMethodObjectRequest keywordsDefinitions
 		evaluatedWith: extractToMethodObjectRequest methodObjectEvaluationMessageSelector.! !
 
-!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 2/16/2019 11:35:56'!
+!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/4/2019 17:33:49'!
 requestRefactoringParameters
 
 	panel := ExtractToMethodObjectForm open: self.
-	
-	self waitForUserResponse.
 	! !
 
 !ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 19:56:45'!
 showChanges
-	
+
 	panel deleteDiscardingEdits.
 	Transcript log: 'Successfully applied the Extract Method To Method Object refactoring'.! !
 
-!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:09:20'!
-userSubmitted: anExtractToMethodObjectRequest
-
-	extractToMethodObjectRequest := anExtractToMethodObjectRequest.
-	self finishedRefactoringParametersRequest.! !
-
-!ExtractToMethodObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 19:32:07'!
-waitForUserResponse
-
-	| w |
-
-	w := panel world.
-	done := false.
-	[done] whileFalse: [w doOneCycleNow ].
-	w doOneCycleNow.! !
-
-!ExtractToMethodObjectApplier methodsFor: 'events-triggering' stamp: 'FGJ 2/14/2019 17:09:09'!
+!ExtractToMethodObjectApplier methodsFor: 'event handling' stamp: 'FGJ 4/4/2019 17:32:47'!
 cancel
 
-	self finishedRefactoringParametersRequest.
-	panel delete.
-	
-	self endRequest.! !
+	panel delete.! !
 
-!ExtractToMethodObjectApplier methodsFor: 'events-triggering' stamp: 'FGJ 2/14/2019 17:08:58'!
-finishedRefactoringParametersRequest
+!ExtractToMethodObjectApplier methodsFor: 'event handling' stamp: 'FGJ 4/4/2019 17:33:21'!
+handleRefactoringError: aRefactoringError
 
-	done := true.! !
+	self inform: aRefactoringError messageText.! !
 
-!ExtractToMethodObjectApplier methodsFor: 'events-triggering' stamp: 'FGJ 2/14/2019 19:24:27'!
-handleRefactoringError: aRefactoringError 
-
-	self inform: aRefactoringError messageText.
-	self waitForUserResponse.
-	self createRefactoringHandlingRefactoringExceptions.! !
-
-!ExtractToMethodObjectApplier methodsFor: 'events-triggering' stamp: 'FGJ 2/13/2019 16:00:37'!
+!ExtractToMethodObjectApplier methodsFor: 'event handling' stamp: 'FGJ 2/13/2019 16:00:37'!
 panelWasClosed
 
 	self cancel.! !
 
-!ExtractToMethodObjectApplier methodsFor: 'events-triggering' stamp: 'HAW 3/4/2019 14:36:12'!
-variablesToParametrize
+!ExtractToMethodObjectApplier methodsFor: 'event handling' stamp: 'FGJ 4/4/2019 17:34:16'!
+userSubmitted: anExtractToMethodObjectRequest
 
-	^OrderedCollection newFrom: (VariablesToExtractFinder valueIn: compiledMethodToExtract)! !
+	extractToMethodObjectRequest := anExtractToMethodObjectRequest.
+	self createRefactoringHandlingRefactoringExceptions.
+
+	refactoring ifNotNil: [self applyRefactoring; showChanges].! !
 
 !ExtractToMethodObjectApplier methodsFor: 'initialization' stamp: 'FGJ 2/13/2019 15:24:32'!
 initializeToExtract: aCompiledMethod
 
 	compiledMethodToExtract := aCompiledMethod.! !
+
+!ExtractToMethodObjectApplier methodsFor: 'accessing' stamp: 'FGJ 4/11/2019 16:56:27'!
+methodToExtract
+
+	^compiledMethodToExtract! !
+
+!ExtractToMethodObjectApplier methodsFor: 'accessing' stamp: 'HAW 3/4/2019 14:36:12'!
+variablesToParametrize
+
+	^OrderedCollection newFrom: (VariablesToExtractFinder valueIn: compiledMethodToExtract)! !
+
+!ExtractToMethodObjectApplier methodsFor: 'evaluating' stamp: 'FGJ 4/4/2019 17:35:17'!
+value
+
+	self requestRefactoringParametersHandlingRefactoringExceptions.! !
 
 !ExtractToMethodObjectApplier class methodsFor: 'as yet unclassified' stamp: 'FGJ 12/10/2018 11:45:57'!
 errorMessageForCanNotParseMethod: anError
@@ -10223,1804 +7390,1319 @@ extract: aCompiledMethod
 
 	^self new initializeToExtract: aCompiledMethod! !
 
-!InsertSuperclassApplier methodsFor: 'initialization' stamp: 'FJG 8/5/2018 22:31:03'!
-initializeOn: aBrowser for: aClass
-	browser _ aBrowser.
-	classToRefactor _ aClass.! !
+!IntroduceNullObjectApplier methodsFor: 'initialization' stamp: 'FGJ 3/26/2019 11:35:25'!
+initializeToApplyOn: aClass
 
-!InsertSuperclassApplier methodsFor: 'refactoring - parameters request' stamp: 'FJG 8/5/2018 22:31:31'!
-askNewSuperclassName
-	newSuperclassName _ self
-		request: 'Enter new superclass name:'.
-	newSuperclassName _ newSuperclassName withBlanksTrimmed asSymbol.! !
+	classToRefactor := aClass.! !
 
-!InsertSuperclassApplier methodsFor: 'refactoring - parameters request' stamp: 'FJG 8/5/2018 22:29:07'!
-requestRefactoringParameters
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/4/2019 13:05:04'!
+cancel
 
-	self askNewSuperclassName! !
+	form delete.! !
 
-!InsertSuperclassApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/13/2018 15:55:10'!
-createRefactoring
-
-	^InsertSuperclass to: classToRefactor named: newSuperclassName! !
-
-!InsertSuperclassApplier methodsFor: 'refactoring - changes' stamp: 'FJG 8/5/2018 22:33:49'!
-showChanges
-	
-	browser changed: #classList.
-! !
-
-!InsertSuperclassApplier class methodsFor: 'instance creation' stamp: 'FJG 8/5/2018 22:27:02'!
-on: aBrowser for: aClass
-
-	^self new initializeOn: aBrowser for: aClass! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/2/2018 16:11:13'!
-requestRefactoringParameters
-
-	! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/2/2018 16:15:05'!
-createRefactoring
-		
-	^RemoveAllUnreferencedInstanceVariables from: classToRefactor ! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier methodsFor: 'refactoring - changes' stamp: 'HAW 1/7/2019 14:42:50'!
-informChangesToBrowser
-		
-	browser acceptedContentsChanged! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/2/2018 16:20:16'!
-showChanges
-
-	| removedInstanceVariablesMessage |
-	
-	self informChangesToBrowser.
-	removedInstanceVariablesMessage := changes isEmpty 
-		ifTrue: [ 'No instance variable was removed' ]
-		ifFalse: [ changes size = 1
-			ifTrue: [ changes first, ' was removed' ]
-			ifFalse: [ changes asCommaStringAnd, ' were removed' ]].
-			
-	self inform: removedInstanceVariablesMessage! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier methodsFor: 'initialization' stamp: 'HAW 1/7/2019 14:42:41'!
-initializeOn: aBrowser for: aClassToRefactor 
-	
-	browser := aBrowser.
-	classToRefactor := aClassToRefactor ! !
-
-!RemoveAllUnreferencedInstanceVariablesApplier class methodsFor: 'instance creation' stamp: 'HAW 1/7/2019 14:42:34'!
-on: aBrowser for: aClassToRefactor
-	
-	^self new initializeOn: aBrowser for: aClassToRefactor 
-! !
-
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/30/2017 18:22:28'!
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 14:58:59'!
 chooseInstanceVariable
 
-	classToRefactor 
+	instanceVariable ifNotNil: [ ^self ].
+
+	classToRefactor
 		chooseDefiningInstanceVariableAlphabeticallyWith: self selectVariableLabel
-		thenDo: [ :aVariableToRemove | ^variableToRemove := aVariableToRemove ].
-	self endRequest 
+		thenDo: [ :anInstanceVariable | ^instanceVariable := anInstanceVariable ].! !
 
-	! !
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 17:46:44'!
+createRefactoring
 
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/17/2017 19:51:21'!
+	^IntroduceNullObject
+		on: instanceVariable
+		of: classToRefactor
+		usingAsConcreteClass: introduceNullObjectRequest concreteClass
+		usingAsNullClass: introduceNullObjectRequest nullClass
+		for: introduceNullObjectRequest replacementParameters
+
+		! !
+
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 3/27/2019 17:41:30'!
+formWasClosed
+
+	self cancel.! !
+
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/4/2019 13:07:17'!
+handleRefactoringError: aRefactoringError
+
+	self inform: aRefactoringError messageText.! !
+
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 3/27/2019 17:47:08'!
+ifNilChecks
+
+	^ifNilChecks! !
+
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/5/2019 15:15:24'!
 requestRefactoringParameters
 
 	self chooseInstanceVariable.
 
-	! !
+	instanceVariable ifNil: [^self].
 
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/30/2017 18:22:41'!
+	ifNilChecks := (IfNilChecksFinder on: classToRefactor for: instanceVariable) value.
+
+	ifNilChecks ifEmpty: [^self inform: ('There are no ifNil checks on ', instanceVariable)].
+
+	form := IntroduceNullObjectForm open: self.! !
+
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 14:58:00'!
 selectVariableLabel
-	
-	^'Select instance variable to remove'! !
 
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/17/2017 19:50:03'!
-createRefactoring
-		
-	^RemoveInstanceVariable named: variableToRemove from: classToRefactor ! !
+	^'Select instance variable to introduce null object on'! !
 
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 1/7/2019 14:43:43'!
-informChangesToBrowser
-		
-	browser acceptedContentsChanged! !
-
-!RemoveInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/17/2017 19:50:31'!
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 3/29/2019 16:40:04'!
 showChanges
 
-	self informChangesToBrowser! !
+	form deleteDiscardingEdits.
+	Transcript log: 'Successfully applied the Introduce Null Object refactoring'.! !
 
-!RemoveInstanceVariableApplier methodsFor: 'initialization' stamp: 'HAW 1/7/2019 14:43:37'!
-initializeOn: aBrowser for: aClassToRefactor 
-	
-	browser := aBrowser.
-	classToRefactor := aClassToRefactor ! !
+!IntroduceNullObjectApplier methodsFor: 'as yet unclassified' stamp: 'FGJ 4/4/2019 13:10:03'!
+userSubmitted: anIntroduceNullObjectRequest
 
-!RemoveInstanceVariableApplier class methodsFor: 'instance creation' stamp: 'HAW 1/7/2019 14:43:28'!
-on: aBrowser for: aClassToRefactor
-	
-	^self new initializeOn: aBrowser for: aClassToRefactor 
-! !
+	introduceNullObjectRequest := anIntroduceNullObjectRequest.
+	self createRefactoringHandlingRefactoringExceptions.
 
-!RenameClassApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 16:02:13'!
-askNewClassName
+	refactoring ifNotNil: [self applyRefactoring; showChanges].! !
 
-	newClassName := self request: 'Enter new name:' initialAnswer: classToRename name.
-	newClassName := newClassName withBlanksTrimmed asSymbol.
-	! !
+!IntroduceNullObjectApplier methodsFor: 'accessing' stamp: 'FGJ 3/28/2019 13:22:43'!
+classToRefactor
 
-!RenameClassApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 19:05:08'!
-requestRefactoringParameters
+	^classToRefactor! !
 
-	self askNewClassName! !
+!IntroduceNullObjectApplier methodsFor: 'evaluating' stamp: 'FGJ 4/4/2019 17:34:24'!
+value
 
-!RenameClassApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/5/2017 18:07:28'!
-createRefactoring
+	self requestRefactoringParametersHandlingRefactoringExceptions.! !
 
-	^RenameClass from: classToRename to: newClassName in: Smalltalk undeclared: Undeclared.
-	
-! !
+!IntroduceNullObjectApplier class methodsFor: 'instance creation' stamp: 'FGJ 3/26/2019 11:34:57'!
+applyOn: aClass
 
-!RenameClassApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/5/2017 16:05:00'!
-informChangesToBrowser
-	
-	browser changed: #classList.
-	browser selectClass: classToRename.
-! !
+	^self new initializeToApplyOn: aClass! !
 
-!RenameClassApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/5/2017 18:08:13'!
-openChangedMethods
+!AutocompletedTextProvider methodsFor: 'user interface support' stamp: 'FGJ 4/8/2019 17:09:38'!
+autoCompleterClassFor: aTextGetter
 
-	changes ifNotEmpty: [ 
-		MessageSetWindow openMessageList: changes label: 'Renamed references' autoSelect: newClassName ]
-! !
+	^SmalltalkCompleter! !
 
-!RenameClassApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/5/2017 18:07:55'!
-showChanges
+!ChangeRowOrderButtonModel methodsFor: 'initialization' stamp: 'FGJ 2/9/2019 16:33:36'!
+for: aRowIndex notifying: aTableModel
 
-	self 
-		informChangesToBrowser;
-		openChangedMethods
-! !
+	rowPosition := aRowIndex.
+	tableModel := aTableModel.! !
 
-!RenameClassApplier methodsFor: 'initialization' stamp: 'HAW 6/5/2017 16:55:57'!
-initializeOn: aBrowser for: aClass
+!ChangeRowOrderButtonModel methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 18:13:42'!
+moveDown
 
-	browser := aBrowser.
-	classToRename := aClass.
-	! !
+	tableModel moveDownRow: rowPosition.! !
 
-!RenameClassApplier class methodsFor: 'instance creation' stamp: 'HAW 6/5/2017 12:27:45'!
-on: aBrowser for: aClass
+!ChangeRowOrderButtonModel methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 17:21:03'!
+moveUp
 
-	^self new initializeOn: aBrowser for: aClass! !
+	tableModel moveUpRow: rowPosition.! !
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 16:49:50'!
-askNewVariableName
-		
-	newInstanceVariable := self request: 'Enter new name:' initialAnswer: oldInstanceVariable. 
-	newInstanceVariable := newInstanceVariable withBlanksTrimmed ! !
+!ChangeRowOrderButtonModel methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 18:13:06'!
+wasMovedDown
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 11/28/2018 19:37:54'!
-chooseInstanceVariable
-	
-	oldInstanceVariable ifNotNil: [ ^self ].
-		
-	classToRefactor 
-		chooseDefiningInstanceVariableAlphabeticallyWith: self selectVariableLabel
-		thenDo: [ :anOldInstanceVariable | ^oldInstanceVariable := anOldInstanceVariable ].
-	self endRequest ! !
+	rowPosition := rowPosition - 1.! !
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/5/2017 19:05:16'!
-requestRefactoringParameters
+!ChangeRowOrderButtonModel methodsFor: 'as yet unclassified' stamp: 'FGJ 2/9/2019 18:13:18'!
+wasMovedUp
 
-	self 
-		chooseInstanceVariable;
-		askNewVariableName! !
+	rowPosition := rowPosition + 1.! !
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/30/2017 17:27:22'!
-selectVariableLabel
-	
-	^'Select instance variable to rename'! !
+!ChangeRowOrderButtonModel class methodsFor: 'as yet unclassified' stamp: 'FGJ 2/8/2019 16:27:13'!
+for: aRowIndex notifying: aTableModel
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/5/2017 18:09:13'!
-createRefactoring
-		
-	^RenameInstanceVariable from: oldInstanceVariable to: newInstanceVariable in: classToRefactor.
-	! !
+	^self new for: aRowIndex notifying: aTableModel! !
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 11/28/2018 19:38:47'!
-informChangesToBrowser
-		
-	browser acceptedContentsChanged! !
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 2/17/2019 16:22:39'!
+keywordsDefinitions
 
-!RenameInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/30/2017 17:30:22'!
-openChangedMethods 
-
-	changes ifNotEmpty: [ self openChangedMethodsWhenChangesNotEmpty ]! !
-
-!RenameInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/30/2017 17:30:13'!
-openChangedMethodsWhenChangesNotEmpty 
-
-	MessageSetWindow openMessageList: changes label: 'Renamed references' autoSelect: newInstanceVariable ! !
-
-!RenameInstanceVariableApplier methodsFor: 'refactoring - changes' stamp: 'HAW 6/5/2017 18:09:30'!
-showChanges
-
-	self 
-		informChangesToBrowser;
-		openChangedMethods ! !
-
-!RenameInstanceVariableApplier methodsFor: 'initialization' stamp: 'HAW 11/28/2018 19:40:02'!
-initializeOn: aBrowserWindow for: anOldInstanceVariable at: aClassToRefactor 
-	
-	browser := aBrowserWindow.
-	classToRefactor := aClassToRefactor.
-	oldInstanceVariable := anOldInstanceVariable ! !
-
-!RenameInstanceVariableApplier class methodsFor: 'instance creation' stamp: 'HAW 11/29/2018 20:19:06'!
-on: aBrowser at: aClassToRefactor
-	
-	^self new initializeOn: aBrowser for: nil at: aClassToRefactor 
-! !
-
-!RenameInstanceVariableApplier class methodsFor: 'instance creation' stamp: 'HAW 11/29/2018 20:18:59'!
-on: aBrowser for: anInstanceVariableName at:  aClassToRefactor 
-	
-	^self new initializeOn: aBrowser for: anInstanceVariableName at: aClassToRefactor ! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/25/2017 21:37:58'!
-askNewVariableName
-		
-	newVariable := (self request: 'Enter new name:' initialAnswer: oldVariable) withBlanksTrimmed ! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 11/28/2018 19:42:45'!
-chooseTemporaryVariable
-	
-	| variables |
-	
-	oldVariable ifNotNil: [ ^self ].
-	
-	variables := methodNode tempNames.
-	variables isEmpty 
-		ifTrue: [ self noTemporaryToRename ]
-		ifFalse: [ self chooseTemporaryVariableFrom: variables ]
-	
-	! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 10/4/2017 17:15:17'!
-chooseTemporaryVariableFrom: variables
-	
-	 | selection |
-			
-	selection :=  smalltalkEditor selection string withBlanksTrimmed.
-	oldVariable := (self is: selection temporaryVariableFrom: variables) 
-		ifTrue: [ selection ]
-		ifFalse: [ self selectTemporaryVariableFrom: variables]! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 10/4/2017 17:13:25'!
-is: selection temporaryVariableFrom: variables
-		
-	^smalltalkEditor hasSelection and: [variables includes: selection]! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 10/4/2017 17:09:43'!
-noTemporaryToRename
-	
-	self inform: 'There are no temporary to rename'.
-	self endRequest ! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 6/25/2017 21:29:58'!
-requestRefactoringParameters
-
-	self 
-		chooseTemporaryVariable;
-		askNewVariableName! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 10/4/2017 17:16:25'!
-selectTemporaryVariableFrom: variables
-
-	| selectionIndex |
-	
-	selectionIndex := (PopUpMenu labelArray: variables lines: #()) startUpWithCaption: 'Select temporary to rename'.
-	
-	^selectionIndex = 0 
-		ifTrue: [ self endRequest ]
-		ifFalse: [ variables at: selectionIndex ]! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - creation' stamp: 'HAW 6/25/2017 21:54:40'!
-createRefactoring
-		
-	^RenameTemporary from: oldVariable to: newVariable in: methodNode 
-	! !
-
-!RenameTemporaryApplier methodsFor: 'initialization' stamp: 'HAW 11/28/2018 19:43:15'!
-initializeOn: aSmalltalkEditor for: aTemporary
-
-	smalltalkEditor := aSmalltalkEditor.
-	classToRefactor := smalltalkEditor codeProvider selectedClassOrMetaClass.
-	methodNode := classToRefactor methodNodeFor: smalltalkEditor actualContents string.
-	oldVariable := aTemporary 
-	! !
-
-!RenameTemporaryApplier methodsFor: 'refactoring - changes' stamp: 'HAW 8/9/2018 19:43:41'!
-showChanges
-
-	smalltalkEditor actualContents: changes.
-	smalltalkEditor hasUnacceptedEdits ifFalse: [
-		smalltalkEditor 
-			hasUnacceptedEdits: true;
-			acceptContents ]
-	! !
-
-!RenameTemporaryApplier class methodsFor: 'exceptions' stamp: 'HAW 10/4/2017 17:05:53'!
-errorMessageForCanNotParseMethod: anError
-
-	^ String streamContents: [ :stream |
-		stream
-			nextPutAll: 'Method can not be parsed due to:';
-			newLine;
-			nextPutAll: anError messageText ]! !
-
-!RenameTemporaryApplier class methodsFor: 'instance creation' stamp: 'HAW 11/28/2018 19:44:13'!
-on: aSmalltalkEditor for: aTemporary
-	
-	^self new initializeOn: aSmalltalkEditor for: aTemporary! !
-
-!SafelyRemoveClassApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/1/2018 16:54:40'!
-confirmationMessageText
-	
-	^'Are you sure you want to remove ', classToRemove name asString, '?'! !
-
-!SafelyRemoveClassApplier methodsFor: 'refactoring - parameters request' stamp: 'HAW 8/1/2018 16:52:57'!
-requestRefactoringParameters
-
-	(self confirm: self confirmationMessageText) ifFalse: [ self endRequest ].
-
-	! !
-
-!SafelyRemoveClassApplier methodsFor: 'refactoring - creation' stamp: 'HAW 8/1/2018 16:54:33'!
-createRefactoring
-		
-	^SafelyRemoveClass of: classToRemove ! !
-
-!SafelyRemoveClassApplier methodsFor: 'refactoring - changes' stamp: 'HAW 9/14/2018 13:48:37'!
-informChangesToBrowser
-
-	browser classListIndex: 0! !
-
-!SafelyRemoveClassApplier methodsFor: 'refactoring - changes' stamp: 'HAW 9/14/2018 13:47:58'!
-showChanges
-
-	self informChangesToBrowser! !
-
-!SafelyRemoveClassApplier methodsFor: 'initialization' stamp: 'HAW 9/14/2018 13:47:41'!
-initializeOn: aBrowser of: aClassToRemove 
-	
-	browser := aBrowser.
-	classToRemove := aClassToRemove ! !
-
-!SafelyRemoveClassApplier class methodsFor: 'instance creation' stamp: 'HAW 9/14/2018 13:47:16'!
-on: aBrowser of: aClassToRemove
-	
-	^self new initializeOn: aBrowser of: aClassToRemove ! !
-
-!RefactoringMenues class methodsFor: 'editor menus' stamp: 'HAW 11/28/2018 20:23:45'!
-smalltalkEditorMenuOptions
-
-	^`{
+	^instanceCreationMessageModels collect: [:aModel |
 		{
-				#itemGroup 	-> 		35.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'Rename... (R)'.
-				#selector 		-> 		#contextualRename.
-				#icon 			-> 		#saveAsIcon
-		} asDictionary 
-	}`! !
+			#keyword               -> (aModel at: #keyword) actualContents string.
+			#variableName      -> (aModel at: #variableName).
+			#parameterName -> (aModel at: #parameterName) actualContents string.
+		} asDictionary ]! !
 
-!RefactoringMenues class methodsFor: 'browser menues' stamp: 'HAW 7/7/2018 19:25:26'!
-classListMenuOptions
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 17:49:00'!
+methodObjectCategory
 
-	^ `{
-			{
-				#itemGroup 	-> 		5.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'refactorings...'.
-				#selector 		-> 		#openClassRefactoringMenu.
-				#icon 			-> 		#listAddIcon
-			} asDictionary.
-		}`.
+	^methodObjectCategoryModel actualContents string! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 15:55:08'!
+methodObjectCategoryModel
+
+	^methodObjectCategoryModel! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 17:55:15'!
+methodObjectClassName
+
+	^methodObjectClassNameModel actualContents string asSymbol ! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 15:54:45'!
+methodObjectClassNameModel
+
+	^methodObjectClassNameModel! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 17:49:10'!
+methodObjectEvaluationMessageSelector
+
+	^methodObjectEvaluationMessageSelectorModel actualContents string! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 15:55:17'!
+methodObjectEvaluationMessageSelectorModel
+
+	^methodObjectEvaluationMessageSelectorModel! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 17:58:10'!
+methodObjectSuperclass
+
+	| methodObjectSuperclass |
+
+	methodObjectSuperclass := Smalltalk classNamed: methodObjectSuperclassNameModel actualContents string asSymbol.
+	methodObjectSuperclass ifNil: [self signalMethodObjectSuperclassNameDoesNotExist] ifNotNil: [^methodObjectSuperclass].! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 15:54:58'!
+methodObjectSuperclassNameModel
+
+	^methodObjectSuperclassNameModel! !
+
+!ExtractToMethodObjectRequest methodsFor: 'accessing' stamp: 'FGJ 2/14/2019 17:49:23'!
+variablesToParametrizeToInstanceVariables
+
+	^variableToParametrizeToInstVarNameModel collect: [:aInstVarNameModel | aInstVarNameModel actualContents string]! !
+
+!ExtractToMethodObjectRequest methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 11:02:18'!
+forVariableToParametrize: aVariable nameModel: aModel
+
+	variableToParametrizeToInstVarNameModel at: aVariable put: aModel.! !
+
+!ExtractToMethodObjectRequest methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 11:07:57'!
+instVarNameFor: aVariableToParametrize
+
+	^(variableToParametrizeToInstVarNameModel at: aVariableToParametrize) actualContents! !
+
+!ExtractToMethodObjectRequest methodsFor: 'as yet unclassified' stamp: 'FGJ 2/14/2019 17:04:31'!
+keywordOfIndex: aKeywordIndex wasSwappedWithKeywordOfIndex: anotherKeywordIndex
+
+	instanceCreationMessageModels swap: aKeywordIndex with: anotherKeywordIndex.! !
+
+!ExtractToMethodObjectRequest methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 16:03:28'!
+nameModelForVariableToParametrize: aVariable
+
+	^variableToParametrizeToInstVarNameModel at: aVariable ifAbsentPut: [PluggableTextModel on: self].! !
+
+!ExtractToMethodObjectRequest methodsFor: 'initialization' stamp: 'FGJ 4/11/2019 16:54:36'!
+initializeFor: aCompiledMethod
+
+	variableToParametrizeToInstVarNameModel := Dictionary new.
+	instanceCreationMessageModels := OrderedCollection new.
+
+	methodObjectClassNameModel := PluggableTextModel on: self.
+	methodObjectCategoryModel := PluggableTextModel on: self.
+	methodObjectCategoryModel actualContents: aCompiledMethod methodClass category.
+	methodObjectSuperclassNameModel := PluggableTextModel on: AutocompletedTextProvider new.
+	methodObjectSuperclassNameModel actualContents: 'Object'.
+	methodObjectEvaluationMessageSelectorModel := PluggableTextModel on: self.! !
+
+!ExtractToMethodObjectRequest methodsFor: 'initialization' stamp: 'FGJ 4/11/2019 17:01:31'!
+keywordModelOf: aVariableName
+
+	| variableModel |
+
+	variableModel := instanceCreationMessageModels
+		detect: [:model | (model at: #variableName) = aVariableName]
+		ifNone: [ | keywordParameterModel defaultName parameterModel |
+			keywordParameterModel := Dictionary new.
+			keywordParameterModel at: #variableName put: aVariableName.
+			keywordParameterModel at: #keyword put: (PluggableTextModel on: self).
+			parameterModel := PluggableTextModel on: self.
+			defaultName := (aVariableName first isVowel ifTrue: ['an'] ifFalse: ['a']), aVariableName capitalized.
+			parameterModel actualContents: defaultName.
+			keywordParameterModel at: #parameterName put: parameterModel.
+			instanceCreationMessageModels add: keywordParameterModel.
+			keywordParameterModel].
+
+	^variableModel at: #keyword.! !
+
+!ExtractToMethodObjectRequest methodsFor: 'initialization' stamp: 'FGJ 4/8/2019 16:24:25'!
+parameterModelOf: aVariableName
+
+	^(instanceCreationMessageModels detect: [:model | (model at: #variableName) = aVariableName]) at: #parameterName! !
+
+!ExtractToMethodObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:59:08'!
+methodObjectSuperclassNameDoesNotExistErrorMessage
+
+	^'Method object superclass name does not belong to a class in the system.'! !
+
+!ExtractToMethodObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:59:31'!
+refactoringError: anErrorMessage
+
+	self refactoringErrorClass signal: anErrorMessage.! !
+
+!ExtractToMethodObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:59:21'!
+refactoringErrorClass
+
+	^RefactoringError! !
+
+!ExtractToMethodObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:58:44'!
+signalMethodObjectSuperclassNameDoesNotExist
+
+	self refactoringError: self methodObjectSuperclassNameDoesNotExistErrorMessage.! !
+
+!ExtractToMethodObjectRequest class methodsFor: 'as yet unclassified' stamp: 'FGJ 4/11/2019 16:53:31'!
+for: aCompiledMethod
+
+	^self new initializeFor: aCompiledMethod.! !
+
+!IfNilCheck methodsFor: 'initialization' stamp: 'FGJ 3/29/2019 15:28:42'!
+initializeIn: aMethodNode representedBy: aMessageNode atIndex: anIndex
+
+	methodNode := aMethodNode.
+	messageNode := aMessageNode.
+	index := anIndex.! !
+
+!IfNilCheck methodsFor: 'initialization' stamp: 'FGJ 3/26/2019 17:15:54'!
+messageNode
+
+	^messageNode! !
+
+!IfNilCheck methodsFor: 'initialization' stamp: 'FGJ 3/29/2019 15:34:00'!
+methodNode
+
+	^methodNode! !
+
+!IfNilCheck methodsFor: 'accessing' stamp: 'FGJ 3/27/2019 15:48:45'!
+messageNodeIndex
+
+	^index! !
+
+!IfNilCheck class methodsFor: 'instance creation' stamp: 'FGJ 3/29/2019 15:28:30'!
+in: aMethodNode representedBy: aMessageNode atIndex: anIndex
+
+	^self new initializeIn: aMethodNode representedBy: aMessageNode atIndex: anIndex.! !
+
+!IfNilChecksFinder methodsFor: 'initialization' stamp: 'HAW 10/23/2019 09:51:59'!
+ifNilChecksIn: aSelector
+
+	| methodNode ifNilChecks |
+
+	methodNode := (contextClass compiledMethodAt: aSelector) methodNode.
+
+	ifNilChecks := OrderedCollection new.
+	methodNode accept: (ParseNodeEnumerator ofBlock: [:node |
+		(self isIfNilCheckNode: node) ifTrue:[ | nodeIndex |
+			nodeIndex := (methodNode encoder rangeForNode: node ifAbsent: [ self shouldNotHappen ]) first.
+			ifNilChecks add: (IfNilCheck in: methodNode representedBy: node atIndex: nodeIndex)]]).
+
+	^ifNilChecks reverse! !
+
+!IfNilChecksFinder methodsFor: 'initialization' stamp: 'FGJ 3/26/2019 15:35:31'!
+initializeOn: aContextClass for: anInstanceVariable
+
+	contextClass := aContextClass.
+	instanceVariable := anInstanceVariable.! !
+
+!IfNilChecksFinder methodsFor: 'initialization' stamp: 'FGJ 3/26/2019 17:37:05'!
+isIfNilCheck: aMessageNode
+
+	| checkReceiverIsInstanceVariableBlock |
+
+	checkReceiverIsInstanceVariableBlock := [:receiver | receiver name = instanceVariable].
+	^{
+		"var == nil ifNil: [] ifNotNil: []"
+		self class isIfNilWithModifications: aMessageNode withReceiver: checkReceiverIsInstanceVariableBlock.
+		"var ifNil: []"
+		self class isIfNil: aMessageNode  withReceiver: checkReceiverIsInstanceVariableBlock.
+		"var isNil ifTrue: [] ifFalse: []"
+		self class isIsNilWithBooleanCheck: aMessageNode  withReceiver: checkReceiverIsInstanceVariableBlock} reduce: [:a :b | a or: [b]]! !
+
+!IfNilChecksFinder methodsFor: 'initialization' stamp: 'FGJ 3/27/2019 15:32:13'!
+isIfNilCheckNode: aNode
+
+	^aNode isMessageNode and: [self isIfNilCheck: aNode]! !
+
+!IfNilChecksFinder methodsFor: 'initialization' stamp: 'FGJ 3/27/2019 16:27:38'!
+value
+
+	| selectors |
+
+	selectors := contextClass whichSelectorsAccess: instanceVariable.
+
+	^selectors inject: OrderedCollection new into: [:ifNilChecks :selector |
+		ifNilChecks addAll: (self ifNilChecksIn: selector). ifNilChecks.].! !
+
+!IfNilChecksFinder class methodsFor: 'instance creation' stamp: 'FGJ 3/26/2019 15:35:04'!
+on: aContextClass for: anInstanceVariable
+
+	self assertInstanceVariable: anInstanceVariable belongsTo: aContextClass.
+
+	^self new initializeOn: aContextClass for: anInstanceVariable.! !
+
+!IfNilChecksFinder class methodsFor: 'error handling' stamp: 'FGJ 3/26/2019 15:21:40'!
+refactoringError: anErrorMessage
+
+	self refactoringErrorClass signal: anErrorMessage.! !
+
+!IfNilChecksFinder class methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 15:22:00'!
+refactoringErrorClass
+
+	^RefactoringError! !
+
+!IfNilChecksFinder class methodsFor: 'error messages' stamp: 'FGJ 3/26/2019 15:22:35'!
+instVarMustBelongToClassErrorMessage
+
+	^'The instance variable must belong to the context class.'! !
+
+!IfNilChecksFinder class methodsFor: 'exceptions' stamp: 'FGJ 3/26/2019 15:33:56'!
+signalInstVarMustBelongToClass
+
+	 self refactoringError: self instVarMustBelongToClassErrorMessage.! !
+
+!IfNilChecksFinder class methodsFor: 'assertions' stamp: 'FGJ 3/26/2019 15:33:40'!
+assertInstanceVariable: anInstanceVariable belongsTo: aContextClass
+
+	(aContextClass instVarNames includes: anInstanceVariable) ifFalse: [self signalInstVarMustBelongToClass].! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:31:29'!
+isIfNil: aMessageNode
+
+	^self isIfNil: aMessageNode withReceiver: [:r | true].! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:31:41'!
+isIfNil: aMessageNode withReceiver: aBlockToValidateReceiver
+
+	^aMessageNode isMessage: #ifNil: receiver: [:receiver | receiver isVariableNode and: [aBlockToValidateReceiver value: receiver]] arguments: nil! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:31:51'!
+isIfNilWithModifications: aMessageNode
+
+	^self isIfNilWithModifications: aMessageNode withReceiver: [:r | true].! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:32:01'!
+isIfNilWithModifications: aMessageNode withReceiver: aBlockToValidateReceiver
+
+	^(aMessageNode selector key = #ifTrue:ifFalse:) and: [
+		aMessageNode receiver
+			isMessage: #==
+			receiver: [:r | r isVariableNode and: [aBlockToValidateReceiver value: r]]
+			arguments: [:arg | arg isVariableNode and: [arg name = 'nil']]].! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:32:11'!
+isIsNilWithBooleanCheck: aMessageNode
+
+	^self isIsNilWithBooleanCheck: aMessageNode withReceiver: [:r | true].! !
+
+!IfNilChecksFinder class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 17:32:22'!
+isIsNilWithBooleanCheck: aMessageNode withReceiver: aBlockToValidateReceiver
+
+	| booleanSupportedMessages |
+
+	booleanSupportedMessages := #( ifTrue: ifTrue:ifFalse: ifFalse: ifFalse:ifTrue: ).
+
+	^(booleanSupportedMessages includes: aMessageNode selector key) and: [
+		aMessageNode receiver isMessage: #isNil receiver: [:r | r isVariableNode and: [aBlockToValidateReceiver value: r]] arguments: nil]! !
+
+!IfNilMessageListModel methodsFor: 'accessing' stamp: 'FGJ 3/29/2019 15:30:50'!
+messageList
+
+	^ifNilChecks collect: [:ifNilCheck | ifNilCheck methodNode selector, ' at position ', ifNilCheck messageNodeIndex asString]! !
+
+!IfNilMessageListModel methodsFor: 'accessing' stamp: 'FGJ 3/28/2019 16:28:53'!
+messageListIndex
+
+	^listIndex
 	! !
 
-!RefactoringMenues class methodsFor: 'browser menues' stamp: 'HAW 8/17/2018 17:50:40'!
+!IfNilMessageListModel methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 15:07:00'!
+messageListIndex: anIndex
+
+	| doNothing |
+
+	doNothing := [^self].
+	anIndex = 0 ifTrue: doNothing.
+	anIndex > ifNilChecks size ifTrue: doNothing.
+
+	introduceNullObjectForm hideFormForMessage: listIndex.
+	listIndex := anIndex.
+	introduceNullObjectForm showFormForMessage: listIndex.
+! !
+
+!IfNilMessageListModel methodsFor: 'initialization' stamp: 'FGJ 3/28/2019 16:28:36'!
+initializeWith: someIfNilChecks withForm: anIntroduceNullObjectForm
+
+	ifNilChecks := someIfNilChecks.
+	introduceNullObjectForm := anIntroduceNullObjectForm.
+	listIndex := 1.! !
+
+!IfNilMessageListModel class methodsFor: 'instance creation' stamp: 'FGJ 3/28/2019 12:45:51'!
+with: someIfNilChecks withForm: anIntroduceNullObjectForm
+
+	^self new initializeWith: someIfNilChecks withForm: anIntroduceNullObjectForm! !
+
+!IntroduceNullObjectRequest methodsFor: 'initialization' stamp: 'FGJ 4/8/2019 14:32:32'!
+initializeFor: someIfNilChecks
+
+	messageKeywordsAndParametersModels := Dictionary new.
+	someIfNilChecks do: [:anIfNilCheck | | messageKeywordsAndParametersModel variablesToExtract |
+		variablesToExtract := MessageSendingBlocksVariablesToExtractFinder valueIn: anIfNilCheck messageNode.
+		variablesToExtract
+			ifEmpty: [messageKeywordsAndParametersModel := MessageKeywordsAndParametersModel initializedForSelector]
+			ifNotEmpty: [messageKeywordsAndParametersModel := MessageKeywordsAndParametersModel for: variablesToExtract].
+		messageKeywordsAndParametersModels at: anIfNilCheck put: messageKeywordsAndParametersModel].
+
+	nullClassNameModel := PluggableTextModel on: self.
+	concreteClassNameModel := PluggableTextModel on: self.! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/8/2019 17:51:46'!
+concreteClass
+
+	| concreteClass |
+
+	concreteClass := Smalltalk classNamed: concreteClassNameModel actualContents string asSymbol.
+	concreteClass ifNil: [self signalConcreteClassNameDoesNotExist] ifNotNil: [^concreteClass].! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 15:44:23'!
+concreteClassNameModel
+
+	^concreteClassNameModel! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 16:56:22'!
+messgeKeywordsAndParametersModelFor: anIfNilCheck
+
+	^messageKeywordsAndParametersModels at: anIfNilCheck! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/9/2019 11:38:24'!
+nullClass
+
+	| nullClass |
+
+	nullClass := Smalltalk classNamed: nullClassNameModel actualContents string asSymbol.
+	nullClass ifNil: [self signalNullClassNameDoesNotExist] ifNotNil: [^nullClass].! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 15:56:36'!
+nullClassNameModel
+
+	^nullClassNameModel! !
+
+!IntroduceNullObjectRequest methodsFor: 'accessing' stamp: 'FGJ 3/29/2019 16:29:58'!
+replacementParameters
+
+	| parameters |
+
+	parameters := OrderedCollection new.
+	messageKeywordsAndParametersModels keysAndValuesDo: [:ifNilCheck :model |
+		parameters add: (ReplaceIfNilWithPolymorphismParameters
+			forIfNilMessageSending: ifNilCheck messageNode
+			onMethod: ifNilCheck methodNode
+			useKeywordsDefinitions: model definitions)].
+
+	^parameters! !
+
+!IntroduceNullObjectRequest methodsFor: 'user interface support' stamp: 'FGJ 4/8/2019 14:38:47'!
+autoCompleterClassFor: textGetter
+	^SmalltalkCompleter! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:51:22'!
+concreteClassNameDoesNotExistErrorMessage
+
+	^'The concrete class name does not belong to any class in the system.'! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/9/2019 11:39:15'!
+nullClassNameDoesNotExistErrorMessage
+
+	^'The null class name does not belong to any class in the system.'! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:52:28'!
+refactoringError: anErrorMessage
+
+	self refactoringErrorClass signal: anErrorMessage.! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:52:47'!
+refactoringErrorClass
+
+	^RefactoringError! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/8/2019 17:51:46'!
+signalConcreteClassNameDoesNotExist
+
+	self refactoringError: self concreteClassNameDoesNotExistErrorMessage.! !
+
+!IntroduceNullObjectRequest methodsFor: 'exceptions' stamp: 'FGJ 4/9/2019 11:38:55'!
+signalNullClassNameDoesNotExist
+
+	self refactoringError: self nullClassNameDoesNotExistErrorMessage.! !
+
+!IntroduceNullObjectRequest class methodsFor: 'instance creation' stamp: 'FGJ 4/5/2019 16:53:19'!
+for: someIfNilChecks
+
+	^self new initializeFor: someIfNilChecks! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'as yet unclassified' stamp: 'FGJ 4/8/2019 14:21:45'!
+definitions
+
+	^selectorModel
+		ifNotNil: [VariablesToParametrizeKeywordsDefinitions withSelector: selectorModel actualContents string asSymbol]
+		ifNil: [VariablesToParametrizeKeywordsDefinitions with: (models collect: [:model |
+			VariableToParametrizeKeywordDefinition
+				forVariable: (model at: #variableName)
+				useKeyword: (model at: #keyword) actualContents string
+				withParameterName: (model at: #parameterName) actualContents string])]! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'initialization' stamp: 'FGJ 4/11/2019 17:08:32'!
+initializeFor: someVariablesToExtract
+
+	models := OrderedCollection new.
+	someVariablesToExtract do: [:variableToExtract | | keywordParameterModel defaultName parameterModel |
+		keywordParameterModel := Dictionary new.
+		keywordParameterModel at: #variableName put: variableToExtract.
+		keywordParameterModel at: #keyword put: (PluggableTextModel on:  self).
+		parameterModel := PluggableTextModel on: self.
+		defaultName := (variableToExtract first isVowel ifTrue: ['an'] ifFalse: ['a']), variableToExtract capitalized.
+		parameterModel actualContents: defaultName.
+		keywordParameterModel at: #parameterName put: parameterModel.
+
+		models add: keywordParameterModel].! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'initialization' stamp: 'FGJ 4/8/2019 14:26:15'!
+initializeForSelector
+
+	selectorModel := PluggableTextModel on: self.! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 17:20:56'!
+keywordModelOf: aVariableName
+
+	^(models detect: [:model | (model at: #variableName) = aVariableName]) at: #keyword! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 17:21:09'!
+parameterModelOf: aVariableName
+
+	^(models detect: [:model | (model at: #variableName) = aVariableName]) at: #parameterName! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'accessing' stamp: 'FGJ 4/5/2019 16:29:31'!
+selectorModel
+
+	^selectorModel! !
+
+!MessageKeywordsAndParametersModel methodsFor: 'events handling' stamp: 'FGJ 3/28/2019 18:40:59'!
+keywordOfIndex: aKeywordIndex wasSwappedWithKeywordOfIndex: anotherKeywordIndex
+
+	models swap: aKeywordIndex with: anotherKeywordIndex.! !
+
+!MessageKeywordsAndParametersModel class methodsFor: 'instance creation' stamp: 'FGJ 4/5/2019 17:54:59'!
+for: someVariablesToExtract
+
+	^self new initializeFor: someVariablesToExtract! !
+
+!MessageKeywordsAndParametersModel class methodsFor: 'instance creation' stamp: 'FGJ 4/8/2019 14:26:42'!
+initializedForSelector
+
+	^self new initializeForSelector! !
+
+!RefactoringPackageRefactoringMenues class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/26/2019 11:30:10'!
 classRefactoringMenuOptions
 
 	^ `{
 			{
 				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'rename class ...'.
-				#object 			-> 		#model.
-				#selector 		-> 		#renameClass.
-				#icon 			-> 		#saveAsIcon
+				#itemOrder 		-> 		50.
+				#label 			-> 		'introduce null object'.
+				#selector 		-> 		#introduceNullObject.
+				#icon 			-> 		#newFolderIcon
 			} asDictionary.
-			{
-				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		20.
-				#label 			-> 		'insert superclass ...'.
-				#object 			-> 		#model.
-				#selector 		-> 		#insertSuperclass.
-				#icon 			-> 		#saveAsIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		30.
-				#label 			-> 		'safely remove class (x)'.
-				#object 			-> 		#model.
-				#selector 		-> 		#safelyRemoveClass.
-				#icon 			-> 		#deleteIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		20.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'add inst var...'.
-				#selector 		-> 		#addInstVar.
-				#icon 			-> 		#listAddIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		20.
-				#itemOrder 		-> 		20.
-				#label 			-> 		'rename inst var...'.
-				#selector 		-> 		#renameInstVar.
-				#icon 			-> 		#saveAsIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		20.
-				#itemOrder 		-> 		30.
-				#label 			-> 		'remove inst var...'.
-				#selector 		-> 		#removeInstVar.
-				#icon 			-> 		#deleteIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		20.
-				#itemOrder 		-> 		40.
-				#label 			-> 		'remove all unreferenced inst var...'.
-				#selector 		-> 		#removeAllUnreferencedInstVar.
-				#icon 			-> 		#deleteIcon
-			} asDictionary.
-	}`.
-	! !
 
-!RefactoringMenues class methodsFor: 'browser menues' stamp: 'HAW 7/7/2018 19:38:01'!
-messageListMenuOptions
+	}`! !
 
-	^ `{
-			{
-				#itemGroup 	-> 		5.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'refactorings...'.
-				#selector 		-> 		#openMessageRefactoringMenu.
-				#icon 			-> 		#listAddIcon
-			} asDictionary.
-		}`.
-	! !
-
-!RefactoringMenues class methodsFor: 'browser menues' stamp: 'HAW 3/4/2019 15:03:32'!
+!RefactoringPackageRefactoringMenues class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/14/2019 12:23:07'!
 messsageRefactoringMenuOptions
 
 	^ `{
 			{
 				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		10.
-				#label 			-> 		'rename...'.
-				#selector 		-> 		#renameSelector.
-				#icon 			-> 		#saveAsIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		20.
-				#label 			-> 		'add parameter...'.
-				#selector 		-> 		#addParameter.
-				#icon 			-> 		#listAddIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		30.
-				#label 			-> 		'remove parameter...'.
-				#selector 		-> 		#removeParameter.
-				#icon 			-> 		#listRemoveIcon
-			} asDictionary.
-			{
-				#itemGroup 	-> 		10.
-				#itemOrder 		-> 		40.
-				#label 			-> 		'push up'.
-				#selector 		-> 		#pushUpSelector.
-				#icon 			-> 		#goTopIcon
-			} asDictionary.
-			"{
-				#itemGroup 	-> 		10.
 				#itemOrder 		-> 		50.
 				#label 			-> 		'extract to method object'.
 				#selector 		-> 		#extractMethodToMethodObject.
 				#icon 			-> 		#newFolderIcon
-			} asDictionary."
-	}`.
-	
+			} asDictionary.
+
+	}`! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'initialization' stamp: 'FGJ 3/18/2019 16:28:14'!
+initializeForIfNilMessageSending: aMessageNode
+onMethod: aMethodNode
+useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions
+
+	messageNode := aMessageNode.
+	methodNode := aMethodNode.
+	definitions := variablesToParametrizeKeywordsDefinitions.! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 4/16/2019 20:08:36'!
+concreteBlockRange
+
+	self isConcreteBlockFirstBlock ifTrue: [^self sourceRangeFor: messageNode arguments first in: methodNode].
+	self isConcreteBlockSecondBlock ifTrue: [^self sourceRangeFor: messageNode arguments second in: methodNode].
+
+	^Interval newFrom: #()! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/25/2019 14:52:32'!
+concreteBlockSourceCode
+
+	self isConcreteBlockFirstBlock ifTrue: [^self extractSourceCodeOfBlock: messageNode arguments first fromMethod: methodNode].
+	self isConcreteBlockSecondBlock ifTrue: [^self extractSourceCodeOfBlock: messageNode arguments second fromMethod: methodNode].
+
+	^''! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 4/16/2019 19:43:45'!
+extractSourceCodeOfBlock: aBlockNode fromMethod: aMethodNode
+
+	| blockRange methodSourceCode |
+
+	methodSourceCode := (aMethodNode methodClass compiledMethodAt: aMethodNode selector) sourceCode.
+	blockRange := self sourceRangeFor: aBlockNode in: aMethodNode.
+
+	^methodSourceCode copyFrom: blockRange first to: blockRange last
+
 	! !
 
-!RefactoringMenues class methodsFor: 'initialization' stamp: 'HAW 12/28/2018 12:51:56'!
-initialize 
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 17:34:29'!
+isConcreteBlockFirstBlock
 
-	Editor initialize! !
+	^(IfNilChecksFinder isIsNilWithBooleanCheck: messageNode) and: [#ifFalse:ifTrue: = messageNode selector key]! !
 
-!RefactoringMenues class methodsFor: 'shortcuts' stamp: 'HAW 2/4/2019 16:43:23'!
-smalltalkEditorCmdShortcutsSpec
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 17:34:06'!
+isConcreteBlockSecondBlock
 
-	^#(
-		#(		$R	#contextualRename:		'Renames what is under cursor'))
+	^{
+		"var == nil ifTrue: [] ifFalse: [] --> always the second block"
+		IfNilChecksFinder isIfNilWithModifications: messageNode.
+		"ifFalse: is included here because is compiled specially making the block the second argument"
+		(IfNilChecksFinder isIsNilWithBooleanCheck: messageNode)
+			and: [#(ifTrue:ifFalse: ifFalse:) includes: messageNode selector key ]} reduce: [:a1 :a2 | a1 or: [a2]]! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 17:33:17'!
+isNullBlockFirstBlock
+
+	^{
+		(IfNilChecksFinder isIfNilWithModifications: messageNode) and: [self messageNodeFirstArgumentIsEmptyBlock not].
+		IfNilChecksFinder isIfNil: messageNode.
+		(IfNilChecksFinder isIsNilWithBooleanCheck: messageNode) and: [#(ifTrue: ifTrue:ifFalse:) includes: messageNode selector key]} reduce: [:a1 :a2 | a1 or: [a2]]! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/26/2019 17:34:37'!
+isNullBlockSecondBlock
+
+	^(IfNilChecksFinder isIsNilWithBooleanCheck: messageNode)
+		and: [messageNode selector key = #ifFalse:ifTrue:]! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 16:29:29'!
+messageNode
+
+	^messageNode! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/25/2019 16:36:38'!
+messageNodeFirstArgumentIsEmptyBlock
+
+	| statement |
+
+	statement := messageNode arguments first block statements first.
+
+	^statement isVariableNode and: [statement name = 'nil']! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 16:42:09'!
+methodNode
+
+	^methodNode! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/20/2019 10:47:30'!
+methodSourceCode
+
+	^(methodNode methodClass compiledMethodAt: methodNode selector) sourceCode! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 4/16/2019 20:06:13'!
+nullBlockRange
+
+	self isNullBlockFirstBlock ifTrue: [^self sourceRangeFor: messageNode arguments first in: methodNode].
+	self isNullBlockSecondBlock ifTrue: [^self sourceRangeFor: messageNode arguments first in: methodNode].
+
+	^Interval newFrom: #()! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/25/2019 14:54:24'!
+nullBlockSourceCode
+
+	self isNullBlockFirstBlock ifTrue: [^self extractSourceCodeOfBlock: messageNode arguments first fromMethod: methodNode].
+	self isNullBlockSecondBlock ifTrue: [^self extractSourceCodeOfBlock: messageNode arguments second fromMethod: methodNode].
+
+	^''! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/21/2019 12:44:07'!
+parameterNameFor: aVariableName
+
+	^definitions parameterNameFor: aVariableName.! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/20/2019 15:57:39'!
+polymorphicMessageHeader
+
+	^definitions messageHeader! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/20/2019 10:48:45'!
+polymorphicMessageSend
+
+	^definitions messageSending! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/19/2019 17:08:22'!
+polymorphicSelector
+
+	^definitions selector! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'HAW 10/23/2019 09:53:01'!
+rangeOfMessageSend
+
+	| encoder keywordsRange variableNode variableNodeRange |
+
+	encoder := methodNode encoder.
+	keywordsRange := encoder rangeForNode: messageNode ifAbsent: [ self shouldNotHappen ].
+
+	((IfNilChecksFinder isIfNilWithModifications: messageNode) or: [IfNilChecksFinder isIsNilWithBooleanCheck: messageNode])
+		ifTrue: [variableNode := messageNode receiver receiver].
+	(IfNilChecksFinder isIfNil: messageNode) ifTrue: [variableNode := messageNode receiver].
+
+	variableNodeRange := ((encoder rangeForNode: variableNode ifAbsent: [ self shouldNotHappen ]) select: [:range | range first < keywordsRange first]) last.
+
+	^Interval from: variableNodeRange first to: keywordsRange last! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/25/2019 15:08:23'!
+rangesOfVariablesToParametrizeToReplacingParameter
+
+	| disregardType rangeToReplacementParameter |
+
+	rangeToReplacementParameter := SortedCollection sortBlock: [:rangeToStringA :rangeToStringB | rangeToStringA key first < rangeToStringB key first].
+	disregardType := [:aNode | true].
+	self variablesToParametrize do: [:aVariableName | | rangesOfVariable |
+		rangesOfVariable := self methodNode encoder
+			rangesForVariable: aVariableName
+			checkingType: disregardType
+			ifAbsent: [Set new].
+
+		rangesOfVariable addAll: (self methodNode encoder
+			rangesForLiteralVariableNode: aVariableName
+			ifAbsent: [Set new]).
+
+		rangesOfVariable do: [:aRange | | rangeToNewString parameterNameForVar |
+			parameterNameForVar := self parameterNameFor: aVariableName.
+			rangeToNewString := Association key: aRange value: parameterNameForVar.
+			rangeToReplacementParameter add: rangeToNewString]].
+
+	^rangeToReplacementParameter
 ! !
 
-!RefactoringPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:48:22'!
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'HAW 10/23/2019 09:53:14'!
+sourceRangeFor: aBlockNode in: aMethodNode
+
+	| blockRange encoder |
+
+	encoder := aMethodNode encoder.
+	blockRange := encoder rangeForNode: aBlockNode closureCreationNode ifAbsent: [ self shouldNotHappen ].
+
+	^Interval from: blockRange first + 1 to: blockRange last - 1
+
+	! !
+
+!ReplaceIfNilWithPolymorphismParameters methodsFor: 'accessing' stamp: 'FGJ 3/21/2019 12:46:30'!
+variablesToParametrize
+
+	^definitions variablesToParametrize! !
+
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'instance creation' stamp: 'FGJ 3/28/2019 18:19:53'!
+forIfNilMessageSending: aMessageNode
+onMethod: aMethodNode
+useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions
+
+	| variablesToParametrize |
+
+	self assertMethodNode: aMethodNode includesMessageNode: aMessageNode.
+	self assertMessageNodeRepresentsSupportedMessageSending: aMessageNode.
+
+	variablesToParametrize := MessageSendingBlocksVariablesToExtractFinder valueIn: aMessageNode.
+	self
+		assertVariablesToParametrizeFrom: variablesToParametrize
+		haveACorrespondingKeywordOn: variablesToParametrizeKeywordsDefinitions.
+	self
+		assertKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions
+		haveACorrespondingVariableToParametrizeFrom: variablesToParametrize.
+
+	self
+		assertParameterNamesOf: variablesToParametrizeKeywordsDefinitions
+		areNotEqualToBlockTemporariesOrArgumentsOn: aMessageNode.
+
+	^self new
+		initializeForIfNilMessageSending: aMessageNode
+		onMethod: aMethodNode
+		useKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions
+! !
+
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 16:30:07'!
+allTemporariesNamesAndArgumentsFrom: aBlockNode
+
+	| blocksTemporaries |
+
+	blocksTemporaries := Set new.
+
+	aBlockNode accept: (ParseNodeEnumerator ofBlock: [:node |
+		node isBlockNode ifTrue: [
+			blocksTemporaries addAll: (self temporariesNamesFrom: node).
+			blocksTemporaries addAll: (self argumentsNamesFrom: node)]]).
+
+	^blocksTemporaries! !
+
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 16:30:29'!
+argumentsNamesFrom: aNode
+
+	^aNode arguments collect: [:arg | arg name]! !
+
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 16:13:32'!
 refactoringError: aMessage
 
-	Refactoring refactoringError: aMessage.! !
+	self refactoringErrorClass signal: aMessage! !
 
-!RefactoringPrecondition methodsFor: 'warnings' stamp: 'HAW 3/4/2019 13:30:01'!
-refactoringWarning: aMessageText
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 16:13:44'!
+refactoringErrorClass
 
-	^ Refactoring refactoringWarning: aMessageText ! !
+	^RefactoringError! !
 
-!NewClassPrecondition methodsFor: 'evaluating' stamp: 'HAW 3/3/2019 09:18:10'!
-value
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/29/2019 15:15:51'!
+sourceOfMessageNode: aMessageNode
 
-	self assertNewClassNameIsNotEmpty.
-	self assertNewClassNameSymbol.
-	self assertNewClassNameStartsWithUppercaseLetter.
-	self assertNewClassNameHasNoSeparators.
-	self assertNewClassNameDoesNotExistInSystem.
-	self assertNewClassNameIsNotUndeclaredInUndeclared.
+	| stream |
 
-! !
+	stream := RWBinaryOrTextStream with: Array new.
+	aMessageNode printOn: stream indent: 0.
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:55:05'!
-assertNewClassNameDoesNotExistInSystem
+	^stream contents asString.! !
 
-	system at: newClassName ifPresent: [ :value | 
-		value isBehavior 
-			ifTrue: [ self signalClassAlreadyExists]
-			ifFalse: [  self signalGlobalAlreadyExists]].! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/19/2019 15:51:50'!
+temporariesNamesFrom: aNode
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:50:39'!
-assertNewClassNameHasNoSeparators
+	^aNode temporaries collect: [:temporary | temporary name]! !
 
-	(newClassName anySatisfy: [:aChar | aChar isSeparator]) 
-		ifTrue: [ self signalNewClassNameCanNotHaveSeparators]! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 15:46:52'!
+assertKeywordsDefinitions: variablesToParametrizeKeywordsDefinitions
+haveACorrespondingVariableToParametrizeFrom: variablesToParametrize
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:50:43'!
-assertNewClassNameIsNotEmpty
+	| variablesWithKeywords |
 
-	newClassName withBlanksTrimmed isEmpty ifTrue: [ self signalNewClassNameCanNotBeEmpty]! !
+	variablesWithKeywords := variablesToParametrizeKeywordsDefinitions variablesToParametrize.
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:55:23'!
-assertNewClassNameIsNotUndeclaredInUndeclared
+	(variablesToParametrize includesAllOf: variablesWithKeywords) ifFalse: [self signalKeywordsMustHaveAVariableToParametrize].	! !
 
-	(undeclared includesKey: newClassName) ifTrue: [ self signalNewClassIsUndeclared]! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'assertions' stamp: 'FGJ 3/26/2019 17:30:03'!
+assertMessageNodeRepresentsSupportedMessageSending: aMessageNode
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:50:51'!
-assertNewClassNameStartsWithUppercaseLetter
+	| isSupportedMessageSending |
 
-	newClassName first isUppercase ifFalse: [ self signalNewNameMustStartWithUppercaseLetter]! !
+	isSupportedMessageSending := {
+		"var == nil ifNil: [] ifNotNil: []"
+		IfNilChecksFinder isIfNilWithModifications: aMessageNode.
+		"var ifNil: []"
+		IfNilChecksFinder isIfNil: aMessageNode.
+		"var isNil ifTrue: [] ifFalse: []"
+		IfNilChecksFinder isIsNilWithBooleanCheck: aMessageNode} reduce: [:a :b | a or: [b]].
 
-!NewClassPrecondition methodsFor: 'evaluating - private' stamp: 'HAW 3/4/2019 11:50:55'!
-assertNewClassNameSymbol
+	isSupportedMessageSending ifFalse: [self signalMessageNodeMustRepresentSupportedMessageSending].! !
 
-	newClassName isSymbol ifFalse: [ self signalNewNameMustBeSymbol]! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'assertions' stamp: 'FGJ 3/29/2019 15:17:02'!
+assertMethodNode: methodNode includesMessageNode: messageNode
 
-!NewClassPrecondition methodsFor: 'initialization' stamp: 'HAW 8/13/2018 16:00:19'!
-initializeFor: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
+	| messageNodeSource |
 
-	newClassName := aNewClassName.
-	system := aSystem.
-	undeclared := anUndeclaredDictionary ! !
+	messageNodeSource := self sourceOfMessageNode: messageNode.
 
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:54:34'!
-signalClassAlreadyExists
+	methodNode accept: (ParseNodeEnumerator ofBlock: [:aNode |
+		(aNode isMessageNode and: [(self sourceOfMessageNode: aNode) = messageNodeSource]) ifTrue: [^true]]).
 
-	self refactoringError: (self class errorMessageForAlreadyExistClassNamed: newClassName).! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:55:05'!
-signalGlobalAlreadyExists
-
-	self refactoringError: (self class errorMessageForAlreadyExistGlobalNamed: newClassName)! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:55:23'!
-signalNewClassIsUndeclared
-
-	self refactoringError: (self class errorMessageForNewClassIsUndeclared: newClassName).! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:52:08'!
-signalNewClassNameCanNotBeEmpty
-	
-	self refactoringError: self class newClassNameCanNotBeEmptyErrorMessage! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:52:13'!
-signalNewClassNameCanNotHaveSeparators
-	
-	self refactoringError: self class newClassNameCanNotHaveSeparatorsErrorMessage ! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:52:17'!
-signalNewNameMustBeSymbol
-
-	self refactoringError: self class newNameMustBeSymbolErrorMessage.! !
-
-!NewClassPrecondition methodsFor: 'exceptions' stamp: 'HAW 3/4/2019 11:52:22'!
-signalNewNameMustStartWithUppercaseLetter
-
-	self refactoringError: self class newNameMustStartWithUppercaseLetterErrorMessage.! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 12/13/2018 17:56:51'!
-errorMessageForAlreadyExistClassNamed: aNewClassName
-
-	^'Class named ', aNewClassName, ' already exist'! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 12/13/2018 17:59:02'!
-errorMessageForAlreadyExistGlobalNamed: aNewClassName
-
-	^'There is already a global variable named ', aNewClassName ! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 8/13/2018 15:58:18'!
-errorMessageForNewClassIsUndeclared: aNewClassName
-
-	^aNewClassName, ' is undeclared'! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 8/13/2018 15:58:18'!
-newClassNameCanNotBeEmptyErrorMessage
-	
-	^'New class name can not be empty'! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 3/3/2019 09:20:59'!
-newClassNameCanNotHaveSeparatorsErrorMessage
-	
-	^'New class name can not have separators'! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 8/13/2018 15:58:18'!
-newNameMustBeSymbolErrorMessage
-	
-	^'New class name must be a symbol'! !
-
-!NewClassPrecondition class methodsFor: 'error messages' stamp: 'HAW 8/13/2018 15:58:18'!
-newNameMustStartWithUppercaseLetterErrorMessage
-
-	^'New class name must start with an uppercase letter'! !
-
-!NewClassPrecondition class methodsFor: 'instance creation' stamp: 'HAW 8/13/2018 17:31:51'!
-for: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-
-	^self new initializeFor: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-! !
-
-!NewClassPrecondition class methodsFor: 'evaluation' stamp: 'HAW 8/13/2018 17:37:20'!
-valueFor: aNewClassName in: aSystem undeclared: anUndeclaredDictionary 
-
-	^(self for: aNewClassName in: aSystem undeclared: anUndeclaredDictionary) value! !
-
-!NewInstanceVariablePrecondition methodsFor: 'initialization' stamp: 'HAW 3/3/2019 08:10:58'!
-initializeOf: anInstanceVariableName for: aClass
-
-	instVarName := anInstanceVariableName withBlanksTrimmed.
-	classToAddInstVar := aClass.! !
-
-!NewInstanceVariablePrecondition methodsFor: 'evaluating' stamp: 'HAW 3/3/2019 08:30:12'!
-value
-	
-	self assertIsNotEmpty.
-	self assertIsNotAReservedName.
-	self assertIsValidInstanceVariableName.
-	self assertIsNotAlreadyDefined.
-
-	self warnIfIsDefinedInMethods.! !
-
-!NewInstanceVariablePrecondition methodsFor: 'pre-conditions' stamp: 'HAW 3/3/2019 08:36:05'!
-assertIsNotAReservedName
-	
-	(ClassBuilder reservedNames includes: instVarName) ifTrue: [ self signalNewInstanceVariableCanNotBeAReservedName ]! !
-
-!NewInstanceVariablePrecondition methodsFor: 'pre-conditions' stamp: 'HAW 3/3/2019 08:35:12'!
-assertIsNotAlreadyDefined
-	
-	^ classToAddInstVar 
-		withClassesThatDefineInHierarchyInstanceVariable: instVarName 
-		do: [ :definingClasses | self signalAlreadyDefinedInAll: definingClasses ]
-		ifNone: [ ].! !
-
-!NewInstanceVariablePrecondition methodsFor: 'pre-conditions' stamp: 'FGJ 12/17/2018 15:29:44'!
-assertIsNotEmpty
-
-	instVarName isEmpty ifTrue: [ self signalNewVariableCanNotBeEmpty]! !
-
-!NewInstanceVariablePrecondition methodsFor: 'pre-conditions' stamp: 'HAW 3/3/2019 08:34:17'!
-assertIsValidInstanceVariableName
-
-	| scannedNames |
-
-	scannedNames := Scanner new scanFieldNames: instVarName .
-	scannedNames size = 1 ifFalse: [ self signalInvalidInstanceVariable ].
-	scannedNames first = instVarName ifFalse: [ self signalInvalidInstanceVariable ].! !
-
-!NewInstanceVariablePrecondition methodsFor: 'exceptions' stamp: 'HAW 3/3/2019 08:35:12'!
-signalAlreadyDefinedInAll: classes
-
-	^ self refactoringError: (self class errorMessageForNewInstanceVariable: instVarName alreadyDefinedInAll: classes).! !
-
-!NewInstanceVariablePrecondition methodsFor: 'exceptions' stamp: 'HAW 3/3/2019 08:34:09'!
-signalInvalidInstanceVariable
-
-	^ self refactoringError: (self class errorMessageForInvalidInstanceVariable: instVarName).! !
-
-!NewInstanceVariablePrecondition methodsFor: 'exceptions' stamp: 'HAW 3/3/2019 08:36:00'!
-signalNewInstanceVariableCanNotBeAReservedName
-
-	self refactoringError: (self class errorMessageForNewInstanceVariableCanNotBeAReservedName: instVarName)! !
-
-!NewInstanceVariablePrecondition methodsFor: 'exceptions' stamp: 'FGJ 12/17/2018 16:27:50'!
-signalNewVariableCanNotBeEmpty
-	
-	self refactoringError: self class newVariableCanNotBeEmptyErrorMessage! !
-
-!NewInstanceVariablePrecondition methodsFor: 'warnings' stamp: 'HAW 3/3/2019 08:19:24'!
-methodsDefiningNewVariable
-	
-	| methodsDefiningNewVariableInHierarchy |
-	
-	methodsDefiningNewVariableInHierarchy := OrderedCollection new.
-	
-	classToAddInstVar withAllSubclassesDo: [ :class | 
-		methodsDefiningNewVariableInHierarchy addAll: (class methodsWithArgumentOrTemporaryNamed: instVarName) ].
-
-	^methodsDefiningNewVariableInHierarchy 
-		
+	self signalMethodNodeMustIncludeMessageNode.
 	! !
 
-!NewInstanceVariablePrecondition methodsFor: 'warnings' stamp: 'HAW 3/3/2019 08:13:49'!
-warnIfIsDefinedInMethods
-	
-	| methodsDefiningNewVariable |
-	
-	methodsDefiningNewVariable := self methodsDefiningNewVariable.
-	
-	methodsDefiningNewVariable notEmpty ifTrue: [ self warnNewVariable: instVarName willBeHiddenAtAll: methodsDefiningNewVariable ].! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'assertions' stamp: 'FGJ 3/19/2019 16:29:34'!
+assertParameterNamesOf: variablesToParametrizeKeywordsDefinitions
+areNotEqualToBlockTemporariesOrArgumentsOn: aMessageNode
 
-!NewInstanceVariablePrecondition methodsFor: 'warnings' stamp: 'FGJ 12/17/2018 16:29:18'!
-warnNewVariable: newVariable willBeHiddenAtAll: methods
+	| blocksTemporaries parameterNames |
 
-	^ self refactoringWarning: (self class warningMessageForNewVariable: newVariable willBeHiddenAtAll: methods).! !
+	blocksTemporaries := Set new.
 
-!NewInstanceVariablePrecondition class methodsFor: 'instance creation' stamp: 'HAW 3/3/2019 08:10:58'!
-of: anInstanceVariableName for: aClass
+	aMessageNode arguments do: [:argument |
+		blocksTemporaries addAll: (self allTemporariesNamesAndArgumentsFrom: argument)].
 
-	^self new initializeOf: anInstanceVariableName for: aClass ! !
+	parameterNames := variablesToParametrizeKeywordsDefinitions parameterNames.
 
-!NewInstanceVariablePrecondition class methodsFor: 'error messages' stamp: 'FGJ 12/17/2018 16:27:09'!
-errorMessageForInvalidInstanceVariable: aName
+	(blocksTemporaries intersection: parameterNames) ifNotEmpty: [
+		self signalParameterNamesMustNotBeEqualToBlocksTemporals].! !
 
-	^ '''' , aName , ''' is not a valid instance variable name'.! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 15:44:43'!
+assertVariablesToParametrizeFrom: someVariablesToParametrize haveACorrespondingKeywordOn: someVariablesToParametrizeKeywordsDefinitions
 
-!NewInstanceVariablePrecondition class methodsFor: 'error messages' stamp: 'FGJ 12/17/2018 16:28:18'!
-errorMessageForNewInstanceVariable: aName alreadyDefinedInAll: classes
+	| variablesWithKeywords |
 
-	^ 'Instance variable ''' , aName , ''' is already defined in ' , classes asCommaStringAnd.! !
+	variablesWithKeywords := someVariablesToParametrizeKeywordsDefinitions variablesToParametrize.
 
-!NewInstanceVariablePrecondition class methodsFor: 'error messages' stamp: 'HAW 3/3/2019 08:32:29'!
-errorMessageForNewInstanceVariableCanNotBeAReservedName: aName
+	(variablesWithKeywords includesAllOf: someVariablesToParametrize) ifFalse: [self signalAllVariablesToParametrizeMustHaveAKeyword].! !
 
-	^'''', aName, ''' can not be used as instance variable name because it is a reserved name'! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 15:48:04'!
+allKeywordsMustHaveACorrespondingVariableToParametrizeErrorMessage
 
-!NewInstanceVariablePrecondition class methodsFor: 'error messages' stamp: 'FGJ 12/17/2018 16:05:38'!
-newVariableCanNotBeEmptyErrorMessage
-	
-	^'New variable can not be empty'! !
+	^'All keywords must have a corresponding variable to parametrize'! !
 
-!NewInstanceVariablePrecondition class methodsFor: 'warning messages' stamp: 'HAW 3/3/2019 08:27:30'!
-warningMessageForNewVariable: newVariable willBeHiddenAtAll: methods
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 15:17:07'!
+allVariablesToParametrizeMustHaveAKeywordErrorMessage
 
-	^String streamContents: [ :stream |
-		stream 
-			nextPutAll: newVariable;
-			nextPutAll: ' will be hidden at '.
-		methods asCommaSeparated: [:aMethod | aMethod printClassAndSelectorOn: stream ] on: stream ]! !
+	^'All variables to parametrize must have a corresponding keyword.'! !
 
-!NewInstanceVariablePrecondition class methodsFor: 'evaluating' stamp: 'HAW 3/3/2019 10:06:23'!
-valueOf: anInstanceVariableName for: aClass
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 16:37:10'!
+messageNodeMustRepresentSupportedMessageSendingErrorMessage
 
-	^(self of: anInstanceVariableName for: aClass) value! !
+	^'Message node must represent supported message sending'! !
 
-!CodeProvider methodsFor: '*Refactoring' stamp: 'HAW 9/8/2018 19:16:43'!
-isEditingMethod
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 16:13:08'!
+methodNodeMustIncludeMessageNodeErrorMessage
 
-	^false! !
+	^'Method node must include message node'! !
 
-!Browser methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 17:50:40'!
-insertSuperclass
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'error messages' stamp: 'FGJ 3/19/2019 16:31:46'!
+parameterNameMustNotBeEqualToBlockTemporaryErrorMessage
 
-	self selectedClassOrMetaClass ifNotNil: [ :aBehavior |
-		(InsertSuperclassApplier on: self for: aBehavior theNonMetaClass) value ].! !
+	^'Parameter names must not be equal to block temporals'! !
 
-!Browser methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 21:05:20'!
-isEditingMethod
-	
-	^editSelection = #editMessage or: [ editSelection = #newMessage ]
-! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 15:16:37'!
+signalAllVariablesToParametrizeMustHaveAKeyword
 
-!Browser methodsFor: '*Refactoring' stamp: 'HAW 8/1/2018 17:55:36'!
-removeClass
-	
-	self safelyRemoveClass ! !
+	self refactoringError: self allVariablesToParametrizeMustHaveAKeywordErrorMessage.! !
 
-!Browser methodsFor: '*Refactoring' stamp: 'HAW 6/6/2017 09:47:13'!
-renameClass
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 15:47:38'!
+signalKeywordsMustHaveAVariableToParametrize
 
-	self selectedClassOrMetaClass ifNotNil: [ :aBehavior |
-		(RenameClassApplier on: self for: aBehavior theNonMetaClass) value ].! !
+	self refactoringError: self allKeywordsMustHaveACorrespondingVariableToParametrizeErrorMessage. ! !
 
-!Browser methodsFor: '*Refactoring' stamp: 'HAW 9/14/2018 13:46:59'!
-safelyRemoveClass
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'exceptions' stamp: 'FGJ 3/13/2019 16:36:26'!
+signalMessageNodeMustRepresentSupportedMessageSending
 
-	self selectedClassOrMetaClass ifNotNil: [ :aBehavior |
-		(SafelyRemoveClassApplier on: self of: aBehavior theNonMetaClass) value ].! !
+	self refactoringError: self messageNodeMustRepresentSupportedMessageSendingErrorMessage.! !
 
-!MessageSet methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:33:51'!
-addMethodReference: aMethodReferenceToAdd ifIncluded: aBlockClosure 
-	
-	(messageList includes: aMethodReferenceToAdd) 
-		ifTrue: aBlockClosure 
-		ifFalse: [ self addMethodReference: aMethodReferenceToAdd ]! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'exceptions' stamp: 'FGJ 3/13/2019 16:12:51'!
+signalMethodNodeMustIncludeMessageNode
 
-!MessageSet methodsFor: '*Refactoring' stamp: 'HAW 5/30/2017 19:01:36'!
-removeMessageFromBrowser
-	"Remove the selected message from the browser."
+	self refactoringError: self methodNodeMustIncludeMessageNodeErrorMessage.! !
 
-	self removeMessageFromBrowserKeepingLabel.
-	self changed: #relabel! !
+!ReplaceIfNilWithPolymorphismParameters class methodsFor: 'exceptions' stamp: 'FGJ 3/19/2019 16:31:47'!
+signalParameterNamesMustNotBeEqualToBlocksTemporals
 
-!MessageSet methodsFor: '*Refactoring' stamp: 'HAW 5/30/2017 18:51:00'!
-removeMessageFromBrowserKeepingLabel
-	
-	selectedMessage ifNil: [ ^nil ].
-	self deleteFromMessageList: self selection.
-	self reformulateList.
-! !
+	self refactoringError: self parameterNameMustNotBeEqualToBlockTemporaryErrorMessage.! !
 
-!Debugger methodsFor: '*Refactoring' stamp: 'HAW 9/8/2018 19:10:11'!
-isEditingMethod
-	
-	^true! !
+!VariableToParametrizeKeywordDefinition methodsFor: 'initialization' stamp: 'FGJ 3/18/2019 12:47:50'!
+initializeForVariable: aVariableName useKeyword: aKeyword withParameterName: aParameterName
 
-!UndefinedObject methodsFor: '*Refactoring' stamp: 'HAW 6/24/2017 11:23:16'!
-whichClassDefinesInstanceVariable: aVariable ifNone: aNoneBlock 
-	
-	^aNoneBlock value! !
+	variableName := aVariableName.
+	keyword := aKeyword.
+	parameterName := aParameterName.
 
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 16:32:11'!
-definesClassVariableNamedInHierarchy: aClassVariableName
-
-	^self allClassVarNames includes: aClassVariableName ! !
-
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 18:51:30'!
-definesInstanceVariableNamed: anInstanceVariableName
-
-	^self instVarNames includes: anInstanceVariableName ! !
-
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 21:46:03'!
-indexOfInstanceVariable: aName
-
-	^self allInstVarNames indexOf: aName! !
-
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 5/25/2017 21:53:10'!
-methodsSelect: aCondition
-
-	^ self methodDict valuesSelect: aCondition ! !
-
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 3/3/2019 08:18:59'!
-methodsWithArgumentOrTemporaryNamed: instVarName
-
-	^self methodsSelect: [:aMethod | aMethod hasArgumentOrTemporary: instVarName ]! !
-
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 6/24/2017 11:22:41'!
-whichClassDefinesInstanceVariable: aVariable ifNone: aNoneBlock
-
-	(self definesInstanceVariableNamed: aVariable) ifTrue: [ ^self ].
-	
-	^superclass whichClassDefinesInstanceVariable: aVariable ifNone: aNoneBlock 
 	! !
 
-!Behavior methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 20:20:12'!
-withSuperclassThatIncludesSelector: aSelector do: aFoundClosure ifNone: aNoneClosure 
-	
-	^superclass 
-		ifNil: aNoneClosure 
+!VariableToParametrizeKeywordDefinition methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 12:48:07'!
+keyword
+
+	^keyword! !
+
+!VariableToParametrizeKeywordDefinition methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 12:48:43'!
+parameterName
+
+	^parameterName! !
+
+!VariableToParametrizeKeywordDefinition methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 12:48:20'!
+variableName
+
+	^variableName! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:38:26'!
+assertKeywordDoesNotContainInvalidCharacters: aKeyword
+
+	(aKeyword anySatisfy: [:c | c isValidInIdentifiers not])
+		ifTrue: [self signalKeywordMustNotContainInvalidCharacters]. ! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:33:55'!
+assertKeywordIsNotEmpty: aKeyword
+
+	aKeyword withBlanksTrimmed isEmpty ifTrue: [self signalKeywordMustNotBeEmpty].! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:09:15'!
+assertParameterNameIsValid: aParameterName
+
+	| scannedNames isValidParameterName |
+
+	scannedNames _ Scanner new scanFieldNames: aParameterName.
+	isValidParameterName := scannedNames size = 1 and: [scannedNames first = aParameterName].
+	isValidParameterName ifFalse: [self signalInvalidParameterName].! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 15:18:53'!
+refactoringError: anErrorMessage
+
+	self refactoringErrorClass signal: anErrorMessage.! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 15:19:03'!
+refactoringErrorClass
+
+	^RefactoringError ! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 12:00:17'!
+invalidParameterNameErrorMessage
+
+	^'Invalid parameter name'! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 12:34:35'!
+keywordMustNotBeEmptyErrorMessage
+
+	^'Keyword must not be empty'! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 12:39:09'!
+keywordMustNotContainInvalidCharactersErrorMessage
+
+	^'Keyword must not contain invalid characters'! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 15:16:09'!
+parameterNameMustNotBeEmptyErrorMessage
+
+	^'Parameter name must not be empty'! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'instance creation' stamp: 'FGJ 3/18/2019 12:46:51'!
+forVariable: aVariableName useKeyword: aKeyword withParameterName: aParameterName
+
+	self assertParameterNameIsValid: aParameterName.
+
+	self assertKeywordIsNotEmpty: aKeyword.
+	self assertKeywordDoesNotContainInvalidCharacters: aKeyword.
+
+	^self new initializeForVariable: aVariableName useKeyword: aKeyword withParameterName: aParameterName! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 12:05:19'!
+signalInvalidParameterName
+
+	self refactoringError: self invalidParameterNameErrorMessage.! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 12:34:18'!
+signalKeywordMustNotBeEmpty
+
+	self refactoringError: self keywordMustNotBeEmptyErrorMessage.! !
+
+!VariableToParametrizeKeywordDefinition class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 12:38:51'!
+signalKeywordMustNotContainInvalidCharacters
+
+	self refactoringError: self keywordMustNotContainInvalidCharactersErrorMessage.! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'initialization' stamp: 'FGJ 3/19/2019 17:12:25'!
+initializeWith: someDefinitions
+
+	definitions := someDefinitions.! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'initialization' stamp: 'FGJ 3/19/2019 17:12:49'!
+initializeWithSelector: aSelector
+
+	selector := aSelector.! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/20/2019 15:55:42'!
+messageHeader
+
+	definitions
+		ifNil: [^selector asString]
+		ifNotNil: [^' ' join: (definitions collect: [:definition | definition keyword, ': ', definition parameterName])].	! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/20/2019 11:41:36'!
+messageSending
+
+	definitions
+		ifNil: [^selector asString]
+		ifNotNil: [^' ' join: (definitions collect: [:definition | definition keyword, ': ', definition variableName])].! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/21/2019 12:45:27'!
+parameterNameFor: aVariableName
+
+	definitions do: [:definition | definition variableName = aVariableName ifTrue: [^definition parameterName]].! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/19/2019 15:54:08'!
+parameterNames
+
+	definitions
+		ifNil: [^#()]
+		ifNotNil: [^definitions collect: [:definition | definition parameterName]].
+		! !
+
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/19/2019 17:15:22'!
+selector
+
+	definitions
+		ifNil: [^selector]
 		ifNotNil: [
-			(superclass whichClassIncludesSelector: aSelector)
-				ifNil: aNoneClosure 
-				ifNotNil: aFoundClosure ]! !
+			^((':' join: (definitions collect: [:definition | definition keyword])), ':') asSymbol].! !
 
-!ClassDescription methodsFor: '*Refactoring' stamp: 'HAW 9/7/2017 15:41:34'!
-chooseDefiningInstanceVariableAlphabeticallyWith: aCaption thenDo: aBlock
-	
-	^self 
-		chooseDefiningInstanceVariableAlphabeticallyWith: aCaption 
-		thenDo: aBlock 
-		ifNone: [ ^ self inform: 'There are no instance variables defined in ', self name ]! !
+!VariablesToParametrizeKeywordsDefinitions methodsFor: 'accessing' stamp: 'FGJ 3/18/2019 15:21:07'!
+variablesToParametrize
 
-!ClassDescription methodsFor: '*Refactoring' stamp: 'HAW 9/7/2017 15:40:15'!
-chooseDefiningInstanceVariableAlphabeticallyWith: aCaption thenDo: aBlock ifNone: noneBlock
-	
-	| vars index |
-	"Put up a menu of the instance variables in the receiver, presented in alphabetical order, and when the user chooses one, evaluate aBlock with the chosen variable as its parameter."
-
-	vars _ self instVarNames sorted.
-	vars isEmpty ifTrue: [^ noneBlock value ].
-
-	index _ (PopUpMenu labelArray: vars lines: #()) startUpWithCaption: aCaption.
-	index = 0 ifTrue: [^ self].
-	aBlock value: (vars at: index)! !
-
-!ClassDescription methodsFor: '*Refactoring' stamp: 'HAW 5/25/2017 21:17:26'!
-compile: aSourceCode classifyUnder: aCategory
-
-	| selector |
-	
-	selector := self compile: aSourceCode.
-	self organization classify: selector under: aCategory.
-	
-	^selector ! !
-
-!ClassDescription methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 20:03:40'!
-withClassesThatDefineInHierarchyInstanceVariable: aName do: foundBlock ifNone: noneBlock
-
-	^(self classThatDefinesInstanceVariable: aName) 
-		ifNil: [ self withSubclassesThatDefineInstanceVariable: aName do: foundBlock ifNone: noneBlock ]
-		ifNotNil: [ :definingClass | foundBlock value: (Array with: definingClass) ]! !
-
-!ClassDescription methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 20:02:57'!
-withSubclassesThatDefineInstanceVariable: aName do: foundBlock ifNone: noneBlock
- 
-	| definingSubclasses |
-	
-	definingSubclasses := self allSubclasses select: [ :aSubclass | aSubclass definesInstanceVariableNamed: aName ].
-	
-	^definingSubclasses isEmpty 
-		ifTrue: noneBlock 
-		ifFalse: [ foundBlock value: definingSubclasses ]! !
-
-!Class methodsFor: '*Refactoring' stamp: 'HAW 6/4/2017 17:35:03'!
-rename: aString 
-	"The new name of the receiver is the argument, aString."
-
-	| newName |
-	(newName _ aString asSymbol) ~= self name
-		ifFalse: [^ self].
-	(Smalltalk includesKey: newName)
-		ifTrue: [^ self error: newName , ' already exists'].
-	(Undeclared includesKey: newName)
-		ifTrue: [self inform: 'There are references to, ' , aString printString , '
-from Undeclared. Check them after this change.'].
-
-	self safeRenameTo: newName.! !
-
-!Class methodsFor: '*Refactoring' stamp: 'HAW 6/4/2017 17:35:15'!
-safeRenameTo: newName
-
-	Smalltalk renameClass: self as: newName.
-	name _ newName! !
-
-!SystemOrganizer methodsFor: '*Refactoring' stamp: 'HAW 5/28/2017 23:06:08'!
-hasCategory: aCategory
-
-	^self categories includes: aCategory ! !
-
-!SystemOrganizer methodsFor: '*Refactoring' stamp: 'HAW 5/28/2017 22:22:50'!
-removeSystemCategories: categories
-
-	(self superclassOrderInAll: categories) reverseDo: [ :class | class removeFromSystem].
-	
-	categories do: [ :aCategory | self removeCategory: aCategory].
-! !
-
-!SystemOrganizer methodsFor: '*Refactoring' stamp: 'HAW 5/28/2017 23:03:39'!
-superclassOrderInAll: categories
-
-	| classes |
-	
-	classes := OrderedCollection new. 
-	categories do: [ :aCategory | classes addAll: (self classesAt: aCategory)].
-		
-	^Array streamContents: [ :stream | Smalltalk hierarchySorted: classes do: [ :aClass | stream nextPut: aClass ]].! !
-
-!Number methodsFor: '*Refactoring' stamp: 'HAW 9/11/2018 16:25:44'!
-toSelfPlus: aDelta
-
-	^self to: self + aDelta ! !
-
-!Collection methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 10:53:39'!
-as: aPrintingBlock on: aStream delimiter: delimiter last: lastDelimiter
-
-	| position selfSize |
-	
-	position := 1.
-	selfSize := self size.
-	
-	self 
-		do: [:elem |
-			position := position + 1.
-			aPrintingBlock value: elem ]
-		separatedBy: [
-			aStream nextPutAll: (position = selfSize ifTrue: [lastDelimiter] ifFalse: [delimiter])]! !
-
-!Collection methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 10:52:07'!
-asCommaSeparated: aPrintingBlock on: aStream 
-
-	^self as: aPrintingBlock on: aStream delimiter: ', ' last: ' and '! !
-
-!Collection methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 20:16:01'!
-asCommaStringAnd
-	"Return collection printed as 'a, b and c' 
-	Copied from Pharo"
-
-	^String streamContents: [:s | self asStringOn: s delimiter: ', ' last: ' and ']! !
-
-!Collection methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 16:52:17'!
-asStringOn: aStream delimiter: delimString last: lastDelimString
-
-	self as: [ :elem | aStream nextPutAll: elem asString ] on: aStream delimiter: delimString last: lastDelimString ! !
-
-!SequenceableCollection methodsFor: '*Refactoring' stamp: 'HAW 9/11/2018 16:26:23'!
-intervalOfSubCollection: aSubCollectionToFind
-
-	| startingIndex |
-	
-	startingIndex := self indexOfSubCollection: aSubCollectionToFind startingAt: 1.
-	
-	^startingIndex toSelfPlus: aSubCollectionToFind size! !
-
-!SequenceableCollection methodsFor: '*Refactoring' stamp: 'HAW 8/16/2018 12:38:04'!
-with: otherCollection do: twoArgBlock separatedBy: separatorBlock
-
-	| beforeFirst | 
-	
-	beforeFirst := true.
-	self with: otherCollection do: [ :selfElement :otherCollectionElement |
-		beforeFirst
-			ifTrue: [beforeFirst := false]
-			ifFalse: [separatorBlock value].
-		twoArgBlock value: selfElement value: otherCollectionElement ].
-		
-	
-! !
-
-!String methodsFor: '*Refactoring' stamp: 'HAW 8/13/2018 15:33:59'!
-copyReplacing: rangesToNewStrings
-
-	^self class streamContents: [ :replacementStream | self copyReplacing: rangesToNewStrings into: replacementStream  ].
-! !
-
-!String methodsFor: '*Refactoring' stamp: 'HAW 11/28/2018 19:51:47'!
-copyReplacing: rangesToNewStrings into: replacementStream
-
-	| lastFrom |
-	
-	lastFrom := rangesToNewStrings inject: 1 into: [ :from :aRangeToNewString | 
-		self 
-			newFromAfterAppending: aRangeToNewString value 
-			into: replacementStream
-			keepingFrom: from 
-			skipping: aRangeToNewString key ].
-						
-	replacementStream nextPutAll: (self copyFrom: lastFrom to: self size). 
-! !
-
-!String methodsFor: '*Refactoring' stamp: 'HAW 8/13/2018 15:36:20'!
-copyReplacing: ranges with: newString
-
-	"Ranges must be in order, with first ranges first. If not, result is unexpected - Hernan"
-	
-	^ self class streamContents: [ :replacementStream | self copyReplacing: ranges with: newString into: replacementStream ]
+	definitions
+		ifNil: [^#()]
+		ifNotNil: [^definitions collect: [:definition | definition variableName]].
 		! !
 
-!String methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 17:23:04'!
-copyReplacing: ranges with: newString into: replacementStream 
-
-	| lastFrom |
-	
-	lastFrom := ranges 
-		inject: 1
-		into: [ :from :aRange | 
-			self newFromAfterAppending: newString into: replacementStream keepingFrom: from skipping: aRange ].
-	
-	replacementStream nextPutAll: (self copyFrom: lastFrom to: self size).! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 12:52:24'!
+firstKeywordMustNoStartWithInvalidStartOfSelectorErrorMessage
 
-!String methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 17:23:04'!
-newFromAfterAppending: aNewString into: replacementStream keepingFrom: from skipping: aRange
+	^'First keyword must start with a valid start of selector.'! !
 
-	replacementStream  
-		nextPutAll: (self copyFrom: from to: aRange first - 1);
-		nextPutAll: aNewString.
-	
-	^ aRange last + 1! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 14:26:54'!
+parameterNamesMustNotBeRepeatedErrorMessage
 
-!Symbol class methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 21:31:30'!
-fromCollectionOfStrings: aCollectionOfStrings
+	^'Parameter names must not be repeated.'! !
 
-	^self newFrom: aCollectionOfStrings concatenation ! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 14:03:36'!
+selectorMustNotBeEmptyErrorMessage
 
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:48:26'!
-classAndSelector
+	^'The selector must not be empty'! !
 
-	^String streamContents: [:stream | self printClassAndSelectorOn: stream ]! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 14:12:23'!
+selectorMustNotContainInvalidCharactersErrorMessage
 
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 6/1/2017 16:19:53'!
-hasArgumentOrTemporary: aVariable
+	^'Selector must not contain invalid characters'! !
 
-	| methodNode |
-	
-	methodNode := self methodNode.
-	
-	^methodNode tempNames includes: aVariable ! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/13/2019 14:22:09'!
+selectorMustNotStartWithInvalidStartOfSelectorErrorMessage
 
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 5/25/2017 19:01:16'!
-printClassAndSelectorOn: aStream 
-	
-	aStream 
-		print: self methodClass; 
-		nextPutAll: '>>'; 
-		nextPutAll: self selector storeString! !
+	^'Selector must not start with invalid start of selector.'! !
 
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 5/25/2017 19:00:25'!
-printOn: aStream 
-	"Overrides method inherited from the byte arrayed collection."
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'error messages' stamp: 'FGJ 3/18/2019 14:32:00'!
+variableNamesMustNotBeRepeatedErrorMessage
 
-	aStream nextPut: $(.
-	self printClassAndSelectorOn: aStream.
-	aStream space; nextPut: $".
-	self printNameOn: aStream. 
-	aStream nextPut: $(; print: self identityHash; nextPut: $); nextPut: $"; nextPut: $)! !
-
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 21:48:10'!
-readsInstanceVariable: aName
-
-	^self readsField: (self methodClass indexOfInstanceVariable: aName) ! !
-
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 15:41:29'!
-referencesParameterAt: parameterIndex
-
-	| methodNode implementorParameterNodeToRemove parameterRanges |
-	
-	methodNode := self methodNode.
-	implementorParameterNodeToRemove := methodNode arguments at: parameterIndex.
-	parameterRanges := methodNode positionsForTemporaryVariable: implementorParameterNodeToRemove name ifAbsent: [#()].
-	
-	^parameterRanges size ~= 1! !
-
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 12:04:03'!
-sendsOrRefersTo: aSelector
-
-	^ (self hasLiteralThorough: aSelector) or: [ self sendsSelector: aSelector ]! !
-
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 8/13/2018 11:32:37'!
-sourceCode
-
-	"This method is implemented because getSource is not so intuitive - Hernan"
-	^self getSource! !
-
-!CompiledMethod methodsFor: '*Refactoring' stamp: 'HAW 5/22/2017 22:28:34'!
-writesInstanceVariable: aName
-
-	^self writesField: (self methodClass indexOfInstanceVariable: aName)! !
-
-!MethodDictionary methodsFor: '*Refactoring' stamp: 'HAW 5/25/2017 21:54:41'!
-valuesSelect: aCondition
-
-	| selected |
-	
-	selected := OrderedCollection new.
-	self valuesDo: [ :aValue | (aCondition value: aValue) ifTrue: [ selected add: aValue ]].
-	
-	^selected! !
-
-!Parser class methodsFor: '*Refactoring' stamp: 'HAW 6/26/2017 16:17:57'!
-parse: sourceCode class: aClass
-
-	^self parse: sourceCode class: aClass noPattern: false! !
-
-!Parser class methodsFor: '*Refactoring' stamp: 'HAW 6/26/2017 16:17:40'!
-parse: sourceCode class: aClass noPattern: aBoolean
-
-	^(self new
-		encoderClass: EncoderForV3PlusClosures;
-		parse: sourceCode class: aClass noPattern: aBoolean)
-			sourceText: sourceCode;
-			yourself! !
-
-!ParseNode methodsFor: '*Refactoring' stamp: 'HAW 5/24/2017 19:44:09'!
-generateSource
-	
-	^String streamContents: [ :stream | self printOn: stream ]! !
-
-!ParseNode methodsFor: '*Refactoring' stamp: 'HAW 8/9/2018 19:21:06'!
-isInstanceVariableNode
-
-	^false! !
-
-!ParseNode methodsFor: '*Refactoring' stamp: 'HAW 8/11/2018 19:23:06'!
-isMessageNamed: aSelector
-
-	^false! !
-
-!ParseNode methodsFor: '*Refactoring' stamp: 'HAW 10/19/2017 05:54:57'!
-isReturn
-
-	^false! !
-
-!ParseNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:10:40'!
-isTempOrArg
-
-	^false! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 17:42:53'!
-messageSendKeywordAndParameterPositionsAt: anIndex of: aSelector ifAbsent: aBlock
-	
-	| positions |
-	
-	positions := sourceRanges keys 
-		select: [ :aParseNode | aParseNode isMessageNamed: aSelector ] 
-		thenCollect: [ :aMessageSendNode | aMessageSendNode keywordAndParameterPositionAt: anIndex encodedWith: self].
-		
-	^ positions isEmpty 
-		ifTrue: aBlock
-		ifFalse: [ positions ]
-	! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 19:17:59'!
-messageSendKeywordPositionsAt: anIndex of: aSelector ifAbsent: aBlock
-	
-	| positions sortedPositions |
-	
-	positions := sourceRanges keys 
-		select: [ :aParseNode | aParseNode isMessageNamed: aSelector ] 
-		thenCollect: [ :aMessageSendNode | (aMessageSendNode keywordPositionAt: anIndex) first ].
-		
-	positions isEmpty ifTrue: [ ^aBlock value ].
-	sortedPositions := positions asSortedCollection.
-	
-	^sortedPositions ! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 3/4/2019 10:40:27'!
-messageSendLastPositionsOf: aSelector ifAbsent: aBlock
-	
-	| positions sortedPositions |
-	
-	positions := sourceRanges keys 
-		select: [ :aParseNode | aParseNode isMessageNamed: aSelector ] 
-		thenCollect: [ :aMessageSendNode | (sourceRanges at: aMessageSendNode) last ].
-		
-	positions isEmpty ifTrue: [ ^aBlock value ].
-	sortedPositions := positions asSortedCollection.
-	
-	^sortedPositions ! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/19/2018 08:50:47'!
-messageSendSelectorKeywordPositionsOf: aSelector ifAbsent: aBlock
-	
-	| ranges sortedRanges |
-	
-	ranges := sourceRanges keys 
-		select: [ :aParseNode | aParseNode isMessageNamed: aSelector ] 
-		thenCollect: [ :aMessageSendNode | aMessageSendNode keywordRanges ].
-		
-	ranges isEmpty ifTrue: [ ^aBlock value ].
-	sortedRanges := ranges asSortedCollection: [ :left :right | left first first < right first first ].
-	
-	^sortedRanges ! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:45:40'!
-parameterDefinitionPositionFor: aParameterNode
-
-	^ (self sourceRangeFor: aParameterNode) first! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/19/2018 08:53:32'!
-positionsForInstanceVariable: aName ifAbsent: aBlock
-
-	^ self 
-		rangesForVariable: aName 
-		checkingType: [ :variableNode | variableNode isInstanceVariableNode ]
-		ifAbsent: aBlock ! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/19/2018 08:51:25'!
-positionsForLiteralNode: aName ifAbsent: aBlock
-
-	| variableNode |
-	
-	variableNode := litSet at: aName ifAbsent: [ ^aBlock value ].
-	
-	^sourceRanges at: variableNode ifAbsent: aBlock! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/19/2018 08:52:56'!
-positionsForLiteralVariableNode: aName ifAbsent: aBlock
-
-	| variableNode |
-	
-	variableNode := litIndSet values detect: [ :aLiteralVariableNode | aLiteralVariableNode name = aName ] ifNone: [ ^aBlock value ].
-	
-	^sourceRanges at: variableNode ifAbsent: aBlock! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 9/19/2018 08:52:19'!
-positionsForTemporaryVariable: aName ifAbsent: aBlock
-
-	^ self 
-		rangesForVariable: aName 
-		checkingType: [ :variableNode | variableNode isTemp ]
-		ifAbsent: aBlock ! !
-
-!Encoder methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 14:44:56'!
-positionsOfLiteralArraysContaining: aSymbol 
-	
-	| positions |
-	
-	positions := OrderedCollection new.
-	litSet keysAndValuesDo: [ :aLiteral :aLiteralNode | 
-		(aLiteral isArray and: [ aLiteral hasLiteral: aSymbol ]) ifTrue: [ positions addAll: (sourceRanges at: aLiteralNode) ]].
-	
-	^positions ! !
-
-!EncoderForV3PlusClosures methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 16:07:52'!
-hasLocalNamed: aName
-
-	^ scopeTable includesKey: aName ! !
-
-!LeafNode methodsFor: '*Refactoring' stamp: 'HAW 6/4/2017 18:30:35'!
-key: aKey
-
-	key := aKey ! !
-
-!VariableNode methodsFor: '*Refactoring' stamp: 'HAW 6/24/2017 11:36:42'!
-nameAndKey: aName
-
-	name := key := aName ! !
-
-!InstanceVariableNode methodsFor: '*Refactoring' stamp: 'HAW 8/9/2018 19:21:39'!
-isInstanceVariableNode
-
-	^true! !
-
-!TempVariableNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:10:19'!
-isTempOrArg
-
-	^self isTemp or: [ self isArg ]! !
-
-!MessageNode methodsFor: '*Refactoring' stamp: 'HAW 12/6/2018 17:19:05'!
-isMessageNamed: aSelector
-
-	^aSelector == self selectorSymbol ! !
-
-!MessageNode methodsFor: '*Refactoring' stamp: 'HAW 3/4/2019 11:35:48'!
-keywordAndParameterPositionAt: anIndex encodedWith: anEncoder
-	
-	| keywordPosition parameterLastPosition |
-	
-	keywordPosition := keywordRanges at: anIndex.
-	parameterLastPosition := anIndex = arguments size 
-		ifTrue: [ (anEncoder sourceRangeFor: self) last ]
-		ifFalse: [ (keywordRanges at: anIndex + 1) first - 1].
-		
-	^keywordPosition first to: parameterLastPosition! !
-
-!MessageNode methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 19:18:24'!
-keywordPositionAt: anIndex
-
-	^keywordRanges at: anIndex ! !
-
-!MessageNode methodsFor: '*Refactoring' stamp: 'HAW 8/9/2018 21:46:47'!
-keywordRanges
-
-	^keywordRanges! !
-
-!MessageNode methodsFor: '*Refactoring' stamp: 'HAW 12/6/2018 17:18:55'!
-selectorSymbol
-
-	^selector key! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 15:38:51'!
-addPositionTo: symbolPositions of: symbolString inside: literalArrayPosition
-
-	| insidePosition |
-			
-	insidePosition := literalArrayPosition first.
-	[ insidePosition < literalArrayPosition last ] whileTrue: [
-		insidePosition := self nextPositionAfterAddPositionTo: symbolPositions of: symbolString startingAt: insidePosition ].
-	! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 15:20:38'!
-argumentNames
-	
-	^arguments collect: [ :anArgumentNode | anArgumentNode name ]! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 19:03:53'!
-classAndSelector
-	
-	^self methodClass name, '>>', self selector storeString! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 19:14:48'!
-hasArgumentOrTemporary: aVariable
-
-	^self tempNames includes: aVariable ! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 8/17/2018 16:06:56'!
-hasLocalNamed: aName
-
-	^ encoder hasLocalNamed: aName ! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 17:42:53'!
-messageSendKeywordAndParameterPositionsAt: anIndex of: aSelector ifAbsent: aClosure
-
-	^encoder messageSendKeywordAndParameterPositionsAt: anIndex of: aSelector ifAbsent: aClosure
-! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/4/2018 19:07:38'!
-messageSendKeywordPositionsAt: anIndex of: aSelector ifAbsent: aBlock
-	
-	^encoder messageSendKeywordPositionsAt: anIndex of: aSelector ifAbsent: aBlock
-	! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 3/4/2019 10:21:05'!
-messageSendLastPositionsOf: aSelector ifAbsent: aBlock 
-	
-	^encoder messageSendLastPositionsOf: aSelector ifAbsent: aBlock
-! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:47:38'!
-messageSendSelectorKeywordPositionsOf: aSelector ifAbsent: aBlock
-
-	^encoder messageSendSelectorKeywordPositionsOf: aSelector ifAbsent: aBlock
-! !
-
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 11/30/2018 15:06:55'!
-nextPositionAfterAddPositionTo: symbolPositions of: symbolString startingAt: insidePosition 
-
-	| symbolStartPosition nextPosition |
-		
-	symbolStartPosition := sourceText indexOfSubCollection: symbolString startingAt: insidePosition.
-	
-	symbolStartPosition = 0 
-		ifTrue: [ nextPosition := SmallInteger maxVal ]
-		ifFalse: [ 
-			nextPosition := symbolStartPosition + symbolString size. 
-			(sourceText at: nextPosition) tokenish ifFalse: [ symbolPositions add: (symbolStartPosition to: nextPosition - 1) ]].
-		
-	^nextPosition
+	^'Variable names must not be repeated.'! !
+
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 3/13/2019 14:11:02'!
+assertDoesNotContainInvalidCharacters: aSelector
+
+	aSelector do: [:c | (c isValidInIdentifiers not) ifTrue: [
+		self signalSelectorMustNotContainInvalidCharacters ]].! !
+
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 3/13/2019 14:25:17'!
+assertDoesNotStartWithInvalidStartOfSelector: aSelector
+
+	aSelector first isValidStartOfIdentifiers ifFalse: [
+		self signalSelectorMustNotStartWithInvalidStartOfSelector ].! !
+
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 4/8/2019 14:33:01'!
+assertIsNotEmpty: aSymbol
+
+	aSymbol withBlanksTrimmed isEmpty ifTrue: [ self signalSelectorMustNotBeEmpty ].! !
+
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 12:51:12'!
+assertKeywordMustStartWithValidStartOfSelector: aKeyword
+
+	aKeyword first isValidStartOfIdentifiers not ifTrue: [self signalFirstKeywordMustStartWithValidStartOfSelector].! !
+
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 14:29:48'!
+assertParameterNamesAreNotRepeated: someDefinitions
+
+	| allParameterNames uniqueParameterNames |
+
+	allParameterNames := someDefinitions collect: [:aDefinition | aDefinition parameterName].
+	uniqueParameterNames := Set newFrom: allParameterNames.
+
+	allParameterNames size = uniqueParameterNames size ifFalse: [self signalParameterNamesMustNotBeRepeated].
 
 	! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:46:08'!
-parameterDefinitionPositionAt: anIndex
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'assertions' stamp: 'FGJ 3/18/2019 14:31:13'!
+assertVariableNamesAreNotRepeated: someDefinitions
 
-	^encoder parameterDefinitionPositionFor: (arguments at: anIndex)
-! !
+	| allVariableNames uniqueVariableNames |
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:48:09'!
-positionsForInstanceVariable: aName ifAbsent: aBlock
+	allVariableNames := someDefinitions collect: [:aDefinition | aDefinition variableName].
+	uniqueVariableNames := Set newFrom: allVariableNames.
 
-	^encoder positionsForInstanceVariable: aName ifAbsent: aBlock
-! !
+	allVariableNames size = uniqueVariableNames size ifFalse: [self signalVariableNamesMustNotBeRepeated].! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:48:30'!
-positionsForLiteralNode: aName ifAbsent: aBlock
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 14:04:45'!
+refactoringError: aMessage
 
-	^encoder positionsForLiteralNode: aName ifAbsent: aBlock
-! !
+	self refactoringErrorClass signal: aMessage.! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:48:49'!
-positionsForLiteralVariableNode: aName ifAbsent: aBlock
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'as yet unclassified' stamp: 'FGJ 3/13/2019 14:05:17'!
+refactoringErrorClass
 
-	^encoder positionsForLiteralVariableNode: aName ifAbsent: aBlock! !
+	^RefactoringError! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:49:06'!
-positionsForTemporaryVariable: aName ifAbsent: aBlock
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'instance creation' stamp: 'FGJ 3/20/2019 11:31:37'!
+with: someDefinitions
 
-	^encoder positionsForTemporaryVariable: aName ifAbsent: aBlock
-! !
+	self assertKeywordMustStartWithValidStartOfSelector: someDefinitions first keyword.
+	self assertParameterNamesAreNotRepeated: someDefinitions.
+	self assertVariableNamesAreNotRepeated: someDefinitions.
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 15:33:58'!
-positionsInLiteralArrayOf: aSymbol 
-	
-	| literalArrayPositions |
-	
-	literalArrayPositions := encoder positionsOfLiteralArraysContaining: aSymbol.
-	
-	^self positionsOf: aSymbol printString containedIn: literalArrayPositions.
-	
-! !
+	^self new initializeWith: someDefinitions ! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 15:36:45'!
-positionsOf: symbolString containedIn: literalArrayPositions
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'instance creation' stamp: 'FGJ 3/20/2019 11:31:43'!
+withSelector: aSelector
 
-	| symbolPositions |
-	
-	symbolPositions := OrderedCollection new.
-	
-	literalArrayPositions do: [ :literalArrayPosition | self addPositionTo: symbolPositions of: symbolString inside: literalArrayPosition ].
-		
-	^symbolPositions 
-						
-					
-		
-	
-! !
+	self assertIsNotEmpty: aSelector.
+	self assertDoesNotContainInvalidCharacters: aSelector.
+	self assertDoesNotStartWithInvalidStartOfSelector: aSelector.
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:46:36'!
-selectorKeywordPositionAt: anIndex
+	^self new initializeWithSelector: aSelector.! !
 
-	^selectorKeywordsRanges at: anIndex ! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 12:52:02'!
+signalFirstKeywordMustStartWithValidStartOfSelector
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 9/3/2018 19:49:44'!
-selectorKeywordsPositions
+	self refactoringError: self firstKeywordMustNoStartWithInvalidStartOfSelectorErrorMessage.! !
 
-	^selectorKeywordsRanges! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 14:26:37'!
+signalParameterNamesMustNotBeRepeated
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 19:20:47'!
-tempNodes
-	
-	^encoder tempNodes ! !
+	self refactoringError: self parameterNamesMustNotBeRepeatedErrorMessage.! !
 
-!MethodNode methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:03:13'!
-withParseNodeIncluding: aPosition do: aBlock ifAbsent: anAbsentBlock
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/13/2019 14:03:04'!
+signalSelectorMustNotBeEmpty
 
-	| nodeAndPosition |
-	
-	nodeAndPosition :=self parseNodeIncluding: aPosition ifAbsent: [ ^ anAbsentBlock value ].
-	^aBlock value: nodeAndPosition key.! !
+	self refactoringError: self selectorMustNotBeEmptyErrorMessage.! !
 
-!ReturnNode methodsFor: '*Refactoring' stamp: 'HAW 3/4/2019 14:24:38'!
-isImplicitSelfReturnIn: aMethodNode 
-	
-	^self isReturnSelf and: [ (aMethodNode encoder rawSourceRanges includesKey: expr) not ]! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/13/2019 14:11:33'!
+signalSelectorMustNotContainInvalidCharacters
 
-!ReturnNode methodsFor: '*Refactoring' stamp: 'HAW 10/19/2017 05:55:14'!
-isReturn
+	self refactoringError: self selectorMustNotContainInvalidCharactersErrorMessage.! !
 
-	^true! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/13/2019 14:25:28'!
+signalSelectorMustNotStartWithInvalidStartOfSelector
 
-!TextEditor methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 21:42:54'!
-actualContents
-	
-	^model actualContents ! !
+	self refactoringError: self selectorMustNotStartWithInvalidStartOfSelectorErrorMessage.! !
 
-!TextEditor methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 21:43:28'!
-actualContents: aString 
-	
-	model actualContents: aString ! !
+!VariablesToParametrizeKeywordsDefinitions class methodsFor: 'exceptions' stamp: 'FGJ 3/18/2019 14:31:35'!
+signalVariableNamesMustNotBeRepeated
 
-!TextEditor methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 21:48:26'!
-hasUnacceptedEdits
-	
-	^morph hasUnacceptedEdits ! !
+	self refactoringError: self variableNamesMustNotBeRepeatedErrorMessage.! !
 
-!TextEditor methodsFor: '*Refactoring' stamp: 'HAW 6/25/2017 21:50:14'!
-hasUnacceptedEdits: aBoolean
-
-	^morph hasUnacceptedEdits: aBoolean ! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:04:59'!
-contextualRename
-
-	self 
-		withMethodNodeAndClassDo: [ :methodNode :classToRefactor | self contextualRenameOf: methodNode in: classToRefactor] 
-		ifErrorsParsing: [ :anError | morph flash ].
-		
-		! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/28/2018 20:22:42'!
-contextualRename: aKeyboardEvent 
-	
-	self contextualRename.
-	^true! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:37:55'!
-contextualRenameOf: aMethodNode in: aClassToRefactor
-		
-	aMethodNode 
-		withParseNodeIncluding: self startIndex
-		do: [ :nodeUnderCursor | self rename: nodeUnderCursor in: aClassToRefactor ]
-		ifAbsent: [ 
-			self startIndex <= aMethodNode selectorLastPosition 
-				ifTrue: [ self ifRenameCanBeAppliedDo: [ self renameSelectorFor: aMethodNode selector in: aClassToRefactor ]]
-				ifFalse: [ morph flash ]]
-	
-			
-! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:37:38'!
-ifRenameCanBeAppliedDo: aBlock
- 
-	^(self hasUnacceptedEdits or: [morph hasEditingConflicts ]) 
-		ifTrue: [ self inform: 'Rename can not be applied becuase there are unsaved changes' ]
-		ifFalse: aBlock! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:36:37'!
-rename: aNodeUnderCursor in: aClassToRefactor 
-
-	aNodeUnderCursor isTempOrArg ifTrue: [ ^self renameTemporary: aNodeUnderCursor name ].
-
-	self ifRenameCanBeAppliedDo: [ 
-		aNodeUnderCursor isMessageNode ifTrue: [ ^ self renameSelectorFor: aNodeUnderCursor selector key in: aClassToRefactor ].
-		aNodeUnderCursor isInstanceVariableNode ifTrue: [ ^ self renameInstanceVariableOn: self codeProvider for: aNodeUnderCursor name at: aClassToRefactor ].
-		aNodeUnderCursor isLiteralVariableNode ifTrue: [ | posibleBehavior |
-			posibleBehavior := aNodeUnderCursor key value.
-			posibleBehavior isBehavior ifTrue: [ ^self renameClassOn: self codeProvider for: posibleBehavior theNonMetaClass ]].
-		
-		^morph flash ]! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:07:49'!
-renameClassOn: aBrowser for: aClassToRefactor
-
-	(RenameClassApplier on: aBrowser for: aClassToRefactor) value! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:13:12'!
-renameInstanceVariableOn: aBrowser for: anInstanceVariableName at: aClassToRefactor 
-	
-	(RenameInstanceVariableApplier on: aBrowser for: anInstanceVariableName at: aClassToRefactor) value! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 15:34:57'!
-renameSelectorFor: aSelector in: aClassToRefactor
-
-	RenameSelectorApplier createAndValueHandlingExceptions: [ RenameSelectorApplier on: model textProvider for: aSelector in: aClassToRefactor ]! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/28/2018 20:05:40'!
-renameTemporary: aTemporaryName
-	
-	self codeProvider isEditingMethod ifTrue: [ | applier |
-		[ applier := RenameTemporaryApplier on: self for: aTemporaryName ] 
-			on: SyntaxErrorNotification 
-			do: [:anError | ^self inform: (RenameTemporaryApplier errorMessageForCanNotParseMethod: anError) ].
-		applier value ].
-! !
-
-!SmalltalkEditor methodsFor: '*Refactoring' stamp: 'HAW 11/29/2018 20:28:32'!
-withMethodNodeAndClassDo: aBlock ifErrorsParsing: anErrorBlock
-
-	| class methodNode | 
-	
-	class := self codeProvider selectedClassOrMetaClass.
-	methodNode := [ class methodNodeFor: model actualContents ] on: Error do: [ :anError |  ^ anErrorBlock value: anError ].
-	
-	^aBlock value: methodNode value: class.! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:40:28'!
-addInstVar
-	
-	model selectedClassOrMetaClass ifNotNil: [ :aClass |
-		(AddInstanceVariableApplier on: model for: aClass) value ].! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 15:27:04'!
-addParameter
-	
-	model selectedMessageName ifNotNil: [ :oldSelector | 
-		AddParameterApplier createAndValueHandlingExceptions: [ AddParameterApplier on: model for: oldSelector in: model selectedClassOrMetaClass ]]! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 7/7/2018 19:30:42'!
-classRefactoringMenu
-
-	^DynamicMenuBuilder buildTitled: 'Refactorings' targeting: self collectingMenuOptionsWith: #classRefactoringMenuOptions.! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 3/4/2019 12:19:24'!
+!BrowserWindow methodsFor: '*Refactoring' stamp: 'FGJ 3/14/2019 11:52:44'!
 extractMethodToMethodObject
 
 	| classToRefactor messageName |
-	
+
 	messageName := model selectedMessageName.
 	classToRefactor := model selectedClassOrMetaClass.
-	
+
 	messageName ifNotNil: [ | compiledMethod|
 		compiledMethod := classToRefactor compiledMethodAt: messageName.
-	
-		(ExtractToMethodObjectApplier extract: compiledMethod) value.]! !
 
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 7/7/2018 19:38:51'!
-messageRefactoringMenu
+		(ExtractToMethodObjectApplier extract: compiledMethod) value.].! !
 
-	^DynamicMenuBuilder buildTitled: 'Refactorings' targeting: self collectingMenuOptionsWith: #messsageRefactoringMenuOptions.! !
+!BrowserWindow methodsFor: '*Refactoring' stamp: 'FGJ 3/26/2019 11:33:13'!
+introduceNullObject
 
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 7/7/2018 19:31:07'!
-openClassRefactoringMenu
+	| classToRefactor |
 
-	^self classRefactoringMenu popUpInWorld! !
+	classToRefactor := model selectedClassOrMetaClass.
 
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 7/7/2018 19:38:26'!
-openMessageRefactoringMenu
-
-	^self messageRefactoringMenu popUpInWorld! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 8/18/2018 12:39:36'!
-pushUpSelector
-	
-	"MOVER TODO ESTOS MENSAJES A BROWSER, EL MODELO!!?"
-	
-	model selectedMessageName ifNotNil: [ :selectedSelector |
-		(PushUpMethod for: model selectedClassOrMetaClass>>selectedSelector) apply.
-		model messageListIndex: 0.
-		model changed: #messageList.
-		model setClassOrganizer ].! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:42:28'!
-removeAllUnreferencedInstVar
-	
-	model selectedClassOrMetaClass ifNotNil: [ :aClass |
-		(RemoveAllUnreferencedInstanceVariablesApplier on: model for: aClass) value ].! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:43:22'!
-removeInstVar
-	
-	model selectedClassOrMetaClass ifNotNil: [ :aClass |
-		(RemoveInstanceVariableApplier on: model for: aClass) value ].! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 15:30:25'!
-removeParameter
-	
-	model selectedMessageName ifNotNil: [ :oldSelector | 
-		RemoveParameterApplier createAndValueHandlingExceptions: [ RemoveParameterApplier on: model for: oldSelector in: model selectedClassOrMetaClass ]]! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 14:45:27'!
-renameInstVar
-	
-	model selectedClassOrMetaClass ifNotNil: [ :aClass | 
-		(RenameInstanceVariableApplier on: model at: aClass) value ].! !
-
-!BrowserWindow methodsFor: '*Refactoring' stamp: 'HAW 1/7/2019 15:34:36'!
-renameSelector
-
-	model selectedMessageName ifNotNil: [ :oldSelector |
-		RenameSelectorApplier createAndValueHandlingExceptions: [ RenameSelectorApplier on: model for: oldSelector in: model selectedClassOrMetaClass ]].! !
-
-!MessageSetWindow class methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:16:51'!
-openFullProtocolForClass: aClass 
-	"Create and schedule a browser for the entire protocol of the class."
-	"ProtocolBrowser openFullProtocolForClass: ProtocolBrowser."
-
-	| aPBrowser label |
-
-	aPBrowser _ ProtocolBrowser new on: aClass.
-	label _ 'Entire protocol of: ', aClass name.
-	
-	^self open: aPBrowser label: label! !
-
-!MessageSetWindow class methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:16:56'!
-openMessageList: anArray label: aString 
-	"Create a standard system view for the message set on the list, anArray. 
-	The label of the view is aString."
-
-	^self open: (MessageSet messageList: anArray) label: aString! !
-
-!MessageSetWindow class methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:17:00'!
-openMessageList: messageList label: labelString autoSelect: autoSelectString
-	"Open a system view for a MessageSet on messageList. 
-	 1/24/96 sw: the there-are-no msg now supplied by my sender"
-
-	| messageSet |
-
-	messageSet _ MessageSet messageList: messageList.
-	messageSet autoSelectString: autoSelectString.
-	
-	^self open: messageSet label: labelString ! !
-
-!MessageSetWindow class methodsFor: '*Refactoring' stamp: 'HAW 5/31/2017 15:17:07'!
-openSubProtocolForClass: aClass 
-	"Create and schedule a browser for the entire protocol of the class."
-	"ProtocolBrowser openSubProtocolForClass: ProtocolBrowser."
-
-	| aPBrowser label |
-
-	aPBrowser _ ProtocolBrowser new onSubProtocolOf: aClass.
-	label _ 'Sub-protocol of: ', aClass name.
-
-	^self open: aPBrowser label: label! !
-RefactoringMenues initialize!
+	classToRefactor ifNotNil: [(IntroduceNullObjectApplier applyOn: classToRefactor) value.].! !
