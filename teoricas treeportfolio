@@ -19,13 +19,50 @@ El orden de los decoratos en algunas ocasiones es importante. Por ejemplo si tuv
 2)
 
 a)
-----
+¿Qué diferencia existe a nivel implementación entre un Proxy polimorfico y no polimorfico con el objeto proxeado?
+Si el Proxy es polimorfico se deben implementar los mismos mensajes que sabe responder el objeto que controla mientras que si no es polimorfico, se debe redefinir el mensaje doesNotUnderstand para que envie el mensaje desconocido al objeto que controla y este pueda saber que hacer el mismo. 
 
 b)
 ¿Qué diferencia existe en Proxy y Decorator?
 
-El proxy tiene como objetivo controlar el acceso al objeto al cual referencia mientras que el decorator tiene como objetivo agregar dinamicamente funcionalidades o responsabilidades al objeto al cual referencia de forma flexible.
+El proxy tiene como objetivo controlar el acceso al objeto al cual referencia mientras que el decorator tiene como objetivo agregar dinamicamente funcionalidades o responsabilidades al objeto al cual referencia de forma flexible. Por otra parte, mientras que el Decorator debe ser polimórfico con su decoratee por definición, el Proxy no necesariamente lo es. Además, suele haber múltiples Decorators encadenados mientras que Proxy suele haber sólo uno.
 
 c)
 ¿Qué similitudes existe en Proxy y Decorator? 
-En ambos patrones existe un objeto que se coloca de manera talque cuando se desea enviar un mensaje al objeto al cual referencian, dicho mensaje primero pasa por ellos y luego es reenviado al mismo. Es decir esto agrega un objeto intermedio entre el objeto referenciado y quien quiera interactuar con el. Además este objeto puede realizar determinadas acciones que cambiaran dependiendo de cada patrón.
+En ambos patrones existe un objeto que se coloca de manera tal que cuando se desea enviar un mensaje al objeto al cual referencian, dicho mensaje primero pasa por ellos y luego es reenviado al mismo. Es decir esto agrega un objeto intermedio entre el objeto referenciado y quien quiera interactuar con el. Además este objeto puede realizar determinadas acciones que cambiaran dependiendo de cada patrón.
+
+
+
+3)
+a)
+¿Qué diferencias existe entre Adapter y Decorator?
+
+Mientras que el Decorator es polimórfico con su decoratee, el Adapter no lo es con su adaptee. Por otra parte, mientras que Decorator agrega funcionalidad, el Adapter no lo hace sino que adapta protocolo; es decir, logra que objetos puedan interactuar entre sí (aunque originalmente no se los haya pensado para que puedan hacerlo), hace las veces de un traductor. Por otra parte, si bien generalmente hay un ùnico Adapter, los Decorators están pensados para que pueda haber muchos de ellos encadenados sobre un mismo objeto.
+
+b)
+¿Qué similitudes existe entre Adapter y Decorator?
+En ambos patrones podemos notar que tanto el Adapter como el Decorator son objetos que funcionan como intermediarios o wrappers entre el objeto al cual referencian y aquellos que deseen interactuar con él. 
+
+
+c)
+Comente como se puede implementar un Adapter Genérico
+
+Para implementar un Adapter Genérico, se puede crear una subclase de ProtoObject, pluggableAdapter por ejemplo, que defina un diccionario en el cual se definen los mensajes que va a saber responder. A su vez, se redefine el mensaje doesNotUnderstand para que primero busque el mensaje no comprendido en dicho diccionario y, en caso de encontrarlo, responde con lo definido por el diccionario. Si no lo encuentra, el comportamiento es el mismo que el usual. 
+
+
+4)
+
+a) Dé un ejemplo ORIGINAL (no de papers/libros/ejercicios ya resueltos) de un dominio donde pueda caracterizar varios estados de un objeto cuyo comportamiento dependa del estado en que se encuentre (el ejemplo de la bibliografía es una conexión que puede tener los estados establecida, escuchando o cerrada).
+
+
+En el caso de una batalla Pokémon, un Pokémon puede tener diversos estados: quemado, congelado, dormido, envenenado, paralizado o normal. Cada estado afecta tanto al ataque en su turno como a cómo varía la vida del mismo a lo largo de la batalla. En el caso de que se encuentre quemado, no sólo el daño de su ataque se ve reducido a la mitad sino también en cada turno disminuye su vida en un 6% de su vida máxima. En el caso de encontrarse congelado, no puede realizar ataques y con cada intento de ataque tiene un 20% de probabilidad de pasar a estado normal. En el caso de encontrarse dormido, tampoco puede atacar y la cantidad de turnos que pasa dormido es fija. En el caso de encontrarse envenenado, por cada turno se reduce su vida en un determinado porcentaje. Por último, en caso normal, puede atacar normalmente y no recibe status damage en cada turno.
+
+Por lo tanto, el comportamiento del Pokémon dependerá de su estado.
+
+
+b) 
+
+	a)
+	b) State
+	c) Por ejemplo, en el caso del mensaje "attack" que se le puede enviar al objeto Pokémon, como definición de dicho método se debería enviar al estado el mensaje "attack" de manera tal que éste defina qué acción debe tomarse y se lo comunique al objeto o en caso de no poder atacar, que muestre el error correspondiente ("Can not attack when freezed", por ejemplo).
+
