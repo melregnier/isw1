@@ -832,3 +832,7 @@ PASSED!
 
 !testRun: #CartTest #test10CartWithBooksHasBooksAndItsQuantityInListCart stamp: 'dr 10/31/2019 15:55:02'!
 PASSED!
+
+----SNAPSHOT----(31 October 2019 16:16:29) CuisUniversity-3938.image priorSource: 14317226!
+
+----QUIT----(31 October 2019 16:16:35) CuisUniversity-3938.image priorSource: 14343083!
