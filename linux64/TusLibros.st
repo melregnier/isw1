@@ -1,4 +1,4 @@
-!classDefinition: #CartTest category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #CartTest category: #TusLibros stamp: 'dr 11/7/2019 19:08:47'!
 TestCase subclass: #CartTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -135,7 +135,7 @@ priceForItemSellByStore
 	^ 5 * peso.! !
 
 
-!classDefinition: #CashierTest category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #CashierTest category: #TusLibros stamp: 'dr 11/7/2019 19:08:47'!
 TestCase subclass: #CashierTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -259,7 +259,7 @@ test04CheckOutOfCartWhenMerchantProcessorRaisesErrorRaisesTheSameError
 	self assert: aSalesBook isEmpty.! !
 
 
-!classDefinition: #CreditCardTest category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #CreditCardTest category: #TusLibros stamp: 'dr 11/7/2019 19:08:47'!
 TestCase subclass: #CreditCardTest
 	instanceVariableNames: ''
 	classVariableNames: ''
@@ -302,7 +302,7 @@ test04CreditCardIsNotExpiredAtDatePreviousToCreditCardExpirationMonthOfYear
 	self deny: (aCreditCard isExpiredAt: aPreviousDate).! !
 
 
-!classDefinition: #Cart category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #Cart category: #TusLibros stamp: 'dr 11/7/2019 19:08:47'!
 Object subclass: #Cart
 	instanceVariableNames: 'catalog items total'
 	classVariableNames: ''
@@ -394,7 +394,7 @@ totalCost
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Cart class' category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: 'Cart class' category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 Cart class
 	instanceVariableNames: ''!
 
@@ -404,7 +404,7 @@ acceptingItemsOf: aCatalog
 	^self new initializeAcceptingItemsOf: aCatalog ! !
 
 
-!classDefinition: #Cashier category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #Cashier category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 Object subclass: #Cashier
 	instanceVariableNames: 'cart'
 	classVariableNames: ''
@@ -441,7 +441,7 @@ initializeFor: aCart
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Cashier class' category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: 'Cashier class' category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 Cashier class
 	instanceVariableNames: ''!
 
@@ -473,7 +473,7 @@ canNotCreateCashierForAnEmptyCartError
 	^ 'You can not check out an empty cart.'! !
 
 
-!classDefinition: #CreditCard category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #CreditCard category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 Object subclass: #CreditCard
 	instanceVariableNames: 'number expirationMonthYear owner'
 	classVariableNames: ''
@@ -517,7 +517,7 @@ owner
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'CreditCard class' category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: 'CreditCard class' category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 CreditCard class
 	instanceVariableNames: ''!
 
@@ -533,7 +533,7 @@ invalidLengthErrorMessage
 	'The length of the number should be 16 (sixteen) digits.'! !
 
 
-!classDefinition: #MerchantProcessorSimulator category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: #MerchantProcessorSimulator category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 Object subclass: #MerchantProcessorSimulator
 	instanceVariableNames: 'debitFromClosure'
 	classVariableNames: ''
@@ -553,7 +553,7 @@ debit: anAmount from: aCreditCard
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'MerchantProcessorSimulator class' category: #TusLibros stamp: 'dr 11/6/2019 17:05:32'!
+!classDefinition: 'MerchantProcessorSimulator class' category: #TusLibros stamp: 'dr 11/7/2019 19:08:48'!
 MerchantProcessorSimulator class
 	instanceVariableNames: ''!
 

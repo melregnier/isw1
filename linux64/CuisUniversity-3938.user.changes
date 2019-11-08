@@ -4186,3 +4186,988 @@ test04CheckOutOfCartWhenMerchantProcessorRaisesErrorRaisesTheSameError
 ----SNAPSHOT----(6 November 2019 17:05:21) CuisUniversity-3938.image priorSource: 14454866!
 
 ----QUIT----(6 November 2019 17:05:36) CuisUniversity-3938.image priorSource: 14493156!
+
+----STARTUP---- (7 November 2019 15:11:21) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3938.image!
+
+
+----QUIT----(7 November 2019 15:13:36) CuisUniversity-3938.image priorSource: 14493249!
+
+----STARTUP---- (7 November 2019 19:08:30) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3938.image!
+
+
+!classRemoval: #MerchantProcessorSimulator stamp: 'dr 11/7/2019 19:08:53'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitFromClosure'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'dr 11/7/2019 19:08:53'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'number expirationMonthYear owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'dr 11/7/2019 19:08:54'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'dr 11/7/2019 19:08:54'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items total'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCardTest stamp: 'dr 11/7/2019 19:08:55'!
+TestCase subclass: #CreditCardTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'dr 11/7/2019 19:08:55'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'dr 11/7/2019 19:08:56'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/drenteria/Documentos/isI/isw1/linux64/TusLibros-33.st----!
+
+TestCase subclass: #RestCommunicationTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestCommunicationTest category: #TusLibros stamp: 'dr 11/7/2019 19:10:02'!
+TestCase subclass: #RestCommunicationTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+testObjectsFactory today!
+!RestCommunicationTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:16:10'!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+! !
+!RestCommunicationTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:16:43' prior: 50785186!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	! !
+
+DateAndTime now!
+
+DateAndTime now + 00:30!
+
+DateAndTime now + DateAndTime minute!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:28:00'!
+Object subclass: #RestInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:27:51' prior: 50785192!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	RestInterface withUsers: (Dictionary new) 	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:28:20' prior: 50785207!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface |
+	restInterface := RestInterface withUsers: (Dictionary new) .
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:28:27' prior: 50785214!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface |
+	
+	restInterface := RestInterface withUsers: (Dictionary new) .
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:29:03' prior: 50785222!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: (Dictionary new) .
+	
+	cartId := restInterface createCart! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:30:06' prior: 50785230!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: (Dictionary new) .
+	
+	cartId := restInterface createCart.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:30:16'!
+ERROR!
+!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/7/2019 19:30:31'!
+withUsers: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithUsers: aDictionary ! !
+!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/7/2019 19:30:50' prior: 50785256!
+withUsers: aDictionary 
+	
+	^self new initializeWithUsers: aDictionary ! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:30:54'!
+ERROR!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:31:08'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'dictionary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 19:31:08'!
+initializeWithUsers: aDictionary 
+	self shouldBeImplemented.
+	dictionary := aDictionary.! !
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:32:59'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'dictionary users'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 19:32:57' prior: 50785282!
+initializeWithUsers: anUsersDictionary 
+	
+	users := anUsersDictionary.! !
+
+Object subclass: #RestInterface
+	instanceVariableNames: 'users'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:33:10'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/7/2019 19:33:21' prior: 50785265!
+withUsers: anUsersDictionary 
+	
+	^self new initializeWithUsers: anUsersDictionary ! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:33:25'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:33:25'!
+ERROR!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:33:39'!
+createCart
+	self shouldBeImplemented.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:34:00' prior: 50785326!
+createCart
+	
+	! !
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:42:24'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:42:44' prior: 50785330!
+createCart
+
+	| cart |
+	cart := Cart acceptingItemsOf: ''.
+	Association key: ''.
+	
+	lastId := lastId + 1.
+	! !
+!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/7/2019 19:44:45'!
+withUsers: anUsersDictionary andCatalog: aCatalog
+	
+	^self new initializeWithUsers: anUsersDictionary ! !
+
+!methodRemoval: RestInterface class #withUsers: stamp: 'dr 11/7/2019 19:45:05'!
+withUsers: anUsersDictionary 
+	
+	^self new initializeWithUsers: anUsersDictionary !
+!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/7/2019 19:45:29' prior: 50785348!
+withUsers: anUsersDictionary andCatalog: aCatalog
+	
+	^self new initializeWithUsers: anUsersDictionary andCatalog: aCatalog.! !
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 19:45:47'!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog
+	
+	users := anUsersDictionary.! !
+
+!methodRemoval: RestInterface #initializeWithUsers: stamp: 'dr 11/7/2019 19:45:51'!
+initializeWithUsers: anUsersDictionary 
+	
+	users := anUsersDictionary.!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:46:07'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users lastId catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 19:46:06' prior: 50785367!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog
+	
+	users := anUsersDictionary.
+	catalog := aCatalog .! !
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 19:46:10' prior: 50785386!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog
+	
+	users := anUsersDictionary.
+	catalog := aCatalog.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:46:40' prior: 50785341!
+createCart
+
+	| cart |
+	cart := Cart acceptingItemsOf: catalog .
+	Association key: ''.
+	
+	lastId := lastId + 1.
+	! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:47:42' prior: 50785400!
+createCart
+
+	| cart |
+	cart := Cart acceptingItemsOf: catalog .
+	Association key: lastId value: cart.
+	
+	lastId := lastId + 1.
+	! !
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:47:55'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users newId catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 19:47:55' prior: 50785407!
+createCart
+
+	| cart |
+	cart := Cart acceptingItemsOf: catalog .
+	Association key: newId value: cart.
+	
+	newId := newId + 1.
+	! !
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:48:20'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users newId catalog carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:48:26' prior: 50785422!
+createCart
+
+	| cart |
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: newId value: cart).
+	
+	newId := newId + 1.
+	! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:48:54' prior: 50785437!
+createCart
+
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: newId value: cart).
+	
+	newId := newId + 1.
+	! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:49:40'!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: newId value: cart).
+	
+	newId := newId + 1.
+	! !
+
+!methodRemoval: RestInterface #createCart stamp: 'dr 11/7/2019 19:49:44'!
+createCart
+
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: newId value: cart).
+	
+	newId := newId + 1.
+	!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:50:56' prior: 50785451!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: newId value: cart).
+	
+	newId := newId + 1.
+	! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:52:22' prior: 50785467!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart idForCart |
+	idForCart := self newId.
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: idForCart value: cart).
+	
+	
+	^ idForCart! !
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:54:18'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users newId catalog carts lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 19:54:16'!
+newId
+
+	^ lastId := lastId + 1.
+	
+	! !
+
+Object subclass: #RestInterface
+	instanceVariableNames: 'users catalog carts lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/7/2019 19:54:26'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'users catalog carts lastId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:54:54'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 19:54:54'!
+ERROR!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:56:03' prior: 50785240!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: (Dictionary new). "andCatalog: "
+	
+	cartId := restInterface createCart.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:56:33' prior: 50785519!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: (Dictionary new) andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCart.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 19:57:45' prior: 50785532!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: (Dictionary new) andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!StoreTestObjectsFactory methodsFor: 'date' stamp: 'dr 11/7/2019 19:58:27'!
+validUser
+
+	^ 'Melissa'! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'dr 11/7/2019 19:59:10'!
+validPassword
+
+	^ 'Dago'! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:00:59' prior: 50785546!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'dr 11/7/2019 20:01:27'!
+defaultUsers
+
+	^ (Dictionary new add: (Association key: self validUser value: self validPassword )) ! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:02:55'!
+listCart
+
+	! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:03:17'!
+listCart: cartId
+
+	^ ''! !
+
+!methodRemoval: RestInterface #listCart stamp: 'dr 11/7/2019 20:03:24'!
+listCart
+
+	!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:03:33'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:03:33'!
+ERROR!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 20:04:19' prior: 50785393!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog
+	
+	users := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:05:16'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:05:16'!
+ERROR!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/7/2019 20:05:44' prior: 50785609!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog
+	
+	users := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.
+	carts := Dictionary new.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:05:50'!
+PASSED!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'dr 11/7/2019 20:06:51'!
+invalidPassword
+
+	^ 'Melissa'! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'dr 11/7/2019 20:07:36'!
+invalidUser
+
+	^ 'Dago'! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:10:13'!
+test02EmptyCartCreatedWithInvalidUserRaisesError
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:11:33'!
+test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!methodRemoval: RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesError stamp: 'dr 11/7/2019 20:11:37'!
+test02EmptyCartCreatedWithInvalidUserRaisesError
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:11:50'!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!methodRemoval: RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart stamp: 'dr 11/7/2019 20:11:50'!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIDOfEmptyCart
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:12:11' prior: 50785659!
+test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store invalidUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:14:19' prior: 50785722!
+test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:14:27'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:14:36'!
+ERROR!
+!RestInterface methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:14:49'!
+invalidUserErrorMessage
+	self shouldBeImplemented.! !
+!RestInterface methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:15:17' prior: 50785762!
+invalidUserErrorMessage
+	
+	^ 'Invalid user caps sensitive try again'! !
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:15:59'!
+FAILURE!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:16:42' prior: 50785476!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart idForCart |
+	self verifyCredentialsForUser: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	carts add: (Association key: idForCart value: cart).
+	
+	
+	^ idForCart! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:18:36'!
+verifyCredentialsForUser: anUser withPassword: aPassword | password |
+.
+	
+	password := users at: anUser ifAbsent: [ self error: self invalidUserErrorMessage ]. ! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:18:54' prior: 50785787!
+verifyCredentialsForUser: anUser withPassword: aPassword
+	| password |
+	
+	password := users at: anUser ifAbsent: [ self error: self invalidUserErrorMessage ]. ! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/7/2019 20:19:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:19:03'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/7/2019 20:19:12'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/7/2019 20:19:12'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'dr 11/7/2019 20:21:01' prior: 50785584!
+defaultUsers
+
+	^ Dictionary new add: (Association key: self validUser value: self validPassword ); yourself ! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/7/2019 20:21:08'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:21:11'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:21:41'!
+test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidUserError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:22:18'!
+test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+
+!methodRemoval: RestInterfaceTest #test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidUserError stamp: 'dr 11/7/2019 20:22:22'!
+test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidUserError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:22:53' prior: 50785852!
+test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+
+!testRun: #RestInterfaceTest #test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/7/2019 20:22:55'!
+ERROR!
+!RestInterface methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:23:36'!
+invalidPasswordErrorMessage
+	self shouldBeImplemented.! !
+!RestInterface methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:24:19' prior: 50785908!
+invalidPasswordErrorMessage
+	
+	^ 'The password is invalid, try your alter password'! !
+
+!testRun: #RestInterfaceTest #test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/7/2019 20:24:32'!
+FAILURE!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 20:25:40' prior: 50785795!
+verifyCredentialsForUser: anUser withPassword: aPassword
+	| password |
+	
+	password := users at: anUser ifAbsent: [ self error: self invalidUserErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/7/2019 20:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/7/2019 20:26:31'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:27:01'!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+
+!methodRemoval: RestInterfaceTest #test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/7/2019 20:27:01'!
+test02EmptyCartCreatedWithInvalidUserRaisesInvalidUserError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:27:12'!
+test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+
+!methodRemoval: RestInterfaceTest #test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/7/2019 20:27:12'!
+test03EmptyCartCreatedWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:43:32'!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:44:31' prior: 50786015!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId store |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:45:23' prior: 50785689!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId store |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/7/2019 20:45:38'!
+setUp
+
+	| store |
+	store := StoreTestObjectsFactory new.! !
+
+!classDefinition: #RestInterfaceTest category: #TusLibros stamp: 'dr 11/7/2019 20:47:07'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory stores'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/7/2019 20:47:06' prior: 50786061!
+setUp
+
+	stores := StoreTestObjectsFactory new.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:47:37' prior: 50786047!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: stores defaultUsers andCatalog: stores defaultCatalog.
+	
+	cartId := restInterface createCartForUser: stores validUser withPassword: stores validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:47:52' prior: 50785946!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	stores := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: stores defaultUsers andCatalog: stores defaultCatalog.
+	
+	self should: [restInterface createCartForUser: stores invalidUser withPassword: stores validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:55:05' prior: 50785980!
+test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface |
+	
+	restInterface := RestInterface withUsers: stores defaultUsers andCatalog: stores defaultCatalog.
+	
+	self should: [restInterface createCartForUser: stores validUser withPassword: stores invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 20:55:22' prior: 50786032!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: stores defaultUsers andCatalog: stores defaultCatalog.
+	
+	cartId := restInterface createCartForUser: stores validUser withPassword: stores validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!classDefinition: #RestInterfaceTest category: #TusLibros stamp: 'dr 11/7/2019 20:55:48'!
+TestCase subclass: #RestInterfaceTest
+	instanceVariableNames: 'testObjectsFactory store'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 20:55:48' prior: 50786079!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 20:55:48' prior: 50786074!
+setUp
+
+	store := StoreTestObjectsFactory new.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 20:55:48' prior: 50786126!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 20:55:48' prior: 50786110!
+test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/7/2019 20:55:48' prior: 50786093!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	store := StoreTestObjectsFactory new.
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 21:01:03' prior: 50786168!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface addToCart: cartId book: 'sto'
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 21:01:09' prior: 50786214!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface addToCart: cartId book: 'sto'.
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 21:07:35' prior: 50786229!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 21:10:34'!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/7/2019 21:11:19'!
+test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!methodRemoval: RestInterfaceTest #test04AddAQuantityOfABookToACartShowsTheBooksWhenListed stamp: 'dr 11/7/2019 21:11:19'!
+test04AddAQuantityOfABookToACartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	self assert: (restInterface listCart: cartId) isEmpty.!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 21:15:48' prior: 50786259!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cart |
+	cart := carts at: aCartId ifAbsent: [].
+	
+	cart ! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/7/2019 21:16:43' prior: 50786296!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cart |
+	cart := carts at: aCartId ifAbsent: [].
+	
+	cart add: aQuantity of: aBook.! !
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/7/2019 21:17:05'!
+PASSED!
+
+----SNAPSHOT----(7 November 2019 21:23:13) CuisUniversity-3938.image priorSource: 14493457!
+
+----QUIT----(7 November 2019 21:23:17) CuisUniversity-3938.image priorSource: 14549197!
