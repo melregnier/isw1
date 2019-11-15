@@ -12043,3 +12043,1278 @@ createCartForUser: anUser withPassword: aPassword
 ----SNAPSHOT----(15 November 2019 10:30:00) CuisUniversity-3938.image priorSource: 14828973!
 
 ----QUIT----(15 November 2019 10:30:08) CuisUniversity-3938.image priorSource: 14829067!
+
+----STARTUP---- (15 November 2019 15:02:28) as /home/mregnier/isw1/linux64/CuisUniversity-3938.image!
+
+!RestInterfaceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:33'!
+timeIncreaseMinutes: aNumberOfMinutes
+
+	currentTime := currentTime + (Duration minutes: aNumberOfMinutes) .! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:33' prior: 50794464!
+test15ListCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface listCart: cartId.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:33' prior: 50794251!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:33' prior: 50794135!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:33' prior: 50794268!
+test13CannotCheckOutTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface checkOutCart: cartId 
+								    withCreditCardNumber: store validCreditCardNumber 
+								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
+								    withOwner: store notExpiredCreditCard owner 
+								    on: store today. ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self assert: salesBook isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:33' prior: 50794371!
+test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+
+!methodRemoval: RestInterfaceTest #TimeIncreaseMinutes: stamp: 'dr 11/15/2019 15:05:33'!
+TimeIncreaseMinutes: aNumberOfMinutes
+
+	currentTime := currentTime + (Duration minutes: aNumberOfMinutes) .!
+!RestInterfaceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:45'!
+timeSetToInitial
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:45' prior: 50795075!
+test15ListCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface listCart: cartId.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:45' prior: 50795091!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:45' prior: 50795108!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:45' prior: 50795126!
+test13CannotCheckOutTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface checkOutCart: cartId 
+								    withCreditCardNumber: store validCreditCardNumber 
+								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
+								    withOwner: store notExpiredCreditCard owner 
+								    on: store today. ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self assert: salesBook isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:05:45' prior: 50795156!
+test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+
+!methodRemoval: RestInterfaceTest #TimeSetToInitial stamp: 'dr 11/15/2019 15:05:45'!
+TimeSetToInitial
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 15:05:50'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:07:01'!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases |
+
+	restInterface := self defaultRestInterface.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: 0.
+	self assert: listPurchases purchases isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:08:12' prior: 50795362!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: 0.
+	self assert: listPurchases purchases isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:10:51' prior: 50795376!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	"
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+											on: store today."
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: 0.
+	self assert: listPurchases purchases isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:11:31' prior: 50795396!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+											withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: 0.
+	self assert: listPurchases purchases isEmpty.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:14:53' prior: 50795422!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+											withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: store itemSellByTheStorePrice.
+	self assert: (listPurchases purchases at: store itemSellByTheStore) equals: 1.
+	self assert: (listPurchases purchases keys size) equals: 1. ! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:14:59' prior: 50795450!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+											withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: store itemSellByTheStorePrice.
+	self assert: (listPurchases purchases at: store itemSellByTheStore) equals: 1.
+	self assert: listPurchases purchases keys size equals: 1. ! !
+
+!testRun: #RestInterfaceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/15/2019 15:15:03'!
+FAILURE!
+
+bag := Bag new.
+bag add: 'a' withOccurrences: 2.
+bag add: 'a' withOccurrences: 3.
+bag occurrencesOf: 'a'.!
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:28:34' prior: 50791915!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	| listOfPurchases salesForClient |
+	self verifyCredentialsForUser: aClient withPassword: aPassword.
+	
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+	
+	listOfPurchases := ListPurchases new.
+	
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+	
+	^ listOfPurchases.
+
+	
+	
+	! !
+!ListPurchases methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:30:11'!
+initialize
+
+	purchases := Dictionary new.
+	total := 0.! !
+!ListPurchases methodsFor: 'nil' stamp: 'dr 11/15/2019 15:31:07'!
+register: aSale
+
+	! !
+!ListPurchases methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:37:28' prior: 50795540!
+register: aSale
+
+	aSale forEachItemDo: [ :anItem | 
+								purchases at: anItem ifPresent: [ :aQuantity | purchases at: anItem put: aQuantity + 1 ]
+														 ifAbsent: [ purchases at: anItem put: 1 ]
+							  ].
+	! !
+!Sale methodsFor: 'nil' stamp: 'dr 11/15/2019 15:38:52'!
+forEachItemDo: aBlockToRun
+
+	cart forEachItemDo: aBlockToRun.! !
+!ListPurchases methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:40:42'!
+addItem: anItem
+
+	purchases at: anItem ifPresent: [ :aQuantity | purchases at: anItem put: aQuantity + 1 ]
+							 ifAbsent: [ purchases at: anItem put: 1 ].
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:42:10' prior: 50795521!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	| listOfPurchases salesForClient |
+	self verifyCredentialsForUser: aClient withPassword: aPassword.
+
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:42:23' prior: 50795566!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	| listOfPurchases salesForClient |
+
+	self verifyCredentialsForUser: aClient withPassword: aPassword.
+
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:44:11'!
+listOfPurchasesFor: aClient
+
+	| listOfPurchases salesForClient |
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:44:17' prior: 50795595!
+listOfPurchasesFor: aClient
+
+	| listOfPurchases salesForClient |
+
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:44:40' prior: 50795607!
+listOfPurchasesFor: aClient
+
+	| listOfPurchases salesForClient |
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:45:15' prior: 50795581!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	| |
+
+	self verifyCredentialsForUser: aClient withPassword: aPassword.
+
+	^ self listOfPurchasesFor: aClient.
+	
+	
+	! !
+!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:45:24' prior: 50795631!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	self verifyCredentialsForUser: aClient withPassword: aPassword.
+
+	^ self listOfPurchasesFor: aClient.
+	
+	
+	! !
+!ListPurchases methodsFor: 'adding' stamp: 'dr 11/15/2019 15:46:07' prior: 50795544!
+register: aSale
+
+	aSale forEachItemDo: [ :anItem | 
+								self addItem: anItem.
+							  ].
+	
+	total := total + aSale total.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 15:51:23'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 15:51:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/15/2019 15:51:24'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 15:53:41'!
+createCartForClient: anUser withPassword: aPassword
+
+	| cart idForCart cartSession |
+	self verifyCredentialsForUser: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795238!
+test13CannotCheckOutTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface checkOutCart: cartId 
+								    withCreditCardNumber: store validCreditCardNumber 
+								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
+								    withOwner: store notExpiredCreditCard owner 
+								    on: store today. ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self assert: salesBook isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795268!
+test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795203!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial.
+
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795220!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial.
+
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 30.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792288!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [restInterface createCartForClient: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795482!
+test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
+
+	| restInterface listPurchases cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+											withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: store itemSellByTheStorePrice.
+	self assert: (listPurchases purchases at: store itemSellByTheStore) equals: 1.
+	self assert: listPurchases purchases keys size equals: 1. ! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50795187!
+test15ListCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	self timeIncreaseMinutes: 1.
+
+	restInterface listCart: cartId.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792390!
+test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart .! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792707!
+test09CheckOutAnExistentCartRegistersCartInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: (salesBook first cart occurrencesOf: store itemSellByTheStore) equals: 1.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792200!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792376!
+test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [restInterface createCartForClient: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50793141!
+test10CannotInteractWithCheckedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:53:41' prior: 50792606!
+test08CheckOutAnExistentCartRegistersTotalInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	
+	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.
+	! !
+
+!methodRemoval: RestInterface #createCartForUser:withPassword: stamp: 'dr 11/15/2019 15:53:41'!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart idForCart cartSession |
+	self verifyCredentialsForUser: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/15/2019 15:53:44'!
+PASSED!
+!RestInterface methodsFor: 'initialization' stamp: 'dr 11/15/2019 15:54:01'!
+initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	users := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.
+	carts := Dictionary new.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.! !
+!RestInterface class methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:54:02' prior: 50788583!
+withUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.! !
+
+!methodRemoval: RestInterface #initializeWithUsers:andCatalog:storingIn:through:withClock: stamp: 'dr 11/15/2019 15:54:02'!
+initializeWithUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	users := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.
+	carts := Dictionary new.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.!
+
+!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/15/2019 15:54:10'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'clients catalog carts lastId salesBook merchantProcessor clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:54:10' prior: 50785923!
+verifyCredentialsForUser: anUser withPassword: aPassword
+	| password |
+	
+	password := clients at: anUser ifAbsent: [ self error: self invalidUserErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:54:10' prior: 50796110!
+initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	clients := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.
+	carts := Dictionary new.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/15/2019 15:54:13'!
+PASSED!
+!RestInterface methodsFor: 'assertions' stamp: 'dr 11/15/2019 15:54:35'!
+verifyCredentialsForClient: anUser withPassword: aPassword
+	| password |
+	
+	password := clients at: anUser ifAbsent: [ self error: self invalidUserErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:54:35' prior: 50795730!
+createCartForClient: anUser withPassword: aPassword
+
+	| cart idForCart cartSession |
+	self verifyCredentialsForClient: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:54:35' prior: 50795640!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	self verifyCredentialsForClient: aClient withPassword: aPassword.
+
+	^ self listOfPurchasesFor: aClient.
+	
+	
+	! !
+
+!methodRemoval: RestInterface #verifyCredentialsForUser:withPassword: stamp: 'dr 11/15/2019 15:54:35'!
+verifyCredentialsForUser: anUser withPassword: aPassword
+	| password |
+	
+	password := clients at: anUser ifAbsent: [ self error: self invalidUserErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/15/2019 15:54:39'!
+PASSED!
+!RestInterface methodsFor: 'error messages' stamp: 'dr 11/15/2019 15:55:13'!
+invalidClientErrorMessage
+	
+	^ 'Invalid user caps sensitive try again'! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:55:13' prior: 50796256!
+verifyCredentialsForClient: anUser withPassword: aPassword
+	| password |
+	
+	password := clients at: anUser ifAbsent: [ self error: self invalidClientErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:55:13' prior: 50793732!
+test16ListPurchasesOfAnInexistentClientRaisesError
+
+	| restInterface |
+
+	restInterface := self defaultRestInterface.
+
+	self should: [ restInterface listPurchasesOf: store invalidUser withPassword: store validPassword. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface invalidClientErrorMessage.
+! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 15:55:13' prior: 50795828!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [restInterface createCartForClient: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidClientErrorMessage.
+	! !
+
+!methodRemoval: RestInterface #invalidUserErrorMessage stamp: 'dr 11/15/2019 15:55:13'!
+invalidUserErrorMessage
+	
+	^ 'Invalid user caps sensitive try again'!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 15:58:46' prior: 50794759!
+listCart: aCartId
+
+	| list cart cartSession |
+
+	list := Dictionary new.
+
+	cartSession := self cartSessionOf: aCartId.
+
+	cart := cartSession cart.
+	
+	cart forEachItemDo: [ :anItem | 
+								list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
+												 ifAbsent: [ list add: (Association key: anItem value: 1) ].
+							].
+	cartSession accessedAt: clock now.
+
+	^ list.! !
+!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:05' prior: 50794554!
+cartSessionOf: aCartId
+
+	| cartSession |
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.! !
+!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:13' prior: 50796443!
+cartSessionOf: aCartId
+
+	| cartSession |
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+	
+	^ cartSession .! !
+!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:16' prior: 50796453!
+cartSessionOf: aCartId
+
+	| cartSession |
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+	
+	^ cartSession.! !
+!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:20' prior: 50796463!
+cartSessionOf: aCartId
+
+	| cartSession |
+
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+	
+	^ cartSession.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 15:59:39' prior: 50795031!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCartId .
+
+	cartSession cart add: aQuantity of: aBook.
+	
+	cartSession accessedAt: clock now.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:00:18'!
+updateAccessOf: cartSession.
+	
+	cartSession accessedAt: clock now.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:00:37' prior: 50796483!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCartId .
+
+	cartSession cart add: aQuantity of: aBook.
+	
+	self updateAccessOf: cartSession.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:01:10' prior: 50796427!
+listCart: aCartId
+
+	| list cartSession |
+
+	list := Dictionary new.
+
+	cartSession := self cartSessionOf: aCartId.
+	
+	cartSession cart forEachItemDo: [ :anItem | 
+								list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
+												 ifAbsent: [ list add: (Association key: anItem value: 1) ].
+							].
+
+	self updateAccessOf: cartSession.
+
+	^ list.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:01:46' prior: 50796506!
+listCart: aCartId
+
+	| list cartSession |
+
+	list := Dictionary new.
+
+	cartSession := self cartSessionOf: aCartId.
+	
+	cartSession cart forEachItemDo: [ :anItem | 
+											list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
+															 ifAbsent: [ list add: (Association key: anItem value: 1) ].
+										  ].
+
+	self updateAccessOf: cartSession.
+
+	^ list.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:05:02' prior: 50796267!
+createCartForClient: anUser withPassword: aPassword
+
+	| idForCart cartSession |
+	self verifyCredentialsForClient: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cartSession := self newCartSessionFor: anUser.
+	
+	"cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	"
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:06:12'!
+newCartSessionFor: anUser
+	
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	
+	^ CartSession cart: cart accessedAt: clock now for: anUser.
+! !
+
+----SNAPSHOT----(15 November 2019 16:06:59) CuisUniversity-3938.image priorSource: 14829161!
+
+----QUIT----(15 November 2019 16:07:59) CuisUniversity-3938.image priorSource: 14877076!
