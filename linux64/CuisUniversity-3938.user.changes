@@ -9674,3 +9674,2372 @@ PASSED!
 ----SNAPSHOT----(14 November 2019 21:22:37) CuisUniversity-3938.image priorSource: 14689938!
 
 ----QUIT----(14 November 2019 21:22:49) CuisUniversity-3938.image priorSource: 14733879!
+
+----STARTUP---- (15 November 2019 09:11:19) as /home/dago/Documents/Facultad/isw1/isw1/linux64/CuisUniversity-3938.image!
+
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:13:54' prior: 50788654!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new through: self  withClock: self.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:14:02'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:15:32'!
+defaultRestInterface
+
+	^ RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection 
+						new through: self withClock: self.
+	
+	! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:15:56'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:16:09' prior: 50788638!
+test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
+
+	| restInterface cartId |
+	
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:16:10'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:16:31' prior: 50792095!
+test02CreateCartWithInvalidUserRaisesInvalidUserError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [restInterface createCartForUser: store invalidUser withPassword: store validPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidUserErrorMessage.
+	! !
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:16:32'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:16:45' prior: 50788672!
+test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [restInterface createCartForUser: store validUser withPassword: store invalidPassword.]
+	      raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:17:02' prior: 50790485!
+test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
+
+	| restInterface cartId |
+	
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart .! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:17:40' prior: 50788712!
+test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [ restInterface add: 1 ToCart: store invalidCartId ofBook: store itemSellByTheStore. ]
+		 raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface cartInexistentErrorMessage.	
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:17:52' prior: 50788730!
+test06ListAnInexistentCartRaisesCartInexistentError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [ restInterface listCart: store invalidCartId. ]
+		 raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface cartInexistentErrorMessage.	
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:18:02' prior: 50788746!
+test07CheckOutAnInexistentCartRaisesCartInexistentError
+
+	| restInterface |
+	
+	restInterface := self defaultRestInterface.
+	
+	self should: [ restInterface checkOutCart: store invalidCartId withCreditCardNumber: store notExpiredCreditCard number
+																		  withExpiration: store notExpiredCreditCard expirationMonthOfYear
+																		  withOwner: store notExpiredCreditCard owner
+																		  on: store today. ]
+		 raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface cartInexistentErrorMessage.	
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:19:00' prior: 50788770!
+test08CheckOutAnExistentCartRegistersTotalInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.
+	! !
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:19:05'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:19:08'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:19:57' prior: 50792452!
+test08CheckOutAnExistentCartRegistersTotalInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: salesBook through: 
+	 				self withClock: self.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.
+	! !
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:19:59'!
+PASSED!
+!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/15/2019 09:22:33'!
+defaultRestInterfaceRegisteringIn: aSalesBook
+
+	^ RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
+						through: self withClock: self.
+	
+	! !
+!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/15/2019 09:23:23' prior: 50792187!
+defaultRestInterface
+
+	^ RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
+						through: self withClock: self.
+	
+	! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:23:47' prior: 50792485!
+test08CheckOutAnExistentCartRegistersTotalInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.
+	! !
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:23:49'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:24:05' prior: 50788799!
+test09CheckOutAnExistentCartRegistersCartInSale
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	self deny: salesBook isEmpty.
+	self assert: (salesBook first cart occurrencesOf: store itemSellByTheStore) equals: 1.
+	self assert: salesBook first total equals: store itemSellByTheStorePrice.! !
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:24:06'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:24:19' prior: 50788830!
+test10CannotInteractWithCheckedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+		restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:24:27' prior: 50789385!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:24:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:24:40'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:24:51' prior: 50789615!
+test12CannotListTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:25:23' prior: 50792810!
+test10CannotInteractWithCheckedOutCart
+
+	| restInterface cartId salesBook |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:25:27'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:25:31'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:25:37' prior: 50792961!
+test10CannotInteractWithCheckedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+	
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+										     withOwner: store notExpiredCreditCard owner
+											on: store today.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:25:40'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:26:06' prior: 50792843!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:26:11'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:26:28' prior: 50792940!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:26:31'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:26:44' prior: 50790504!
+test13CannotCheckOutTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 30 second: 0.
+
+	self should: [ restInterface checkOutCart: cartId 
+								    withCreditCardNumber: store validCreditCardNumber 
+								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
+								    withOwner: store notExpiredCreditCard owner 
+								    on: store today. ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self assert: salesBook isEmpty.! !
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:26:46'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:27:11' prior: 50790539!
+test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 1 second: 0.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 30 second: 0.
+
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:27:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:27:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:27:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:27:14'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:27:36' prior: 50790680!
+test15ListCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 1 second: 0.
+
+	restInterface listCart: cartId.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 30 second: 0.
+
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:27:41'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:28:03' prior: 50790967!
+test16ListPurchasesOfAnInexistentClientRaisesError
+
+	| restInterface |
+
+	restInterface := self defaultRestInterface.
+
+	self should: [ restInterface listPurchasesOf: store invalidUser withPassword: store validPassword. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface invalidUserErrorMessage.
+! !
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:28:05'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:28:19' prior: 50791248!
+test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError
+
+	| restInterface |
+
+	restInterface := self defaultRestInterface.
+
+	self should: [ restInterface listPurchasesOf: store validUser withPassword: store invalidPassword. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: restInterface invalidPasswordErrorMessage.
+! !
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:28:24'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:29:48' prior: 50791981!
+test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases
+
+	| restInterface listPurchases |
+
+	restInterface := self defaultRestInterface.
+	
+	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	
+	self assert: listPurchases total equals: 0.
+	self assert: listPurchases purchases isEmpty.! !
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:29:52'!
+PASSED!
+!RestInterfaceTest methodsFor: 'time managment' stamp: 'dr 11/15/2019 09:35:06'!
+setToInitialTime
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:35:34' prior: 50793246!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self setToInitialTime.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'time managment' stamp: 'dr 11/15/2019 09:36:29'!
+TimeSetToInitial
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'dr 11/15/2019 09:36:29' prior: 50794005!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+
+!methodRemoval: RestInterfaceTest #setToInitialTime stamp: 'dr 11/15/2019 09:36:29'!
+setToInitialTime
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.!
+!RestInterfaceTest methodsFor: 'time managment' stamp: 'dr 11/15/2019 09:37:06'!
+TimeForwardHalfHour
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.! !
+!RestInterfaceTest methodsFor: 'time managment' stamp: 'dr 11/15/2019 09:39:10'!
+TimeIncreaseMinutes: aNumberOfMinutes
+
+	currentTime := currentTime + Duration minutes: aNumberOfMinutes .! !
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:39:25'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:39:39' prior: 50794031!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 30.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:39:50' prior: 50794071!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 31.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'time managment' stamp: 'dr 11/15/2019 09:40:31' prior: 50794061!
+TimeIncreaseMinutes: aNumberOfMinutes
+
+	currentTime := currentTime + (Duration minutes: aNumberOfMinutes) .! !
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:40:38'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:40:43' prior: 50794089!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 310.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:40:45' prior: 50794117!
+test11CannotAddItemsToTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 30.
+	
+	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+
+! !
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:40:46'!
+PASSED!
+
+!methodRemoval: RestInterfaceTest #TimeForwardHalfHour stamp: 'dr 11/15/2019 09:41:03'!
+TimeForwardHalfHour
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:41:26' prior: 50793341!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 31 second: 0.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:41:55' prior: 50794233!
+test12CannotListTimedOutCart
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial.
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 30.
+
+	self should: [ restInterface listCart: cartId ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.! !
+
+	self TimeSetToInitial .!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:42:23' prior: 50793434!
+test13CannotCheckOutTimedOutCart
+
+	| restInterface cartId salesBook |
+
+	salesBook := OrderedCollection new.
+
+	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self TimeIncreaseMinutes: 30.
+
+	self should: [ restInterface checkOutCart: cartId 
+								    withCreditCardNumber: store validCreditCardNumber 
+								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
+								    withOwner: store notExpiredCreditCard owner 
+								    on: store today. ] 
+		 raise: Error - MessageNotUnderstood 
+		 withMessageText: restInterface cartInexistentErrorMessage.
+		
+	self assert: salesBook isEmpty.! !
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:42:25'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:43:46' prior: 50793540!
+test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 1.
+
+	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+
+	self TimeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:43:46'!
+PASSED!
+!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:44:37' prior: 50793637!
+test15ListCartUpdatesTheAccessTimeOfTheCartSession
+
+	| restInterface cartId |
+
+	restInterface := self defaultRestInterface.
+
+	self TimeSetToInitial .
+
+	cartId := restInterface createCartForUser: store validUser withPassword: store validPassword.
+
+	self TimeIncreaseMinutes: 1.
+
+	restInterface listCart: cartId.
+
+	self TimeIncreaseMinutes: 29.
+
+	self assert: (restInterface listCart: cartId) isEmpty.! !
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:44:38'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 09:49:10'!
+cartSessionOf: aCartId
+
+	^ carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+! !
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:49:12'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 09:49:36' prior: 50789748!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCartId .
+	
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+
+	cartSession cart add: aQuantity of: aBook.
+	
+	cartSession accessedAt: clock now.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:49:38'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 09:50:10' prior: 50790595!
+listCart: aCartId
+
+	| list cart cartSession |
+
+	list := Dictionary new.
+
+	cartSession := self cartSessionOf: aCartId.
+	
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+
+	cart := cartSession cart.
+	
+	cart forEachItemDo: [ :anItem | 
+								list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
+												 ifAbsent: [ list add: (Association key: anItem value: 1) ].
+							].
+	cartSession accessedAt: clock now.
+
+	^ list.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:50:13'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 09:57:32'!
+addCart: aCartId withSession: aCartSession
+	
+	carts add: (Association key: aCartId value: aCartSession).
+	
+	
+! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 09:58:11' prior: 50789346!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart idForCart cartSession |
+	self verifyCredentialsForUser: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	
+	self addCart: idForCart withSession: cartSession .
+	
+	
+	^ idForCart! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CannotListTimedOutCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/15/2019 09:58:13'!
+PASSED!
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 10:00:20' prior: 50794631!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCartId .
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+
+
+	cartSession cart add: aQuantity of: aBook.
+
+	
+	cartSession accessedAt: clock now.! !
+!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 10:00:59' prior: 50794900!
+createCartForUser: anUser withPassword: aPassword
+
+	| cart idForCart cartSession |
+	self verifyCredentialsForUser: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart! !
+
+----SNAPSHOT----(15 November 2019 10:01:31) CuisUniversity-3938.image priorSource: 14733973!
+
+----SNAPSHOT----(15 November 2019 10:30:00) CuisUniversity-3938.image priorSource: 14828973!
+
+----QUIT----(15 November 2019 10:30:08) CuisUniversity-3938.image priorSource: 14829067!
