@@ -27468,3 +27468,374 @@ PASSED!
 
 !testRun: #TusLibrosServiceTest #test20CheckOutOfAValidCartReturnsASale stamp: 'mr 11/18/2019 15:04:18'!
 PASSED!
+
+!classRemoval: #TusLibrosService stamp: 'mr 11/18/2019 15:07:31'!
+Object subclass: #TusLibrosService
+	instanceVariableNames: 'clients catalog carts lastId salesBook merchantProcessor clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #StoreTestObjectsFactory stamp: 'mr 11/18/2019 15:07:32'!
+Object subclass: #StoreTestObjectsFactory
+	instanceVariableNames: 'today'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Sale stamp: 'mr 11/18/2019 15:07:32'!
+Object subclass: #Sale
+	instanceVariableNames: 'total cart client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #ListPurchases stamp: 'mr 11/18/2019 15:07:33'!
+Object subclass: #ListPurchases
+	instanceVariableNames: 'total purchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CreditCard stamp: 'mr 11/18/2019 15:07:33'!
+Object subclass: #CreditCard
+	instanceVariableNames: 'expiration number owner'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cashier stamp: 'mr 11/18/2019 15:07:34'!
+Object subclass: #Cashier
+	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total client'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartSession stamp: 'mr 11/18/2019 15:07:34'!
+Object subclass: #CartSession
+	instanceVariableNames: 'cart lastAccess clientId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #Cart stamp: 'mr 11/18/2019 15:07:34'!
+Object subclass: #Cart
+	instanceVariableNames: 'catalog items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosServiceTest stamp: 'mr 11/18/2019 15:07:35'!
+TestCase subclass: #TusLibrosServiceTest
+	instanceVariableNames: 'testObjectsFactory store currentTime'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CashierTest stamp: 'mr 11/18/2019 15:07:35'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #CartTest stamp: 'mr 11/18/2019 15:07:36'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----End fileIn of /home/melissa/Mel/college shit/Ingeniería de Software I/isw1/linux64/TusLibros- it4.st----!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:10:00' prior: 50836853!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := request fields at: 'cartId'.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:14:00'!
+expirationDateFor: expirationDateNumber
+
+	
+! !
+
+fecha := '042020'.
+
+GregorianMonthOfYear yearNumber: fecha asNumber % 10000 monthNumber: fecha asNumber // 10000!
+
+fecha asNumber!
+
+
+fecha := '042020'.
+fecha asNumber % 10000!
+
+|fecha|
+
+fecha := '042020'.
+fecha asNumber \\ 10000.!
+
+|fecha|
+
+fecha := '042020'.
+
+GregorianMonthOfYear yearNumber: fecha asNumber \\ 10000 monthNumber: fecha asNumber // 10000.
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:24:06' prior: 50837290!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber fecha |
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	^ GregorianMonthOfYear yearNumber: expirationDateCodified asNumber \\ 10000 monthNumber: fecha asNumber // 10000.
+
+
+	
+! !
+
+0 positive!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:30:58' prior: 50837306!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ GregorianMonthOfYear yearNumber: yearNumber
+									monthNumber: monthNumber.
+
+
+	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:32:42'!
+ticketFor: aSale
+
+	| ticket |
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	
+	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:33:54' prior: 50837342!
+ticketFor: aSale
+
+	| ticket products |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	
+	products := Dictionary new.	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:36:26' prior: 50837350!
+ticketFor: aSale
+
+	| ticket products |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products add: (Association key: anItem asString )
+	].	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:38:34' prior: 50837359!
+ticketFor: aSale
+
+	| ticket products |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products add: (Association key: anItem asString)
+	].	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:45:40' prior: 50837371!
+ticketFor: aSale
+
+	| ticket products |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products at: anItem ifPresent: [ :aDictionary | | previousQuantity |
+			previousQuantity := aDictionary at: 'quantity'.
+			aDictionary at: 'quantity' put: previousQuantity + 1.
+		 ]
+						         ifAbsent: [ | newDictionary |
+			newDictionary := Dictionary new add: (Association key: 'quantity' value: 1);
+												    add: (Association key: 'unitaryPrice' value: (aSale priceFor: anItem)).
+			products at: anItem put: newDictionary ].
+	].	
+
+	ticket add: (Association key: 'products' value: products).! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:46:46'!
+productsFor: aSale
+
+	| products |
+
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products at: anItem ifPresent: [ :aDictionary | | previousQuantity |
+			previousQuantity := aDictionary at: 'quantity'.
+			aDictionary at: 'quantity' put: previousQuantity + 1.
+		 ]
+						         ifAbsent: [ | newDictionary |
+			newDictionary := Dictionary new add: (Association key: 'quantity' value: 1);
+												    add: (Association key: 'unitaryPrice' value: (aSale priceFor: anItem)).
+			products at: anItem put: newDictionary ].
+	].	
+
+	^ products.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:47:16' prior: 50837383!
+ticketFor: aSale
+
+	| ticket |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	ticket add: (Association key: 'products' value: (self productsFor: aSale)).! !
+!Sale methodsFor: 'nil' stamp: 'mr 11/18/2019 15:48:00'!
+priceFor: anItem
+
+	^ cart priceFor: anItem.! !
+!Cart methodsFor: 'queries' stamp: 'mr 11/18/2019 15:48:39'!
+priceFor: anItem
+
+	^ catalog at: anItem. ! !
+!TusLibrosServerController methodsFor: 'nil' stamp: 'mr 11/18/2019 15:49:43'!
+debit: aTotal from: aCreditCard
+! !
+
+TusLibrosServerController listeningOn: 8081.!
+!TusLibrosService class methodsFor: 'instance creation' stamp: 'mr 11/18/2019 15:51:18'!
+withClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.! !
+!TusLibrosServiceTest methodsFor: 'as yet unclassified' stamp: 'mr 11/18/2019 15:51:18' prior: 50836291!
+defaultRestInterfaceRegisteringIn: aSalesBook
+
+	^ TusLibrosService withClients: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
+						through: self withClock: self.
+	
+	! !
+!TusLibrosServiceTest methodsFor: 'as yet unclassified' stamp: 'mr 11/18/2019 15:51:18' prior: 50836282!
+defaultRestInterface
+
+	^ TusLibrosService withClients: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
+						through: self withClock: self.
+	
+	! !
+
+!methodRemoval: TusLibrosService class #withUsers:andCatalog:storingIn:through:withClock: stamp: 'mr 11/18/2019 15:51:18'!
+withUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.!
+
+TusLibrosServerController listeningOn: 8081.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:52:00' prior: 50836945!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3).
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.! !
+
+TusLibrosServerController listeningOn: 8081.!
+
+TusLibrosServerController listeningOn: 8081; startListening.!
+
+(TusLibrosServerController listeningOn: 8081) startListening.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/18/2019 15:57:39' prior: 50836831!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+(TusLibrosServerController listeningOn: 8081) startListening!
+
+(TusLibrosServerController listeningOn: 8081) startListening stopListening!
+
+(TusLibrosServerController listeningOn: 8081) startListening; stopListening!
+
+(TusLibrosServerController listeningOn: 8081) startListening!
+
+server := (TusLibrosServerController listeningOn: 8082)!
+
+server startListening.!
+
+server stopListening!
+
+----SNAPSHOT----(18 November 2019 16:02:04) CuisUniversity-3958.image priorSource: 16037891!
+
+----QUIT----(18 November 2019 16:02:09) CuisUniversity-3958.image priorSource: 16189144!
