@@ -1,4 +1,4 @@
-!classDefinition: #CartTest category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #CartTest category: #TusLibros!
 TestCase subclass: #CartTest
 	instanceVariableNames: 'testObjectsFactory'
 	classVariableNames: ''
@@ -98,7 +98,7 @@ setUp
 	testObjectsFactory := StoreTestObjectsFactory new.! !
 
 
-!classDefinition: #CashierTest category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #CashierTest category: #TusLibros!
 TestCase subclass: #CashierTest
 	instanceVariableNames: 'testObjectsFactory debitBehavior'
 	classVariableNames: ''
@@ -123,7 +123,7 @@ test01CanNotCheckoutAnEmptyCart
 			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:08'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:55:12'!
 test02CalculatedTotalIsCorrect
 
 	| cart cashier |
@@ -138,7 +138,7 @@ test02CalculatedTotalIsCorrect
 		on: testObjectsFactory today 
 		registeringOn: OrderedCollection new for: testObjectsFactory validUser.
 		
-	self assert: cashier checkOut = (testObjectsFactory itemSellByTheStorePrice * 2)! !
+	self assert: cashier checkOut total = (testObjectsFactory itemSellByTheStorePrice * 2)! !
 
 !CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:12'!
 test03CanNotCheckoutWithAnExpiredCreditCart
@@ -161,7 +161,7 @@ test03CanNotCheckoutWithAnExpiredCreditCart
 			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:19'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:55:22'!
 test04CheckoutRegistersASale
 
 	| cart cashier salesBook total |
@@ -177,12 +177,12 @@ test04CheckoutRegistersASale
 		on: testObjectsFactory today
 		registeringOn: salesBook for: testObjectsFactory validUser.
 		
-	total := cashier checkOut.
+	total := cashier checkOut total.
 					
 	self assert: salesBook size = 1.
 	self assert: salesBook first total = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:23'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:55:34'!
 test05CashierChargesCreditCardUsingMerchantProcessor
 
 	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  |
@@ -202,7 +202,7 @@ test05CashierChargesCreditCardUsingMerchantProcessor
 	debitBehavior := [ :anAmount :aCreditCard | 
 		debitedAmout := anAmount.
 		debitedCreditCard := aCreditCard ].
-	total := cashier checkOut.
+	total := cashier checkOut total.
 					
 	self assert: debitedCreditCard = creditCard.
 	self assert: debitedAmout = total.! !
@@ -246,114 +246,114 @@ debit: anAmount from: aCreditCard
 	^debitBehavior value: anAmount value: aCreditCard ! !
 
 
-!classDefinition: #RestInterfaceTest category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
-TestCase subclass: #RestInterfaceTest
+!classDefinition: #TusLibrosServiceTest category: #TusLibros!
+TestCase subclass: #TusLibrosServiceTest
 	instanceVariableNames: 'testObjectsFactory store currentTime'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:20'!
 test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 	
-	self assert: (restInterface listCart: cartId) isEmpty.! !
+	self assert: (tusLibrosService listCart: cartId) isEmpty.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:55:13'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:29'!
 test02CreateCartWithInvalidUserRaisesInvalidUserError
 
-	| restInterface |
+	| tusLibrosService |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	self should: [restInterface createCartForClient: store invalidUser withPassword: store validPassword.]
+	self should: [tusLibrosService createCartForClient: store invalidUser withPassword: store validPassword.]
 	      raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface invalidClientErrorMessage.
+		 withMessageText: tusLibrosService invalidClientErrorMessage.
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:37'!
 test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
 
-	| restInterface |
+	| tusLibrosService |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	self should: [restInterface createCartForClient: store validUser withPassword: store invalidPassword.]
+	self should: [tusLibrosService createCartForClient: store validUser withPassword: store invalidPassword.]
 	      raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface invalidPasswordErrorMessage.
+		 withMessageText: tusLibrosService invalidPasswordErrorMessage.
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:45'!
 test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 	
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
 	
-	self assert: (restInterface listCart: cartId) equals: store defaultListCart .! !
+	self assert: (tusLibrosService listCart: cartId) equals: store defaultListCart .! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:17:40'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:52'!
 test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError
 
-	| restInterface |
+	| tusLibrosService |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	self should: [ restInterface add: 1 ToCart: store invalidCartId ofBook: store itemSellByTheStore. ]
+	self should: [ tusLibrosService add: 1 ToCart: store invalidCartId ofBook: store itemSellByTheStore. ]
 		 raise: Error - MessageNotUnderstood
-		 withMessageText: restInterface cartInexistentErrorMessage.	
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.	
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:17:52'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:58:59'!
 test06ListAnInexistentCartRaisesCartInexistentError
 
-	| restInterface |
+	| tusLibrosService |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	self should: [ restInterface listCart: store invalidCartId. ]
+	self should: [ tusLibrosService listCart: store invalidCartId. ]
 		 raise: Error - MessageNotUnderstood
-		 withMessageText: restInterface cartInexistentErrorMessage.	
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.	
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:18:02'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:06'!
 test07CheckOutAnInexistentCartRaisesCartInexistentError
 
-	| restInterface |
+	| tusLibrosService |
 	
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	self should: [ restInterface checkOutCart: store invalidCartId withCreditCardNumber: store notExpiredCreditCard number
+	self should: [ tusLibrosService checkOutCart: store invalidCartId withCreditCardNumber: store notExpiredCreditCard number
 																		  withExpiration: store notExpiredCreditCard expirationMonthOfYear
 																		  withOwner: store notExpiredCreditCard owner
 																		  on: store today. ]
 		 raise: Error - MessageNotUnderstood
-		 withMessageText: restInterface cartInexistentErrorMessage.	
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.	
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:12'!
 test08CheckOutAnExistentCartRegistersTotalInSale
 
-	| restInterface cartId salesBook |
+	| tusLibrosService cartId salesBook |
 
 	salesBook := OrderedCollection new.
 
-	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	tusLibrosService := self defaultTusLibrosServiceRegisteringIn: salesBook .
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 
-	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
 										     withOwner: store notExpiredCreditCard owner
 											on: store today.
@@ -361,20 +361,20 @@ test08CheckOutAnExistentCartRegistersTotalInSale
 	self assert: salesBook first total equals: store itemSellByTheStorePrice.
 	! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:21'!
 test09CheckOutAnExistentCartRegistersCartInSale
 
-	| restInterface cartId salesBook |
+	| tusLibrosService cartId salesBook |
 
 	salesBook := OrderedCollection new.
 
-	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	tusLibrosService := self defaultTusLibrosServiceRegisteringIn: salesBook .
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 
-	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
 										     withOwner: store notExpiredCreditCard owner
 											on: store today.
@@ -382,213 +382,232 @@ test09CheckOutAnExistentCartRegistersCartInSale
 	self assert: (salesBook first cart occurrencesOf: store itemSellByTheStore) equals: 1.
 	self assert: salesBook first total equals: store itemSellByTheStorePrice.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:28'!
 test10CannotInteractWithCheckedOutCart
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 
-	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
+	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
 										     withOwner: store notExpiredCreditCard owner
 											on: store today.
 	
-	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+	self should: [ tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
 		 raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface cartInexistentErrorMessage.
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.
 		
-	self should: [ restInterface listCart: cartId ] 
+	self should: [ tusLibrosService listCart: cartId ] 
 		 raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface cartInexistentErrorMessage.! !
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:34'!
 test11CannotAddItemsToTimedOutCart
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
 	self timeSetToInitial.
 
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
 	self timeIncreaseMinutes: 30.
 	
-	self should: [ restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+	self should: [ tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
 		 raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface cartInexistentErrorMessage.
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.
 
 ! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:39'!
 test12CannotListTimedOutCart
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
 	self timeSetToInitial.
 
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
 	self timeIncreaseMinutes: 30.
 
-	self should: [ restInterface listCart: cartId ] 
+	self should: [ tusLibrosService listCart: cartId ] 
 		 raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface cartInexistentErrorMessage.! !
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:48'!
 test13CannotCheckOutTimedOutCart
 
-	| restInterface cartId salesBook |
+	| tusLibrosService cartId salesBook |
 
 	salesBook := OrderedCollection new.
 
-	restInterface := self defaultRestInterfaceRegisteringIn: salesBook .
+	tusLibrosService := self defaultTusLibrosServiceRegisteringIn: salesBook .
 
 	self timeSetToInitial .
 
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 
 	self timeIncreaseMinutes: 30.
 
-	self should: [ restInterface checkOutCart: cartId 
+	self should: [ tusLibrosService checkOutCart: cartId 
 								    withCreditCardNumber: store validCreditCardNumber 
 								    withExpiration: store notExpiredCreditCard expirationMonthOfYear
 								    withOwner: store notExpiredCreditCard owner 
 								    on: store today. ] 
 		 raise: Error - MessageNotUnderstood 
-		 withMessageText: restInterface cartInexistentErrorMessage.
+		 withMessageText: tusLibrosService cartInexistentErrorMessage.
 		
 	self assert: salesBook isEmpty.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:59:56'!
 test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
 	self timeSetToInitial .
 
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
 	self timeIncreaseMinutes: 1.
 
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 
 	self timeIncreaseMinutes: 29.
 
-	self assert: (restInterface listCart: cartId) equals: store defaultListCart.! !
+	self assert: (tusLibrosService listCart: cartId) equals: store defaultListCart.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:00:02'!
 test15ListCartUpdatesTheAccessTimeOfTheCartSession
 
-	| restInterface cartId |
+	| tusLibrosService cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
 	self timeSetToInitial .
 
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
 	self timeIncreaseMinutes: 1.
 
-	restInterface listCart: cartId.
+	tusLibrosService listCart: cartId.
 
 	self timeIncreaseMinutes: 29.
 
-	self assert: (restInterface listCart: cartId) isEmpty.! !
+	self assert: (tusLibrosService listCart: cartId) isEmpty.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:55:13'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:00:07'!
 test16ListPurchasesOfAnInexistentClientRaisesError
 
-	| restInterface |
+	| tusLibrosService |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
-	self should: [ restInterface listPurchasesOf: store invalidUser withPassword: store validPassword. ]
+	self should: [ tusLibrosService listPurchasesOf: store invalidUser withPassword: store validPassword. ]
 		  raise: Error - MessageNotUnderstood
-		 withMessageText: restInterface invalidClientErrorMessage.
+		 withMessageText: tusLibrosService invalidClientErrorMessage.
 ! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:28:19'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:00:15'!
 test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError
 
-	| restInterface |
+	| tusLibrosService |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 
-	self should: [ restInterface listPurchasesOf: store validUser withPassword: store invalidPassword. ]
+	self should: [ tusLibrosService listPurchasesOf: store validUser withPassword: store invalidPassword. ]
 		  raise: Error - MessageNotUnderstood
-		 withMessageText: restInterface invalidPasswordErrorMessage.
+		 withMessageText: tusLibrosService invalidPasswordErrorMessage.
 ! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 09:29:48'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:00:21'!
 test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases
 
-	| restInterface listPurchases |
+	| tusLibrosService listPurchases |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	listPurchases := tusLibrosService listPurchasesOf: store validUser withPassword: store validPassword.
 	
 	self assert: listPurchases total equals: 0.
 	self assert: listPurchases purchases isEmpty.! !
 
-!RestInterfaceTest methodsFor: 'tests' stamp: 'dr 11/15/2019 15:53:41'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:00:29'!
 test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
 
-	| restInterface listPurchases cartId |
+	| tusLibrosService listPurchases cartId |
 
-	restInterface := self defaultRestInterface.
+	tusLibrosService := self defaultTusLibrosService.
 	
-	cartId := restInterface createCartForClient: store validUser withPassword: store validPassword.
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 	
-	restInterface add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
 	
-	restInterface checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
 											withOwner: store notExpiredCreditCard owner
 											on: store today.
 	
-	listPurchases := restInterface listPurchasesOf: store validUser withPassword: store validPassword.
+	listPurchases := tusLibrosService listPurchasesOf: store validUser withPassword: store validPassword.
 	
 	self assert: listPurchases total equals: store itemSellByTheStorePrice.
 	self assert: (listPurchases purchases at: store itemSellByTheStore) equals: 1.
 	self assert: listPurchases purchases keys size equals: 1. ! !
 
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 15:03:06'!
+test20CheckOutOfAValidCartReturnsASale
 
-!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/15/2019 09:23:23'!
-defaultRestInterface
+	| tusLibrosService cartId sale |
 
-	^ RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
+	tusLibrosService := self defaultTusLibrosService.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
+				 										withExpiration: store notExpiredCreditCard expirationMonthOfYear 
+														withOwner: store notExpiredCreditCard owner
+														on: store today.
+	
+	self assert: sale total equals: store itemSellByTheStorePrice.
+	! !
+
+
+!TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 14:57:43'!
+defaultTusLibrosService
+
+	^ TusLibrosService withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
 						through: self withClock: self.
 	
 	! !
 
-!RestInterfaceTest methodsFor: 'setup' stamp: 'dr 11/15/2019 09:22:33'!
-defaultRestInterfaceRegisteringIn: aSalesBook
+!TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 14:58:03'!
+defaultTusLibrosServiceRegisteringIn: aSalesBook
 
-	^ RestInterface withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
+	^ TusLibrosService withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
 						through: self withClock: self.
 	
 	! !
 
-!RestInterfaceTest methodsFor: 'setup' stamp: 'mr 11/14/2019 15:32:07'!
+!TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/14/2019 15:32:07'!
 setUp
 
 	store := StoreTestObjectsFactory new.
 	currentTime := DateAndTime now.! !
 
 
-!RestInterfaceTest methodsFor: 'clock protocol' stamp: 'mr 11/11/2019 19:55:38'!
+!TusLibrosServiceTest methodsFor: 'clock protocol' stamp: 'mr 11/11/2019 19:55:38'!
 now
 
 	^ currentTime.
@@ -596,23 +615,23 @@ now
 ! !
 
 
-!RestInterfaceTest methodsFor: 'merchant processor protocol' stamp: 'mr 11/11/2019 17:48:32'!
+!TusLibrosServiceTest methodsFor: 'merchant processor protocol' stamp: 'mr 11/11/2019 17:48:32'!
 debit: aSmallInteger from: aCreditCard 
 	! !
 
 
-!RestInterfaceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:33'!
+!TusLibrosServiceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:33'!
 timeIncreaseMinutes: aNumberOfMinutes
 
 	currentTime := currentTime + (Duration minutes: aNumberOfMinutes) .! !
 
-!RestInterfaceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:45'!
+!TusLibrosServiceTest methodsFor: 'time management' stamp: 'dr 11/15/2019 15:05:45'!
 timeSetToInitial
 
 	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.! !
 
 
-!classDefinition: #Cart category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #Cart category: #TusLibros!
 Object subclass: #Cart
 	instanceVariableNames: 'catalog items'
 	classVariableNames: ''
@@ -691,7 +710,7 @@ add: aQuantity of: anItem
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Cart class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'Cart class' category: #TusLibros!
 Cart class
 	instanceVariableNames: ''!
 
@@ -701,7 +720,7 @@ acceptingItemsOf: aCatalog
 	^self new initializeAcceptingItemsOf: aCatalog ! !
 
 
-!classDefinition: #CartSession category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #CartSession category: #TusLibros!
 Object subclass: #CartSession
 	instanceVariableNames: 'cart lastAccess clientId'
 	classVariableNames: ''
@@ -739,7 +758,7 @@ accessedAt: aTimeOfAccess
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'CartSession class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'CartSession class' category: #TusLibros!
 CartSession class
 	instanceVariableNames: ''!
 
@@ -749,7 +768,7 @@ cart: aCart accessedAt: aTimeOfAccess for: aClientId
 	^ self new initializeCart: aCart accessedAt: aTimeOfAccess for: aClientId.! !
 
 
-!classDefinition: #Cashier category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #Cashier category: #TusLibros!
 Object subclass: #Cashier
 	instanceVariableNames: 'cart salesBook merchantProcessor creditCard total client'
 	classVariableNames: ''
@@ -774,20 +793,18 @@ debitTotal
 	merchantProcessor debit: total from: creditCard.
 	! !
 
-!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+!Cashier methodsFor: 'checkout - private' stamp: 'mr 11/18/2019 14:54:57'!
 registerSale
 
-	salesBook add: self createSale! !
+	^ salesBook add: self createSale! !
 
 
-!Cashier methodsFor: 'checkout' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+!Cashier methodsFor: 'checkout' stamp: 'mr 11/18/2019 14:54:47'!
 checkOut
 
 	self calculateTotal.
 	self debitTotal.
-	self registerSale.
-
-	^ total! !
+	^ self registerSale.! !
 
 
 !Cashier methodsFor: 'initialization' stamp: 'mr 11/14/2019 20:09:42'!
@@ -801,7 +818,7 @@ initializeToCheckout: aCart charging: aCreditCard throught: aMerchantProcessor r
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Cashier class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'Cashier class' category: #TusLibros!
 Cashier class
 	instanceVariableNames: ''!
 
@@ -841,7 +858,7 @@ creditCardHasNoCreditErrorMessage
 	^'Credit card has no credit'! !
 
 
-!classDefinition: #CreditCard category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #CreditCard category: #TusLibros!
 Object subclass: #CreditCard
 	instanceVariableNames: 'expiration number owner'
 	classVariableNames: ''
@@ -888,7 +905,7 @@ owner
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'CreditCard class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'CreditCard class' category: #TusLibros!
 CreditCard class
 	instanceVariableNames: ''!
 
@@ -898,7 +915,7 @@ expiringOn: aMonth number: aCreditCardNumber owner: anOwner
 	^self new initializeExpiringOn: aMonth number: aCreditCardNumber.! !
 
 
-!classDefinition: #ListPurchases category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #ListPurchases category: #TusLibros!
 Object subclass: #ListPurchases
 	instanceVariableNames: 'total purchases'
 	classVariableNames: ''
@@ -948,7 +965,7 @@ addItem: anItem
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'ListPurchases class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'ListPurchases class' category: #TusLibros!
 ListPurchases class
 	instanceVariableNames: ''!
 
@@ -958,218 +975,7 @@ purchases: aListOfPurchases total: aTotal
 	^ self new initializePurchases: aListOfPurchases total: aTotal.! !
 
 
-!classDefinition: #RestInterface category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
-Object subclass: #RestInterface
-	instanceVariableNames: 'clients catalog carts lastId salesBook merchantProcessor clock'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!RestInterface methodsFor: 'initialization' stamp: 'dr 11/15/2019 15:54:10'!
-initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
-	
-	clients := anUsersDictionary.
-	catalog := aCatalog.
-	lastId := 0.
-	carts := Dictionary new.
-	salesBook := aSalesBook.
-	merchantProcessor := aMerchantProcessor.
-	clock := aClock.! !
-
-
-!RestInterface methodsFor: 'assertions' stamp: 'mr 11/14/2019 15:45:39'!
-assertNotTimedOutSession: aCartSession withId: aCartId 
-
-	(self hasPassedHalfHourSince: aCartSession lastAccess) ifTrue: [ 
-				self removeCartWithId: aCartId.
-				self error: self cartInexistentErrorMessage.
-	].! !
-
-!RestInterface methodsFor: 'assertions' stamp: 'dr 11/15/2019 15:55:13'!
-verifyCredentialsForClient: anUser withPassword: aPassword
-	| password |
-	
-	password := clients at: anUser ifAbsent: [ self error: self invalidClientErrorMessage. ]. 
-	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
-
-
-!RestInterface methodsFor: 'assertions - private' stamp: 'mr 11/14/2019 16:13:40'!
-hasPassedHalfHourSince: aTime
-
-	^ aTime + (Duration minutes: 30) <= clock now.! !
-
-
-!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 09:57:32'!
-addCart: aCartId withSession: aCartSession
-	
-	carts add: (Association key: aCartId value: aCartSession).
-	
-	
-! !
-
-!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:20'!
-cartSessionOf: aCartId
-
-	| cartSession |
-
-	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
-
-	self assertNotTimedOutSession: cartSession withId: aCartId.
-	
-	^ cartSession.! !
-
-!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/7/2019 19:54:16'!
-newId
-
-	^ lastId := lastId + 1.
-	
-	! !
-
-!RestInterface methodsFor: 'cart - private' stamp: 'mr 11/14/2019 15:44:24'!
-removeCartWithId: aCartId
-
-	carts removeKey: aCartId.! !
-
-!RestInterface methodsFor: 'cart - private' stamp: 'dr 11/15/2019 16:00:18'!
-updateAccessOf: cartSession.
-	
-	cartSession accessedAt: clock now.! !
-
-
-!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:00:37'!
-add: aQuantity ToCart: aCartId ofBook: aBook
-
-	| cartSession |
-
-	cartSession := self cartSessionOf: aCartId .
-
-	cartSession cart add: aQuantity of: aBook.
-	
-	self updateAccessOf: cartSession.! !
-
-!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:05:02'!
-createCartForClient: anUser withPassword: aPassword
-
-	| idForCart cartSession |
-	self verifyCredentialsForClient: anUser withPassword: aPassword .
-	
-	idForCart := self newId.
-	
-	cartSession := self newCartSessionFor: anUser.
-	
-	"cart := Cart acceptingItemsOf: catalog .
-	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
-	"
-	self addCart: idForCart withSession: cartSession .
-	
-	^ idForCart! !
-
-!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:01:46'!
-listCart: aCartId
-
-	| list cartSession |
-
-	list := Dictionary new.
-
-	cartSession := self cartSessionOf: aCartId.
-	
-	cartSession cart forEachItemDo: [ :anItem | 
-											list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
-															 ifAbsent: [ list add: (Association key: anItem value: 1) ].
-										  ].
-
-	self updateAccessOf: cartSession.
-
-	^ list.! !
-
-!RestInterface methodsFor: 'cart' stamp: 'dr 11/15/2019 16:06:12'!
-newCartSessionFor: anUser
-	
-	| cart |
-	
-	cart := Cart acceptingItemsOf: catalog .
-	
-	^ CartSession cart: cart accessedAt: clock now for: anUser.
-! !
-
-
-!RestInterface methodsFor: 'error messages' stamp: 'mr 11/11/2019 15:39:42'!
-cartInexistentErrorMessage
-	
-	^ 'The cart does not exist.'! !
-
-!RestInterface methodsFor: 'error messages' stamp: 'dr 11/15/2019 15:55:13'!
-invalidClientErrorMessage
-	
-	^ 'Invalid user caps sensitive try again'! !
-
-!RestInterface methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:24:19'!
-invalidPasswordErrorMessage
-	
-	^ 'The password is invalid, try your alter password'! !
-
-
-!RestInterface methodsFor: 'check out' stamp: 'mr 11/14/2019 20:07:02'!
-checkOutCart: aCartId withCreditCardNumber: aCreditCardNumber withExpiration: anExpirationMonthOfYear withOwner: anOwner on: aDate
-
-	| cart cartSession creditCard cashier |
-
-	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage. ].
-
-	self assertNotTimedOutSession: cartSession withId: aCartId.
-	
-	cart := cartSession cart.
-	
-	creditCard := CreditCard expiringOn: anExpirationMonthOfYear number: aCreditCardNumber owner: anOwner.
-	
-	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: aDate registeringOn: salesBook for: cartSession client.
-	
-	cashier checkOut.
-	
-	carts removeKey: aCartId .
-	! !
-
-
-!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:44:40'!
-listOfPurchasesFor: aClient
-
-	| listOfPurchases salesForClient |
-
-	listOfPurchases := ListPurchases new.
-
-	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
-
-	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
-
-	^ listOfPurchases.
-
-	
-	
-	! !
-
-!RestInterface methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:54:35'!
-listPurchasesOf: aClient withPassword: aPassword 
-
-	self verifyCredentialsForClient: aClient withPassword: aPassword.
-
-	^ self listOfPurchasesFor: aClient.
-	
-	
-	! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'RestInterface class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
-RestInterface class
-	instanceVariableNames: ''!
-
-!RestInterface class methodsFor: 'instance creation' stamp: 'dr 11/15/2019 15:54:02'!
-withUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
-	
-	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.! !
-
-
-!classDefinition: #Sale category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #Sale category: #TusLibros!
 Object subclass: #Sale
 	instanceVariableNames: 'total cart client'
 	classVariableNames: ''
@@ -1209,7 +1015,7 @@ forEachItemDo: aBlockToRun
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Sale class' category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: 'Sale class' category: #TusLibros!
 Sale class
 	instanceVariableNames: ''!
 
@@ -1219,7 +1025,7 @@ of: aCart for: aClient
 	^self new initializeCart: aCart for: aClient.! !
 
 
-!classDefinition: #StoreTestObjectsFactory category: #TusLibros stamp: 'dr 11/15/2019 16:07:09'!
+!classDefinition: #StoreTestObjectsFactory category: #TusLibros!
 Object subclass: #StoreTestObjectsFactory
 	instanceVariableNames: 'today'
 	classVariableNames: ''
@@ -1323,3 +1129,215 @@ defaultListCart
 today
 	
 	^ today! !
+
+
+!classDefinition: #TusLibrosService category: #TusLibros!
+Object subclass: #TusLibrosService
+	instanceVariableNames: 'clients catalog carts lastId salesBook merchantProcessor clock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TusLibrosService methodsFor: 'initialization' stamp: 'dr 11/15/2019 15:54:10'!
+initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	clients := anUsersDictionary.
+	catalog := aCatalog.
+	lastId := 0.
+	carts := Dictionary new.
+	salesBook := aSalesBook.
+	merchantProcessor := aMerchantProcessor.
+	clock := aClock.! !
+
+
+!TusLibrosService methodsFor: 'assertions' stamp: 'mr 11/14/2019 15:45:39'!
+assertNotTimedOutSession: aCartSession withId: aCartId 
+
+	(self hasPassedHalfHourSince: aCartSession lastAccess) ifTrue: [ 
+				self removeCartWithId: aCartId.
+				self error: self cartInexistentErrorMessage.
+	].! !
+
+!TusLibrosService methodsFor: 'assertions' stamp: 'dr 11/15/2019 15:55:13'!
+verifyCredentialsForClient: anUser withPassword: aPassword
+	| password |
+	
+	password := clients at: anUser ifAbsent: [ self error: self invalidClientErrorMessage. ]. 
+	password = aPassword ifFalse: [ self error: self invalidPasswordErrorMessage. ].! !
+
+
+!TusLibrosService methodsFor: 'assertions - private' stamp: 'mr 11/14/2019 16:13:40'!
+hasPassedHalfHourSince: aTime
+
+	^ aTime + (Duration minutes: 30) <= clock now.! !
+
+
+!TusLibrosService methodsFor: 'cart - private' stamp: 'dr 11/15/2019 09:57:32'!
+addCart: aCartId withSession: aCartSession
+	
+	carts add: (Association key: aCartId value: aCartSession).
+	
+	
+! !
+
+!TusLibrosService methodsFor: 'cart - private' stamp: 'dr 11/15/2019 15:59:20'!
+cartSessionOf: aCartId
+
+	| cartSession |
+
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+	
+	^ cartSession.! !
+
+!TusLibrosService methodsFor: 'cart - private' stamp: 'dr 11/7/2019 19:54:16'!
+newId
+
+	^ lastId := lastId + 1.
+	
+	! !
+
+!TusLibrosService methodsFor: 'cart - private' stamp: 'mr 11/14/2019 15:44:24'!
+removeCartWithId: aCartId
+
+	carts removeKey: aCartId.! !
+
+!TusLibrosService methodsFor: 'cart - private' stamp: 'dr 11/15/2019 16:00:18'!
+updateAccessOf: cartSession.
+	
+	cartSession accessedAt: clock now.! !
+
+
+!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/15/2019 16:00:37'!
+add: aQuantity ToCart: aCartId ofBook: aBook
+
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCartId .
+
+	cartSession cart add: aQuantity of: aBook.
+	
+	self updateAccessOf: cartSession.! !
+
+!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/15/2019 16:05:02'!
+createCartForClient: anUser withPassword: aPassword
+
+	| idForCart cartSession |
+	self verifyCredentialsForClient: anUser withPassword: aPassword .
+	
+	idForCart := self newId.
+	
+	cartSession := self newCartSessionFor: anUser.
+	
+	"cart := Cart acceptingItemsOf: catalog .
+	cartSession := CartSession cart: cart accessedAt: clock now for: anUser.
+	"
+	self addCart: idForCart withSession: cartSession .
+	
+	^ idForCart! !
+
+!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/15/2019 16:01:46'!
+listCart: aCartId
+
+	| list cartSession |
+
+	list := Dictionary new.
+
+	cartSession := self cartSessionOf: aCartId.
+	
+	cartSession cart forEachItemDo: [ :anItem | 
+											list at: anItem ifPresent: [ :aQuantity | list at: anItem put: aQuantity + 1 ] 
+															 ifAbsent: [ list add: (Association key: anItem value: 1) ].
+										  ].
+
+	self updateAccessOf: cartSession.
+
+	^ list.! !
+
+!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/15/2019 16:06:12'!
+newCartSessionFor: anUser
+	
+	| cart |
+	
+	cart := Cart acceptingItemsOf: catalog .
+	
+	^ CartSession cart: cart accessedAt: clock now for: anUser.
+! !
+
+
+!TusLibrosService methodsFor: 'error messages' stamp: 'mr 11/11/2019 15:39:42'!
+cartInexistentErrorMessage
+	
+	^ 'The cart does not exist.'! !
+
+!TusLibrosService methodsFor: 'error messages' stamp: 'dr 11/15/2019 15:55:13'!
+invalidClientErrorMessage
+	
+	^ 'Invalid user caps sensitive try again'! !
+
+!TusLibrosService methodsFor: 'error messages' stamp: 'dr 11/7/2019 20:24:19'!
+invalidPasswordErrorMessage
+	
+	^ 'The password is invalid, try your alter password'! !
+
+
+!TusLibrosService methodsFor: 'check out' stamp: 'mr 11/18/2019 15:03:41'!
+checkOutCart: aCartId withCreditCardNumber: aCreditCardNumber withExpiration: anExpirationMonthOfYear withOwner: anOwner on: aDate
+
+	| cart cartSession creditCard cashier sale |
+
+	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage. ].
+
+	self assertNotTimedOutSession: cartSession withId: aCartId.
+	
+	cart := cartSession cart.
+	
+	creditCard := CreditCard expiringOn: anExpirationMonthOfYear number: aCreditCardNumber owner: anOwner.
+	
+	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: aDate registeringOn: salesBook for: cartSession client.
+	
+	sale := cashier checkOut.
+	
+	carts removeKey: aCartId .
+	
+	^ sale.! !
+
+
+!TusLibrosService methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:44:40'!
+listOfPurchasesFor: aClient
+
+	| listOfPurchases salesForClient |
+
+	listOfPurchases := ListPurchases new.
+
+	salesForClient := salesBook select: [ :aSale | aSale client = aClient ].
+
+	salesForClient do: [ :aSale | listOfPurchases register: aSale. ].
+
+	^ listOfPurchases.
+
+	
+	
+	! !
+
+!TusLibrosService methodsFor: 'purchases' stamp: 'dr 11/15/2019 15:54:35'!
+listPurchasesOf: aClient withPassword: aPassword 
+
+	self verifyCredentialsForClient: aClient withPassword: aPassword.
+
+	^ self listOfPurchasesFor: aClient.
+	
+	
+	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosService class' category: #TusLibros!
+TusLibrosService class
+	instanceVariableNames: ''!
+
+!TusLibrosService class methodsFor: 'instance creation' stamp: 'dr 11/15/2019 15:54:02'!
+withUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+	
+	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.! !
