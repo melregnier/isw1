@@ -123,7 +123,7 @@ test01CanNotCheckoutAnEmptyCart
 			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:08'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:51:11'!
 test02CalculatedTotalIsCorrect
 
 	| cart cashier |
@@ -138,7 +138,7 @@ test02CalculatedTotalIsCorrect
 		on: testObjectsFactory today 
 		registeringOn: OrderedCollection new for: testObjectsFactory validUser.
 		
-	self assert: cashier checkOut = (testObjectsFactory itemSellByTheStorePrice * 2)! !
+	self assert: cashier checkOut total = (testObjectsFactory itemSellByTheStorePrice * 2)! !
 
 !CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:12'!
 test03CanNotCheckoutWithAnExpiredCreditCart
@@ -161,7 +161,7 @@ test03CanNotCheckoutWithAnExpiredCreditCart
 			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:19'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:51:48'!
 test04CheckoutRegistersASale
 
 	| cart cashier salesBook total |
@@ -177,12 +177,12 @@ test04CheckoutRegistersASale
 		on: testObjectsFactory today
 		registeringOn: salesBook for: testObjectsFactory validUser.
 		
-	total := cashier checkOut.
+	total := cashier checkOut total.
 					
 	self assert: salesBook size = 1.
 	self assert: salesBook first total = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'mr 11/14/2019 20:06:23'!
+!CashierTest methodsFor: 'tests' stamp: 'mr 11/18/2019 14:52:27'!
 test05CashierChargesCreditCardUsingMerchantProcessor
 
 	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  |
@@ -202,7 +202,7 @@ test05CashierChargesCreditCardUsingMerchantProcessor
 	debitBehavior := [ :anAmount :aCreditCard | 
 		debitedAmout := anAmount.
 		debitedCreditCard := aCreditCard ].
-	total := cashier checkOut.
+	total := cashier checkOut total.
 					
 	self assert: debitedCreditCard = creditCard.
 	self assert: debitedAmout = total.! !
@@ -288,7 +288,7 @@ test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError
 		 withMessageText: tusLibrosService invalidPasswordErrorMessage.
 	! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:53:26'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
 
 	| tusLibrosService cartId |
@@ -297,18 +297,18 @@ test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed
 	
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 	
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore .
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore .
 	
 	self assert: (tusLibrosService listCart: cartId) equals: store defaultListCart .! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:53:33'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError
 
 	| tusLibrosService |
 	
 	tusLibrosService := self defaultRestInterface.
 	
-	self should: [ tusLibrosService add: 1 ToCart: store invalidCartId ofBook: store itemSellByTheStore. ]
+	self should: [ tusLibrosService add: 1 toCart: store invalidCartId ofBook: store itemSellByTheStore. ]
 		 raise: Error - MessageNotUnderstood
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.	
 	! !
@@ -340,7 +340,7 @@ test07CheckOutAnInexistentCartRaisesCartInexistentError
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.	
 	! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:53:50'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test08CheckOutAnExistentCartRegistersTotalInSale
 
 	| tusLibrosService cartId salesBook |
@@ -351,7 +351,7 @@ test08CheckOutAnExistentCartRegistersTotalInSale
 	
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 
 	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
@@ -361,7 +361,7 @@ test08CheckOutAnExistentCartRegistersTotalInSale
 	self assert: salesBook first total equals: store itemSellByTheStorePrice.
 	! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:53:59'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test09CheckOutAnExistentCartRegistersCartInSale
 
 	| tusLibrosService cartId salesBook |
@@ -372,7 +372,7 @@ test09CheckOutAnExistentCartRegistersCartInSale
 	
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 
 	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
@@ -382,7 +382,7 @@ test09CheckOutAnExistentCartRegistersCartInSale
 	self assert: (salesBook first cart occurrencesOf: store itemSellByTheStore) equals: 1.
 	self assert: salesBook first total equals: store itemSellByTheStorePrice.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:54:05'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test10CannotInteractWithCheckedOutCart
 
 	| tusLibrosService cartId |
@@ -391,14 +391,14 @@ test10CannotInteractWithCheckedOutCart
 	
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 
 	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
 										     withOwner: store notExpiredCreditCard owner
 											on: store today.
 	
-	self should: [ tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+	self should: [ tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore ] 
 		 raise: Error - MessageNotUnderstood 
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.
 		
@@ -406,7 +406,7 @@ test10CannotInteractWithCheckedOutCart
 		 raise: Error - MessageNotUnderstood 
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:54:11'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test11CannotAddItemsToTimedOutCart
 
 	| tusLibrosService cartId |
@@ -419,7 +419,7 @@ test11CannotAddItemsToTimedOutCart
 
 	self timeIncreaseMinutes: 30.
 	
-	self should: [ tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore ] 
+	self should: [ tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore ] 
 		 raise: Error - MessageNotUnderstood 
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.
 
@@ -442,7 +442,7 @@ test12CannotListTimedOutCart
 		 raise: Error - MessageNotUnderstood 
 		 withMessageText: tusLibrosService cartInexistentErrorMessage.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:54:20'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test13CannotCheckOutTimedOutCart
 
 	| tusLibrosService cartId salesBook |
@@ -454,7 +454,7 @@ test13CannotCheckOutTimedOutCart
 	self timeSetToInitial .
 
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 
 	self timeIncreaseMinutes: 30.
 
@@ -468,7 +468,7 @@ test13CannotCheckOutTimedOutCart
 		
 	self assert: salesBook isEmpty.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:54:26'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
 
 	| tusLibrosService cartId |
@@ -481,7 +481,7 @@ test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession
 
 	self timeIncreaseMinutes: 1.
 
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 
 	self timeIncreaseMinutes: 29.
 
@@ -542,7 +542,7 @@ test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchase
 	self assert: listPurchases total equals: 0.
 	self assert: listPurchases purchases isEmpty.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/17/2019 16:54:55'!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'mr 11/18/2019 12:08:28'!
 test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
 
 	| tusLibrosService listPurchases cartId |
@@ -551,7 +551,7 @@ test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
 	
 	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
 	
-	tusLibrosService add: 1 ToCart: cartId ofBook: store itemSellByTheStore.
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
 	
 	tusLibrosService checkOutCart: cartId withCreditCardNumber: store notExpiredCreditCard number 
 											withExpiration: store notExpiredCreditCard expirationMonthOfYear 
@@ -565,18 +565,18 @@ test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
 	self assert: listPurchases purchases keys size equals: 1. ! !
 
 
-!TusLibrosServiceTest methodsFor: 'setup' stamp: 'dr 11/17/2019 16:52:02'!
+!TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 15:51:18'!
 defaultRestInterface
 
-	^ TusLibrosService withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
+	^ TusLibrosService withClients: store defaultUsers andCatalog: store defaultCatalog storingIn: OrderedCollection new 
 						through: self withClock: self.
 	
 	! !
 
-!TusLibrosServiceTest methodsFor: 'setup' stamp: 'dr 11/17/2019 16:52:02'!
+!TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 15:51:18'!
 defaultRestInterfaceRegisteringIn: aSalesBook
 
-	^ TusLibrosService withUsers: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
+	^ TusLibrosService withClients: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
 						through: self withClock: self.
 	
 	! !
@@ -657,6 +657,11 @@ forEachItemDo: aBlockToRun
 occurrencesOf: anItem
 
 	^items occurrencesOf: anItem  ! !
+
+!Cart methodsFor: 'queries' stamp: 'mr 11/18/2019 15:48:39'!
+priceFor: anItem
+
+	^ catalog at: anItem. ! !
 
 
 !Cart methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 17:44'!
@@ -774,20 +779,18 @@ debitTotal
 	merchantProcessor debit: total from: creditCard.
 	! !
 
-!Cashier methodsFor: 'checkout - private' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+!Cashier methodsFor: 'checkout - private' stamp: 'mr 11/18/2019 14:49:44'!
 registerSale
 
-	salesBook add: self createSale! !
+	^ salesBook add: self createSale! !
 
 
-!Cashier methodsFor: 'checkout' stamp: 'HernanWilkinson 6/17/2013 19:06'!
+!Cashier methodsFor: 'checkout' stamp: 'mr 11/18/2019 14:50:34'!
 checkOut
 
 	self calculateTotal.
 	self debitTotal.
-	self registerSale.
-
-	^ total! !
+	^ self registerSale.! !
 
 
 !Cashier methodsFor: 'initialization' stamp: 'mr 11/14/2019 20:09:42'!
@@ -996,6 +999,11 @@ forEachItemDo: aBlockToRun
 
 	cart forEachItemDo: aBlockToRun.! !
 
+!Sale methodsFor: 'accessing' stamp: 'mr 11/18/2019 15:48:00'!
+priceFor: anItem
+
+	^ cart priceFor: anItem.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Sale class' category: #TusLibros!
@@ -1114,6 +1122,333 @@ today
 	^ today! !
 
 
+!classDefinition: #TusLibrosServerController category: #TusLibros!
+Object subclass: #TusLibrosServerController
+	instanceVariableNames: 'port webServer tusLibrosService'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 15:30:14'!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:11:23'!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/18/2019 14:04:24'!
+addCreateCartService
+
+	| cartId |
+	
+	webServer addService: '/createCart' action:[:request | |clientId password |		
+		[
+		clientId := (request fields at:'clientId').
+		password := (request fields at:'password').
+		
+		[
+			cartId := tusLibrosService createCartForClient: clientId withPassword: password.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request.
+		].
+		self sendOkResponseWith: (Association key: 'cartId' value: cartId) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 15:33:03'!
+addListCartService
+
+	| cartId list |
+	
+	webServer addService: '/listCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		
+		[
+			list := tusLibrosService listCart: cartId.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'list' value: list) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:39:34'!
+addListPurchasesService
+
+	| listPurchases purchases |
+	
+	webServer addService: '/listPurchases' action:[:request | |clientId password |		
+		[
+		clientId := (request fields at:'clientId').
+		password := (request fields at:'password').
+		
+		[
+			listPurchases := tusLibrosService listPurchasesOf: clientId withPassword: password.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request.
+		].
+		purchases := self purchasesFor: listPurchases.
+		self sendOkResponseWith: (Association key: 'purchases' value: purchases) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:09:41'!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ Month month: monthNumber year: yearNumber.
+									
+	
+! !
+
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:34:45'!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.! !
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/17/2019 17:29:20'!
+port
+	"Use a random port to minimise chances of concurrently running test suites clashing."
+	"^ port
+		ifNil: [port := (10000 to: 50000) atRandom]"
+	
+	^port ifNil: [port:=8080].
+	
+	! !
+
+
+!TusLibrosServerController methodsFor: 'enabling services' stamp: 'dr 11/17/2019 17:28:54'!
+destroy
+	
+	webServer ifNotNil:[webServer destroy].! !
+
+!TusLibrosServerController methodsFor: 'enabling services' stamp: 'dr 11/17/2019 17:29:55'!
+startListening
+	
+	webServer startListener.
+
+	^ 'Listening on port: ', self port asString.
+	! !
+
+!TusLibrosServerController methodsFor: 'enabling services' stamp: 'dr 11/17/2019 17:30:31'!
+stopListening
+	
+	webServer stopListener.
+	
+	^'Stopped listening from port: ', self port asString! !
+
+
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'mr 11/19/2019 16:12:39'!
+productsFor: aSale
+
+	| products |
+
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products at: anItem ifPresent: [ :aDictionary | | previousQuantity |
+			previousQuantity := aDictionary at: 'quantity'.
+			aDictionary at: 'quantity' put: previousQuantity + 1.
+		 ]
+						         ifAbsent: [ | newDictionary |
+			newDictionary := Dictionary new add: (Association key: 'quantity' value: 1);
+												    add: (Association key: 'unitaryPrice' value: (aSale priceFor: anItem)); yourself.
+			products at: anItem put: newDictionary ].
+	].	
+
+	^ products.! !
+
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'mr 11/19/2019 16:32:31'!
+purchasesFor: listPurchases
+
+	| purchases |
+
+	purchases := Dictionary new.
+	
+	purchases add: (Association key: 'total' value: listPurchases total).
+	purchases add: (Association key: 'booksPurchased' value: listPurchases purchases).
+	
+	^ purchases.! !
+
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'mr 11/19/2019 16:16:57'!
+ticketFor: aSale
+
+	| ticket |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	ticket add: (Association key: 'products' value: (self productsFor: aSale)).
+	
+	^ ticket.! !
+
+
+!TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 11/18/2019 13:59:21'!
+buildOkResponseWith: anAssociation
+
+	| responseOk |
+
+	responseOk := Dictionary new.
+	responseOk add: (Association key: 'errorCode' value: 0).
+	responseOk add: anAssociation.
+
+	^ WebUtils jsonEncode: responseOk.
+	! !
+
+!TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 11/18/2019 13:57:01'!
+errorResponseJsonFor: anError
+
+	| errorOnService |
+
+	errorOnService := Dictionary new.
+	errorOnService add: (Association key: 'errorCode' value: 1).
+	errorOnService add: (Association key: 'message' value: anError messageText).
+	^ WebUtils jsonEncode: errorOnService.
+	! !
+
+!TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 11/18/2019 14:06:32'!
+sendErrorResponseFor: anError to: aRequest
+
+	| errorOnServiceAsJson |
+
+	errorOnServiceAsJson := self errorResponseJsonFor: anError.
+	aRequest send200Response: errorOnServiceAsJson asUtf8 
+  			 contentType: 'application/json; charset=utf-8' do: [ :resp | 
+			resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+	].
+
+! !
+
+!TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 11/18/2019 14:02:31'!
+sendOkResponseWith: anAssociation to: aRequest
+
+	| responseOkAsJson |
+
+	responseOkAsJson := self buildOkResponseWith: anAssociation.
+
+	aRequest send200Response: responseOkAsJson asUtf8
+				  contentType: 'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  ].
+	
+	
+	! !
+
+
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 11/18/2019 15:49:43'!
+debit: aTotal from: aCreditCard
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosServerController class' category: #TusLibros!
+TusLibrosServerController class
+	instanceVariableNames: ''!
+
+!TusLibrosServerController class methodsFor: 'instance creation' stamp: 'dr 11/17/2019 17:08:35'!
+listeningOn: aPortNumber
+
+	^self new initializeWith: aPortNumber.! !
+
+
 !classDefinition: #TusLibrosService category: #TusLibros!
 Object subclass: #TusLibrosService
 	instanceVariableNames: 'clients catalog carts lastId salesBook merchantProcessor clock'
@@ -1192,8 +1527,8 @@ updateAccessOf: cartSession.
 	cartSession accessedAt: clock now.! !
 
 
-!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/15/2019 16:00:37'!
-add: aQuantity ToCart: aCartId ofBook: aBook
+!TusLibrosService methodsFor: 'cart' stamp: 'mr 11/18/2019 12:08:28'!
+add: aQuantity toCart: aCartId ofBook: aBook
 
 	| cartSession |
 
@@ -1265,10 +1600,10 @@ invalidPasswordErrorMessage
 	^ 'The password is invalid, try your alter password'! !
 
 
-!TusLibrosService methodsFor: 'check out' stamp: 'mr 11/14/2019 20:07:02'!
+!TusLibrosService methodsFor: 'check out' stamp: 'mr 11/18/2019 14:48:58'!
 checkOutCart: aCartId withCreditCardNumber: aCreditCardNumber withExpiration: anExpirationMonthOfYear withOwner: anOwner on: aDate
 
-	| cart cartSession creditCard cashier |
+	| cart cartSession creditCard cashier sale |
 
 	cartSession := carts at: aCartId ifAbsent: [ self error: self cartInexistentErrorMessage. ].
 
@@ -1280,9 +1615,11 @@ checkOutCart: aCartId withCreditCardNumber: aCreditCardNumber withExpiration: an
 	
 	cashier := Cashier toCheckout: cart charging: creditCard throught: merchantProcessor on: aDate registeringOn: salesBook for: cartSession client.
 	
-	cashier checkOut.
+	sale := cashier checkOut.
 	
 	carts removeKey: aCartId .
+	
+	^ sale.
 	! !
 
 
@@ -1319,7 +1656,7 @@ listPurchasesOf: aClient withPassword: aPassword
 TusLibrosService class
 	instanceVariableNames: ''!
 
-!TusLibrosService class methodsFor: 'instance creation' stamp: 'dr 11/15/2019 15:54:02'!
-withUsers: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
+!TusLibrosService class methodsFor: 'instance creation' stamp: 'mr 11/18/2019 15:51:18'!
+withClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock
 	
 	^self new initializeWithClients: anUsersDictionary andCatalog: aCatalog storingIn: aSalesBook through: aMerchantProcessor withClock: aClock.! !

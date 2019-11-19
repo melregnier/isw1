@@ -27839,3 +27839,864 @@ server stopListening!
 ----SNAPSHOT----(18 November 2019 16:02:04) CuisUniversity-3958.image priorSource: 16037891!
 
 ----QUIT----(18 November 2019 16:02:09) CuisUniversity-3958.image priorSource: 16189144!
+
+----STARTUP---- (19 November 2019 14:48:47) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3958.image!
+
+
+server := (TusLibrosServerController listeningOn: 8082).!
+
+|server|
+
+server := (TusLibrosServerController listeningOn: 8082). 
+server startListening !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/19/2019 14:54:25' prior: 50837527!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			"self sendErrorResponseFor: anError to: request. "
+			self sendOkResponseWith: (Association key: 'cartId' value: cartId) to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+server stopListening.!
+
+server startListening.!
+
+server stopListening.!
+
+
+|server|
+
+server := (TusLibrosServerController listeningOn: 8082). 
+server startListening. !
+
+server stopListening.!
+
+|server|
+
+server := (TusLibrosServerController listeningOn: 8082). 
+server startListening.!
+
+server stopListening.!
+
+----STARTUP---- (19 November 2019 15:01:21) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3958.image!
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:03:01' prior: 50837527!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			"self sendErrorResponseFor: anError to: request. "
+			self sendOkResponseWith: (Association key: 'cartId' value: cartId) to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+|server|
+
+server := (TusLibrosServerController listeningOn: 8082).
+server startListening.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:04:04' prior: 50837617!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			"self sendErrorResponseFor: anError to: request. "
+			self sendOkResponseWith: (Association key: 'cartId' value: (cartId isInteger) ) to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+server stopListening.!
+
+server destroy!
+
+|server|
+
+server := (TusLibrosServerController listeningOn: 8082).
+server startListening.
+!
+
+|server books clients salesBook tusLibrosService cartId |
+
+"server := (TusLibrosServerController listeningOn: 8082).
+server startListening.
+server stopListening.
+server destroy.
+"
+	
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3).
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	
+	tusLibrosService add: 2 toCart: cartId ofBook: '1'.
+	
+!
+
+
+|server books clients salesBook tusLibrosService cartId |
+
+"server := (TusLibrosServerController listeningOn: 8082).
+server startListening.
+server stopListening.
+server destroy.
+"
+	
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	
+	tusLibrosService add: 2 toCart: cartId ofBook: '1'.
+	
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:11:25' prior: 50837496!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.! !
+
+|server books clients salesBook tusLibrosService cartId |
+
+server := (TusLibrosServerController listeningOn: 8082).
+server startListening.
+!
+
+server stopListening.!
+
+server stopListening.!
+
+server stopListening.!
+
+server stopListening.!
+
+server stopListening.!
+
+
+|server books clients salesBook tusLibrosService cartId |
+
+server := (TusLibrosServerController listeningOn: 8082).
+server startListening.
+!
+
+server stopListening.
+server destroy.
+!
+
+server := (TusLibrosServerController listeningOn: 8082)!
+
+server startListening.!
+
+server destroy.!
+
+server initializeWith: 8082.!
+
+|server books clients salesBook tusLibrosService cartId |
+
+server := (TusLibrosServerController listeningOn: 8083).
+server startListening. !
+
+server stopListening.!
+
+server isRunning!
+!TusLibrosServerController methodsFor: 'as yet unclassified' stamp: 'mr 11/19/2019 15:19:02'!
+webServer
+
+	^ webServer.! !
+
+server webServer isRunning.!
+
+----SNAPSHOT----(19 November 2019 15:19:35) CuisUniversity-3958.image priorSource: 16189238!
+
+----QUIT----(19 November 2019 15:19:38) CuisUniversity-3958.image priorSource: 16196121!
+
+----STARTUP---- (19 November 2019 15:19:44) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3958.image!
+
+
+server connections.!
+
+server webServer connections.!
+
+server webServer listenerPort.!
+
+server webServer listenerProcess.!
+
+server webServer listenerSocket.!
+
+----SNAPSHOT----(19 November 2019 15:26:58) CuisUniversity-3958.image priorSource: 16196215!
+
+----QUIT----(19 November 2019 15:27:01) CuisUniversity-3958.image priorSource: 16196583!
+
+----STARTUP---- (19 November 2019 15:27:15) as /home/drenteria/Documentos/isI/isw1/linux64/CuisUniversity-3958.image!
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:30:14' prior: 50837646!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+| server2 |
+
+server2 := (TusLibrosServerController listeningOn: 8084).
+server2 startListening .
+server2 webServer listenerPort.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:32:47' prior: 50837257!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 15:33:03' prior: 50836905!
+addListCartService
+
+	| cartId list |
+	
+	webServer addService: '/listCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		
+		[
+			list := tusLibrosService listCart: cartId.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'list' value: list) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+----SNAPSHOT----(19 November 2019 15:33:32) CuisUniversity-3958.image priorSource: 16196677!
+
+server2 stopListening!
+
+server2 stopListening!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8084).
+server3 startListening .
+server3 webServer listenerPort.
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.!
+
+TusLibrosServerController allInstances!
+
+
+TusLibrosServerController allInstances do: [:anInstance| anInstance stopListening.
+																	anInstance destroy]!
+
+TusLibrosServerController allInstances!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.!
+
+	| books clients salesBook cartId tusLibrosService |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: '032020'
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:01:29' prior: 50837319!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ Month month: monthNumber year: yearNumber.
+									
+	
+! !
+
+	| books clients salesBook cartId tusLibrosService |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: '032020'
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.
+!
+
+| books clients salesBook cartId tusLibrosService expirationDate |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	expirationDate := Month month: ('032020' asNumber // 10000) year: ('032020' asNumber \\ 10000).
+	
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: expirationDate
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.
+!
+
+	| books clients salesBook cartId tusLibrosService expirationDate |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: CashierTest new
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	expirationDate := Month month: ('032020' asNumber // 10000) year: ('032020' asNumber \\ 10000).
+	
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: expirationDate
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.
+!
+
+| books clients salesBook cartId tusLibrosService expirationDate |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: TusLibrosServerController new
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	expirationDate := Month month: ('032020' asNumber // 10000) year: ('032020' asNumber \\ 10000).
+	
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: expirationDate
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.
+!
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:09:37' prior: 50837935!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ Month month: monthNumber year: yearNumber.
+									
+	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:09:41' prior: 50838089!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ Month month: monthNumber year: yearNumber.
+									
+	
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:10:31' prior: 50837833!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		"ticket := self ticketFor: sale."
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:11:23' prior: 50838135!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:12:39' prior: 50837408!
+productsFor: aSale
+
+	| products |
+
+	products := Dictionary new.
+	
+	aSale forEachItemDo: [ :anItem |
+		products at: anItem ifPresent: [ :aDictionary | | previousQuantity |
+			previousQuantity := aDictionary at: 'quantity'.
+			aDictionary at: 'quantity' put: previousQuantity + 1.
+		 ]
+						         ifAbsent: [ | newDictionary |
+			newDictionary := Dictionary new add: (Association key: 'quantity' value: 1);
+												    add: (Association key: 'unitaryPrice' value: (aSale priceFor: anItem)); yourself.
+			products at: anItem put: newDictionary ].
+	].	
+
+	^ products.! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+
+	| books clients salesBook cartId tusLibrosService expirationDate |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: TusLibrosServerController new
+												 withClock: DateAndTime .
+												
+	cartId := tusLibrosService createCartForClient: 'Melissa' withPassword: 'incorrecta'.
+	tusLibrosService add: 1 toCart: cartId ofBook: '1'.
+	expirationDate := Month month: ('032020' asNumber // 10000) year: ('032020' asNumber \\ 10000).
+	
+	sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: '1111222233334444'
+															    withExpiration: expirationDate
+															    withOwner: 'Melissa Morgana'
+															    on: DateAndTime now.
+!
+
+cart items!
+
+cart priceFor: '1'!
+
+self total!
+
+TusLibrosServerController new ticketFor: self!
+
+TusLibrosServerController new ticketFor: self.!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:16:57' prior: 50837429!
+ticketFor: aSale
+
+	| ticket |
+
+	ticket := Dictionary new.
+	ticket add: (Association key: 'total' value: aSale total).
+	ticket add: (Association key: 'products' value: (self productsFor: aSale)).
+	
+	^ ticket.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:25:01'!
+addListPurchasesService
+
+	| cartId listPurchases purchases |
+	
+	webServer addService: '/listPurchases' action:[:request | |clientId password |		
+		[
+		clientId := (request fields at:'clientId').
+		password := (request fields at:'password').
+		
+		[
+			listPurchases := tusLibrosService listPurchasesOf: clientId withPassword: password.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request.
+		].
+		self purchasesFor: listPurchases.
+		self sendOkResponseWith: (Association key: 'purchases' value: purchases) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:27:35'!
+purchasesFor: listPurchases.
+
+		
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:30:01' prior: 50838326!
+purchasesFor: listPurchases.
+! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:31:04' prior: 50838331!
+purchasesFor: listPurchases| purchases |
+.
+
+	purchases := Dictionary new.
+	
+	purchases
+	
+	^ purchases.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:32:31' prior: 50838336!
+purchasesFor: listPurchases
+
+	| purchases |
+
+	purchases := Dictionary new.
+	
+	purchases add: (Association key: 'total' value: listPurchases total).
+	purchases add: (Association key: 'booksPurchased' value: listPurchases purchases).
+	
+	^ purchases.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:34:45' prior: 50837726!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: 1); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.! !
+
+!methodRemoval: TusLibrosServerController #webServer stamp: 'mr 11/19/2019 16:37:21'!
+webServer
+
+	^ webServer.!
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+server3 webServer listenerPort.
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:39:34' prior: 50838302!
+addListPurchasesService
+
+	| listPurchases purchases |
+	
+	webServer addService: '/listPurchases' action:[:request | |clientId password |		
+		[
+		clientId := (request fields at:'clientId').
+		password := (request fields at:'password').
+		
+		[
+			listPurchases := tusLibrosService listPurchasesOf: clientId withPassword: password.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request.
+		].
+		purchases := self purchasesFor: listPurchases.
+		self sendOkResponseWith: (Association key: 'purchases' value: purchases) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8085).
+server3 startListening .
+
+!
+
+----SNAPSHOT----(19 November 2019 16:40:40) CuisUniversity-3958.image priorSource: 16199449!
+
+----QUIT----(19 November 2019 16:41:40) CuisUniversity-3958.image priorSource: 16217105!
