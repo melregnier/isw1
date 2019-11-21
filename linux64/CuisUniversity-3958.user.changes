@@ -28700,3 +28700,520 @@ server3 startListening .
 ----SNAPSHOT----(19 November 2019 16:40:40) CuisUniversity-3958.image priorSource: 16199449!
 
 ----QUIT----(19 November 2019 16:41:40) CuisUniversity-3958.image priorSource: 16217105!
+
+----STARTUP---- (20 November 2019 16:07:47) as /home/mregnier/isw1/linux64/CuisUniversity-3958.image!
+
+
+----End fileIn of /home/mregnier/Escritorio/PortfolioTreePrinter-Solucion.st----!
+
+----SNAPSHOT----(20 November 2019 17:29:09) CuisUniversity-3958.image priorSource: 16217199!
+
+----QUIT----(20 November 2019 17:29:12) CuisUniversity-3958.image priorSource: 16277722!
+
+----STARTUP---- (21 November 2019 18:39:52) as /home/mregnier/isw1/linux64/CuisUniversity-3958.image!
+
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening .!
+!TusLibrosService methodsFor: 'nil' stamp: 'dr 11/21/2019 19:44:35'!
+catalog
+
+
+	^ catalog.! !
+
+Object subclass: #BookInfo
+	instanceVariableNames: 'title author price'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #BookInfo category: #TusLibros stamp: 'dr 11/21/2019 20:10:58'!
+Object subclass: #BookInfo
+	instanceVariableNames: 'title author price'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!BookInfo methodsFor: 'no messages' stamp: 'dr 11/21/2019 20:11:15'!
+price
+
+	^ price.! !
+!BookInfo methodsFor: 'as yet unclassified' stamp: 'dr 11/21/2019 20:11:24'!
+title
+
+	^ title.! !
+!BookInfo methodsFor: 'as yet unclassified' stamp: 'dr 11/21/2019 20:11:34'!
+author
+
+	^ author.! !
+!BookInfo class methodsFor: 'no messages' stamp: 'dr 11/21/2019 20:18:39'!
+withTitle: aTitle by: anAuthor costing: aPrice
+
+	^ self new initializeWithTitle: aTitle by: anAuthor costing: aPrice.! !
+!BookInfo methodsFor: 'nil' stamp: 'dr 11/21/2019 20:19:22'!
+initializeWithTitle: aTitle by: anAuthor costing: aPrice.
+
+	title := aTitle.
+	author := anAuthor.
+	price := aPrice.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/21/2019 20:20:03'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/21/2019 20:20:16'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/21/2019 20:20:19'!
+PASSED!
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'dr 11/21/2019 20:20:56' prior: 50836745!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStoreInfo;
+		yourself ! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'dr 11/21/2019 20:21:51'!
+itemSellByTheStoreInfo
+
+	^ BookInfo withTitle: 'Little Women' by: 'Louisa May Alcott' costing: 1 ! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'dr 11/21/2019 20:22:17' prior: 50840454!
+itemSellByTheStoreInfo
+
+	^ BookInfo withTitle: 'Little Women' by: 'Louisa May Alcott' costing: 10 ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/21/2019 20:22:55'!
+PASSED!
+!Cart methodsFor: 'total' stamp: 'dr 11/21/2019 20:24:06' prior: 50836383!
+total
+
+	^ items sum: [ :anItem | (catalog at: anItem) price]! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/21/2019 20:24:12'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/21/2019 20:24:18'!
+PASSED!
+!Cart methodsFor: 'queries' stamp: 'dr 11/21/2019 20:25:40' prior: 50837441!
+priceFor: anItem
+
+	^ (catalog at: anItem) price. ! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/21/2019 20:25:45'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'dr 11/21/2019 20:25:49'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test12CannotListTimedOutCart stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/21/2019 20:25:59'!
+PASSED!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/21/2019 20:28:23' prior: 50838363!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: 2);
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/21/2019 20:28:36' prior: 50840671!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 2));
+								    add: (Association key: '3' value: 3); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/21/2019 20:29:39' prior: 50840701!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
+								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:35:13'!
+addCatalogService
+
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:36:23' prior: 50840774!
+addCatalogService
+
+	| catalog |
+	
+	webServer addService: '/catalog' action: [ :request |
+		[
+		[
+			catalog := tusLibrosService catalog.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:37:24' prior: 50840779!
+addCatalogService
+
+	| catalog catalogJson |
+	
+	webServer addService: '/catalog' action: [ :request |
+		[
+		[
+			catalog := tusLibrosService catalog.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		catalogJson := self catalogFor: catalog.
+		self sendOkResponseWith: (Association key: 'catalog' value: catalogJson) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+
+	! !
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'dr 11/21/2019 20:44:47'!
+catalogFor: aCatalog
+
+	| catalog |
+
+	catalog := Dictionary new.
+	
+	aCatalog keysAndValuesDo: [ :isbn :bookInfo | | bookInfoAsDictionary |
+		bookInfoAsDictionary := Dictionary new.
+		bookInfoAsDictionary at: 'price' put: bookInfo price.
+		bookInfoAsDictionary at: 'author' put: bookInfo author.
+		bookInfoAsDictionary at: 'title' put: bookInfo title.
+			
+		catalog at: isbn put: bookInfoAsDictionary.
+	].	
+
+	^ catalog.! !
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'dr 11/21/2019 20:44:51' prior: 50840814!
+catalogFor: aCatalog
+
+	| catalog |
+
+	catalog := Dictionary new.
+	
+	aCatalog keysAndValuesDo: [ :isbn :bookInfo | | bookInfoAsDictionary |
+		bookInfoAsDictionary := Dictionary new.
+		bookInfoAsDictionary at: 'price' put: bookInfo price.
+		bookInfoAsDictionary at: 'author' put: bookInfo author.
+		bookInfoAsDictionary at: 'title' put: bookInfo title.
+			
+		catalog at: isbn put: bookInfoAsDictionary.
+	].
+
+	^ catalog.! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:45:49' prior: 50840796!
+addCatalogService
+
+	| catalog catalogResponse |
+	
+	webServer addService: '/catalog' action: [ :request |
+		[
+		[
+			catalog := tusLibrosService catalog.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		catalogResponse := self catalogFor: catalog.
+		self sendOkResponseWith: (Association key: 'catalog' value: catalogResponse) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/21/2019 20:46:03' prior: 50840734!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
+								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----SNAPSHOT----(21 November 2019 20:47:54) CuisUniversity-3958.image priorSource: 16277816!
+
+----QUIT----(21 November 2019 20:48:00) CuisUniversity-3958.image priorSource: 16296208!

@@ -1,0 +1,19 @@
+1)
+
+Object recursion
+
+
+
+ej:
+diccionario y parsearlo
+
+
+2)
+
+method object and double dispatch
+
+
+El patrón visitor suele utilizarse cuando se deben realizar un conjunto de operaciones sobre una jerarquía de clases de manera tal que la interfaz de cada una de ellas difiere y la implementación de las operaciones depende de cada clase concreta. Además, no se desea contaminar cada una de las clases con un mensaje específico para cada operación. De esta forma, cada clase que se desee visitar debe implementar un mensaje "accept: aVisitor" en el cual se envia al aVisitor el mensaje "visitNameOfClass: self" donde NameOfClass es el nombre de la clase que envía el mensaje. Esto hace que dicha clase sea independiente del comportamiento específico de cada visitor que se defina.
+
+
+ Agregar nuevas clases a la jerarquía a visitar
