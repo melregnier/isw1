@@ -6,7 +6,7 @@ Object recursion
 
 ej:
 diccionario y parsearlo
-
+----- fijarse si se nos ocurre otro ejemplo-------
 
 2)
 
@@ -17,3 +17,41 @@ El patrón visitor suele utilizarse cuando se deben realizar un conjunto de oper
 
 
  Agregar nuevas clases a la jerarquía a visitar
+
+
+3)
+Indiquen en pocas palabras cuál es la principal diferencia entre Object Recursion Pattern y los otros patterns que vieron durante las clases (no más de 10 palabras) ¿Encuentran alguna relación entre ObjectRecursion Pattern y la técnica algorítmica D&C (Divide and Conquer)?
+
+Se trata de un patrón de comportamiento (algorítmico) en vez de un patrón estructural (es decir, de estructura de datos). (en menos de 10 palabras: patrón de comportamiento no de estructura de datos)
+
+El patrón de ObjectRecursion y la técnica algorítmica de D&C se basan ambas en la idea de separar el problema original en subproblemas más pequeños a los cuales se les aplica el mismo algoritmo (generando así la recursión); cuando el problema es lo suficientemente fácil, se resuelve.
+
+
+Describan la que consideran que es la razón, o las razones, para incluir preHandleRequest() y postHandleRequest() en el Recurser. ¿Porqué no son necesarios en Terminator?
+
+Como Terminator sabe cómo realizar el request de manera directa sin tener que consultar a sucesores no necesita realizar algo previo ni algo posterior al handleo del request. Sin embargo, el Recurser no puede responder de manera directa al mensaje handleRequest() si no que debe enviarle el mismo pedido a todos sus sucesores. Esto puede requerir o no realizar previamente un preHandleRequest() y posteriormente un postHandleRequest() para determinar su respuesta en base a la de sus sucesores. Por ejemplo, en el caso de expresiones booleanas, una expresión booleana puede estar compuesta por otras expresiones booleanas. Al momento de evaluarse, una expresión debe saber primero el valor de sus expresiones contenidas antes de aplicar los conectores que unen dichas expresiones para poder determinar su propio valor (esto sería el postHandleRequest()).
+
+--- pre ----
+
+4)
+¿Por qué el uso de patrones llevó a Pat a cuestionar si su código era "bueno" realmente?
+
+El uso y abuso de patrones que predicaba Pat para otras empresas llegó a tal punto que el mínimo cambio en un sistema resultaba complejo y difícil de realizar, incluso requiriendo la utilización de aún más patrones. Esto lleva a Pat a cuestionarse en qué proporción el uso de patrones suponía que el código mejorase. No sólo eso, sino también el descubrimiento de problemas que no pueden ser resueltos con patrones lo lleva a reevaluar la fe ciega en la necesidad de aplicar todos los patrones posibles en un diseño.
+
+¿Qué metodología aconsejamos, durante las clases, para que no pase lo que le pasó a Pat?
+
+Realizar la solución sin pensar qué patrón es el que aplica en este caso, si no dejar que el patrón surja naturalmente a partir del código desarrollado con el fin de cumplir las funcionalidades pedidas. Es decir, no forzar un patrón sólo por el simple hecho de que el diseño tenga algún patrón aplicado.
+
+¿Es posible tener código repetido? ¿Por qué?
+
+Es posible tener código repetido en aquellas ocasiones en las que quitar dicho código repetido resultaría en una complejización del diseño que supondría una ilegibilidad del código innecesaria. 
+
+
+
+
+
+
+
+
+
+
