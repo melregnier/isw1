@@ -1,60 +1,69 @@
-const fetchCatalog = () => {
-  const [details, setDetails] = React.useState([])
-  const [loading, setLoading] = React.useState(false)
-  const [error, setError] = React.useState(null)
 
-  React.useEffect(() => {
-    setLoading(true)
-    setError(null)
 
-    let details = {}
+class CatalogView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      clientId: '',
+      cartId: '',
+      catalog: {},
+      loading: true
+    };
+  }
 
+  componentDidMount() {
     getLocalAsJson(`catalog`)
       .then(function (response) {
-        return response.json()
-      })
-      .then(function (json) {
-        
-
-        setLoading(false)
-        
+        this.state.catalog = response.json();
+        this.state.loading = false
       })
       .catch(err => {
         setError(err)
-        setLoading(false)
+        this.state.loading = false
       })
-  }, [substring])
+  }
 
-  return { details, loading, error }
-}
-
-
-function CatalogView(props) {
-
-  const { router, clientId } = props
-  const classes = useStyles();
-
-  return (
-    <div>
-      <Typography component="h1" gutterBottom>
-          Catálogo
+  render() {
+    /*const {loading, clientId, cartId} = this.state;
+    return (
+      <div>
+      {loading && <div> <Typography component="h1" gutterBottom>
+          Loading...
           </Typography>
-      <List component="nav" className={classes.rootList} aria-label="Catálogo">
-        {
-          substrings.map((substring, ix) => {
-            return (
-              <ListItem
-                button
-                key={ix}
-                onClick={() => router.navigate('/details', { selectedSubstring: substring })}>
-                <ListItemText primary={substring} />
-              </ListItem>
-            )
-          })
-        }
-      </List>
-    </div>
-  )
-}
+          <CircularProgress />
+        </div>
+      }
+      {!loading }
+      </div>
+      );
+    }*/
+    if (this.state.loading) {
+      return (
+        <div>
+          <Typography component="h1" gutterBottom>
+          Loading...
+          </Typography>
+          
 
+
+
+
+
+
+          <CircularProgress />
+        </div>
+    )
+    } else {
+      return(
+        <div>
+          <Typography component="h1" gutterBottom>
+          Catálogo:
+            </Typography>
+            <CircularProgress />
+        </div>
+      )
+    }
+
+  }
+}
 

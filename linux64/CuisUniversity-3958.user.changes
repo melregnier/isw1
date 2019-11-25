@@ -29217,3 +29217,484 @@ server3 startListening .
 ----SNAPSHOT----(21 November 2019 20:47:54) CuisUniversity-3958.image priorSource: 16277816!
 
 ----QUIT----(21 November 2019 20:48:00) CuisUniversity-3958.image priorSource: 16296208!
+
+----STARTUP---- (25 November 2019 14:36:35) as /home/mregnier/isw1/linux64/CuisUniversity-3958.image!
+
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:37:25'!
+test20RemoveBookFromValidCartDecreasesQuantityInList
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	tusLibrosService add: 2 toCart: cartId ofBook: store itemSellByTheStore.
+	
+	tusLibrosService removeBook: store itemSellByTheStore fromCart: cartId.
+	
+	self assert: (tusLibrosService listCart: cartId) equals: store itemSellByTheStorePrice.! !
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:38:56' prior: 50840916!
+test20RemoveBookFromValidCartDecreasesQuantityInList
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	tusLibrosService add: 2 toCart: cartId ofBook: store itemSellByTheStore.
+	
+	tusLibrosService removeBook: store itemSellByTheStore fromCart: cartId.
+	
+	self assert: ((tusLibrosService listCart: cartId) at: store itemSellByTheStore) equals: 1.! !
+
+!testRun: #TusLibrosServiceTest #test20RemoveBookFromValidCartDecreasesQuantityInList stamp: 'dr 11/25/2019 15:39:02'!
+ERROR!
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:39:21'!
+removeBook: aString fromCart: aSmallInteger 
+	self shouldBeImplemented.! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:40:07' prior: 50840956!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+	cartSession := self cartSessionOf: aCart.
+	
+	
+	! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:41:08' prior: 50840962!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession cart.
+	
+	
+	! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:41:51' prior: 50840969!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession cart removeOneItemOf: aBook.
+	
+	
+	
+	! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:42:02' prior: 50840976!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession cart removeOneItemOf: aBook.
+	
+	! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:42:30' prior: 50840984!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession removeOneBookOf: aBook.
+	
+	! !
+!CartSession methodsFor: 'nil' stamp: 'dr 11/25/2019 15:43:04'!
+removeOneBookOf: aBook
+
+	cart removeOneItemOf: aBook.! !
+!Cart methodsFor: 'nil' stamp: 'dr 11/25/2019 15:43:46'!
+removeOneItemOf: anItem
+
+	items remove: anItem.! !
+!Cart methodsFor: 'queries' stamp: 'dr 11/25/2019 15:45:12' prior: 50841003!
+removeOneItemOf: anItem
+
+	items remove: anItem.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'dr 11/25/2019 15:46:59'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'dr 11/25/2019 15:46:59'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'dr 11/25/2019 15:46:59'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'dr 11/25/2019 15:46:59'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'dr 11/25/2019 15:47:00'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'dr 11/25/2019 15:47:00'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'dr 11/25/2019 15:47:00'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'dr 11/25/2019 15:47:00'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test12CannotListTimedOutCart stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/25/2019 15:47:09'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test20RemoveBookFromValidCartDecreasesQuantityInList stamp: 'dr 11/25/2019 15:47:10'!
+PASSED!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:50:26'!
+test21RemoveBookFromValidCartUpdatesTheAS
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	self should: [ tusLibrosService removeBook: store itemNotSellByTheStore fromCart: cartId. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: tusLibrosService 
+	! !
+
+!testRun: #TusLibrosServiceTest #test21RemoveBookFromValidCartUpdatesTheAS stamp: 'dr 11/25/2019 15:50:26'!
+FAILURE!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:50:52'!
+test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	self should: [ tusLibrosService removeBook: store itemNotSellByTheStore fromCart: cartId. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: tusLibrosService 
+	! !
+
+!methodRemoval: TusLibrosServiceTest #test21RemoveBookFromValidCartUpdatesTheAS stamp: 'dr 11/25/2019 15:50:52'!
+test21RemoveBookFromValidCartUpdatesTheAS
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	self should: [ tusLibrosService removeBook: store itemNotSellByTheStore fromCart: cartId. ]
+		  raise: Error - MessageNotUnderstood
+		 withMessageText: tusLibrosService 
+	!
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:52:55' prior: 50841137!
+test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 1.
+	
+	tusLibrosService removeBook: store itemSellByTheStore fromCart: cartId.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (tusLibrosService listCart: cartId) isEmpty.! !
+
+!testRun: #TusLibrosServiceTest #test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:53:03'!
+ERROR!
+
+!testRun: #TusLibrosServiceTest #test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:53:03'!
+ERROR!
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:53:35' prior: 50840992!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+
+
+	
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession removeOneBookOf: aBook.
+	
+	! !
+!TusLibrosService methodsFor: 'removing' stamp: 'dr 11/25/2019 15:54:17' prior: 50841199!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+	
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession removeOneBookOf: aBook.
+	
+	self updateAccessOf: cartSession.
+	
+	! !
+
+!testRun: #TusLibrosServiceTest #test01EmptyCartCreatedWithValidUserAndValidPasswordReturnsAnIdOfEmptyCart stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test02CreateCartWithInvalidUserRaisesInvalidUserError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test03CreateCartWithInvalidPasswordRaisesInvalidPasswordError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test04AddAQuantityOfABookToAnExistentCartShowsTheBooksWhenListed stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test05AddAQuantityOfABookToAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test06ListAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test07CheckOutAnInexistentCartRaisesCartInexistentError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test08CheckOutAnExistentCartRegistersTotalInSale stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test09CheckOutAnExistentCartRegistersCartInSale stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test10CannotInteractWithCheckedOutCart stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test11CannotAddItemsToTimedOutCart stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test12CannotListTimedOutCart stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test13CannotCheckOutTimedOutCart stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test14AddItemsToCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test15ListCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test16ListPurchasesOfAnInexistentClientRaisesError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test17ListPurchasesOfAValidClientWithAnInvalidPasswordRaisesError stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test18ListPurchasesOfAValidClientWithNoPurchasesReturnsTotalZeroAndEmptyPurchases stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test20RemoveBookFromValidCartDecreasesQuantityInList stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+
+!testRun: #TusLibrosServiceTest #test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession stamp: 'dr 11/25/2019 15:55:22'!
+PASSED!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/25/2019 15:57:40'!
+addRemoveBookFromCartService
+
+	| cartId bookIsbn |
+	
+	webServer addService: '/removeBook' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		
+		[
+			tusLibrosService removeBook: bookIsbn fromCart: cartId.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 15:58:00' prior: 50840867!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
+								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 15:59:00' prior: 50841323!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
+								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 15:59:31' prior: 50836970!
+port
+	
+	^port ifNil: [port:=8080].
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 16:04:59' prior: 50841358!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
+								   add: (Association key: 'admin' value: 'admin'); yourself.
+	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
+								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
+								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----SNAPSHOT----(25 November 2019 16:56:32) CuisUniversity-3958.image priorSource: 16296302!
+
+----QUIT----(25 November 2019 16:56:36) CuisUniversity-3958.image priorSource: 16313635!
+
+----STARTUP---- (25 November 2019 17:11:45) as /home/mregnier/isw1/linux64/CuisUniversity-3958.image!
+
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].!
+
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----QUIT----(25 November 2019 18:55:30) CuisUniversity-3958.image priorSource: 16313729!

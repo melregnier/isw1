@@ -21,4 +21,5 @@ const {
   ThemeProvider,
   Toolbar,
   Typography,
+  CircularProgress,
 } = MaterialUI;

@@ -5,8 +5,8 @@ Object recursion
 
 
 ej:
-diccionario y parsearlo
------ fijarse si se nos ocurre otro ejemplo-------
+Un sistema de reproducción en el cual puedas tener playlists y canciones. En este sistema en particular, también está permitido que las playlists contengan otras playlists, no sólo canciones, permitiendo combinar tus canciones de la manera que más te guste. Los elementos del árbol entonces pueden ser playlists o canciones. Las canciones son las leaves, las playlists son los composites y ElementoDeReproducción sería el component (superclase que los contiene). De esta forma, yo le puedo decir tanto a una canción como a una playlist que se reproduzca (el mensaje sería "play"). En el caso de la canción, sólo debe reproducirse a sí misma, mientras que en el caso de las playlists debe decirle a cada uno de los elementos de reproducción que contiene que se reproduzca. 
+
 
 2)
 
@@ -29,9 +29,8 @@ El patrón de ObjectRecursion y la técnica algorítmica de D&C se basan ambas e
 
 Describan la que consideran que es la razón, o las razones, para incluir preHandleRequest() y postHandleRequest() en el Recurser. ¿Porqué no son necesarios en Terminator?
 
-Como Terminator sabe cómo realizar el request de manera directa sin tener que consultar a sucesores no necesita realizar algo previo ni algo posterior al handleo del request. Sin embargo, el Recurser no puede responder de manera directa al mensaje handleRequest() si no que debe enviarle el mismo pedido a todos sus sucesores. Esto puede requerir o no realizar previamente un preHandleRequest() y posteriormente un postHandleRequest() para determinar su respuesta en base a la de sus sucesores. Por ejemplo, en el caso de expresiones booleanas, una expresión booleana puede estar compuesta por otras expresiones booleanas. Al momento de evaluarse, una expresión debe saber primero el valor de sus expresiones contenidas antes de aplicar los conectores que unen dichas expresiones para poder determinar su propio valor (esto sería el postHandleRequest()).
+Como Terminator sabe cómo realizar el request de manera directa sin tener que consultar a sucesores no necesita realizar algo previo ni algo posterior al handleo del request. Sin embargo, el Recurser no puede responder de manera directa al mensaje handleRequest() si no que debe enviarle el mismo pedido a todos sus sucesores. Esto puede requerir o no realizar previamente un preHandleRequest() y posteriormente un postHandleRequest() para determinar su respuesta en base a la de sus sucesores. Por ejemplo, en el caso de expresiones booleanas, una expresión booleana puede estar compuesta por otras expresiones booleanas. Al momento de evaluarse, una expresión debe saber primero el valor de sus expresiones contenidas antes de aplicar los conectores que unen dichas expresiones para poder determinar su propio valor (esto sería el postHandleRequest()). A su vez, podría querer otorgar determinado orden a los sucesores antes de enviarles el mensaje correspondiente (preHandleRequest()).
 
---- pre ----
 
 4)
 ¿Por qué el uso de patrones llevó a Pat a cuestionar si su código era "bueno" realmente?
