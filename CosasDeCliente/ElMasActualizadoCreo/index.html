@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Substrings Finder</title>
+
+  <!-- Fonts to support Material Design -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+  <!-- Icons to support Material Design -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script src="./lib/react.development.js" crossorigin="anonymous"></script>
+  <script src="./lib/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="./lib/material-ui.development.js" crossorigin="anonymous"></script>
+  <script src="./lib/babel.min.js" crossorigin="anonymous"></script>
+  <script src="./src/refreshbrowser.js" crossorigin="anonymous"></script>
+
+  <!-- Libraries fallback -->
+  <script>window.React || document.write('<script src="https://unpkg.com/react@16.11.0/umd/react.development.js">\x3C/script>')</script>
+  <script>window.ReactDOM || document.write('<script src="https://unpkg.com/react-dom@16.11.0/umd/react-dom.development.js">\x3C/script>')</script>
+  <script>window.MaterialUI || document.write('<script src="https://unpkg.com/@material-ui/core@4.6.1/umd/material-ui.development.js">\x3C/script>')</script>
+  <script>window.Babel || document.write('<script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js">\x3C/script>')</script>
+  <!-- end fallback -->
+
+  <script type="text/babel" type="module">
+    const {
+      // theme, styles
+      colors,
+      createMuiTheme,
+      makeStyles,
+      withStyles,
+      // components
+      AppBar,
+      Button,
+      Container,
+      CssBaseline,
+      Icon,
+      IconButton,
+      InputAdornment,
+      InputLabel,
+      FormControl,
+      Link,
+      List,
+      ListItem,
+      ListItemIcon,
+      ListItemText,
+      OutlinedInput,
+      TextField,
+      ThemeProvider,
+      Toolbar,
+      Typography,
+    } = MaterialUI;
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          main: '#556cd6',
+        },
+        secondary: {
+          main: '#19857b',
+        },
+        error: {
+          main: colors.red.A400,
+        },
+        background: {
+          default: '#fff',
+          paper: '#f5f5f5',
+        },
+      },
+    });
+    
+    const styles = theme => ({
+      root: {
+        margin: theme.spacing(6, 0, 3),
+      },
+      lightBulb: {
+        verticalAlign: 'middle',
+        // marginRight: theme.spacing(1),
+      },
+      rootToolBar: {
+        flexGrow: 1,
+      },
+      menuButton: {
+        marginRight: theme.spacing(2),
+      },
+      textField: {
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
+      },
+      title: {
+        flexGrow: 1,
+      },
+      rootList: {
+        width: '100%',
+        backgroundColor: theme.palette.background.paper,
+        position: 'relative',
+        overflow: 'auto',
+        maxHeight: 300,
+      },
+      textFieldDetails: {
+        margin: theme.spacing(2),
+      }
+    })
+    
+    const useStyles = makeStyles(styles);
+
+    const getLocalAsJson = (path) => {
+      const port = 8086
+    
+      return fetch(`http://localhost:${port}/${path}`, {
+        method: "GET",
+        dataType: "JSON",
+        headers: {
+          "Access-Control-Request-Headers": "*"
+        }
+      })
+    }
+
+    function MyToolBar(props) {
+      const classes = useStyles();
+      const {title, router} = props;
+    
+      let menuButton = (
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          onClick={()=>router.navigate("/createCart", {
+            clientId: '',
+            cartId: '',})}
+          >
+          <Icon>home</Icon>
+        </IconButton>
+      )
+    
+      if (router.current() === "/listCartView") {
+        menuButton = (
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            onClick={()=>router.navigate("/list", {
+            selectedSubstring: "",})}
+          >
+            <Icon>keyboard_arrow_left</Icon>
+          </IconButton>
+        )
+      }
+    
+    
+    const cartButton = (
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          onClick={()=>router.navigate("/createCart", {
+            clientId: '',
+            cartId: '',})}
+          >
+          <Icon>shopping_cart</Icon>
+        </IconButton>
+      )
+    
+    let showCartButton = false
+    
+      if (router.current() === "/catalog") {
+        showCartButton = true
+      }
+    
+    
+    
+      return (
+        <div className={classes.rootToolBar}>
+          <AppBar position="static">
+            <Toolbar>
+              {menuButton}
+              <Typography variant="h6" className={classes.title}>
+                {title}
+              </Typography>
+              {/*<Button color="inherit">Login</Button>*/}
+              {showCartButton && cartButton}
+            </Toolbar>
+          </AppBar>
+        </div>
+      )
+    }
+    function CreateCartView(props) {
+      const { router } = props
+      const classes = useStyles();
+      let { isCatalogReady } = props
+      const [values, setValues] = React.useState({
+        user: '',
+        password: ''
+      });
+      const fetchCatalog = props => {
+      	let catalog = getLocalAsJson(`catalog`)
+      		.then(function(response){
+      			return response.json()
+      		})
+      		.then(function(json) {
+            console.log(json)
+            console.log("fetch")
+            isCatalogReady = true
+            console.log(props.isCatalogReady)
+            return json.catalog
+      		})
+      		.catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+        console.log(catalog)
+        console.log("afuerafetch")
+        return catalog
+      }
+    
+    
+      const handleChange = prop => event => {
+        setValues({ ...values, [prop]: event.target.value });
+      };
+      const handleSend = values => {
+        const user = values.user
+        getLocalAsJson(`createCart?clientId=${user}&password=${values.password}`)
+          .then(function (response) {
+            
+            return response.json()
+          })
+          .then(function (json) {
+              // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+              // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+            if (json.errorCode === 0) {
+              let catalog = fetchCatalog()
+              console.log(catalog)
+              console.log("handlesend")
+              router.navigate("/catalog", { clientId: user, cartId: json.cartId, catalog: catalog, isCatalogReady: isCatalogReady })
+            }
+            if (json.errorCode === 1) {
+              {alert('Datos Inválidos');}
+            }
+          })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+      }
+    
+      return (
+        <div>
+          <Typography component="h1" gutterBottom>
+              Ingrese su usuario y contraseña para crear un carrito.
+              </Typography>
+          <FormControl fullWidth className={classes.textField} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-amount">Usuario</InputLabel>
+            <OutlinedInput
+              id="outlined-adornment-amount"
+              value={values.user}
+              onChange={handleChange('user')}
+              labelWidth={60}
+            />
+          </FormControl>
+    
+          <FormControl fullWidth className={classes.textField} variant="outlined">
+            <InputLabel htmlFor="outlined-adornment-amount">Contraseña</InputLabel>
+            <OutlinedInput
+              type="password"
+              id="outlined-adornment-amount"
+              value={values.password}
+              onChange={handleChange('password')}
+              labelWidth={90}
+            />
+          </FormControl>
+    
+          <Button
+            color="primary"
+            onClick={() => handleSend(values)}>
+            Crear carrito
+              </Button>
+        </div>
+      )
+    }
+    
+    
+    
+    class CatalogView extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+    
+      render() {
+        const {
+          router,
+          clientId,
+          cartId,
+          catalog,
+          classes,
+          isCatalogReady
+        } = this.props
+    
+        console.log(catalog)
+        console.log("catalog view")
+    
+      //   const lista = <Typography component="h1" gutterBottom>
+      //   Encontramos los siguientes substrings:
+      //   </Typography>
+      // <List component="nav" aria-label="substrings">
+      //   {
+      //     catalog.map((substring, ix) => {
+      //       return (
+      //         <ListItem
+      //           button
+      //           key={ix}
+      //           onClick={() => router.navigate('/details', { selectedSubstring: substring })}>
+      //           <ListItemText primary={substring} />
+      //         </ListItem>
+      //       )
+      //     })
+      //   }
+      // </List>
+    
+        return (
+          <div>
+            {isCatalogReady && <h1> Ready </h1>}
+          </div>
+        )
+      }
+    }
+    /*
+    // Add style
+    const SubstringsView = withStyles(styles, {
+      withTheme: true
+    })(SubstringsComponent)
+    */    class StringInputComponent extends React.Component {
+      constructor(props) {
+        super(props)
+    
+        this.state = {
+          sentence: "",
+        }
+      }
+    
+      handleChange(event) {
+        this.setState({
+          sentence: event.target.value
+        })
+      };
+    
+      handleSend() {
+        const {
+          router,
+        } = this.props
+    
+        const {
+          sentence,
+        } = this.state
+    
+        getLocalAsJson(`substrings?sentence=${sentence}`)
+          .then(function (response) {
+            return response.json()
+          })
+          .then(function (json) {
+            router.navigate("/list", { substrings: json })
+          })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+      }
+    
+      render() {
+        const {
+          sentence,
+        } = this.state
+    
+        const {
+          classes,
+        } = this.props
+    
+        return (
+          <div>
+            <Typography component="h1" gutterBottom>
+              Ingrese un texto donde buscar subcadenas
+              </Typography>
+            <FormControl fullWidth className={classes.textField} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-amount">String</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={sentence}
+                onChange={(ev)=>this.handleChange(ev)}
+                startAdornment={<InputAdornment position="start">></InputAdornment>}
+                labelWidth={60}
+                multiline
+                rows="7"
+              />
+            </FormControl>
+    
+            <Button
+              color="inherit"
+              onClick={(ev)=>this.handleSend(ev)}>
+              Enviar
+          </Button>
+          </div>
+        )
+      }
+    }
+    
+    // Add style
+    const StringInputView = withStyles(styles, {
+      withTheme: true
+    })(StringInputComponent)
+    class SubstringsComponent extends React.Component {
+      constructor(props) {
+        super(props)
+      }
+    
+      render() {
+        const {
+          router,
+          substrings,
+          classes,
+        } = this.props
+    
+        return (
+          <div>
+            <Typography component="h1" gutterBottom>
+              Encontramos los siguientes substrings:
+              </Typography>
+            <List component="nav" className={classes.rootList} aria-label="substrings">
+              {
+                substrings.map((substring, ix) => {
+                  return (
+                    <ListItem
+                      button
+                      key={ix}
+                      onClick={() => router.navigate('/details', { selectedSubstring: substring })}>
+                      <ListItemText primary={substring} />
+                    </ListItem>
+                  )
+                })
+              }
+            </List>
+          </div>
+        )
+      }
+    }
+    
+    // Add style
+    const SubstringsView = withStyles(styles, {
+      withTheme: true
+    })(SubstringsComponent)
+    class SubstringDetailsComponent extends React.Component {
+      constructor(props) {
+        super(props)
+    
+        this.state = {
+          details: {},
+          loading: false,
+          error: null,
+        }
+      }
+    
+      componentDidMount() {
+        const substring = this.props.selectedSubstring
+    
+        this.setState({
+          loading: true,
+          error: null,
+        })
+    
+        let details = {}
+    
+        getLocalAsJson(`firstletter?word=${substring}`)
+          .then(function (response) {
+            return response.json()
+          })
+          .then(function (json) {
+            details["firstLetter"] = json
+            return getLocalAsJson(`touppercase?word=${substring}`)
+          })
+          .then(function (response) {
+            return response.json()
+          })
+          .then(function (json) {
+            details["uppercase"] = json
+            return getLocalAsJson(`vowels?word=${substring}`)
+          })
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function (json) {
+            details["vowels"] = json
+            return details
+          })
+          .then((details) => {
+            this.setState({
+              loading: false,
+              details: details
+            })
+          })
+          .catch(err => {
+            this.setState({
+              loading: false,
+              error: err,
+            })
+          })
+      }
+    
+      render() {
+        const {
+          // router,
+          selectedSubstring,
+          classes,
+        } = this.props
+    
+        const {
+          details,
+          loading,
+          error,
+        } = this.state
+    
+        if (loading) return <div>Loading...</div>
+        if (error) return <div>{error}</div>
+    
+        return (
+          <div>
+            <Typography variant="h4" component="h4" gutterBottom>
+              Detalles de <b>{selectedSubstring}</b>
+            </Typography>
+    
+            <TextField
+              id="outlined-read-only-input"
+              label="Primera letra"
+              defaultValue={details["firstLetter"]}
+              className={classes.textFieldDetails}
+              margin="normal"
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-read-only-input"
+              label="En mayúsculas"
+              defaultValue={details["uppercase"]}
+              className={classes.textFieldDetails}
+              margin="normal"
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="outlined"
+            />
+            <TextField
+              id="outlined-read-only-input"
+              label="Vocales"
+              defaultValue={details["vowels"]}
+              className={classes.textFieldDetails}
+              margin="normal"
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="outlined"
+            />
+          </div>
+        )
+      }
+    }
+    
+    // Add style
+    const SubstringDetailsView = withStyles(styles, {
+      withTheme: true
+    })(SubstringDetailsComponent)
+    class App extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = {
+          path: "/createCart",
+          clientId: '',
+          cartId: '',
+          catalog: {},
+          isCatalogReady: false
+        };
+      }
+    
+      render() {
+        let title = "Tus Libros"
+        let content = "Where am I?"
+        const router = {
+          current: () => this.state.path,
+          navigate: (path, state) => {
+            // http://es6-features.org/#SpreadOperator
+            this.setState({ ...state, path: path })
+          }
+        }
+    
+        if (this.state.path === "/createCart") {
+          content = (<CreateCartView
+            router={router}
+            isCatalogReady={this.state.isCatalogReady}
+          />)
+        } else if (this.state.path === "/catalog") {
+          content = (<CatalogView
+            router={router}
+            clientId={this.state.clientId}
+            cartId={this.state.cartId}
+          />)
+        } else if (this.state.path === "/details") {
+          content = (<SubstringDetailsView
+            router={router}
+            selectedSubstring={this.state.selectedSubstring}
+          />)
+        }
+        return (
+          <div>
+            <MyToolBar
+              title={title}
+              router={router}
+            />
+            <Container maxWidth="sm">
+              <div style={{ marginTop: 24, }}>
+                {content}
+              </div>
+            </Container>
+          </div>
+        );
+      }
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // Initial render
+    //
+    ReactDOM.render(
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>,
+      document.getElementById('root')
+    )
+  </script>
+
+  <!-- <button onclick="window.location.reload(true)">reload</button> -->
+</body>
+
+</html>
