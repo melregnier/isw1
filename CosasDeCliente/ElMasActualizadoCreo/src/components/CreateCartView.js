@@ -6,26 +6,6 @@ function CreateCartView(props) {
     user: '',
     password: ''
   });
-  const fetchCatalog = props => {
-  	let catalog = getLocalAsJson(`catalog`)
-  		.then(function(response){
-  			return response.json()
-  		})
-  		.then(function(json) {
-        console.log(json)
-        console.log("fetch")
-        isCatalogReady = true
-        console.log(props.isCatalogReady)
-        return json.catalog
-  		})
-  		.catch(function (error) {
-        console.log('Looks like there was a problem: \n', error);
-      });
-    console.log(catalog)
-    console.log("afuerafetch")
-    return catalog
-  }
-
 
   const handleChange = prop => event => {
     setValues({ ...values, [prop]: event.target.value });
@@ -41,10 +21,7 @@ function CreateCartView(props) {
           // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
           // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
         if (json.errorCode === 0) {
-          let catalog = fetchCatalog()
-          console.log(catalog)
-          console.log("handlesend")
-          router.navigate("/catalog", { clientId: user, cartId: json.cartId, catalog: catalog, isCatalogReady: isCatalogReady })
+          router.navigate("/catalog", { clientId: user, cartId: json.cartId })
         }
         if (json.errorCode === 1) {
           {alert('Datos Inválidos');}

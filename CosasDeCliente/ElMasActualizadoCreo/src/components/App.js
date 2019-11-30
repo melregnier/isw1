@@ -37,12 +37,20 @@ class App extends React.Component {
         router={router}
         selectedSubstring={this.state.selectedSubstring}
       />)
+    } else if (this.state.path === "/cart") {
+      content = (<CartView 
+        router={router}
+        clientId={this.state.clientId}
+        cartId={this.state.cartId}
+      />)
     }
     return (
       <div>
         <MyToolBar
           title={title}
           router={router}
+          clientId={this.state.clientId}
+          cartId={this.state.cartId}
         />
         <Container maxWidth="sm">
           <div style={{ marginTop: 24, }}>

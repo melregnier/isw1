@@ -1,8 +1,21 @@
 function MyToolBar(props) {
   const classes = useStyles();
-  const {title, router} = props;
+  const {title, router, clientId, cartId} = props;
 
   let menuButton = (
+    <IconButton
+      edge="start"
+      className={classes.menuButton}
+      color="inherit"
+      onClick={()=>router.navigate("/catalog", {
+        clientId: clientId,
+        cartId: cartId})}
+      >
+      <Icon>home</Icon>
+    </IconButton>
+  )
+
+  let logOutButton = (
     <IconButton
       edge="start"
       className={classes.menuButton}
@@ -11,7 +24,7 @@ function MyToolBar(props) {
         clientId: '',
         cartId: '',})}
       >
-      <Icon>home</Icon>
+      <Icon>exit_to_app</Icon>
     </IconButton>
   )
 
@@ -35,13 +48,19 @@ const cartButton = (
       edge="start"
       className={classes.menuButton}
       color="inherit"
-      onClick={()=>router.navigate("/createCart", {
-        clientId: '',
-        cartId: '',})}
+      onClick={()=>router.navigate("/cart", {
+        clientId: clientId,
+        cartId: cartId})}
       >
       <Icon>shopping_cart</Icon>
     </IconButton>
   )
+
+let showMenuButton = true
+
+  if (router.current() === "/createCart") {
+    showMenuButton = false
+  }
 
 let showCartButton = false
 
@@ -49,18 +68,23 @@ let showCartButton = false
     showCartButton = true
   }
 
+let showLogOutButton = true
 
+  if (router.current() === "/createCart") {
+    showLogOutButton = false
+  }
 
   return (
     <div className={classes.rootToolBar}>
       <AppBar position="static">
         <Toolbar>
-          {menuButton}
+          {showMenuButton && menuButton}
           <Typography variant="h6" className={classes.title}>
             {title}
           </Typography>
           {/*<Button color="inherit">Login</Button>*/}
           {showCartButton && cartButton}
+          {showLogOutButton && logOutButton}
         </Toolbar>
       </AppBar>
     </div>
