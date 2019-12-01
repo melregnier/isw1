@@ -3,7 +3,9 @@ class CartView extends React.Component {
       super(props);
       this.state = {
         catalog: {},
-        listCart: {}
+        listCart: {},
+        cartFetched: false,
+        catalogFetched: false
       }
     }
   
@@ -14,7 +16,7 @@ class CartView extends React.Component {
         })
         .then(function(json) {
           if (json.errorCode === 0) {
-            component.setState({listCart: json.list, catalog: component.state.catalog}); 
+            component.setState({listCart: json.list, catalog: component.state.catalog, cartFetched: true}); 
           }
           if (json.errorCode === 1) {
             {alert('Hubo un error recuperando sus datos');}
@@ -70,6 +72,11 @@ class CartView extends React.Component {
           console.log('Looks like there was a problem: \n', error);
         });
     }
+
+    handleCheckOut() {
+      const { router, clientId, cartId } = this.props
+      router.navigate("/checkOut", { clientId: clientId, cartId: cartId })
+    }  
   
     componentDidMount(){
       let component = this;
@@ -81,7 +88,8 @@ class CartView extends React.Component {
         })
         .then(function(json) {
           if (json.errorCode === 0) {
-            component.setState({listCart: component.state.listCart, catalog: json.catalog}); 
+            component.setState({listCart: component.state.listCart, catalog: json.catalog,
+                                cartFetched: component.state.cartFetched, catalogFetched: true}); 
           }
           if (json.errorCode === 1) {
             {alert('No se puede acceder al catálogo en este momento');}
@@ -101,22 +109,23 @@ class CartView extends React.Component {
         classes
       } = this.props
   
-      //const classes = useStyles();
-      console.log(this.state.listCart[1])
-  
-      console.log("listcart")
-  
       return (
         <div>
        <List component="nav" aria-label="substrings">
         {
-          this.state.catalog && this.state.listCart && Object.keys(this.state.listCart).map((key, ix) => {
+          this.state.cartFetched && this.state.catalogFetched && this.state.catalog && this.state.listCart && Object.keys(this.state.listCart).map((key, ix) => {
             return (
               <ListItem
-                button
                 key={ix}
-                //onClick={() => router.navigate('/details', { selectedSubstring: this.state.catalog.catalog[key] })}
                 >
+                <IconButton 
+                  edge="start"
+                  color="default"
+                  onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
+                  >
+                  <Icon>info_two_tones</Icon>
+                </IconButton>
+
                 <ListItemText primary={this.state.catalog[key].title}
                               secondary={`ISBN ${key} Precio unitario: ${this.state.catalog[key].price}`} />
                 <IconButton
@@ -139,6 +148,27 @@ class CartView extends React.Component {
           })
         }
       </List>
+      { Object.keys(this.state.listCart).length !== 0 &&
+      <Button
+        color="primary"
+        onClick={() => this.handleCheckOut()}>
+        Check out
+        <Icon>local_mall</Icon>
+          </Button>
+      }
+      { Object.keys(this.state.listCart).length === 0 &&
+        <div>
+        <Typography component="h1" gutterBottom>
+        No ha añadido ningún libro todavía.
+        </Typography>
+        <Button
+        color="primary"
+        onClick={() => router.navigate("/catalog", {clientId: clientId, cartId: cartId})}>
+        Seguir comprando
+        <Icon>shopping_basket_outlined</Icon>
+          </Button>
+        </div>
+      }
       </div>
       )
     }

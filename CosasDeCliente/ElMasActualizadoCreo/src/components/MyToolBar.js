@@ -1,6 +1,6 @@
 function MyToolBar(props) {
   const classes = useStyles();
-  const {title, router, clientId, cartId} = props;
+  const {title, router, clientId, cartId, password} = props;
 
   let menuButton = (
     <IconButton
@@ -43,35 +43,54 @@ function MyToolBar(props) {
   }
 
 
-const cartButton = (
+  const cartButton = (
+      <IconButton
+        edge="start"
+        className={classes.menuButton}
+        color="inherit"
+        onClick={()=>router.navigate("/cart", {
+          clientId: clientId,
+          cartId: cartId})}
+        >
+        <Icon>shopping_cart</Icon>
+      </IconButton>
+    )
+
+  const purchasesButton = (
     <IconButton
       edge="start"
       className={classes.menuButton}
       color="inherit"
-      onClick={()=>router.navigate("/cart", {
+      onClick={()=>router.navigate("/purchases", {
         clientId: clientId,
-        cartId: cartId})}
+        password: password})}
       >
-      <Icon>shopping_cart</Icon>
+      <Icon>history</Icon>
     </IconButton>
   )
 
-let showMenuButton = true
+  let showMenuButton = true
 
-  if (router.current() === "/createCart") {
-    showMenuButton = false
-  }
+    if (router.current() === "/createCart" || router.current() === "/ticket" || cartId === "") {
+      showMenuButton = false
+    }
 
-let showCartButton = false
+  let showCartButton = false
 
-  if (router.current() === "/catalog") {
-    showCartButton = true
-  }
+    if (router.current() === "/catalog" || router.current() === "/checkOut" || (router.current() === "/purchases"  && cartId !== "")) {
+      showCartButton = true
+    }
 
-let showLogOutButton = true
+  let showLogOutButton = true
 
   if (router.current() === "/createCart") {
     showLogOutButton = false
+  }
+
+  let showPurchasesButton = true
+
+  if (router.current() === "/createCart" || router.current() === "/purchases") {
+    showPurchasesButton = false
   }
 
   return (
@@ -84,6 +103,7 @@ let showLogOutButton = true
           </Typography>
           {/*<Button color="inherit">Login</Button>*/}
           {showCartButton && cartButton}
+          {showPurchasesButton && purchasesButton}
           {showLogOutButton && logOutButton}
         </Toolbar>
       </AppBar>

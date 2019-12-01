@@ -1,7 +1,6 @@
 function CreateCartView(props) {
   const { router } = props
   const classes = useStyles();
-  let { isCatalogReady } = props
   const [values, setValues] = React.useState({
     user: '',
     password: ''
@@ -12,6 +11,7 @@ function CreateCartView(props) {
   };
   const handleSend = values => {
     const user = values.user
+    const password = values.password
     getLocalAsJson(`createCart?clientId=${user}&password=${values.password}`)
       .then(function (response) {
         
@@ -21,7 +21,7 @@ function CreateCartView(props) {
           // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
           // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
         if (json.errorCode === 0) {
-          router.navigate("/catalog", { clientId: user, cartId: json.cartId })
+          router.navigate("/catalog", { clientId: user, cartId: json.cartId, password: password })
         }
         if (json.errorCode === 1) {
           {alert('Datos Inválidos');}

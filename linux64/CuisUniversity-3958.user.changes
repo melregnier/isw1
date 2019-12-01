@@ -29698,3 +29698,121 @@ server3 startListening .
 !
 
 ----QUIT----(25 November 2019 18:55:30) CuisUniversity-3958.image priorSource: 16313729!
+
+----STARTUP---- (30 November 2019 13:38:39) as /home/melissa/Mel/college shit/IngenierÃ­a de Software I/isw1/linux64/CuisUniversity-3958.image!
+
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----SNAPSHOT----(1 December 2019 01:25:20) CuisUniversity-3958.image priorSource: 16314136!
+
+----QUIT----(1 December 2019 01:25:24) CuisUniversity-3958.image priorSource: 16314587!
+
+----STARTUP---- (1 December 2019 11:12:57) as /home/melissa/Mel/college shit/IngenierÃ­a de Software I/isw1/linux64/CuisUniversity-3958.image!
+
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:35:50' prior: 50837445!
+debit: aTotal from: aCreditCard
+
+	aCreditCard number = '1111222233334444' ifFalse: [ self error: self stolenCreditCardErrorMessage ].
+! !
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:37:13'!
+stolenCreditCardErrorMessage
+
+	^ 'Tarjeta robada'.! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+
+!
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:18:00' prior: 50836582!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	number := aCreditCardNumber.! !
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:18:43' prior: 50841520!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	aCreditCardNumber digitLength.
+	number := aCreditCardNumber.! !
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:19:49' prior: 50841527!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	aCreditCardNumber asNumber digitLength.
+	number := aCreditCardNumber.! !
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:20:10' prior: 50841535!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	aCreditCardNumber asNumber digitLength = 16 ifFalse:[].
+	number := aCreditCardNumber.! !
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:20:37' prior: 50841543!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	aCreditCardNumber asNumber digitLength = 16 ifFalse:[ self error: 'Número de tarjeta inválida' ].
+	number := aCreditCardNumber.! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+
+!
+
+'1111222233334444' size!
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:23:25' prior: 50841552!
+initializeExpiringOn: aMonth number: aCreditCardNumber 
+
+	expiration := aMonth.
+	aCreditCardNumber size = 16 ifFalse:[ self error: 'Número de tarjeta inválida' ].
+	number := aCreditCardNumber.! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----SNAPSHOT----(1 December 2019 20:32:12) CuisUniversity-3958.image priorSource: 16314680!
+
+----QUIT----(1 December 2019 20:32:25) CuisUniversity-3958.image priorSource: 16317925!

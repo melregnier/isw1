@@ -3,7 +3,9 @@ class CatalogView extends React.Component {
     super(props);
     this.state = {
       catalog: {},
-      listCart: {}
+      listCart: {},
+      cartFetched: false,
+      catalogFetched: false
     }
   }
 
@@ -14,7 +16,8 @@ class CatalogView extends React.Component {
       })
       .then(function(json) {
         if (json.errorCode === 0) {
-          component.setState({listCart: json.list, catalog: component.state.catalog}); 
+          component.setState({listCart: json.list, catalog: component.state.catalog,
+                              cartFetched: true, catalogFetched: component.state.catalogFetched}); 
         }
         if (json.errorCode === 1) {
           {alert('Hubo un error recuperando sus datos');}
@@ -81,7 +84,8 @@ class CatalogView extends React.Component {
       })
       .then(function(json) {
         if (json.errorCode === 0) {
-          component.setState({listCart: component.state.listCart, catalog: json.catalog}); 
+          component.setState({listCart: component.state.listCart, catalog: json.catalog,
+                              cartFetched: component.state.cartFetched, catalogFetched: true}); 
         }
         if (json.errorCode === 1) {
           {alert('No se puede acceder al catálogo en este momento');}
@@ -109,16 +113,23 @@ class CatalogView extends React.Component {
     return (
       <div>
      <List component="nav" aria-label="substrings">
-      {
-        this.state.catalog && Object.keys(this.state.catalog).map((key, ix) => {
+      { this.state.cartFetched && this.state.catalogFetched && this.state.catalog && Object.keys(this.state.catalog).map((key, ix) => {
           return (
             <ListItem
-              button
               key={ix}
-              //onClick={() => router.navigate('/details', { selectedSubstring: this.state.catalog.catalog[key] })}
+              //onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
               >
+              <IconButton 
+                edge="start"
+                color="default"
+                onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
+                >
+                <Icon>info_two_tones</Icon>
+              </IconButton>
+              
               <ListItemText primary={this.state.catalog[key].title}
                             secondary={`ISBN ${key} Precio unitario: ${this.state.catalog[key].price}`} />
+              
               <IconButton 
                 edge="start"
                 color="default"
