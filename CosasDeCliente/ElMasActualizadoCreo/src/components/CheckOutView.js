@@ -12,13 +12,15 @@ function CheckOutView(props) {
     };
 
     const handleSend = values => {
-      const ccn = values.ccn
-      const cco = values.cco
-      const cced = values.cced
+      const { ccn, cco, cced } = values
       const { cartId } = props
+      let badRequest = false
       getLocalAsJson(`checkOutCart?cartId=${cartId}&ccn=${ccn}&cco=${cco}&cced=${cced}`)
         .then(function (response) {
-          return response.json()
+          if (response.status === 400) {
+            badRequest = true
+          }
+          return response.json()  
         })
         .then(function (json) {
             // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
@@ -29,8 +31,12 @@ function CheckOutView(props) {
           if (json.errorCode === 1) {
             {alert(json.message);}
           }
+          if (badRequest) {
+            {alert(json.error)}
+          }
         })
         .catch(function (error) {
+          console.log(error)
           console.log('Looks like there was a problem: \n', error);
         });
     }

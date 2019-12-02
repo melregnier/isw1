@@ -30223,3 +30223,904 @@ addAddToCartService
 	! !
 
 ----SNAPSHOT----(2 December 2019 17:36:08) CuisUniversity-3958.image priorSource: 16318018!
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:52:34' prior: 50840848!
+addCatalogService
+
+	| catalog catalogResponse |
+	
+	webServer addService: '/catalog' action: [ :request |
+		[
+		[
+			catalog := tusLibrosService catalog.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		catalogResponse := self catalogFor: catalog.
+		self sendOkResponseWith: (Association key: 'catalog' value: catalogResponse) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText). ]
+	].
+
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:52:53' prior: 50841996!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText
+					  do: [].
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:53:32' prior: 50842083!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:58:18' prior: 50842117!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-type' put: 'application/json'
+
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:58:46' prior: 50842161!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-type' put: 'application/json'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:00:00' prior: 50842200!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText))
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-type' put: 'application/json'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:02:55' prior: 50842239!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText))
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:03:55' prior: 50842286!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:05:53' prior: 50842333!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+"		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+		 ]"
+		do: [ :anError |
+			request send404Response: anError messageText do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+			]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:06:55' prior: 50842378!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+"		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+		 ]"
+		do: [ :anError |
+			request send404Response: anError messageText do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+			]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:10:36' prior: 50842433!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:12:18' prior: 50842486!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+					resp headerAt: 'Content-Type' put: 'application/json; charset=utf-8'
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:20:59' prior: 50842527!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8 type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:21:07' prior: 50842575!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:22:47' prior: 50842615!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText)); yourself) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+(WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: 1 messageText)); yourself)!
+
+(WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: 1)); yourself)!
+
+(WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: 1); yourself))!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:24:43' prior: 50842663!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: 1); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:25:35' prior: 50842721!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:33:06' prior: 50842769!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 404 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:33:40' prior: 50842818!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:43:06' prior: 50842867!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText
+			"request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ]."
+		 ]
+	].
+	
+	
+	! !
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+
+!
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 18:44:13' prior: 50842916!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+		 ]
+	].
+	
+	
+	! !
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+
+----SNAPSHOT----(2 December 2019 18:56:25) CuisUniversity-3958.image priorSource: 16332855!
+
+----QUIT----(2 December 2019 18:56:28) CuisUniversity-3958.image priorSource: 16363600!

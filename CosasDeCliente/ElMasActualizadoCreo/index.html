@@ -280,6 +280,7 @@
               value={values.user}
               onChange={handleChange('user')}
               labelWidth={60}
+              required
             />
           </FormControl>
     
@@ -296,6 +297,7 @@
     
           <Button
             color="primary"
+            type="submit"
             onClick={() => handleSend(values)}>
             Crear carrito
               </Button>
@@ -782,13 +784,15 @@
         };
     
         const handleSend = values => {
-          const ccn = values.ccn
-          const cco = values.cco
-          const cced = values.cced
+          const { ccn, cco, cced } = values
           const { cartId } = props
+          let badRequest = false
           getLocalAsJson(`checkOutCart?cartId=${cartId}&ccn=${ccn}&cco=${cco}&cced=${cced}`)
             .then(function (response) {
-              return response.json()
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()  
             })
             .then(function (json) {
                 // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
@@ -799,8 +803,12 @@
               if (json.errorCode === 1) {
                 {alert(json.message);}
               }
+              if (badRequest) {
+                {alert(json.error)}
+              }
             })
             .catch(function (error) {
+              console.log(error)
               console.log('Looks like there was a problem: \n', error);
             });
         }
@@ -932,244 +940,6 @@
           )
         }
       }
-    class StringInputComponent extends React.Component {
-      constructor(props) {
-        super(props)
-    
-        this.state = {
-          sentence: "",
-        }
-      }
-    
-      handleChange(event) {
-        this.setState({
-          sentence: event.target.value
-        })
-      };
-    
-      handleSend() {
-        const {
-          router,
-        } = this.props
-    
-        const {
-          sentence,
-        } = this.state
-    
-        getLocalAsJson(`substrings?sentence=${sentence}`)
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            router.navigate("/list", { substrings: json })
-          })
-          .catch(function (error) {
-            console.log('Looks like there was a problem: \n', error);
-          });
-      }
-    
-      render() {
-        const {
-          sentence,
-        } = this.state
-    
-        const {
-          classes,
-        } = this.props
-    
-        return (
-          <div>
-            <Typography component="h1" gutterBottom>
-              Ingrese un texto donde buscar subcadenas
-              </Typography>
-            <FormControl fullWidth className={classes.textField} variant="outlined">
-              <InputLabel htmlFor="outlined-adornment-amount">String</InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-amount"
-                value={sentence}
-                onChange={(ev)=>this.handleChange(ev)}
-                startAdornment={<InputAdornment position="start">></InputAdornment>}
-                labelWidth={60}
-                multiline
-                rows="7"
-              />
-            </FormControl>
-    
-            <Button
-              color="inherit"
-              onClick={(ev)=>this.handleSend(ev)}>
-              Enviar
-          </Button>
-          </div>
-        )
-      }
-    }
-    
-    // Add style
-    const StringInputView = withStyles(styles, {
-      withTheme: true
-    })(StringInputComponent)
-    class SubstringsComponent extends React.Component {
-      constructor(props) {
-        super(props)
-      }
-    
-      render() {
-        const {
-          router,
-          substrings,
-          classes,
-        } = this.props
-    
-        return (
-          <div>
-            <Typography component="h1" gutterBottom>
-              Encontramos los siguientes substrings:
-              </Typography>
-            <List component="nav" className={classes.rootList} aria-label="substrings">
-              {
-                substrings.map((substring, ix) => {
-                  return (
-                    <ListItem
-                      button
-                      key={ix}
-                      onClick={() => router.navigate('/details', { selectedSubstring: substring })}>
-                      <ListItemText primary={substring} />
-                    </ListItem>
-                  )
-                })
-              }
-            </List>
-          </div>
-        )
-      }
-    }
-    
-    // Add style
-    const SubstringsView = withStyles(styles, {
-      withTheme: true
-    })(SubstringsComponent)
-    class SubstringDetailsComponent extends React.Component {
-      constructor(props) {
-        super(props)
-    
-        this.state = {
-          details: {},
-          loading: false,
-          error: null,
-        }
-      }
-    
-      componentDidMount() {
-        const substring = this.props.selectedSubstring
-    
-        this.setState({
-          loading: true,
-          error: null,
-        })
-    
-        let details = {}
-    
-        getLocalAsJson(`firstletter?word=${substring}`)
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["firstLetter"] = json
-            return getLocalAsJson(`touppercase?word=${substring}`)
-          })
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["uppercase"] = json
-            return getLocalAsJson(`vowels?word=${substring}`)
-          })
-          .then(function(response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["vowels"] = json
-            return details
-          })
-          .then((details) => {
-            this.setState({
-              loading: false,
-              details: details
-            })
-          })
-          .catch(err => {
-            this.setState({
-              loading: false,
-              error: err,
-            })
-          })
-      }
-    
-      render() {
-        const {
-          // router,
-          selectedSubstring,
-          classes,
-        } = this.props
-    
-        const {
-          details,
-          loading,
-          error,
-        } = this.state
-    
-        if (loading) return <div>Loading...</div>
-        if (error) return <div>{error}</div>
-    
-        return (
-          <div>
-            <Typography variant="h4" component="h4" gutterBottom>
-              Detalles de <b>{selectedSubstring}</b>
-            </Typography>
-    
-            <TextField
-              id="outlined-read-only-input"
-              label="Primera letra"
-              defaultValue={details["firstLetter"]}
-              className={classes.textFieldDetails}
-              margin="normal"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-            <TextField
-              id="outlined-read-only-input"
-              label="En mayúsculas"
-              defaultValue={details["uppercase"]}
-              className={classes.textFieldDetails}
-              margin="normal"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-            <TextField
-              id="outlined-read-only-input"
-              label="Vocales"
-              defaultValue={details["vowels"]}
-              className={classes.textFieldDetails}
-              margin="normal"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-            />
-          </div>
-        )
-      }
-    }
-    
-    // Add style
-    const SubstringDetailsView = withStyles(styles, {
-      withTheme: true
-    })(SubstringDetailsComponent)
     class App extends React.Component {
       constructor(props) {
         super(props);

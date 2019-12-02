@@ -44,6 +44,7 @@ function CreateCartView(props) {
           value={values.user}
           onChange={handleChange('user')}
           labelWidth={60}
+          required
         />
       </FormControl>
 
@@ -60,6 +61,7 @@ function CreateCartView(props) {
 
       <Button
         color="primary"
+        type="submit"
         onClick={() => handleSend(values)}>
         Crear carrito
           </Button>
