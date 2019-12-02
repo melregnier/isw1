@@ -29816,3 +29816,410 @@ server3 startListening .
 ----SNAPSHOT----(1 December 2019 20:32:12) CuisUniversity-3958.image priorSource: 16314680!
 
 ----QUIT----(1 December 2019 20:32:25) CuisUniversity-3958.image priorSource: 16317925!
+
+----STARTUP---- (2 December 2019 15:13:14) as /tmp/isw1/linux64/CuisUniversity-3958.image!
+
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].!
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!DenotativeObjectBrowser methodsFor: 'class functions' stamp: 'mr 12/2/2019 15:23:33' prior: 50747835!
+createClass
+
+	self selectedClass ifNotNil: [ :aDenotativeObject | | superclass className categoryName |	
+		className := ClassNameRequestMorph request: 'Class for ', aDenotativeObject name onCancel: [ ^self ].
+		(Smalltalk classNamed: className) ifNotNil: [
+			(PopUpMenu confirm: className, ' already exist. Do you want to recreate?' trueChoice: 'Recreate it' falseChoice: 'Do not continue') 
+				ifFalse: [ ^self ]].			
+		categoryName := FillInTheBlankMorph request: 'Enter category name' initialAnswer: aDenotativeObject category onCancel: [ ^self ].
+		
+		[ superclass := self createSuperclassOf: aDenotativeObject onCancel: [ ^self ].
+		aDenotativeObject createClassNamed: className asSymbol subclassOf: superclass category: categoryName. 		self change: #systemCategoryList ]
+			on: Error
+			do: [ :anError | self inform: anError messageText ]]! !
+
+Object subclass: #Testssss
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'lala'!
+
+!classDefinition: #Testssss category: #lala stamp: 'mr 12/2/2019 15:24:37'!
+Object subclass: #Testssss
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'lala'!
+
+!classDefinition: #UnaClase category: #lala stamp: 'mr 12/2/2019 15:24:54'!
+Object subclass: #UnaClase
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'lala'!
+!Testssss methodsFor: 'no messages' stamp: 'mr 12/2/2019 15:24:49'!
+lala
+	UnaClase! !
+
+!classRemoval: #UnaClase stamp: 'mr 12/2/2019 15:25:26'!
+Object subclass: #UnaClase
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'lala'!
+
+!classRemoval: #Testssss stamp: 'mr 12/2/2019 15:25:26'!
+Object subclass: #Testssss
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'lala'!
+!TusLibrosServerController methodsFor: 'nil' stamp: 'mr 12/2/2019 16:14:40'!
+catalog! !
+!TusLibrosServerController methodsFor: 'as yet unclassified' stamp: 'mr 12/2/2019 16:15:59' prior: 50841662!
+catalog
+
+	| catalog |
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
+!TusLibrosServerController methodsFor: 'as yet unclassified' stamp: 'mr 12/2/2019 16:16:03' prior: 50841666!
+catalog
+
+	| catalog |
+
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
+!TusLibrosServerController methodsFor: 'as yet unclassified' stamp: 'mr 12/2/2019 16:22:40' prior: 50841683!
+catalog
+
+	| catalog |
+	" esto debería recuperarse del sistema de archivos"
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
+!TusLibrosServerController methodsFor: 'as yet unclassified' stamp: 'mr 12/2/2019 16:23:16' prior: 50841700!
+catalog
+
+	| catalog |
+	" esto debería recuperarse del sistema de archivos, por lo que evitamos agregar mensajes que no le corresponden al controller para quitar codigo repetido"
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:23:38' prior: 50841407!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
+								   add: (Association key: 'admin' value: 'admin'); yourself.
+	books := self catalog.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:12'!
+clients
+	
+	^ Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
+								   add: (Association key: 'admin' value: 'admin'); yourself.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:51' prior: 50841741!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := self catalog.
+	books := self catalog.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:59' prior: 50841778!
+initializeWith: aPortNumber
+	
+	| books clients salesBook |
+	clients := self clients.
+	books := self catalog.
+	salesBook := OrderedCollection new.
+	
+	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
+												 withClock: DateAndTime .
+	
+	port:= aPortNumber.
+	
+	webServer := WebServer new listenOn: aPortNumber.
+	
+	self addCreateCartService.
+	self addAddToCartService.
+	self addListCartService.
+	self addCheckOutCartService.
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:19:18' prior: 50837805!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:26:25' prior: 50841822!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (Association key: 'error' value: anError messageText) ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:28:01' prior: 50841846!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText))  ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:28:46' prior: 50841871!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+				  contentType: 'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  ].  ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:29:47' prior: 50841897!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:29:59' prior: 50838177!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (WebUtils jsonEncode: (Association key: 'error' value: anError messageText)) asUtf8
+		 ]
+	].
+	
+	
+	! !
+
+TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListening.
+																	anInstance destroy].
+!
+
+| server3 |
+
+server3 := (TusLibrosServerController listeningOn: 8086).
+server3 startListening . 
+!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:34:26' prior: 50841953!
+addCheckOutCartService
+
+	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
+	
+	webServer addService: '/checkOutCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		creditCardNumber := request fields at: 'ccn'.
+		creditCardExpirationDate := self expirationDateFor: (request fields at: 'cced').
+		creditCardOwner := request fields at: 'cco'.
+		
+		[
+			sale := tusLibrosService checkOutCart: cartId withCreditCardNumber: creditCardNumber
+															    withExpiration: creditCardExpirationDate
+															    withOwner: creditCardOwner
+															    on: DateAndTime now.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		ticket := self ticketFor: sale.
+		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText.
+		 ]
+	].
+	
+	
+	! !
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/2/2019 17:34:48' prior: 50841927!
+addAddToCartService
+
+	| cartId bookIsbn bookQuantity |
+	
+	webServer addService: '/addToCart' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		bookQuantity := (request fields at: 'bookQuantity') asNumber.
+		
+		[
+			tusLibrosService add: bookQuantity toCart: cartId ofBook: bookIsbn.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: anError messageText.
+		 ]
+	].
+	
+	
+	! !
+
+----SNAPSHOT----(2 December 2019 17:36:08) CuisUniversity-3958.image priorSource: 16318018!

@@ -564,6 +564,42 @@ test19ListPurchasesOfAValidClientWithPurchasesReturnsTotalAndPurchases
 	self assert: (listPurchases purchases at: store itemSellByTheStore) equals: 1.
 	self assert: listPurchases purchases keys size equals: 1. ! !
 
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:38:56'!
+test20RemoveBookFromValidCartDecreasesQuantityInList
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+	
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+	
+	tusLibrosService add: 2 toCart: cartId ofBook: store itemSellByTheStore.
+	
+	tusLibrosService removeBook: store itemSellByTheStore fromCart: cartId.
+	
+	self assert: ((tusLibrosService listCart: cartId) at: store itemSellByTheStore) equals: 1.! !
+
+!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dr 11/25/2019 15:52:55'!
+test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession
+
+	| tusLibrosService cartId |
+
+	tusLibrosService := self defaultRestInterface.
+
+	self timeSetToInitial .
+
+	cartId := tusLibrosService createCartForClient: store validUser withPassword: store validPassword.
+
+	tusLibrosService add: 1 toCart: cartId ofBook: store itemSellByTheStore.
+
+	self timeIncreaseMinutes: 1.
+	
+	tusLibrosService removeBook: store itemSellByTheStore fromCart: cartId.
+
+	self timeIncreaseMinutes: 29.
+
+	self assert: (tusLibrosService listCart: cartId) isEmpty.! !
+
 
 !TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 15:51:18'!
 defaultRestInterface
@@ -612,6 +648,48 @@ timeSetToInitial
 	currentTime := DateAndTime year: 2020 day: 19 hour: 12 minute: 0 second: 0.! !
 
 
+!classDefinition: #BookInfo category: #TusLibros!
+Object subclass: #BookInfo
+	instanceVariableNames: 'title author price'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!BookInfo methodsFor: 'accessing' stamp: 'dr 11/21/2019 20:11:34'!
+author
+
+	^ author.! !
+
+!BookInfo methodsFor: 'accessing' stamp: 'dr 11/21/2019 20:11:15'!
+price
+
+	^ price.! !
+
+!BookInfo methodsFor: 'accessing' stamp: 'dr 11/21/2019 20:11:24'!
+title
+
+	^ title.! !
+
+
+!BookInfo methodsFor: 'initialization' stamp: 'dr 11/21/2019 20:19:22'!
+initializeWithTitle: aTitle by: anAuthor costing: aPrice.
+
+	title := aTitle.
+	author := anAuthor.
+	price := aPrice.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'BookInfo class' category: #TusLibros!
+BookInfo class
+	instanceVariableNames: ''!
+
+!BookInfo class methodsFor: 'instance creation' stamp: 'dr 11/21/2019 20:18:39'!
+withTitle: aTitle by: anAuthor costing: aPrice
+
+	^ self new initializeWithTitle: aTitle by: anAuthor costing: aPrice.! !
+
+
 !classDefinition: #Cart category: #TusLibros!
 Object subclass: #Cart
 	instanceVariableNames: 'catalog items'
@@ -648,6 +726,12 @@ initializeAcceptingItemsOf: aCatalog
 	items := OrderedCollection new.! !
 
 
+!Cart methodsFor: 'removing' stamp: 'dr 11/25/2019 15:45:12'!
+removeOneItemOf: anItem
+
+	items remove: anItem.! !
+
+
 !Cart methodsFor: 'queries' stamp: 'mr 11/11/2019 15:32:53'!
 forEachItemDo: aBlockToRun
 
@@ -658,10 +742,10 @@ occurrencesOf: anItem
 
 	^items occurrencesOf: anItem  ! !
 
-!Cart methodsFor: 'queries' stamp: 'mr 11/18/2019 15:48:39'!
+!Cart methodsFor: 'queries' stamp: 'dr 11/21/2019 20:25:40'!
 priceFor: anItem
 
-	^ catalog at: anItem. ! !
+	^ (catalog at: anItem) price. ! !
 
 
 !Cart methodsFor: 'testing' stamp: 'HernanWilkinson 6/17/2013 17:44'!
@@ -675,10 +759,10 @@ isEmpty
 	^items isEmpty ! !
 
 
-!Cart methodsFor: 'total' stamp: 'HernanWilkinson 6/17/2013 19:09'!
+!Cart methodsFor: 'total' stamp: 'dr 11/21/2019 20:24:06'!
 total
 
-	^ items sum: [ :anItem | catalog at: anItem ]! !
+	^ items sum: [ :anItem | (catalog at: anItem) price]! !
 
 
 !Cart methodsFor: 'adding' stamp: 'HernanWilkinson 6/17/2013 17:44'!
@@ -741,6 +825,12 @@ initializeCart: aCart accessedAt: aTimeOfAccess for: aClientId
 accessedAt: aTimeOfAccess
 
 	lastAccess := aTimeOfAccess.! !
+
+
+!CartSession methodsFor: 'removing' stamp: 'dr 11/25/2019 15:43:04'!
+removeOneBookOf: aBook
+
+	cart removeOneItemOf: aBook.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -862,10 +952,11 @@ initializeExpiringOn: aMonth
 	
 	expiration := aMonth ! !
 
-!CreditCard methodsFor: 'initialization' stamp: 'mr 11/11/2019 16:06:38'!
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:23:25'!
 initializeExpiringOn: aMonth number: aCreditCardNumber 
 
 	expiration := aMonth.
+	aCreditCardNumber size = 16 ifFalse:[ self error: 'Número de tarjeta inválida' ].
 	number := aCreditCardNumber.! !
 
 
@@ -1033,6 +1124,11 @@ itemSellByTheStore
 	
 	^ 'validBook'! !
 
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'dr 11/21/2019 20:22:17'!
+itemSellByTheStoreInfo
+
+	^ BookInfo withTitle: 'Little Women' by: 'Louisa May Alcott' costing: 10 ! !
+
 !StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
 itemSellByTheStorePrice
 	
@@ -1044,11 +1140,11 @@ createCart
 	
 	^Cart acceptingItemsOf: self defaultCatalog! !
 
-!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'dr 11/21/2019 20:20:56'!
 defaultCatalog
 	
 	^ Dictionary new
-		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self itemSellByTheStore put: self itemSellByTheStoreInfo;
 		yourself ! !
 
 !StoreTestObjectsFactory methodsFor: 'cart' stamp: 'mr 11/11/2019 15:40:10'!
@@ -1153,6 +1249,28 @@ addAddToCartService
 	].
 	
 	
+	! !
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:45:49'!
+addCatalogService
+
+	| catalog catalogResponse |
+	
+	webServer addService: '/catalog' action: [ :request |
+		[
+		[
+			catalog := tusLibrosService catalog.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		catalogResponse := self catalogFor: catalog.
+		self sendOkResponseWith: (Association key: 'catalog' value: catalogResponse) to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+
 	! !
 
 !TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:11:23'!
@@ -1261,6 +1379,31 @@ addListPurchasesService
 	
 	! !
 
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/25/2019 15:57:40'!
+addRemoveBookFromCartService
+
+	| cartId bookIsbn |
+	
+	webServer addService: '/removeBook' action: [ :request |
+		[
+		cartId := (request fields at: 'cartId') asNumber.
+		bookIsbn := request fields at: 'bookIsbn'.
+		
+		[
+			tusLibrosService removeBook: bookIsbn fromCart: cartId.
+		] on: Error do: [ :anError |
+			self sendErrorResponseFor: anError to: request. 
+		].
+		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
+		 ] 
+		on: Error 
+		do: [ :anError |
+			request send404Response: (anError messageText) ]
+	].
+	
+	
+	! !
+
 !TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:09:41'!
 expirationDateFor: expirationDateCodified
 
@@ -1282,14 +1425,30 @@ expirationDateFor: expirationDateCodified
 ! !
 
 
-!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 11/19/2019 16:34:45'!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:23:16'!
+catalog
+
+	| catalog |
+	" esto debería recuperarse del sistema de archivos, por lo que evitamos agregar mensajes que no le corresponden al controller para quitar codigo repetido"
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:12'!
+clients
+	
+	^ Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
+								   add: (Association key: 'admin' value: 'admin'); yourself.! !
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:59'!
 initializeWith: aPortNumber
 	
 	| books clients salesBook |
-	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); yourself.
-	books := Dictionary new add: (Association key: '1' value: 1); 
-								    add: (Association key: '2' value: 2);
-								    add: (Association key: '3' value: 3); yourself.
+	clients := self clients.
+	books := self catalog.
 	salesBook := OrderedCollection new.
 	
 	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
@@ -1303,13 +1462,12 @@ initializeWith: aPortNumber
 	self addAddToCartService.
 	self addListCartService.
 	self addCheckOutCartService.
-	self addListPurchasesService.! !
+	self addListPurchasesService.
+	self addCatalogService.
+	self addRemoveBookFromCartService.! !
 
-!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/17/2019 17:29:20'!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 15:59:31'!
 port
-	"Use a random port to minimise chances of concurrently running test suites clashing."
-	"^ port
-		ifNil: [port := (10000 to: 50000) atRandom]"
 	
 	^port ifNil: [port:=8080].
 	
@@ -1336,6 +1494,24 @@ stopListening
 	
 	^'Stopped listening from port: ', self port asString! !
 
+
+!TusLibrosServerController methodsFor: 'response objects - private' stamp: 'dr 11/21/2019 20:44:51'!
+catalogFor: aCatalog
+
+	| catalog |
+
+	catalog := Dictionary new.
+	
+	aCatalog keysAndValuesDo: [ :isbn :bookInfo | | bookInfoAsDictionary |
+		bookInfoAsDictionary := Dictionary new.
+		bookInfoAsDictionary at: 'price' put: bookInfo price.
+		bookInfoAsDictionary at: 'author' put: bookInfo author.
+		bookInfoAsDictionary at: 'title' put: bookInfo title.
+			
+		catalog at: isbn put: bookInfoAsDictionary.
+	].
+
+	^ catalog.! !
 
 !TusLibrosServerController methodsFor: 'response objects - private' stamp: 'mr 11/19/2019 16:12:39'!
 productsFor: aSale
@@ -1433,9 +1609,16 @@ sendOkResponseWith: anAssociation to: aRequest
 	! !
 
 
-!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 11/18/2019 15:49:43'!
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:35:50'!
 debit: aTotal from: aCreditCard
+
+	aCreditCard number = '1111222233334444' ifFalse: [ self error: self stolenCreditCardErrorMessage ].
 ! !
+
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:37:13'!
+stolenCreditCardErrorMessage
+
+	^ 'Tarjeta robada'.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1583,6 +1766,19 @@ newCartSessionFor: anUser
 	^ CartSession cart: cart accessedAt: clock now for: anUser.
 ! !
 
+!TusLibrosService methodsFor: 'cart' stamp: 'dr 11/25/2019 15:54:17'!
+removeBook: aBook fromCart: aCart
+	
+	| cartSession |
+	
+	cartSession := self cartSessionOf: aCart.
+	
+	cartSession removeOneBookOf: aBook.
+	
+	self updateAccessOf: cartSession.
+	
+	! !
+
 
 !TusLibrosService methodsFor: 'error messages' stamp: 'mr 11/11/2019 15:39:42'!
 cartInexistentErrorMessage
@@ -1649,6 +1845,13 @@ listPurchasesOf: aClient withPassword: aPassword
 	
 	
 	! !
+
+
+!TusLibrosService methodsFor: 'catalog' stamp: 'dr 11/21/2019 19:44:35'!
+catalog
+
+
+	^ catalog.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
