@@ -600,23 +600,6 @@ test21RemoveBookFromValidCartUpdatesTheAccessTimeOfTheCartSession
 
 	self assert: (tusLibrosService listCart: cartId) isEmpty.! !
 
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dago 11/29/2019 18:00:39'!
-test22TusLibrosWithEmptyCatalogReturnsEmptyCatalog
-
-	| tusLibrosService |
-
-	tusLibrosService := self restInterfaceWithEmptyCatalog.
-
-	self assert: (tusLibrosService catalog) isEmpty.! !
-
-!TusLibrosServiceTest methodsFor: 'tests' stamp: 'dago 11/29/2019 18:05:41'!
-test23TusLibrosWithDefaultCatalogReturnDefaultCatalogWhenCatalogIsRequired
-	| tusLibrosService |
-
-	tusLibrosService := self defaultRestInterface .
-
-	self assert: tusLibrosService catalog equals: store defaultCatalog.! !
-
 
 !TusLibrosServiceTest methodsFor: 'setup' stamp: 'mr 11/18/2019 15:51:18'!
 defaultRestInterface
@@ -630,14 +613,6 @@ defaultRestInterface
 defaultRestInterfaceRegisteringIn: aSalesBook
 
 	^ TusLibrosService withClients: store defaultUsers andCatalog: store defaultCatalog storingIn: aSalesBook 
-						through: self withClock: self.
-	
-	! !
-
-!TusLibrosServiceTest methodsFor: 'setup' stamp: 'dago 11/29/2019 18:02:30'!
-restInterfaceWithEmptyCatalog
-
-	^ TusLibrosService withClients: store defaultUsers andCatalog: Dictionary new storingIn: OrderedCollection new 
 						through: self withClock: self.
 	
 	! !
@@ -702,12 +677,6 @@ initializeWithTitle: aTitle by: anAuthor costing: aPrice.
 	title := aTitle.
 	author := anAuthor.
 	price := aPrice.! !
-
-
-!BookInfo methodsFor: '=' stamp: 'dago 11/29/2019 18:13:12'!
-= anObject
-
-	^ author = anObject author and: [title = anObject title and: [price = anObject price].].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -983,10 +952,11 @@ initializeExpiringOn: aMonth
 	
 	expiration := aMonth ! !
 
-!CreditCard methodsFor: 'initialization' stamp: 'mr 11/11/2019 16:06:38'!
+!CreditCard methodsFor: 'initialization' stamp: 'mr 12/1/2019 20:23:25'!
 initializeExpiringOn: aMonth number: aCreditCardNumber 
 
 	expiration := aMonth.
+	aCreditCardNumber size = 16 ifFalse:[ self error: 'Número de tarjeta inválida' ].
 	number := aCreditCardNumber.! !
 
 
@@ -1255,7 +1225,28 @@ Object subclass: #TusLibrosServerController
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 15:30:14'!
+!TusLibrosServerController methodsFor: 'date validation' stamp: 'mr 11/19/2019 16:09:41'!
+expirationDateFor: expirationDateCodified
+
+	| expirationMonthOfYearNumber monthNumber yearNumber |
+	
+	expirationMonthOfYearNumber := expirationDateCodified asNumber.
+	
+	(expirationMonthOfYearNumber positive
+	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
+	
+	yearNumber := expirationMonthOfYearNumber \\ 10000.
+	
+	monthNumber := expirationMonthOfYearNumber // 10000.
+	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
+	
+	^ Month month: monthNumber year: yearNumber.
+									
+	
+! !
+
+
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:25'!
 addAddToCartService
 
 	| cartId bookIsbn bookQuantity |
@@ -1274,14 +1265,14 @@ addAddToCartService
 		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
+	
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/21/2019 20:45:49'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:34'!
 addCatalogService
 
 	| catalog catalogResponse |
@@ -1297,13 +1288,12 @@ addCatalogService
 		self sendOkResponseWith: (Association key: 'catalog' value: catalogResponse) to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
-
+	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:11:23'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:06'!
 addCheckOutCartService
 
 	| cartId creditCardExpirationDate creditCardOwner creditCardNumber sale ticket |
@@ -1327,14 +1317,13 @@ addCheckOutCartService
 		self sendOkResponseWith: (Association key: 'ticket' value: ticket) to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/18/2019 14:04:24'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:42'!
 addCreateCartService
 
 	| cartId |
@@ -1352,14 +1341,14 @@ addCreateCartService
 		self sendOkResponseWith: (Association key: 'cartId' value: cartId) to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
+	
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 15:33:03'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:48'!
 addListCartService
 
 	| cartId list |
@@ -1376,14 +1365,14 @@ addListCartService
 		self sendOkResponseWith: (Association key: 'list' value: list) to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
+	
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:39:34'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:38:53'!
 addListPurchasesService
 
 	| listPurchases purchases |
@@ -1402,14 +1391,14 @@ addListPurchasesService
 		self sendOkResponseWith: (Association key: 'purchases' value: purchases) to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
+	
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'dr 11/25/2019 15:57:40'!
+!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 12/3/2019 15:39:01'!
 addRemoveBookFromCartService
 
 	| cartId bookIsbn |
@@ -1427,43 +1416,37 @@ addRemoveBookFromCartService
 		self sendOkResponseWith: (Association key: 'message' value: 'OK') to: request. 
 		 ] 
 		on: Error 
-		do: [ :anError |
-			request send404Response: (anError messageText) ]
+		do: [ :anError | self send400ResponseFor: anError to: request. ]
 	].
 	
 	
 	! !
 
-!TusLibrosServerController methodsFor: 'adding services - private' stamp: 'mr 11/19/2019 16:09:41'!
-expirationDateFor: expirationDateCodified
 
-	| expirationMonthOfYearNumber monthNumber yearNumber |
-	
-	expirationMonthOfYearNumber := expirationDateCodified asNumber.
-	
-	(expirationMonthOfYearNumber positive
-	and: [ (expirationMonthOfYearNumber numberOfDigitsInBase: 10) <= 6]) ifFalse: [ self error: 'Invalid expiration date' ].
-	
-	yearNumber := expirationMonthOfYearNumber \\ 10000.
-	
-	monthNumber := expirationMonthOfYearNumber // 10000.
-	(monthNumber >= 1 and: [ monthNumber <= 12 ]) ifFalse: [ self error: 'Invalid month in expiration date'].
-	
-	^ Month month: monthNumber year: yearNumber.
-									
-	
-! !
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:23:16'!
+catalog
 
+	| catalog |
+	" esto debería recuperarse del sistema de archivos, por lo que evitamos agregar mensajes que no le corresponden al controller para quitar codigo repetido"
+	catalog := Dictionary new.
+	catalog add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ).
+	catalog add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2)).
+	catalog add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)).
+	
+	^ catalog! !
 
-!TusLibrosServerController methodsFor: 'initialization' stamp: 'dr 11/25/2019 16:04:59'!
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:12'!
+clients
+	
+	^ Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
+								   add: (Association key: 'admin' value: 'admin'); yourself.! !
+
+!TusLibrosServerController methodsFor: 'initialization' stamp: 'mr 12/2/2019 16:24:59'!
 initializeWith: aPortNumber
 	
 	| books clients salesBook |
-	clients := Dictionary new add: (Association key: 'Melissa' value: 'incorrecta'); add: (Association key: 'Dago' value: 'dagoescool');
-								   add: (Association key: 'admin' value: 'admin'); yourself.
-	books := Dictionary new add: (Association key: '1' value: (BookInfo withTitle: 'Harry Potter y el Prisionero de Azkabán' by: 'J. K. Rowling' costing: 1) ); 
-								    add: (Association key: '2' value: (BookInfo withTitle: '1984' by: 'George Orwell' costing: 2));
-								    add: (Association key: '3' value: (BookInfo withTitle: 'Rayuela' by: 'Julio Cortázar' costing: 3)); yourself.
+	clients := self clients.
+	books := self catalog.
 	salesBook := OrderedCollection new.
 	
 	tusLibrosService := TusLibrosService withClients: clients andCatalog: books storingIn: salesBook through: self
@@ -1595,6 +1578,17 @@ errorResponseJsonFor: anError
 	^ WebUtils jsonEncode: errorOnService.
 	! !
 
+!TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 12/3/2019 15:36:31'!
+send400ResponseFor: anError to: aRequest
+
+	aRequest sendResponseCode: 400 content: (WebUtils jsonEncode: (Dictionary new add:(Association key: 'error' value: anError messageText); yourself)) asUtf8
+					  type:  'application/json; charset=utf-8' do: [ :resp | 
+					resp headerAt: 'Access-Control-Allow-Origin' put: '*'.
+				  		  ].
+	
+	
+	! !
+
 !TusLibrosServerController methodsFor: 'responses - private' stamp: 'mr 11/18/2019 14:06:32'!
 sendErrorResponseFor: anError to: aRequest
 
@@ -1624,9 +1618,16 @@ sendOkResponseWith: anAssociation to: aRequest
 	! !
 
 
-!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 11/18/2019 15:49:43'!
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:35:50'!
 debit: aTotal from: aCreditCard
+
+	aCreditCard number = '1111222233334444' ifFalse: [ self error: self stolenCreditCardErrorMessage ].
 ! !
+
+!TusLibrosServerController methodsFor: 'merchant processor protocol' stamp: 'mr 12/1/2019 11:37:13'!
+stolenCreditCardErrorMessage
+
+	^ 'Tarjeta robada'.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
