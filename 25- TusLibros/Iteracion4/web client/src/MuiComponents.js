@@ -1,9 +1,13 @@
 const {
+  // theme, styles
+  colors,
+  createMuiTheme,
+  makeStyles,
+  withStyles,
+  // components
   AppBar,
   Button,
-  colors,
   Container,
-  createMuiTheme,
   CssBaseline,
   Icon,
   IconButton,
@@ -15,11 +19,9 @@ const {
   ListItem,
   ListItemIcon,
   ListItemText,
-  makeStyles,
   OutlinedInput,
   TextField,
   ThemeProvider,
   Toolbar,
   Typography,
-  CircularProgress,
 } = MaterialUI;

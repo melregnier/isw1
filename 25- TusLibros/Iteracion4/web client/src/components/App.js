@@ -5,6 +5,10 @@ class App extends React.Component {
       path: "/createCart",
       clientId: '',
       cartId: '',
+      ticket: {},
+      bookSelected: '',
+      catalog: {},
+      password: ''
     };
   }
 
@@ -26,12 +30,37 @@ class App extends React.Component {
     } else if (this.state.path === "/catalog") {
       content = (<CatalogView
         router={router}
-        clientId={this.state.cartId}
+        clientId={this.state.clientId}
+        cartId={this.state.cartId}
       />)
-    } else if (this.state.path === "/details") {
-      content = (<SubstringDetailsView
+    } else if (this.state.path === "/info") {
+      content = (<BookInfoView
         router={router}
-        selectedSubstring={this.state.selectedSubstring}
+        bookSelected={this.state.bookSelected}
+        catalog={this.state.catalog}
+      />)
+    } else if (this.state.path === "/cart") {
+      content = (<CartView 
+        router={router}
+        clientId={this.state.clientId}
+        cartId={this.state.cartId}
+      />)
+    } else if (this.state.path === "/checkOut") {
+      content = (<CheckOutView 
+        router={router}
+        clientId={this.state.clientId}
+        cartId={this.state.cartId}
+      />)
+    } else if (this.state.path === "/ticket") {
+      content = (<TicketView 
+        router={router}
+        ticket={this.state.ticket}
+      />)
+    } else if (this.state.path === "/purchases") {
+      content = (<PurchasesView
+      router={router}
+      clientId={this.state.clientId}
+      password={this.state.password}
       />)
     }
     return (
@@ -39,6 +68,9 @@ class App extends React.Component {
         <MyToolBar
           title={title}
           router={router}
+          clientId={this.state.clientId}
+          cartId={this.state.cartId}
+          password={this.state.password}
         />
         <Container maxWidth="sm">
           <div style={{ marginTop: 24, }}>

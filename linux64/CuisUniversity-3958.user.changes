@@ -31373,3 +31373,30 @@ TusLibrosServerController allInstances  do: [:anInstance| anInstance stopListeni
 server3 := (TusLibrosServerController listeningOn: 8086).
 server3 startListening . 
 !
+
+----SNAPSHOT----(3 December 2019 16:16:19) CuisUniversity-3958.image priorSource: 16363693!
+
+----QUIT----(3 December 2019 16:16:22) CuisUniversity-3958.image priorSource: 16371765!
+
+----STARTUP---- (3 December 2019 16:17:41) as /tmp/isw1/linux64/CuisUniversity-3958.image!
+
+
+!classRemoval: #StringServerController stamp: 'mr 12/3/2019 16:17:59'!
+Object subclass: #StringServerController
+	instanceVariableNames: 'webServer port stringGenius hiList'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'StringServer'!
+
+!classRemoval: #StringGenius stamp: 'mr 12/3/2019 16:17:59'!
+Object subclass: #StringGenius
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'StringServer'!
+
+----End fileIn of /tmp/isw1/25- TusLibros/Iteracion4/web client/server-services/StringServer-cors.st----!
+
+----End fileIn of /tmp/isw1/25- TusLibros/Iteracion4/web client/server-services/StringServer.st----!
+
+----End fileIn of /tmp/isw1/25- TusLibros/Iteracion4/web client/server-services/StringServer-cors.st----!

@@ -31,11 +31,15 @@
 
   <script type="text/babel" type="module">
     const {
+      // theme, styles
+      colors,
+      createMuiTheme,
+      makeStyles,
+      withStyles,
+      // components
       AppBar,
       Button,
-      colors,
       Container,
-      createMuiTheme,
       CssBaseline,
       Icon,
       IconButton,
@@ -47,13 +51,11 @@
       ListItem,
       ListItemIcon,
       ListItemText,
-      makeStyles,
       OutlinedInput,
       TextField,
       ThemeProvider,
       Toolbar,
       Typography,
-      CircularProgress,
     } = MaterialUI;
     const theme = createMuiTheme({
       palette: {
@@ -72,7 +74,8 @@
         },
       },
     });
-    const useStyles = makeStyles(theme => ({
+    
+    const styles = theme => ({
       root: {
         margin: theme.spacing(6, 0, 3),
       },
@@ -103,12 +106,12 @@
       textFieldDetails: {
         margin: theme.spacing(2),
       }
-    }));
+    })
+    
+    const useStyles = makeStyles(styles);
 
     const getLocalAsJson = (path) => {
-    
-      // var port = 8080
-      var port = 8086
+      const port = 8086
     
       return fetch(`http://localhost:${port}/${path}`, {
         method: "GET",
@@ -121,9 +124,22 @@
 
     function MyToolBar(props) {
       const classes = useStyles();
-      const {title, router} = props;
+      const {title, router, clientId, cartId, password} = props;
     
       let menuButton = (
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          onClick={()=>router.navigate("/catalog", {
+            clientId: clientId,
+            cartId: cartId})}
+          >
+          <Icon>home</Icon>
+        </IconButton>
+      )
+    
+      let logOutButton = (
         <IconButton
           edge="start"
           className={classes.menuButton}
@@ -132,11 +148,11 @@
             clientId: '',
             cartId: '',})}
           >
-          <Icon>home</Icon>
+          <Icon>exit_to_app</Icon>
         </IconButton>
       )
     
-      if (router.current() === "/details") {
+      if (router.current() === "/listCartView") {
         menuButton = (
           <IconButton
             edge="start"
@@ -150,15 +166,69 @@
         )
       }
     
+    
+      const cartButton = (
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            onClick={()=>router.navigate("/cart", {
+              clientId: clientId,
+              cartId: cartId})}
+            >
+            <Icon>shopping_cart</Icon>
+          </IconButton>
+        )
+    
+      const purchasesButton = (
+        <IconButton
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          onClick={()=>router.navigate("/purchases", {
+            clientId: clientId,
+            password: password})}
+          >
+          <Icon>history</Icon>
+        </IconButton>
+      )
+    
+      let showMenuButton = true
+    
+        if (router.current() === "/createCart" || router.current() === "/ticket" || cartId === "") {
+          showMenuButton = false
+        }
+    
+      let showCartButton = false
+    
+        if (router.current() === "/catalog" || router.current() === "/checkOut" || (router.current() === "/purchases"  && cartId !== "")) {
+          showCartButton = true
+        }
+    
+      let showLogOutButton = true
+    
+      if (router.current() === "/createCart") {
+        showLogOutButton = false
+      }
+    
+      let showPurchasesButton = true
+    
+      if (router.current() === "/createCart" || router.current() === "/purchases") {
+        showPurchasesButton = false
+      }
+    
       return (
         <div className={classes.rootToolBar}>
           <AppBar position="static">
             <Toolbar>
-              {menuButton}
+              {showMenuButton && menuButton}
               <Typography variant="h6" className={classes.title}>
                 {title}
               </Typography>
               {/*<Button color="inherit">Login</Button>*/}
+              {showCartButton && cartButton}
+              {showPurchasesButton && purchasesButton}
+              {showLogOutButton && logOutButton}
             </Toolbar>
           </AppBar>
         </div>
@@ -171,25 +241,32 @@
         user: '',
         password: ''
       });
+    
       const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
       };
       const handleSend = values => {
         const user = values.user
+        const password = values.password
+        let badRequest = false
         getLocalAsJson(`createCart?clientId=${user}&password=${values.password}`)
           .then(function (response) {
-            
-            return response.json()
+            if (response.status === 400) {
+              badRequest = true
+            }
+            return response.json()  
           })
           .then(function (json) {
-            console.log('llego')
               // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
               // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
             if (json.errorCode === 0) {
-              router.navigate("/catalog", { clientId: user, cartId: json.cartId })
+              router.navigate("/catalog", { clientId: user, cartId: json.cartId, password: password })
             }
             if (json.errorCode === 1) {
               {alert('Datos Inválidos');}
+            }
+            if (badRequest) {
+              {alert(json.error);}
             }
           })
           .catch(function (error) {
@@ -209,6 +286,7 @@
               value={values.user}
               onChange={handleChange('user')}
               labelWidth={60}
+              required
             />
           </FormControl>
     
@@ -225,6 +303,7 @@
     
           <Button
             color="primary"
+            type="submit"
             onClick={() => handleSend(values)}>
             Crear carrito
               </Button>
@@ -234,201 +313,701 @@
     
     
     
-    
-    
     class CatalogView extends React.Component {
       constructor(props) {
         super(props);
         this.state = {
-          clientId: '',
-          cartId: '',
           catalog: {},
-          loading: true
-        };
+          listCart: {},
+          cartFetched: false,
+          catalogFetched: false
+        }
       }
     
-      componentDidMount() {
-        getLocalAsJson(`catalog`)
+      fetchListCart(cartId, component) {
+        let badRequest = false
+        getLocalAsJson(`listCart?cartId=${cartId}`)
+          .then(function(response){
+            if (response.status === 400) {
+              badRequest = true
+            }
+            return response.json()
+          })
+          .then(function(json) {
+            if (json.errorCode === 0) {
+              component.setState({listCart: json.list, catalog: component.state.catalog,
+                                  cartFetched: true, catalogFetched: component.state.catalogFetched}); 
+            }
+            if (json.errorCode === 1) {
+              {alert('Hubo un error recuperando sus datos:', json.message);}
+            }
+            if (badRequest) {
+              {alert(json.error);}
+            }
+          })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+      }
+    
+      handleAdd(isbn){
+        let badRequest = false
+        const { cartId } = this.props
+        let component = this
+        getLocalAsJson(`addToCart?cartId=${cartId}&bookIsbn=${isbn}&bookQuantity=1`)
           .then(function (response) {
-            this.state.catalog = response.json();
-            this.state.loading = false
+            if (response.status === 400) {
+              badRequest = true
+            }
+            return response.json()
           })
-          .catch(err => {
-            setError(err)
-            this.state.loading = false
+          .then(function (json) {
+              // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+              // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+            if (json.errorCode === 0) {
+              component.fetchListCart(cartId, component)
+            }
+            if (json.errorCode === 1) {
+              {alert('Hubo un error añadiendo su libro. Intente nuevamente.');}
+            }
+            if (badRequest) {
+              {alert(json.error);}
+            }
           })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+      }
+    
+      handleRemove(isbn){
+        const { cartId } = this.props
+        let badRequest = false
+        let component = this
+        getLocalAsJson(`removeBook?cartId=${cartId}&bookIsbn=${isbn}`)
+          .then(function (response) {
+            if (response.status === 400) {
+              badRequest = true
+            }
+            return response.json()
+          })
+          .then(function (json) {
+              // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+              // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+            if (json.errorCode === 0) {
+              component.fetchListCart(cartId, component)
+            }
+            if (json.errorCode === 1) {
+              {alert('Hubo un error quitando su libro. Intente nuevamente.');}
+            }
+            if (badRequest) {
+              {alert(json.error);}
+            }
+          })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+      }
+    
+      componentDidMount(){
+        let component = this;
+        const { cartId } = this.props
+        let badRequest = false
+    
+        getLocalAsJson('catalog')
+          .then(function(response){
+            if (response.status === 400) {
+              badRequest = true
+            }
+            return response.json()
+          })
+          .then(function(json) {
+            if (json.errorCode === 0) {
+              component.setState({listCart: component.state.listCart, catalog: json.catalog,
+                                  cartFetched: component.state.cartFetched, catalogFetched: true}); 
+            }
+            if (json.errorCode === 1) {
+              {alert('No se puede acceder al catálogo en este momento');}
+            }
+            if (badRequest) {
+              {alert(json.error);}
+            }
+          })
+          .catch(function (error) {
+            console.log('Looks like there was a problem: \n', error);
+          });
+        this.fetchListCart(cartId, component)
       }
     
       render() {
-        /*const {loading, clientId, cartId} = this.state;
+        const {
+          router,
+          clientId,
+          cartId,
+          classes
+        } = this.props
+    
+        //const classes = useStyles();
+        console.log(this.state.listCart[1])
+    
+        console.log("listcart")
+    
         return (
           <div>
-          {loading && <div> <Typography component="h1" gutterBottom>
-              Loading...
-              </Typography>
-              <CircularProgress />
-            </div>
+         <List component="nav" aria-label="substrings">
+          { this.state.cartFetched && this.state.catalogFetched && this.state.catalog && Object.keys(this.state.catalog).map((key, ix) => {
+              return (
+                <ListItem
+                  key={ix}
+                  //onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
+                  >
+                  <IconButton 
+                    edge="start"
+                    color="default"
+                    onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
+                    >
+                    <Icon>info_two_tones</Icon>
+                  </IconButton>
+                  
+                  <ListItemText primary={this.state.catalog[key].title}
+                                secondary={`ISBN ${key} Precio unitario: ${this.state.catalog[key].price}`} />
+                  
+                  <IconButton 
+                    edge="start"
+                    color="default"
+                    onClick={() => this.handleRemove(key)}
+                    >
+                    <Icon>remove_circle_outline_rounded</Icon>
+                  </IconButton>
+                  {(this.state.listCart && this.state.listCart[key]) || 0 }
+                  <IconButton
+                    edge="start"
+                    color="primary"
+                    onClick={() => this.handleAdd(key)}
+                    >
+                    <Icon>add_circle_outline_rounded</Icon>
+                  </IconButton>
+                </ListItem>
+              )
+            })
           }
-          {!loading }
-          </div>
-          );
-        }*/
-        if (this.state.loading) {
+        </List>
+        </div>
+        )
+      }
+    }
+    class CartView extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            catalog: {},
+            listCart: {},
+            cartFetched: false,
+            catalogFetched: false
+          }
+        }
+      
+        fetchListCart(cartId, component) {
+          let badRequest = false
+          getLocalAsJson(`listCart?cartId=${cartId}`)
+            .then(function(response){
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function(json) {
+              if (json.errorCode === 0) {
+                component.setState({listCart: json.list, catalog: component.state.catalog, cartFetched: true}); 
+              }
+              if (json.errorCode === 1) {
+                {alert('Hubo un error recuperando sus datos');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+        }
+      
+        handleAdd(isbn){
+          let badRequest = false
+          const { cartId } = this.props
+          let component = this
+          getLocalAsJson(`addToCart?cartId=${cartId}&bookIsbn=${isbn}&bookQuantity=1`)
+            .then(function (response) {
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function (json) {
+                // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+                // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+              if (json.errorCode === 0) {
+                component.fetchListCart(cartId, component)
+              }
+              if (json.errorCode === 1) {
+                {alert('Hubo un error añadiendo su libro. Intente nuevamente.');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+        }
+      
+        handleRemove(isbn){
+          let badRequest = false
+          const { cartId } = this.props
+          let component = this
+          getLocalAsJson(`removeBook?cartId=${cartId}&bookIsbn=${isbn}`)
+            .then(function (response) {
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function (json) {
+                // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+                // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+              if (json.errorCode === 0) {
+                component.fetchListCart(cartId, component)
+              }
+              if (json.errorCode === 1) {
+                {alert('Hubo un error quitando su libro. Intente nuevamente.');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+        }
+    
+        handleCheckOut() {
+          const { router, clientId, cartId } = this.props
+          router.navigate("/checkOut", { clientId: clientId, cartId: cartId })
+        }  
+      
+        componentDidMount(){
+          let badRequest = false
+          let component = this;
+          const { cartId } = this.props
+      
+          getLocalAsJson('catalog')
+            .then(function(response){
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function(json) {
+              if (json.errorCode === 0) {
+                component.setState({listCart: component.state.listCart, catalog: json.catalog,
+                                    cartFetched: component.state.cartFetched, catalogFetched: true}); 
+              }
+              if (json.errorCode === 1) {
+                {alert('No se puede acceder al catálogo en este momento');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+          this.fetchListCart(cartId, component)
+        }
+      
+        render() {
+          const {
+            router,
+            clientId,
+            cartId,
+            classes
+          } = this.props
+      
           return (
             <div>
-              <Typography component="h1" gutterBottom>
-              Loading...
-              </Typography>
-              
+           <List component="nav" aria-label="substrings">
+            {
+              this.state.cartFetched && this.state.catalogFetched && this.state.catalog && this.state.listCart && Object.keys(this.state.listCart).map((key, ix) => {
+                return (
+                  <ListItem
+                    key={ix}
+                    >
+                    <IconButton 
+                      edge="start"
+                      color="default"
+                      onClick={() => router.navigate('/info', { bookSelected: key, catalog: this.state.catalog })}
+                      >
+                      <Icon>info_two_tones</Icon>
+                    </IconButton>
     
-    
-    
-    
-    
-    
-              <CircularProgress />
-            </div>
-        )
-        } else {
-          return(
+                    <ListItemText primary={this.state.catalog[key].title}
+                                  secondary={`ISBN ${key} Precio unitario: ${this.state.catalog[key].price}`} />
+                    <IconButton
+                      edge="start"
+                      color="default"
+                      onClick={() => this.handleRemove(key)}
+                      >
+                      <Icon>remove_circle_outline_rounded</Icon>
+                    </IconButton>
+                    {(this.state.listCart && this.state.listCart[key]) || 0 }
+                    <IconButton
+                      edge="start"
+                      color="primary"
+                      onClick={() => this.handleAdd(key)}
+                      >
+                      <Icon>add_circle_outline_rounded</Icon>
+                    </IconButton>
+                  </ListItem>
+                )
+              })
+            }
+          </List>
+          { Object.keys(this.state.listCart).length !== 0 &&
+          <Button
+            color="primary"
+            onClick={() => this.handleCheckOut()}>
+            Check out
+            <Icon>local_mall</Icon>
+              </Button>
+          }
+          { Object.keys(this.state.listCart).length === 0 &&
             <div>
-              <Typography component="h1" gutterBottom>
-              Catálogo:
-                </Typography>
-                <CircularProgress />
+            <Typography component="h1" gutterBottom>
+            No ha añadido ningún libro todavía.
+            </Typography>
+            <Button
+            color="primary"
+            onClick={() => router.navigate("/catalog", {clientId: clientId, cartId: cartId})}>
+            Seguir comprando
+            <Icon>shopping_basket_outlined</Icon>
+              </Button>
+            </div>
+          }
+          </div>
+          )
+        }
+      }
+         class TicketView extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            ticket: props.ticket,
+            catalog: {},
+            catalogFetched: false
+          }
+        } 
+      
+        componentDidMount() {
+          let component = this;
+          let badRequest = false
+          console.log("didmount")
+      
+          getLocalAsJson('catalog')
+            .then(function(response){
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function(json) {
+              if (json.errorCode === 0) {
+                component.setState({ticket: component.state.ticket, catalog: json.catalog, catalogFetched: true}); 
+              }
+              if (json.errorCode === 1) {
+                {alert('Hubo un error al procesar su ticket');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+              {alert('Hubo un error al procesar su ticket');}
+            });
+        }
+      
+        render() {
+          const {
+            router
+          } = this.props
+    
+          return (
+            <div>
+           <List component="nav" aria-label="productos">
+            { this.state.catalog && this.state.catalogFetched && Object.keys(this.state.ticket.products).map((key, ix) => {
+                return (
+                  <ListItem
+                    key={ix}
+                    >
+                    <ListItemText primary={this.state.catalog[key].title}
+                                  secondary={`ISBN ${key}`} />
+                    {this.state.ticket.products[key].quantity} x ${this.state.catalog[key].price}
+                  </ListItem>
+                )
+              })
+            }
+          </List>
+          Total: ${this.state.ticket.total}
+          </div>
+          )
+        }
+      }
+    class BookInfoView extends React.Component {
+        constructor(props) {
+          super(props)
+      
+          this.state = {
+            bookSelected: props.bookSelected,
+            catalog: props.catalog
+          }
+        }
+    
+        render() {
+          const {
+            // router,
+            bookSelected,
+            catalog
+          } = this.state
+      
+          const {
+            author,
+            title,
+            price
+          } = catalog[bookSelected]
+    
+          return (
+            <div>
+              <Typography variant="h4" component="h4" gutterBottom>
+                <b>{title}</b>
+              </Typography>
+      
+              <TextField
+                id="outlined-read-only-input"
+                label="Autor"
+                defaultValue={author}
+                margin="normal"
+                InputProps={{
+                  readOnly: true,
+                }}
+                variant="outlined"
+              />
+              <TextField
+                id="outlined-read-only-input"
+                label="ISBN"
+                defaultValue={bookSelected}
+                margin="normal"
+                InputProps={{
+                  readOnly: true,
+                }}
+                variant="outlined"
+              />
+              <TextField
+                id="outlined-read-only-input"
+                label="Precio"
+                defaultValue={price}
+                margin="normal"
+                InputProps={{
+                  readOnly: true,
+                }}
+                variant="outlined"
+              />
             </div>
           )
         }
-    
       }
-    }
+    function CheckOutView(props) {
+        const { router } = props
+        const classes = useStyles();
+        const [values, setValues] = React.useState({
+          ccn: '',
+          cco: '',
+          cced: ''
+        });
+      
+        const handleChange = prop => event => {
+          setValues({ ...values, [prop]: event.target.value });
+        };
     
-    // Fetch Hook
-    const useFetchDetails = (substring) => {
-      const [details, setDetails] = React.useState([])
-      const [loading, setLoading] = React.useState(false)
-      const [error, setError] = React.useState(null)
+        const handleSend = values => {
+          const { ccn, cco, cced } = values
+          const { cartId } = props
+          let badRequest = false
+          getLocalAsJson(`checkOutCart?cartId=${cartId}&ccn=${ccn}&cco=${cco}&cced=${cced}`)
+            .then(function (response) {
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()  
+            })
+            .then(function (json) {
+                // si en json.error_code es 0 -> voy al catalogo (actualizando cartId y clientId), 
+                // si es 1 ->  mensaje de error {alert('Datos Inválidos');}
+              if (json.errorCode === 0) {
+                router.navigate("/ticket", { cartId: '', ticket: json.ticket })
+              }
+              if (json.errorCode === 1) {
+                {alert(json.message);}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log(error)
+              console.log('Looks like there was a problem: \n', error);
+            });
+        }
+      
+        return (
+          <div>
+            <Typography component="h1" gutterBottom>
+                Ingrese los datos de su tarjeta para continuar.
+                </Typography>
+            <FormControl fullWidth className={classes.textField} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-amount">Número de tarjeta de crédito </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={values.ccn}
+                onChange={handleChange('ccn')}
+                labelWidth={205}
+              />
+            </FormControl>
+      
+            <FormControl fullWidth className={classes.textField} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-amount">Nombre del titular a cargo</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                value={values.cco}
+                onChange={handleChange('cco')}
+                labelWidth={190}
+              />
+            </FormControl>
     
-      React.useEffect(() => {
-        setLoading(true)
-        setError(null)
+            <FormControl fullWidth className={classes.textField} variant="outlined">
+              <InputLabel htmlFor="outlined-adornment-amount">Fecha de expiración</InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-amount"
+                placeholder="mmyyyy"
+                value={values.cced}
+                onChange={handleChange('cced')}
+                labelWidth={145}
+              />
+            </FormControl>
+      
+            <Button
+              color="primary"
+              onClick={() => handleSend(values)}>
+              Continuar
+              <Icon>payment</Icon>
+                </Button>
+          </div>
+        )
+      }    class PurchasesView extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            catalog: {},
+            catalogFetched: false,
+            purchases: {},
+            purchasesFetched: false
+          }
+        }
+      
+        fetchPurchases(clientId, password) {
+          let badRequest = false
+          let component = this
     
-        let details = {}
-    
-        getLocalAsJson(`firstletter?word=${substring}`)
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["firstLetter"] = json
-    
-            setLoading(false)
-            if (details) {
-              setDetails(details)
-            } else {
-              setDetails([])
+          getLocalAsJson(`listPurchases?clientId=${clientId}&password=${password}`)
+            .then(function(response){
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function(json) {
+              if (json.errorCode === 0) {
+                component.setState({purchasesFetched: true, purchases: json.purchases}); 
+              }
+              if (json.errorCode === 1) {
+                {alert('Hubo un error recuperando sus datos');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+        }
+      
+        componentDidMount(){
+          let component = this;
+          let badRequest = false
+          const { clientId, password } = this.props
+      
+          getLocalAsJson('catalog')
+            .then(function(response){
+              if (response.status === 400) {
+                badRequest = true
+              }
+              return response.json()
+            })
+            .then(function(json) {
+              if (json.errorCode === 0) {
+                component.setState({catalog: json.catalog, catalogFetched: true,
+                                    purchases: component.state.purchases, purchasesFetched: component.state.purchasesFetched}); 
+              }
+              if (json.errorCode === 1) {
+                {alert('No se puede acceder al catálogo en este momento');}
+              }
+              if (badRequest) {
+                {alert(json.error)}
+              }
+            })
+            .catch(function (error) {
+              console.log('Looks like there was a problem: \n', error);
+            });
+          this.fetchPurchases(clientId, password)
+        }
+      
+        render() {
+          const {
+            router,
+            clientId,
+            cartId,
+            classes
+          } = this.props
+      
+          return (
+            <div>
+           <List component="nav" aria-label="productos">
+            { this.state.catalogFetched && this.state.purchasesFetched && Object.keys(this.state.purchases.booksPurchased).map((key, ix) => {
+                return (
+                  <ListItem
+                    key={ix}
+                    >
+                    <ListItemText primary={this.state.catalog[key].title}
+                                  secondary={`ISBN ${key}`} />
+                    {this.state.purchases.booksPurchased[key]}
+                  </ListItem>
+                )
+              })
             }
-          })
-          .then(function () {
-            setLoading(true)
-            setError(null)
-    
-            return getLocalAsJson(`touppercase?word=${substring}`)
-          })
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["uppercase"] = json
-    
-            setLoading(false)
-            if (details) {
-              setDetails(details)
-            } else {
-              setDetails([])
-            }
-          })
-          .then(function () {
-            setLoading(true)
-            setError(null)
-    
-            return getLocalAsJson(`vowels?word=${substring}`)
-          })
-          .then(function (response) {
-            return response.json()
-          })
-          .then(function (json) {
-            details["vowels"] = json
-    
-            setLoading(false)
-            if (details) {
-              setDetails(details)
-            } else {
-              setDetails([])
-            }
-          })
-          .catch(err => {
-            setError(err)
-            setLoading(false)
-          })
-      }, [substring])
-    
-      return { details, loading, error }
-    }
-    
-    // Component
-    function SubstringDetailsView(props) {
-      const { router, selectedSubstring } = props
-      const classes = useStyles();
-    
-      const { details, loading, error } = useFetchDetails(selectedSubstring)
-    
-      if (loading) return <div>Loading...</div>
-      if (error) return <div>{error}</div>
-    
-      return (
-        <div>
-          <Typography variant="h4" component="h4" gutterBottom>
-            Detalles de <b>{selectedSubstring}</b>
-          </Typography>
-    
-          <TextField
-            id="outlined-read-only-input"
-            label="Primera letra"
-            defaultValue={details["firstLetter"]}
-            className={classes.textFieldDetails}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="En mayúsculas"
-            defaultValue={details["uppercase"]}
-            className={classes.textFieldDetails}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-          />
-          <TextField
-            id="outlined-read-only-input"
-            label="Vocales"
-            defaultValue={details["vowels"]}
-            className={classes.textFieldDetails}
-            margin="normal"
-            InputProps={{
-              readOnly: true,
-            }}
-            variant="outlined"
-          />
-        </div>
-      )
-    }
-    
+          </List>
+          Total: ${this.state.purchases.total}
+          </div>
+          )
+        }
+      }
     class App extends React.Component {
       constructor(props) {
         super(props);
@@ -436,6 +1015,10 @@
           path: "/createCart",
           clientId: '',
           cartId: '',
+          ticket: {},
+          bookSelected: '',
+          catalog: {},
+          password: ''
         };
       }
     
@@ -457,12 +1040,37 @@
         } else if (this.state.path === "/catalog") {
           content = (<CatalogView
             router={router}
-            clientId={this.state.cartId}
+            clientId={this.state.clientId}
+            cartId={this.state.cartId}
           />)
-        } else if (this.state.path === "/details") {
-          content = (<SubstringDetailsView
+        } else if (this.state.path === "/info") {
+          content = (<BookInfoView
             router={router}
-            selectedSubstring={this.state.selectedSubstring}
+            bookSelected={this.state.bookSelected}
+            catalog={this.state.catalog}
+          />)
+        } else if (this.state.path === "/cart") {
+          content = (<CartView 
+            router={router}
+            clientId={this.state.clientId}
+            cartId={this.state.cartId}
+          />)
+        } else if (this.state.path === "/checkOut") {
+          content = (<CheckOutView 
+            router={router}
+            clientId={this.state.clientId}
+            cartId={this.state.cartId}
+          />)
+        } else if (this.state.path === "/ticket") {
+          content = (<TicketView 
+            router={router}
+            ticket={this.state.ticket}
+          />)
+        } else if (this.state.path === "/purchases") {
+          content = (<PurchasesView
+          router={router}
+          clientId={this.state.clientId}
+          password={this.state.password}
           />)
         }
         return (
@@ -470,6 +1078,9 @@
             <MyToolBar
               title={title}
               router={router}
+              clientId={this.state.clientId}
+              cartId={this.state.cartId}
+              password={this.state.password}
             />
             <Container maxWidth="sm">
               <div style={{ marginTop: 24, }}>
